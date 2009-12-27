@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <!--
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="Lavor-CommonsPU" />
     </bean>
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+     -->
+
+    <!-- Configurador que substitui os marcadores ${...} com os valores definidos no arquivo de properties -->
+    <!-- (in this case, JDBC-related settings for the dataSource definition below) -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:/jdbc.properties"/>
+    </bean>
+
+    <!-- Local C3P0 DataSource que trabalha em qualquer ambiente, em ambientes de produção use jndi -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- JPA EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="generateDdl" value="false"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+            </bean>
+        </property>
+    </bean>
+
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+
 
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -19,15 +54,11 @@
 
     <tx:annotation-driven />
 
-    <!--
-    <bean id="categoriaDao" class="br.com.integrator.dao.imp.CategoriaDaoImp" />
-    <bean id="produtoDao" class="br.com.integrator.dao.imp.ProdutoDaoImp" />
-    <bean id="pedidoDao" class="br.com.integrator.dao.imp.PedidoDaoImp" />
-    <bean id="itensPedidoDao" class="br.com.integrator.dao.imp.ItensPedidoDaoImp" />
-    <bean id="usuarioDao" class="br.com.integrator.dao.imp.UsuarioDaoImp" />
-    -->
+    <bean id="postoDeAtendimentoDao" class="lavor.dao.imp.PostoDeAtendimentoDaoImp" />
 
-    <bean id="postoDeAtendimento" class="lavor.entidade.PostoDeAtendimento">
-        <property name="nome" value="Spring tudo certo" />
+    <bean id="postoDeAtendimentoService" class="lavor.service.PostoDeAtendimentoService">
+        <property name="postoDeAtendimentoDao" ref="postoDeAtendimentoDao" />
     </bean>
+
+
 </beans>

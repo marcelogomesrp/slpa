@@ -40,9 +40,7 @@ public class DaoGenericoImp<T, ID extends Serializable> implements DaoGenerico<T
 
     protected EntityManager getEntityManager() {
         if (entityManager == null) {
-            //throw new IllegalStateException("Erro");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lavor-CommonsPU");
-            this.entityManager = emf.createEntityManager();
+            throw new IllegalStateException("Erro");
         }
         return entityManager;
     }

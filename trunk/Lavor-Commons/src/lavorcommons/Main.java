@@ -8,6 +8,7 @@ package lavorcommons;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.dao.imp.PostoDeAtendimentoDaoImp;
 import lavor.entidade.PostoDeAtendimento;
+import lavor.service.PostoDeAtendimentoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -27,10 +28,23 @@ public class Main {
 //        PostoDeAtendimentoDao postoDeAtendimentoDao = new PostoDeAtendimentoDaoImp();
 //        postoDeAtendimentoDao.salvar(postoDeAtendimento);
 //        System.out.println("Posto Salvo com sucesso");
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        PostoDeAtendimento pa = (PostoDeAtendimento) context.getBean("postoDeAtendimento");
+
+        
+        //ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //PostoDeAtendimento pa = (PostoDeAtendimento) context.getBean("postoDeAtendimento");
         //pa.setNome("ok spring");
-        System.out.println("Nome " + pa.getNome());
+        //System.out.println("Nome " + pa.getNome());
+
+        
+        
+        for(int x = 0; x < 100; x++){
+            ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+            PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+            PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
+            postoDeAtendimento.setNome("Salvo com o hibernate" + x);
+            pa.Salvar(postoDeAtendimento);
+        }
+        
     }
 
 }
