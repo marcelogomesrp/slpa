@@ -36,12 +36,11 @@ public class Main {
         //System.out.println("Nome " + pa.getNome());
 
         
-        
-        for(int x = 0; x < 100; x++){
-            ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        for(int x = 0; x < 10000; x++){
             PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
             PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
-            postoDeAtendimento.setNome("Salvo com o hibernate" + x);
+            postoDeAtendimento.setNome("Salvo com o hibernate + c3p0 n" + x);
             pa.Salvar(postoDeAtendimento);
         }
         
