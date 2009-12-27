@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Documento  : webContext.xml
+    Criado em  : 24 de Abril de 2007, 10:37
+    Autor      : Yuri
+    Descrição  : Configuração das Classes criadas para o projeto Web.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+       <bean id="postoDeAtendimentoService" class="lavor.service.PostoDeAtendimentoService" scope="session" >
+           <property name="postoDeAtendimentoDao" ref="postoDeAtendimentoDao" />
+       </bean>
+
+	<!-- Identifica os beans anotados com @Service, @Repository, @Controller  -->
+	<context:component-scan base-package="lavor.backbean" /> 
+
+	<!-- Habilita a configuracao de beans via anotacoes
+	sem a necessidade de usar PersistenceAnnotationBeanPostProcessor,
+	AutowiredAnnotationBeanPostProcessor e etc
+	 -->
+	<context:annotation-config /> 
+
+    <!--
+
+    <bean id="usuarioProvider" class="provider.UsuarioProvider" scope="session">
+        <property name="usuarioFacade" ref="usuarioFacade" />
+    </bean>
+
+    <bean id="contatoProvider" class="provider.ContatoProvider" scope="session">
+        <property name="contatoFacade" ref="contatoFacade" />
+    </bean>
+
+
+    <bean id="meioContatoProvider" class="provider.MeioContatoProvider" scope="session">
+        <property name="meioContatoFacade" ref="meioContatoFacade" />
+    </bean>
+
+    <bean id="enderecoProvider" class="provider.EnderecoProvider" scope="session">
+        <property name="enderecoFacade" ref="enderecoFacade" />
+    </bean>
+    -->
+</beans>
