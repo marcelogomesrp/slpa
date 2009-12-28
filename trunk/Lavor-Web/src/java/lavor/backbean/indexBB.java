@@ -58,10 +58,13 @@ public class indexBB {
     public String SalvarPostoDeAtendimento(){
         try{
             this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
+            this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
+            lavor.util.FacesUtils.mensInfo("Posto salvo com sucesso");
+
         }catch(Exception ex){
             System.out.println("Erro ao salvar \n" + ex.getMessage());
+            lavor.util.FacesUtils.mensErro("Erro ao salvar \n" + ex.getMessage());
         }
-        this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
         return "sucesso";
     }
 
