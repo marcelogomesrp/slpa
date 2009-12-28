@@ -55,21 +55,18 @@ public class indexBB {
         this.postoDeAtendimentoMB = postoDeAtendimentoMB;
     }
 
-    
+    public String SalvarPostoDeAtendimento() {
 
-    public String SalvarPostoDeAtendimento(){
+        //Log4JUtils.LogFatal("Mensagem do log Fatal feito com a classe legal heheeheh");
 
-    //Log4JUtils.LogFatal("Mensagem do log Fatal feito com a classe legal heheeheh");
-
-        try{
+        try {
             this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
-            this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
+            //this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
             lavor.util.FacesUtils.mensInfo("Posto salvo com sucesso");
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             lavor.util.FacesUtils.mensErro("Erro ao salvar \n" + ex.getMessage());
         }
         return "sucesso";
     }
-
 }
