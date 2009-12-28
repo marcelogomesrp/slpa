@@ -5,6 +5,7 @@
 package lavor.backbean;
 
 import javax.annotation.Resource;
+import javax.swing.JOptionPane;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.service.PostoDeAtendimentoService;
 import org.springframework.context.annotation.Scope;
@@ -56,6 +57,17 @@ public class indexBB {
     
 
     public String SalvarPostoDeAtendimento(){
+        org.apache.log4j.Logger log = org.apache.log4j.Logger.getRootLogger();
+        //JOptionPane.showMessageDialog(null, "Log esta " + log.getLevel().toString());
+        log.debug("mensagem debug ***************************************************************************************************************************");
+        log.info("mensagem info ***************************************************************************************************************************");
+        log.warn("mensagem warn ***************************************************************************************************************************");
+        log.error("mensagem erro ***************************************************************************************************************************");
+        log.fatal("mensagem fatal ***************************************************************************************************************************");
+
+
+
+
         try{
             this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
             this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
