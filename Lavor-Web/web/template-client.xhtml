@@ -26,14 +26,16 @@
                 Hello from the Facelets client template!
                 indexBB
                 <h:form>
-                <h:inputText value="#{indexBB.postoDeAtendimento.nome}" />
-                
+                ID: <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.id}" /> <br />
+                Posto: <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.nome}" />
                 <br />
-                #{indexBB.postoDeAtendimento.nome}
+                #{indexBB.postoDeAtendimentoMB.postoDeAtendimento.nome}
+                #{indexBB.postoDeAtendimentoMB.postoDeAtendimento.id}
                 <br />
                 
                 <br />
                 <h:commandButton value="ok" action="#{indexBB.SalvarPostoDeAtendimento}"/>
+                <br />                               
                 </h:form>
             </ui:define>
 

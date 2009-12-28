@@ -13,18 +13,20 @@ import org.springframework.stereotype.Controller;
 /**
  *
  * @author marcelo
+ * @Scope("session")
  */
 @Controller("indexBB")
-@Scope("session")
+@Scope("request")
 public class indexBB {
 
     private String nome;
     @Resource
     private PostoDeAtendimentoService postoDeAtendimentoService;
-    private PostoDeAtendimento postoDeAtendimento;
+    @Resource
+    private PostoDeAtendimentoMB postoDeAtendimentoMB;
 
     public indexBB() {
-        this.postoDeAtendimento = new PostoDeAtendimento();
+        //this.postoDeAtendimento = new PostoDeAtendimento();
     }
 
     public String getNome() {
@@ -43,20 +45,24 @@ public class indexBB {
         this.postoDeAtendimentoService = postoDeAtendimentoService;
     }
 
-    public PostoDeAtendimento getPostoDeAtendimento() {
-        return postoDeAtendimento;
+    public PostoDeAtendimentoMB getPostoDeAtendimentoMB() {
+        return postoDeAtendimentoMB;
     }
 
-    public void setPostoDeAtendimento(PostoDeAtendimento postoDeAtendimento) {
-        this.postoDeAtendimento = postoDeAtendimento;
+    public void setPostoDeAtendimentoMB(PostoDeAtendimentoMB postoDeAtendimentoMB) {
+        this.postoDeAtendimentoMB = postoDeAtendimentoMB;
     }
+
     
 
     public String SalvarPostoDeAtendimento(){
-        this.postoDeAtendimentoService.Salvar(postoDeAtendimento);
-        this.postoDeAtendimento = new PostoDeAtendimento();
+        try{
+            this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
+        }catch(Exception ex){
+            System.out.println("Erro ao salvar \n" + ex.getMessage());
+        }
+        this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
         return "sucesso";
     }
-
 
 }
