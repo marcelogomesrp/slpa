@@ -8,10 +8,17 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
     <application>
         <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-
-        <variable-resolver>
-            org.springframework.web.jsf.DelegatingVariableResolver
-        </variable-resolver>
+        <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
     </application>
+
+    <navigation-rule>
+        <from-view-id>/template-client.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/postodeatendimento/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>
+
 
