@@ -41,7 +41,7 @@ public class Main {
             PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
             PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
             postoDeAtendimento.setNome("Salvo com o hibernate + c3p0 n" + x);
-            pa.Salvar(postoDeAtendimento);
+            //pa.Salvar(postoDeAtendimento);
         }
         
     }
