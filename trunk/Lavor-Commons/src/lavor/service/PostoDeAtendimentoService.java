@@ -8,6 +8,7 @@ package lavor.service;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.entidade.PostoDeAtendimento;
 
+
 /**
  *
  * @author marcelo
@@ -28,9 +29,17 @@ public class PostoDeAtendimentoService {
     }
     
 
-    public PostoDeAtendimento Salvar(PostoDeAtendimento postoDeAtendimento){
+    public PostoDeAtendimento Salvar(PostoDeAtendimento postoDeAtendimento) throws Exception{
+        this.PostoDeAtendimentoPodeSerSalvo(postoDeAtendimento);
         postoDeAtendimento = postoDeAtendimentoDao.salvar(postoDeAtendimento);
         return postoDeAtendimento;
+    }
+
+    private void PostoDeAtendimentoPodeSerSalvo(PostoDeAtendimento postoDeAtendimento) throws Exception{
+        if(postoDeAtendimento.getNome().equalsIgnoreCase("marcelo")){
+            throw new Exception("Posto indevido pq sou chato");
+        }
+        
     }
 
 }
