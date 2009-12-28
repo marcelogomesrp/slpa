@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.swing.JOptionPane;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.service.PostoDeAtendimentoService;
+import lavor.util.Log4JUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -57,16 +58,8 @@ public class indexBB {
     
 
     public String SalvarPostoDeAtendimento(){
-        org.apache.log4j.Logger log = org.apache.log4j.Logger.getRootLogger();
-        //JOptionPane.showMessageDialog(null, "Log esta " + log.getLevel().toString());
-        log.debug("mensagem debug ***************************************************************************************************************************");
-        log.info("mensagem info ***************************************************************************************************************************");
-        log.warn("mensagem warn ***************************************************************************************************************************");
-        log.error("mensagem erro ***************************************************************************************************************************");
-        log.fatal("mensagem fatal ***************************************************************************************************************************");
 
-
-
+    //Log4JUtils.LogFatal("Mensagem do log Fatal feito com a classe legal heheeheh");
 
         try{
             this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
