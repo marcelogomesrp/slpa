@@ -62,7 +62,6 @@ public class indexBB {
             lavor.util.FacesUtils.mensInfo("Posto salvo com sucesso");
 
         }catch(Exception ex){
-            System.out.println("Erro ao salvar \n" + ex.getMessage());
             lavor.util.FacesUtils.mensErro("Erro ao salvar \n" + ex.getMessage());
         }
         return "sucesso";
