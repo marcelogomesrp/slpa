@@ -6,10 +6,7 @@ package lavor.backbean;
 
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import lavor.service.PostoDeAtendimentoService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -66,8 +63,7 @@ public class indexBB {
     public String SalvarPostoDeAtendimento() {
 
         //Log4JUtils.LogFatal("Mensagem do log Fatal feito com a classe legal heheeheh");
-        //HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        //session.setAttribute("usuario", "marcelo");
+
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session.getAttribute("msg") != null) {
             lavor.util.FacesUtils.mensErro("ok1" + (String) session.getAttribute("msg"));
@@ -84,7 +80,11 @@ public class indexBB {
         } catch (Exception ex) {
             lavor.util.FacesUtils.mensErro("Erro ao salvar \n" + ex.getMessage());
         }
-        return "sucesso";
+        if(this.postoDeAtendimentoMB.getPostoDeAtendimento().getNome().equalsIgnoreCase("marcelo")){
+            return "sucesso";
+        }else{
+            return "false";
+        }
     }
     public String Ok(){
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
