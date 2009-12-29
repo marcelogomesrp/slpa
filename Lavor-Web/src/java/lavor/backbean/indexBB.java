@@ -32,6 +32,11 @@ public class indexBB {
 
     public indexBB() {
         //this.postoDeAtendimento = new PostoDeAtendimento();
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if (session.getAttribute("msg") != null) {
+            lavor.util.FacesUtils.mensErro("Construtor " + (String) session.getAttribute("msg"));
+            //session.removeAttribute("msg");
+	}
     }
 
     public String getNome() {
@@ -61,8 +66,13 @@ public class indexBB {
     public String SalvarPostoDeAtendimento() {
 
         //Log4JUtils.LogFatal("Mensagem do log Fatal feito com a classe legal heheeheh");
+        //HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        //session.setAttribute("usuario", "marcelo");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        session.setAttribute("usuario", "marcelo");
+        if (session.getAttribute("msg") != null) {
+            lavor.util.FacesUtils.mensErro("ok1" + (String) session.getAttribute("msg"));
+            //session.removeAttribute("msg");
+	}
 
         try {
             this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
@@ -77,6 +87,12 @@ public class indexBB {
         return "sucesso";
     }
     public String Ok(){
-        return "logar";
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        
+        if (session.getAttribute("msg") != null) {
+            lavor.util.FacesUtils.mensErro("ok2" + (String) session.getAttribute("msg"));
+            //session.removeAttribute("msg");
+	}
+        return "l";
     }
 }
