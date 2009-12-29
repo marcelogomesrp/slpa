@@ -17,14 +17,22 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     -->
+    
     <navigation-rule>
         <navigation-case>
-            <from-action>#{tt.Valor}</from-action>
-            <from-outcome>ok</from-outcome>
-            <to-view-id>/admin/AdicionarUsuario.xhtml</to-view-id>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/admin/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addusuario</from-outcome>
+            <to-view-id>/admin/usuario/adicionar.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
 </faces-config>
+
+
+
 
 
 
