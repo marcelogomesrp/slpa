@@ -55,5 +55,9 @@
         <property name="postoDeAtendimentoDao" ref="postoDeAtendimentoDao" />
     </bean>
 
+    <bean id="usuarioDao" class="lavor.dao.imp.UsuarioDaoImp" />
 
+    <bean id="usuarioService" class="lavor.service.UsuarioService">
+        <property name="usuarioDao" ref="usuarioDao" />
+    </bean>
 </beans>
