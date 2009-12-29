@@ -5,10 +5,12 @@
 
 package lavor.backbean;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
-import lavor.dao.UsuarioDao;
 import lavor.entidade.Usuario;
 import lavor.managedbean.UsuarioMB;
+import lavor.service.UsuarioService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -21,17 +23,9 @@ import org.springframework.stereotype.Controller;
 @Scope("request")
 public class usuarioBB {
     @Resource
-    private UsuarioMB usuarioMB;
+    private UsuarioService usuarioService;
     @Resource
-    private UsuarioDao usuarioDao;
-
-    public UsuarioDao getUsuarioDao() {
-        return usuarioDao;
-    }
-
-    public void setUsuarioDao(UsuarioDao usuarioDao) {
-        this.usuarioDao = usuarioDao;
-    }
+    private UsuarioMB usuarioMB;
 
     public UsuarioMB getUsuarioMB() {
         return usuarioMB;
@@ -41,13 +35,27 @@ public class usuarioBB {
         this.usuarioMB = usuarioMB;
     }
 
+    public UsuarioService getUsuarioService() {
+        return usuarioService;
+    }
+
+    public void setUsuarioService(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
     public usuarioBB() {
     }
 
-    public String AdiconarUsuario(){
-        this.usuarioDao.salvar(this.usuarioMB.getUsuario());
-        this.usuarioMB.setUsuario(new Usuario());
-        return "sucesso";
+    public String SalvarUsuario(){
+        try {
+            this.usuarioService.Salvar(this.usuarioMB.getUsuario());
+            this.usuarioMB.setUsuario(new Usuario());
+            lavor.util.FacesUtils.mensInfo("Usuário adicionado com sucesso");
+            return "sucesso";
+        } catch (Exception ex) {
+            Logger.getLogger(usuarioBB.class.getName()).log(Level.SEVERE, null, ex);
+            return "falha";
+        }
     }
 
 
