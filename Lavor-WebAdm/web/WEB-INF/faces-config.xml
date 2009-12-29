@@ -27,9 +27,14 @@
             <from-outcome>addusuario</from-outcome>
             <to-view-id>/admin/usuario/adicionar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>categoria</from-outcome>
+            <to-view-id>/admin/categoria/adicionar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>
+
 
 
 
