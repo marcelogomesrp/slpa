@@ -1,2 +1,2 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:forward page="template-client.jspx"/>
+<jsp:forward page="/admin/login.jspx"/>
