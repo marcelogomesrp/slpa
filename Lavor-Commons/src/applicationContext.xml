@@ -60,4 +60,10 @@
     <bean id="usuarioService" class="lavor.service.UsuarioService">
         <property name="usuarioDao" ref="usuarioDao" />
     </bean>
+
+    <bean id="categoriaDao" class="lavor.dao.imp.CategoriaDaoImp" />
+
+    <bean id="categoriaService" class="lavor.service.CategoriaService">
+        <property name="categoriaDao" ref="categoriaDao" />
+    </bean>
 </beans>

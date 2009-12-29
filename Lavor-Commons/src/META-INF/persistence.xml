@@ -4,6 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>lavor.entidade.PostoDeAtendimento</class>
     <class>lavor.entidade.Usuario</class>
+    <class>lavor.entidade.Categoria</class>
     <properties>
       <property name="hibernate.connection.username" value="marcelo"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

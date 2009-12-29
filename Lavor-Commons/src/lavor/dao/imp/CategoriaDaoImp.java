@@ -5,13 +5,13 @@
 
 package lavor.dao.imp;
 
-import lavor.dao.UsuarioDao;
-import lavor.entidade.Usuario;
+import lavor.dao.CategoriaDao;
+import lavor.entidade.Categoria;
 
 /**
  *
  * @author marcelo
  */
-public class UsuarioDaoImp extends DaoGenericoImp<Usuario, Long> implements UsuarioDao{
+public class CategoriaDaoImp  extends DaoGenericoImp<Categoria, Long> implements CategoriaDao{
 
 }
