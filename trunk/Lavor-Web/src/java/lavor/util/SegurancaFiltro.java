@@ -63,15 +63,18 @@ public class SegurancaFiltro implements Filter{
 //
 //
 //		//verifica se a sessão existe
-		//if(posto != null){
-                if(posto.getPostoDeAtendimento().getNome().equalsIgnoreCase("marcelo")){
-                        JOptionPane.showMessageDialog(null, "Posto " + posto.getPostoDeAtendimento().getNome());
-			chain.doFilter(request, response);
-		}
-		else{
+		if(posto != null){
+                    if(posto.getPostoDeAtendimento().getNome().equalsIgnoreCase("marcelo")){
+                            JOptionPane.showMessageDialog(null, "Posto " + posto.getPostoDeAtendimento().getNome());
+                            chain.doFilter(request, response);
+                    }else{
+                        sessao.setAttribute("msg", "Usuário ou senha invalido");
+                        ((HttpServletResponse)response).sendRedirect("/Lavor-Web/template-client.jspx");
+                    }
+                }else{
 //			//envia uma mensagem caso o usuário
 //			//não tenha se logado
-//			sessao.setAttribute("mensage", "Entre com o usuário e a senha");
+			sessao.setAttribute("msg", "Entre com o usuário e a senha");
 //                        lavor.util.FacesUtils.mensErro("Para acessar este recurso você deve estar logado");
 //
 //			//redireciona para a página de login
