@@ -51,6 +51,11 @@
     <!-- Fim RichFaces -->
 
      <!-- Filtro para a entrada do usuário -->
+
+
+
+
+
  <filter>
   <description>Filtro para restringir a entrada do usuÃ¡rio</description>
   <filter-name>FiltroUsuario</filter-name>
@@ -60,7 +65,7 @@
 
     <filter-mapping>
         <filter-name>FiltroUsuario</filter-name>
-        <url-pattern>/template-client.jspx</url-pattern>
+        <url-pattern>/postodeatendimento/*</url-pattern>
     </filter-mapping>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
