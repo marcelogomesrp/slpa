@@ -5,10 +5,12 @@
 package lavor.backbean;
 
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import lavor.entidade.PostoDeAtendimento;
 import lavor.service.PostoDeAtendimentoService;
-import lavor.util.Log4JUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -26,6 +28,7 @@ public class indexBB {
     private PostoDeAtendimentoService postoDeAtendimentoService;
     @Resource
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
+
 
     public indexBB() {
         //this.postoDeAtendimento = new PostoDeAtendimento();
@@ -58,15 +61,22 @@ public class indexBB {
     public String SalvarPostoDeAtendimento() {
 
         //Log4JUtils.LogFatal("Mensagem do log Fatal feito com a classe legal heheeheh");
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.setAttribute("usuario", "marcelo");
 
         try {
             this.postoDeAtendimentoService.Salvar(postoDeAtendimentoMB.getPostoDeAtendimento());
             //this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
             lavor.util.FacesUtils.mensInfo("Posto salvo com sucesso");
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario2", "marcelogomes");
+            
 
         } catch (Exception ex) {
             lavor.util.FacesUtils.mensErro("Erro ao salvar \n" + ex.getMessage());
         }
         return "sucesso";
+    }
+    public String Ok(){
+        return "logar";
     }
 }
