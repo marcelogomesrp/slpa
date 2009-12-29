@@ -11,22 +11,15 @@
             <h:messages id="message" />
             <h:panelGrid columns="2" >
                 <h:outputText value="Nome" />
-                <h:inputText value="#{usuarioBB.usuarioMB.usuario.nome}" />
+                <h:inputText value="#{categoriaMB.categoria.nome}" />
 
-                <h:outputText value="Login" />
-                <h:inputText value="#{usuarioBB.usuarioMB.usuario.login}" />
-
-                <h:outputText value="Senha" />
-                <h:inputSecret value="#{usuarioBB.usuarioMB.usuario.senha}" />
-
-                <h:outputText value="E-mail" />
-                <h:inputText value="#{usuarioBB.usuarioMB.usuario.email}" />
+                <h:outputText value="Descrição" />
+                <h:inputText value="#{categoriaMB.categoria.descricao}" />
 
                 <h:outputText value="Ativo" />
-                <h:selectBooleanCheckbox value="#{usuarioBB.usuarioMB.usuario.ativo}" />
-
+                <h:selectBooleanCheckbox value="#{categoriaMB.categoria.ativo}" />
             </h:panelGrid>
-            <h:commandButton value="Cadastrar" action="#{usuarioBB.AdiconarUsuario}" />
+            <h:commandButton value="Cadastrar" action="#{categoriaBB.SalvarCategoria}" />
         </h:form>
     </ui:define>
 
