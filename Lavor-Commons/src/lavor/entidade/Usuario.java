@@ -15,15 +15,17 @@ import javax.persistence.Id;
  *
  * @author marcelo
  */
-@Entity(name="posto_de_atendimento")
-public class PostoDeAtendimento implements Serializable {
+@Entity
+public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
-    private String email;
+    private String login;
     private String senha;
+    private String email;
+    private Boolean ativo;
 
     public Long getId() {
         return id;
@@ -31,6 +33,22 @@ public class PostoDeAtendimento implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getNome() {
@@ -41,14 +59,6 @@ public class PostoDeAtendimento implements Serializable {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -57,14 +67,14 @@ public class PostoDeAtendimento implements Serializable {
         this.senha = senha;
     }
 
-    
-
-    public PostoDeAtendimento() {
+    public String getEmail() {
+        return email;
     }
 
-    public PostoDeAtendimento(String nome) {
-        this.nome = nome;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
 
     @Override
     public int hashCode() {
@@ -76,10 +86,10 @@ public class PostoDeAtendimento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PostoDeAtendimento)) {
+        if (!(object instanceof Usuario)) {
             return false;
         }
-        PostoDeAtendimento other = (PostoDeAtendimento) object;
+        Usuario other = (Usuario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -88,7 +98,7 @@ public class PostoDeAtendimento implements Serializable {
 
     @Override
     public String toString() {
-        return "bit.entidade.PostoDeAtendimento[id=" + id + "]";
+        return "lavor.entidade.Usuario[id=" + id + "]";
     }
 
 }
