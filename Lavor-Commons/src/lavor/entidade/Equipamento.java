@@ -6,29 +6,27 @@
 package lavor.entidade;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author marcelo
  */
 @Entity
-public class Categoria implements Serializable {
+public class Equipamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String descricao;
-    private Boolean ativo;
-    @OneToMany(mappedBy = "categoria", fetch=FetchType.LAZY)
-    private List<Equipamento> equipamentos;
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Categoria categoria;
 
 
     public Long getId() {
@@ -39,12 +37,12 @@ public class Categoria implements Serializable {
         this.id = id;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getDescricao() {
@@ -63,24 +61,8 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
-    public List<Equipamento> getEquipamentos() {
-        return equipamentos;
+    public Equipamento() {
     }
-
-    public void setEquipamentos(List<Equipamento> equipamentos) {
-        this.equipamentos = equipamentos;
-    }
-
-    
-    public Categoria() {
-    }
-
-    public Categoria(String nome, String descricao, Boolean ativo) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.ativo = ativo;
-    }
-
 
     @Override
     public int hashCode() {
@@ -92,10 +74,10 @@ public class Categoria implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Categoria)) {
+        if (!(object instanceof Equipamento)) {
             return false;
         }
-        Categoria other = (Categoria) object;
+        Equipamento other = (Equipamento) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -104,7 +86,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "lavor.entidade.Categoria[id=" + id + "]";
+        return "lavor.entidade.Equipamento[id=" + id + "]";
     }
 
 }
