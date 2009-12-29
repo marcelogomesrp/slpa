@@ -66,4 +66,11 @@
     <bean id="categoriaService" class="lavor.service.CategoriaService">
         <property name="categoriaDao" ref="categoriaDao" />
     </bean>
+
+
+    <bean id="equipamentoDao" class="lavor.dao.imp.EquipamentoDaoImp" />
+
+    <bean id="equipamentoService" class="lavor.service.EquipamentoService" >
+        <property name="equipamentoDao" ref="equipamentoDao" />
+    </bean>
 </beans>
