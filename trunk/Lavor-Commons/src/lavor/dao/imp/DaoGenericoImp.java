@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author marcelo
  */
+@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class DaoGenericoImp<T, ID extends Serializable> implements DaoGenerico<T, ID> {
 
     private EntityManager entityManager;

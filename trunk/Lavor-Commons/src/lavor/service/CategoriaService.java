@@ -47,10 +47,9 @@ public class CategoriaService {
     }
 
     public List<Categoria> LocalizarTodasCategoria(){
-        //List<Categoria> categorias = new ArrayList<Categoria>();
-        CategoriaService categoriaService = new CategoriaService();
-        List<Categoria> categorias = categoriaDao.todos();
-        return categorias;
+        //List<Categoria> categorias = categoriaDao.todos();
+        //return categorias;
+        return categoriaDao.todos();
     }
 
 }
