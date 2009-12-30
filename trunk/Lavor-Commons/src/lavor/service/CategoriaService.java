@@ -52,4 +52,15 @@ public class CategoriaService {
         return categoriaDao.todos();
     }
 
+    public Categoria LocalizarPorId(Long id){
+        Categoria categoria = categoriaDao.pesquisarPorId(id);
+        return categoria;
+    }
+
+    public Categoria LocalizarPorId(Categoria categoria){
+        categoria = LocalizarPorId(categoria.getId());
+        return categoria;
+    }
+
+
 }
