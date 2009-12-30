@@ -5,6 +5,9 @@
 
 package lavor.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lavor.dao.EquipamentoDao;
 import lavor.entidade.Equipamento;
 
@@ -41,5 +44,19 @@ public class EquipamentoService {
             throw new Exception(msg.toString());
         }
     }
+
+    public List<Equipamento> LocalizarTodosEquipamentos(){
+        List<Equipamento> equipamentos = equipamentoDao.todos();
+        return equipamentos;
+    }
+
+    public List<Equipamento> LocalizarPorNome(String nome){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("nome", nome);
+        String sql = "SELECT e FROM Equipamento e WHERE e.nome LIKE :nome";
+        List<Equipamento> equipamentos = equipamentoDao.listPesqParam(sql, params);
+        return equipamentos;
+    }
+
 
 }
