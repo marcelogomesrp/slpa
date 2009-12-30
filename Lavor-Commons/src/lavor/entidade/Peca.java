@@ -13,25 +13,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author marcelo
  */
 @Entity
-public class Equipamento implements Serializable {
+public class Peca implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String descricao;
-    @ManyToOne(fetch=FetchType.EAGER)
-    private Categoria categoria;
-    @ManyToMany(mappedBy = "equipamentos")
-    private List<Peca> pecas;
-
+    @ManyToMany(fetch=FetchType.EAGER)
+    private List<Equipamento> equipamentos;
+    
 
     public Long getId() {
         return id;
@@ -39,14 +36,6 @@ public class Equipamento implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     public String getDescricao() {
@@ -57,6 +46,14 @@ public class Equipamento implements Serializable {
         this.descricao = descricao;
     }
 
+    public List<Equipamento> getEquipamentos() {
+        return equipamentos;
+    }
+
+    public void setEquipamentos(List<Equipamento> equipamentos) {
+        this.equipamentos = equipamentos;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -65,8 +62,8 @@ public class Equipamento implements Serializable {
         this.nome = nome;
     }
 
-    public Equipamento() {
-    }
+
+
 
     @Override
     public int hashCode() {
@@ -78,10 +75,10 @@ public class Equipamento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Equipamento)) {
+        if (!(object instanceof Peca)) {
             return false;
         }
-        Equipamento other = (Equipamento) object;
+        Peca other = (Peca) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -90,7 +87,7 @@ public class Equipamento implements Serializable {
 
     @Override
     public String toString() {
-        return "lavor.entidade.Equipamento[id=" + id + "]";
+        return "lavor.entidade.Peca[id=" + id + "]";
     }
 
 }

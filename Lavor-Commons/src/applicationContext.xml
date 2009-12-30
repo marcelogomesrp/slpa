@@ -73,4 +73,11 @@
     <bean id="equipamentoService" class="lavor.service.EquipamentoService" >
         <property name="equipamentoDao" ref="equipamentoDao" />
     </bean>
+
+    <bean id="pecaDao" class="lavor.dao.imp.PecaDaoImp" />
+
+    <bean id="pecaService" class="lavor.service.PecaService" >
+        <property name="pecaDao" ref="pecaDao" />
+    </bean>
+
 </beans>
