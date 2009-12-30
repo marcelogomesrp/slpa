@@ -32,6 +32,7 @@ public class EquipamentoBB {
     private EquipamentoMB equipamentoMB;
     @Resource
     CategoriaService categoriaService;
+    private Long numero;
 
     private List<SelectItem> categorias;
 
@@ -76,6 +77,14 @@ public class EquipamentoBB {
         this.categoriaService = categoriaService;
     }
 
+    public Long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Long numero) {
+        this.numero = numero;
+    }
+
     public String atualiza(){
         for(Categoria categoria:categoriaService.LocalizarTodasCategoria()){
             //categorias.add(new SelectItem(categoria.getId(),categoria.getNome()));
@@ -89,6 +98,7 @@ public class EquipamentoBB {
 
     public String SalvarEquipamento(){
         try {
+            equipamentoMB.getEquipamento().setCategoria(categoriaService.LocalizarPorId(numero));
             equipamentoService.Salvar(equipamentoMB.getEquipamento());
             lavor.util.FacesUtils.mensInfo("Equipamento adicionado com sucesso");
             equipamentoMB.setEquipamento(new Equipamento());
