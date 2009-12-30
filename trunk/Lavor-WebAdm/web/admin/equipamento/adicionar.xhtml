@@ -16,13 +16,15 @@
                 <h:inputText value="#{equipamentoMB.equipamento.descricao}" />
 
                 <h:outputText value="Categoria" />
-                <h:selectOneMenu value="#{equipamentoMB.equipamento.categoria}" >
+            <!--    <h:selectOneMenu value="#{equipamentoMB.equipamento.categoria}" > -->
+                <h:selectOneMenu value="#{equipamentoBB.numero}" >
                     <f:selectItems value="#{equipamentoBB.categorias}" />
+                    <f:convertNumber />
                 </h:selectOneMenu>
 
             </h:panelGrid>
             <h:commandButton value="Cadastrar" action="#{equipamentoBB.SalvarEquipamento}" />
-            <h:commandButton value="Cadastrar" action="#{equipamentoBB.atualiza}" />
+            
         </h:form>
     </ui:define>
 

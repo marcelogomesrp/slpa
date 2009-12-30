@@ -18,6 +18,8 @@ import org.springframework.stereotype.Controller;
 public class EquipamentoMB {
 
     private Equipamento equipamento;
+    //private Integer numero;
+    private Long numero;
 
     public EquipamentoMB() {
         this.equipamento = new Equipamento();
@@ -30,6 +32,15 @@ public class EquipamentoMB {
     public void setEquipamento(Equipamento equipamento) {
         this.equipamento = equipamento;
     }
+
+    public Long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Long numero) {
+        this.numero = numero;
+    }
+
 
 
 }
