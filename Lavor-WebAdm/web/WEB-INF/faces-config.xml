@@ -35,9 +35,14 @@
             <from-outcome>equipamento</from-outcome>
             <to-view-id>/admin/equipamento/adicionar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>peca</from-outcome>
+            <to-view-id>/admin/peca/adicionar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>
+
 
 
 
