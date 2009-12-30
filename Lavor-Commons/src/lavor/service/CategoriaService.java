@@ -5,6 +5,8 @@
 
 package lavor.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import lavor.dao.CategoriaDao;
 import lavor.entidade.Categoria;
 
@@ -42,6 +44,13 @@ public class CategoriaService {
         //if(!msg.equals(new StringBuilder())){
             throw new Exception(msg.toString());
         }
+    }
+
+    public List<Categoria> LocalizarTodasCategoria(){
+        //List<Categoria> categorias = new ArrayList<Categoria>();
+        CategoriaService categoriaService = new CategoriaService();
+        List<Categoria> categorias = categoriaDao.todos();
+        return categorias;
     }
 
 }
