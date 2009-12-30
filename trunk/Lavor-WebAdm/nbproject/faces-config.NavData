@@ -4,9 +4,10 @@
     <Scope Scope="Project">
         <Node id="forward.jsp" x="150" y="150" zoom="true"/>
         <Node id="admin/usuario/teste.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="admin/index.xhtml" x="650" y="150" zoom="true"/>
         <Node id="admin/categoria/adicionar.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="admin/index.xhtml" x="650" y="150" zoom="true"/>
         <Node id="template/menu.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="admin/peca/adicionar.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="admin/login.xhtml" x="650" y="300" zoom="true"/>
         <Node id="admin/usuario/adicionar.xhtml" x="150" y="300" zoom="true"/>
         <Node id="welcomeJSF.jsp" x="400" y="150" zoom="true"/>
