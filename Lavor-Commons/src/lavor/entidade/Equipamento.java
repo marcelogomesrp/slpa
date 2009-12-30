@@ -25,7 +25,7 @@ public class Equipamento implements Serializable {
     private Long id;
     private String nome;
     private String descricao;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     private Categoria categoria;
 
 

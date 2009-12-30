@@ -27,7 +27,7 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
     private Boolean ativo;
-    @OneToMany(mappedBy = "categoria", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "categoria", fetch=FetchType.EAGER)
     private List<Equipamento> equipamentos;
 
 
