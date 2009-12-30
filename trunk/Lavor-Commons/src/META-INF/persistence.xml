@@ -6,6 +6,7 @@
     <class>lavor.entidade.Usuario</class>
     <class>lavor.entidade.Categoria</class>
     <class>lavor.entidade.Equipamento</class>
+    <class>lavor.entidade.Peca</class>
     <properties>
       <property name="hibernate.connection.username" value="marcelo"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
