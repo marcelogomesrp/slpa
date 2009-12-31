@@ -5,6 +5,7 @@
 
 package lavor.backbean;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller("pecaBB")
 @Scope("request")
-public class PecaBB {
+public class PecaBB implements Serializable {
 
     @Resource
     private PecaService pecaService;

@@ -5,6 +5,7 @@
 
 package lavor.backbean;
 
+import java.io.Serializable;
 import javax.annotation.Resource;
 import lavor.dao.CategoriaDao;
 import lavor.entidade.Categoria;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller("categoriaBB")
 @Scope("request")
-public class CategoriaBB {
+public class CategoriaBB implements Serializable {
     @Resource
     private CategoriaService categoriaService;
     @Resource

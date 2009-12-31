@@ -21,7 +21,43 @@
                     <f:convertNumber />
                 </h:selectOneMenu>
             </h:panelGrid>
+            <h:panelGrid columns="3" >
+                <h:outputText value="Nome da peca" />
+                <h:inputText value="#{equipamentoBB.nome}" />
+                <h:commandButton value="Localizar" action="#{equipamentoBB.BuscarPecasPorNome}" />
+            </h:panelGrid>
+            <h:dataTable value="#{equipamentoBB.pecasSelecionadas}" var="peca" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{peca.nome}"/>
+                    </h:column>
+            </h:dataTable>
+
+
             <h:commandButton value="Cadastrar" action="#{equipamentoBB.SalvarEquipamento}" />
+            <!-- rendered="#equipamentoBB.nome != ''}"-->
+            <h:dataTable value="#{equipamentoBB.pecas}" var="peca" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{peca.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descrição"/>
+                        </f:facet>
+                        <h:outputText value="#{peca.descricao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Adicionar"/>
+                        </f:facet>
+                        <h:commandButton value="adiconar" action="#{equipamentoBB.AdicionarPeca}"/>
+                    </h:column>
+            </h:dataTable>
             
         </h:form>
     </ui:define>

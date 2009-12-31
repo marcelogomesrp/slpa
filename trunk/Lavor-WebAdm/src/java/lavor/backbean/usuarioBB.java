@@ -5,6 +5,7 @@
 
 package lavor.backbean;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller("usuarioBB")
 @Scope("request")
-public class usuarioBB {
+public class usuarioBB implements Serializable {
     @Resource
     private UsuarioService usuarioService;
     @Resource
