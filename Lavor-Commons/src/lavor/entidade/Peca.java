@@ -7,6 +7,7 @@ package lavor.entidade;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Peca implements Serializable {
     private Long id;
     private String nome;
     private String descricao;
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Equipamento> equipamentos;
     
 

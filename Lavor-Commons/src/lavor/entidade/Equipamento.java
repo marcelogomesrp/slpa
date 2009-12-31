@@ -6,6 +6,7 @@
 package lavor.entidade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -65,7 +66,18 @@ public class Equipamento implements Serializable {
         this.nome = nome;
     }
 
+    public List<Peca> getPecas() {
+        return pecas;
+    }
+
+    public void setPecas(List<Peca> pecas) {
+        this.pecas = pecas;
+    }
+
+    
+
     public Equipamento() {
+        this.pecas = new ArrayList<Peca>();
     }
 
     @Override
