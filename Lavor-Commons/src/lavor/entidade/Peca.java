@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -23,12 +23,11 @@ import javax.persistence.ManyToMany;
 public class Peca implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "gera_peca_id", sequenceName = "peca_sequences", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gera_peca_id")
     private Long id;
     private String nome;
-    private String descricao;
-    @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<Equipamento> equipamentos;
+    private String descricao;    
     
 
     public Long getId() {
@@ -45,14 +44,6 @@ public class Peca implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public List<Equipamento> getEquipamentos() {
-        return equipamentos;
-    }
-
-    public void setEquipamentos(List<Equipamento> equipamentos) {
-        this.equipamentos = equipamentos;
     }
 
     public String getNome() {

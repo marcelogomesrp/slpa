@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -22,7 +23,8 @@ import javax.persistence.OneToMany;
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "gera_categoria_id", sequenceName = "categoria_sequences", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gera_categoria_id")
     private Long id;
     private String nome;
     private String descricao;

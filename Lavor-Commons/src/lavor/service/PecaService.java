@@ -61,6 +61,10 @@ public class PecaService {
         return pecas;
     }
 
+    public Peca BuscarPecaPorId(Long id){
+        return pecaDao.pesquisarPorId(id);
+    }
+
 
 
 
