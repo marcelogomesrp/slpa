@@ -120,7 +120,7 @@ public class EquipamentoBB implements Serializable {
     }
 
     public ListDataModel getPecasSelecionadas() {
-        pecasSelecionadas = new ListDataModel(equipamentoMB.getEquipamento().getPecas());
+        pecasSelecionadas = new ListDataModel((List) equipamentoMB.getEquipamento().getPecas());
         return pecasSelecionadas;
     }
 
@@ -134,7 +134,14 @@ public class EquipamentoBB implements Serializable {
 //            equipamentoMB.getEquipamento().setPecas(new ArrayList<Peca>());
 //        }
         //equipamentoMB.getEquipamento().getPecas().add((Peca) pecas.getRowData());
-        equipamentoMB.getEquipamento().getPecas().add((Peca) pecas.getRowData());
+        Peca pp = (Peca) pecas.getRowData();
+        pp.setId(null);
+        equipamentoMB.getEquipamento().getPecas().add(pp);
+        
+        //equipamentoMB.getEquipamento().getPecas().add((Peca) pecas.getRowData());
+
+
+
         //Peca pecaSelecionada = (Peca) pecas.getRowData();
         //Equipamento equipamentoSelecionado = equipamentoService.LocalizarPorId(PecaSelecionada.getId());
         //pecaSelecioanda = pecaService.
@@ -165,10 +172,13 @@ public class EquipamentoBB implements Serializable {
     public String SalvarEquipamento(){
         try {
             equipamentoMB.getEquipamento().setCategoria(categoriaService.LocalizarPorId(numero));
-            //equipamentoService.Salvar(equipamentoMB.getEquipamento());
-            equipamentoService.Atualizar(equipamentoMB.getEquipamento());
+            equipamentoService.Salvar(equipamentoMB.getEquipamento());
+            //equipamentoService.Atualizar(equipamentoMB.getEquipamento());
             lavor.util.FacesUtils.mensInfo("Equipamento adicionado com sucesso");
             equipamentoMB.setEquipamento(new Equipamento());
+            //apagar
+            equipamentoMB.setEquipamento(equipamentoService.LocalizarPorID(19L));
+            //apagar fim
             return "sucesso";
         } catch (Exception ex) {
             lavor.util.FacesUtils.mensErro("Erro ao adicionar equipamento: " + ex.getMessage());
