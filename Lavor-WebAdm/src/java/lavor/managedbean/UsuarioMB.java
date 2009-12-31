@@ -5,6 +5,7 @@
 
 package lavor.managedbean;
 
+import java.io.Serializable;
 import lavor.entidade.Usuario;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller("usuarioMB")
 @Scope("session")
-public class UsuarioMB {
+public class UsuarioMB implements Serializable{
 
     private Usuario usuario;
 

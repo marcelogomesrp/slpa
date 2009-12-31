@@ -5,6 +5,7 @@
 
 package lavor.managedbean;
 
+import java.io.Serializable;
 import javax.annotation.Resource;
 import lavor.entidade.Peca;
 import org.springframework.context.annotation.Scope;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller("pecaMB")
 @Scope("session")
-public class PecaMB {
+public class PecaMB implements Serializable {
     
     private Peca peca;
 

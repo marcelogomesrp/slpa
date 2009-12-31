@@ -5,6 +5,7 @@
 
 package lavor.managedbean;
 
+import java.io.Serializable;
 import lavor.entidade.Categoria;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller("categoriaMB")
 @Scope("session")
-public class CategoriaMB {
+public class CategoriaMB implements Serializable{
     private Categoria categoria;
 
     public CategoriaMB() {
