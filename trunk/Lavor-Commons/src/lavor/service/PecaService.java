@@ -5,6 +5,9 @@
 
 package lavor.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import lavor.dao.PecaDao;
 import lavor.entidade.Peca;
@@ -34,6 +37,10 @@ public class PecaService {
         return peca;
     }
 
+    public Peca AtualizarPeca(Peca peca){
+        return pecaDao.atualizar(peca);
+    }
+
     private void PecaPodeSerSalva(Peca peca) throws Exception{
         StringBuilder msg = new StringBuilder();
         if(peca.getNome().isEmpty()){
@@ -45,6 +52,15 @@ public class PecaService {
             throw new Exception(msg.toString());
         }
     }
+
+    public List<Peca> BuscarPecaPorNome(String nome){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("nome", nome);
+        String SQL = "SELECT p FROM Peca p WHERE p.nome LIKE :nome";
+        List<Peca> pecas = pecaDao.listPesqParam(SQL, params);
+        return pecas;
+    }
+
 
 
 

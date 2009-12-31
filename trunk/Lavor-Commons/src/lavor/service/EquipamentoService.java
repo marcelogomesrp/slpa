@@ -35,6 +35,10 @@ public class EquipamentoService {
         return equipamento;
     }
 
+    public Equipamento Atualizar(Equipamento equipamento){
+        return equipamentoDao.atualizar(equipamento);
+    }
+
     private void EquipamentoPodeSerSalvo(Equipamento equipamento) throws Exception{
         StringBuilder msg = new StringBuilder();
         if(equipamento.getNome().isEmpty()){

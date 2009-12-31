@@ -5,7 +5,12 @@
 
 package lavorcommons;
 
-import javax.swing.JOptionPane;
+import lavor.entidade.Equipamento;
+import lavor.entidade.Peca;
+import lavor.service.EquipamentoService;
+import lavor.service.PecaService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -40,10 +45,23 @@ public class Main {
 //        }
         
 
-        org.apache.log4j.Logger log = org.apache.log4j.Logger.getRootLogger();
-        JOptionPane.showMessageDialog(null, "Log esta " + log.getLevel().toString());
-        log.debug("mensagem debug ***************************************************************************************************************************");
-        log.error("mensagem erro ***************************************************************************************************************************");
+//        org.apache.log4j.Logger log = org.apache.log4j.Logger.getRootLogger();
+//        JOptionPane.showMessageDialog(null, "Log esta " + log.getLevel().toString());
+//        log.debug("mensagem debug ***************************************************************************************************************************");
+//        log.error("mensagem erro ***************************************************************************************************************************");
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        EquipamentoService equipamentoService = (EquipamentoService) context.getBean("equipamentoService");
+        PecaService pecaService = (PecaService) context.getBean("pecaService");
+        Equipamento e = new Equipamento();
+        Peca peca = new Peca();
+        peca.setNome("teste");
+        e.setNome("teste2");
+
+        Peca peca2 = pecaService.AtualizarPeca(peca);
+
+        e.getPecas().add(peca2);
+        //equipamentoService.Atualizar(e);
         
     }
 
