@@ -5,6 +5,8 @@
 
 package lavor.entidade;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,8 +33,7 @@ import javax.persistence.SequenceGenerator;
 public class Equipamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "gera_equipamento_id", sequenceName = "equipamento_sequences", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gera_equipamento_id")
+    @GeneratedValue(strategy=IDENTITY)
     private Long id;
     private String nome;
     private String descricao;

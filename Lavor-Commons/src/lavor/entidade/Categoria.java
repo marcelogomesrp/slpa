@@ -5,15 +5,16 @@
 
 package lavor.entidade;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -23,13 +24,12 @@ import javax.persistence.SequenceGenerator;
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "gera_categoria_id", sequenceName = "categoria_sequences", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gera_categoria_id")
+    @GeneratedValue(strategy=IDENTITY)
     private Long id;
     private String nome;
     private String descricao;
     private Boolean ativo;
-    @OneToMany(mappedBy = "categoria", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "categoria", fetch=FetchType.LAZY)
     private List<Equipamento> equipamentos;
 
 
