@@ -5,6 +5,8 @@
 
 package lavor.entidade;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,7 @@ import javax.persistence.SequenceGenerator;
 public class PostoDeAtendimento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "gera_posto_de_atendimento_id", sequenceName = "posto_de_atendimento_sequences", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gera_posto_de_atendimento_id")
+    @GeneratedValue(strategy=IDENTITY)
     private Long id;
     private String nome;
     private String email;

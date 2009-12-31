@@ -5,23 +5,26 @@
 
 package lavor.entidade;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 
 /**
  *
  * @author marcelo
  */
+
 @Entity
+@Table(name="Usuario")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name = "gera_usuario_id", sequenceName = "usuario_sequences", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gera_usuario_id")
+    @GeneratedValue(strategy=IDENTITY)
     private Long id;
     private String nome;
     private String login;
