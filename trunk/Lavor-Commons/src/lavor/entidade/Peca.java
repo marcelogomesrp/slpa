@@ -6,9 +6,11 @@
 package lavor.entidade;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +30,10 @@ public class Peca implements Serializable {
     private Long id;
     private String nome;
     private String descricao;    
+    //@ManyToMany(mappedBy = "pecas")
+    //private Collection<Equipamento> equipamentos;
+    @ManyToMany(mappedBy = "pecas", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Equipamento> equipamentos;
     
 
     public Long getId() {
@@ -52,6 +58,18 @@ public class Peca implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Equipamento> getEquipamentos() {
+        return equipamentos;
+    }
+
+    public void setEquipamentos(List<Equipamento> equipamentos) {
+        this.equipamentos = equipamentos;
+    }
+
+    public Peca() {
+        //equipamentos = new ArrayList<Equipamento>();
     }
 
 

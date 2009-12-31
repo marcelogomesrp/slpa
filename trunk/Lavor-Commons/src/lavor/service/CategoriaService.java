@@ -5,7 +5,7 @@
 
 package lavor.service;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 import lavor.dao.CategoriaDao;
 import lavor.entidade.Categoria;
@@ -14,7 +14,7 @@ import lavor.entidade.Categoria;
  *
  * @author marcelo
  */
-public class CategoriaService {
+public class CategoriaService implements Serializable{
     public CategoriaDao categoriaDao;
 
     public CategoriaDao getCategoriaDao() {
