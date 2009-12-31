@@ -54,7 +54,7 @@ public class templateclient {
     public String Valor(){
         Equipamento equipamento = new Equipamento();
         equipamento.setNome("equipamento teste");
-        equipamento.setCategoria(new Categoria("cat add auto", "descricao", Boolean.TRUE));
+        //equipamento.setCategoria(new Categoria("cat add auto", "descricao", Boolean.TRUE));
         //Collection<Peca> pecas = new ArrayList<Peca>();
 
 //        for(int x = 0; x < 20; x++){
@@ -68,8 +68,8 @@ public class templateclient {
 
         //equipamento.setPecas(pecas);
         try {
-            equipamentoService.Salvar(equipamento);
-            //equipamentoService.Atualizar(equipamento);
+            //equipamentoService.Salvar(equipamento);
+            equipamentoService.Atualizar(equipamento);
             this.nome="OK";
         } catch (Exception ex) {
             this.nome = "erro " + ex.getMessage();
