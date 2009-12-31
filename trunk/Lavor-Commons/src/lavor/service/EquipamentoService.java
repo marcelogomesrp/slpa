@@ -62,5 +62,9 @@ public class EquipamentoService {
         return equipamentos;
     }
 
+    public Equipamento LocalizarPorID(Long id){
+        return equipamentoDao.pesquisarPorId(id);
+    }
+
 
 }
