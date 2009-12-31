@@ -7,7 +7,7 @@ package lavor.entidade;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,6 +21,11 @@ import javax.persistence.SequenceGenerator;
 /**
  *
  * @author marcelo
+ *
+ * //@ManyToMany(mappedBy = "equipamentos")
+    //@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    //@ManyToMany(mappedBy = "equipamentos",  fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    //@ManyToMany(mappedBy = "equipamentos")
  */
 @Entity
 public class Equipamento implements Serializable {
@@ -32,10 +37,12 @@ public class Equipamento implements Serializable {
     private String nome;
     private String descricao;
     @ManyToOne(cascade=CascadeType.ALL)
-    private Categoria categoria;
-    //@ManyToMany(mappedBy = "equipamentos")
-    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    private List<Peca> pecas;
+    private Categoria categoria;    
+    //@ManyToMany(cascade=CascadeType.ALL)
+    //private Collection<Peca> pecas;
+    @ManyToMany( fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    private Collection<Peca> pecas;
+
 
 
     public Long getId() {
@@ -70,11 +77,11 @@ public class Equipamento implements Serializable {
         this.nome = nome;
     }
 
-    public List<Peca> getPecas() {
+    public Collection<Peca> getPecas() {
         return pecas;
     }
 
-    public void setPecas(List<Peca> pecas) {
+    public void setPecas(Collection<Peca> pecas) {
         this.pecas = pecas;
     }
 
@@ -83,6 +90,12 @@ public class Equipamento implements Serializable {
     public Equipamento() {
         this.pecas = new ArrayList<Peca>();
     }
+
+    public Equipamento(Long id) {
+        this.id = id;
+    }
+
+
 
     @Override
     public int hashCode() {
