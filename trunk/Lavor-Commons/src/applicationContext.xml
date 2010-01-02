@@ -80,4 +80,16 @@
         <property name="pecaDao" ref="pecaDao" />
     </bean>
 
+   <bean id="pecaValorDao" class="lavor.dao.imp.PecaValorDaoImp" />
+
+    <bean id="pecaValorService" class="lavor.service.PecaValorService" >
+        <property name="pecaValorDao" ref="pecaValorDao" />
+    </bean>
+
+    <bean id="listaDePrecoDao" class="lavor.dao.imp.ListaDePrecoDaoImp" />
+
+    <bean id="listaDePrecoService" class="lavor.service.ListadePrecoService" >
+        <property name="listaDePrecoDao" ref="listaDePrecoDao" />
+    </bean>
+
 </beans>
