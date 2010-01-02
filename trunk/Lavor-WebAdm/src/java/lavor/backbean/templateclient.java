@@ -53,17 +53,18 @@ public class templateclient {
 
     public String Valor(){
         Equipamento equipamento = new Equipamento();
-        equipamento.setNome("equipamento teste");
+        equipamento.setNome("equipamento achar");
         //equipamento.setCategoria(new Categoria("cat add auto", "descricao", Boolean.TRUE));
-        //Collection<Peca> pecas = new ArrayList<Peca>();
+        Collection<Peca> pecas = new ArrayList<Peca>();
 
-//        for(int x = 0; x < 20; x++){
-//            Peca p = new Peca();
-//            p.setNome("peca " + x);
-//            //pecas.add(p);
-//            equipamento.getPecas().add(p);
-//        }
-        equipamento.setPecas(pecaService.BuscarPecaPorNome("%"));
+        for(int x = 0; x < 20; x++){
+            Peca p = new Peca();
+            p.setNome("peca achar" + x);
+            pecas.add(p);
+            
+        }
+        equipamento.setPecas(pecas);
+        //equipamento.setPecas(pecaService.BuscarPecaPorNome("%"));
         
 
         //equipamento.setPecas(pecas);
