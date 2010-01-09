@@ -36,7 +36,7 @@ public class PostoDeAtendimentoService {
     }
 
     private void PostoDeAtendimentoPodeSerSalvo(PostoDeAtendimento postoDeAtendimento) throws Exception{
-        if(postoDeAtendimento.getNome().equalsIgnoreCase("marcelo")){
+        if(postoDeAtendimento.getNome().equalsIgnoreCase("marcelogomes")){
             throw new Exception("Posto indevido pq sou chato");
         }
         
