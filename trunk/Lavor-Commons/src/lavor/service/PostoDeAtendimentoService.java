@@ -5,6 +5,9 @@
 
 package lavor.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.entidade.PostoDeAtendimento;
 
@@ -40,6 +43,24 @@ public class PostoDeAtendimentoService {
             throw new Exception("Posto indevido pq sou chato");
         }
         
+    }
+
+    public PostoDeAtendimento BuscarPorEmailESenha(String email, String senha){
+        PostoDeAtendimento postoDeAtendimento = null;
+        String SQL = "SELECT pa from PostoDeAtendimento pa  WHERE email = :email and senha = :senha";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("email", email);
+        params.put("senha", senha);
+        postoDeAtendimento = (PostoDeAtendimento) postoDeAtendimentoDao.pesqParam(SQL, params);
+
+
+//        String SQL = "SELECT p FROM PostoDeAtendimento p ";
+//        List<PostoDeAtendimento> postos = postoDeAtendimentoDao.listPesq(SQL);
+
+        return postoDeAtendimento;
+
+
+
     }
 
 }
