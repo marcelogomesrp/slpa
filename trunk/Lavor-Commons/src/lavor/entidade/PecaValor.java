@@ -8,6 +8,7 @@ package lavor.entidade;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,13 +18,13 @@ import javax.persistence.OneToOne;
  *
  * @author marcelo
  */
-@Entity
+@Entity(name="peca_valor")
 public class PecaValor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Peca peca;
     private Double valor;
 

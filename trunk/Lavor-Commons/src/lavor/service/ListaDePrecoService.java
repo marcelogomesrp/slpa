@@ -27,7 +27,8 @@ public class ListaDePrecoService {
     public ListaDePrecoService() {
     }
 
-    public ListaDePreco SalvarListaDePrecoService(ListaDePreco listaDePreco){
+    public ListaDePreco SalvarListaDePrecoService(ListaDePreco listaDePreco) throws Exception{
+        ListaDePrecoPodeSerSalva(listaDePreco);
         listaDePreco = listaDePrecoDao.salvar(listaDePreco);
         return listaDePreco;
     }
@@ -40,6 +41,17 @@ public class ListaDePrecoService {
         List listaDePreco = null;
         listaDePreco = listaDePrecoDao.todos();
         return listaDePreco;
+    }
+
+    private void ListaDePrecoPodeSerSalva(ListaDePreco listaDePreco) throws Exception{
+        StringBuilder msg = new StringBuilder();
+        if(listaDePreco.getInicio().equals(null)){
+            msg.append("A data de inicio deve ser informada");
+        }
+        if(msg.length() > 0){
+            throw new Exception(msg.toString() );
+            
+        }
     }
 
 }
