@@ -39,9 +39,19 @@
             <from-outcome>peca</from-outcome>
             <to-view-id>/admin/peca/adicionar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>preco</from-outcome>
+            <to-view-id>/admin/listadepreco/adicionar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listarpreco</from-outcome>
+            <to-view-id>/admin/listadepreco/listar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>
+
+
 
 
 

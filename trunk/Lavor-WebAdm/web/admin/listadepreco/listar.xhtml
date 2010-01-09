@@ -4,22 +4,22 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
                 template="./../../template/template.xhtml">
 
     <ui:define name="content">
         <h:form>
             <h:messages id="message" />
-            <h:panelGrid columns="2" >
-                <h:outputText value="Nome" />
-                <h:inputText value="#{pecaMB.peca.nome}" />
-                <h:outputText value="Descrição" />
-                <h:inputText value="#{pecaMB.peca.descricao}" />
-                <h:outputText value="Valor" />
-                <h:inputText value="#{pecaMB.peca.valor}" >
-                    <f:convertNumber />
-                </h:inputText>
-            </h:panelGrid>
-            <h:commandButton value="Cadastrar" action="#{pecaBB.SalvarPeca}" />
+
+            <h:dataTable value="#{listaDePrecoBB.listasDePreco}" var="lista" >
+                <h:column>
+                    <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="ok" />
+                </h:column>
+            </h:dataTable>
         </h:form>
     </ui:define>
 
