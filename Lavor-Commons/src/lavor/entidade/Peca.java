@@ -7,7 +7,6 @@ package lavor.entidade;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
