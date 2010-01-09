@@ -88,7 +88,7 @@
 
     <bean id="listaDePrecoDao" class="lavor.dao.imp.ListaDePrecoDaoImp" />
 
-    <bean id="listaDePrecoService" class="lavor.service.ListadePrecoService" >
+    <bean id="listaDePrecoService" class="lavor.service.ListaDePrecoService" >
         <property name="listaDePrecoDao" ref="listaDePrecoDao" />
     </bean>
 

@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
  *
  * @author marcelo
  */
-@Entity
+@Entity(name="lista_de_preco")
 public class ListaDePreco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

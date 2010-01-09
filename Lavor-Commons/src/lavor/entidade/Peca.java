@@ -7,6 +7,7 @@ package lavor.entidade;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -31,6 +32,18 @@ public class Peca implements Serializable {
     //private Collection<Equipamento> equipamentos;
     @ManyToMany(mappedBy = "pecas", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private List<Equipamento> equipamentos;
+    //DecimalFormat valor = new DecimalFormat("#,###.00");
+    private Float valor;
+
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+
+    
     
 
     public Long getId() {
@@ -64,6 +77,8 @@ public class Peca implements Serializable {
     public void setEquipamentos(List<Equipamento> equipamentos) {
         this.equipamentos = equipamentos;
     }
+
+    
 
     public Peca() {
         //equipamentos = new ArrayList<Equipamento>();
