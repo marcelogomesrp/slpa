@@ -22,7 +22,8 @@
        </bean>
 
 	<!-- Identifica os beans anotados com @Service, @Repository, @Controller  -->
-	<context:component-scan base-package="lavor.backbean" /> 
+	<context:component-scan base-package="lavor.backbean" />
+        <context:component-scan base-package="lavor.managedbean" />
 
 	<!-- Habilita a configuracao de beans via anotacoes
 	sem a necessidade de usar PersistenceAnnotationBeanPostProcessor,

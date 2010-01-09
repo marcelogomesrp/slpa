@@ -11,25 +11,6 @@
         <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
     </application>
 
-    <navigation-rule>
-        <from-view-id>/template-client.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>sucesso</from-outcome>
-            <to-view-id>/postodeatendimento/index.xhtml</to-view-id>
-            <!--<redirect/> -->
-        </navigation-case>
-        
-        <navigation-case>
-            <from-outcome>logar</from-outcome>
-            <to-view-id>/postodeatendimento/index.xhtml</to-view-id>
-            <!-- <redirect/> -->
-        </navigation-case>
-
-    </navigation-rule>
-
-
-
-
     <!-- <lifecycle>
         <phase-listener>lavor.util.Xerife</phase-listener>
     </lifecycle> -->

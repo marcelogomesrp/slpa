@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
-import lavor.backbean.PostoDeAtendimentoMB;
+import lavor.backbean.PostoDeAtendimentoBB;
 
 
 /**
@@ -59,27 +59,27 @@ public class SegurancaFiltro implements Filter{
 
                 
 		//tenta capturar a sessão chamada user
-		PostoDeAtendimentoMB posto = (PostoDeAtendimentoMB)sessao.getAttribute("postoDeAtendimentoMB");
+		PostoDeAtendimentoBB posto = (PostoDeAtendimentoBB)sessao.getAttribute("postoDeAtendimentoMB");
 //
 //
 //		//verifica se a sessão existe
-		if(posto != null){
-                    if(posto.getPostoDeAtendimento().getNome().equalsIgnoreCase("marcelo")){
-                            JOptionPane.showMessageDialog(null, "Posto " + posto.getPostoDeAtendimento().getNome());
-                            chain.doFilter(request, response);
-                    }else{
-                        sessao.setAttribute("msg", "Usuário ou senha invalido");
-                        ((HttpServletResponse)response).sendRedirect("/Lavor-Web/template-client.jspx");
-                    }
-                }else{
-//			//envia uma mensagem caso o usuário
-//			//não tenha se logado
-			sessao.setAttribute("msg", "Entre com o usuário e a senha");
-//                        lavor.util.FacesUtils.mensErro("Para acessar este recurso você deve estar logado");
-//
-//			//redireciona para a página de login
-			((HttpServletResponse)response).sendRedirect("/Lavor-Web/template-client.jspx");
-		}
+//		if(posto != null){
+//                    //if(posto.getPostoDeAtendimento().getNome().equalsIgnoreCase("marcelo")){
+//                            JOptionPane.showMessageDialog(null, "Posto " + posto.getPostoDeAtendimento().getNome());
+//                            chain.doFilter(request, response);
+//                    }else{
+//                        sessao.setAttribute("msg", "Usuário ou senha invalido");
+//                        ((HttpServletResponse)response).sendRedirect("/Lavor-Web/template-client.jspx");
+//                    }
+//                }else{
+////			//envia uma mensagem caso o usuário
+////			//não tenha se logado
+//			sessao.setAttribute("msg", "Entre com o usuário e a senha");
+////                        lavor.util.FacesUtils.mensErro("Para acessar este recurso você deve estar logado");
+////
+////			//redireciona para a página de login
+//			((HttpServletResponse)response).sendRedirect("/Lavor-Web/template-client.jspx");
+//		}
     }
 
     public void destroy() {
