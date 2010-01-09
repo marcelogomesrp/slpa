@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="./../template/loginTemplate.xhtml">
+    
+    <ui:define name="top">        
+    </ui:define>
+    
+    <ui:define name="content">
+        <rich:panel>
+        <f:facet name="header">
+            Login
+        </f:facet>
+            <h:form id="formulario">
+                <h:panelGrid columns="2">
+                    <h:outputText value="login"/>
+                    <h:inputText  value="#{postoDeAtendimentoMB.postoDeAtendimento.email}"/>
+                    <h:outputText value="senha" />
+                    <h:inputText  value="#{postoDeAtendimentoMB.postoDeAtendimento.senha}"/>
+                </h:panelGrid>
+                <h:commandButton value="Entrar" action="#{postoDeAtendimentoBB.Logar}"/>
+            </h:form>
+         </rich:panel>
+    </ui:define>
+</ui:composition>
