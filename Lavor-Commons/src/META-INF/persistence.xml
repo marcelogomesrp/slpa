@@ -9,6 +9,8 @@
     <class>lavor.entidade.Peca</class>
     <class>lavor.entidade.ListaDePreco</class>
     <class>lavor.entidade.PecaValor</class>
+    <class>lavor.entidade.Pedido</class>
+    <class>lavor.entidade.ItemPedido</class>
     <properties>
       <property name="hibernate.connection.username" value="marcelo"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

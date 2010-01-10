@@ -65,6 +65,10 @@ public class PecaService {
         return pecaDao.pesquisarPorId(id);
     }
 
+    public List<Peca> BuscarTodasAsPecas(){
+        return pecaDao.todos();
+    }
+
 
 
 
