@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="./../../template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <h:outputText value="Confirmacao de solicitacao de pecas" />
+            
+            <h:panelGrid columns="2" >
+                <h:outputText value="Nome" />
+                <h:outputText value="#{pedidoMB.pedido.postoDeAtendimento.nome}" />
+                <h:outputText value="#{pedidoMB.pedido.postoDeAtendimento.email}" />
+            </h:panelGrid>
+
+            <rich:dataTable value="#{pedidoMB.pecasSolicitada}" var="item" >
+
+                <rich:column >
+                    <f:facet name="header">
+                        <h:outputText value="Peca"/>
+                    </f:facet>
+                    <h:outputText value="#{item.peca.nome}"/>
+                </rich:column>
+
+                <rich:column >
+                    <f:facet name="header">
+                        <h:outputText value="Valor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.peca.valor}"/>
+                </rich:column>
+
+            </rich:dataTable>
+
+            <h:commandButton value="Confirma" action="#{solicitarPecasBB.ConfirmaPedido}"/>
+            
+        </h:form>
+    </ui:define>
+
+</ui:composition>

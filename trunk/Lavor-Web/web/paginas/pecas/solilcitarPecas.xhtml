@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="./../../template/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+        <rich:dataTable value="#{solicitarPecasBB.listaDePecas}" var="peca" rows="20" reRender="listaPecasFooter" >
+            <rich:column sortBy="#{peca.nome}">
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                <h:outputText value="#{peca.nome}"/>
+            </rich:column>
+            <f:facet name="footer">
+                <rich:datascroller id="listaPecasFooter"/>
+            </f:facet>
+            <rich:column sortBy="#{peca.valor}">
+                <f:facet name="header">
+                    <h:outputText value="Valor"/>
+                </f:facet>
+                <h:outputText value="R$ #{peca.valor}"/>
+            </rich:column>
+           <rich:column>
+                <f:facet name="header">
+                    <h:outputText value="Solicitar"/>
+                </f:facet>
+                <h:commandLink value="solicitar" action="#{solicitarPecasBB.AddItem}" />
+            </rich:column>
+            <f:facet name="footer">
+                <rich:datascroller id="listaPecasFooter"/>
+            </f:facet>
+        </rich:dataTable>
+            <h:commandButton value="Confirma" action="#{solicitarPecasBB.DoConfirmaSolicitarPeca}" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>
