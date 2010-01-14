@@ -6,14 +6,12 @@
 package lavorcommons;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import lavor.entidade.Equipamento;
-import lavor.entidade.Peca;
-import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Pedido;
+import lavor.entidade.PedidoItem;
 import lavor.service.PecaService;
+import lavor.service.PedidoService;
 import lavor.service.PostoDeAtendimentoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -56,13 +54,36 @@ public class Main {
 //        log.debug("mensagem debug ***************************************************************************************************************************");
 //        log.error("mensagem erro ***************************************************************************************************************************");
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        PostoDeAtendimentoService postoDeAtendimentoService = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        PostoDeAtendimentoService postoDeAtendimentoService = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+//
+//        PostoDeAtendimento pa = postoDeAtendimentoService.BuscarPorEmailESenha("marcelo", "admin...");
+//        if(pa == null){
+//            System.out.println("isso");
+//        }
 
-        PostoDeAtendimento pa = postoDeAtendimentoService.BuscarPorEmailESenha("marcelo", "admin...");
-        if(pa == null){
-            System.out.println("isso");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PedidoService pedidoService = (PedidoService) context.getBean("pedidoService");
+        PostoDeAtendimentoService postoDeAtendimentoService =  (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+        PecaService pecaService =  (PecaService) context.getBean("pecaService");
+        Pedido pedido = new Pedido();
+        pedido.setDataDaSolicitacao(new Date());
+        pedido.setPostoDeAtendimento(postoDeAtendimentoService.BuscarPorEmailESenha("marcelo", "admin..."));
+
+        System.out.println("Posto " + pedido.getPostoDeAtendimento().getNome());
+        List<PedidoItem> lista = new ArrayList<PedidoItem>();
+        for(Long x = 1L ; x < 4; x++){
+            PedidoItem itemPedido = new PedidoItem();
+            itemPedido.setPeca(pecaService.BuscarPecaPorId(x));
+            lista.add(itemPedido);
         }
+        pedido.setItensPedido(lista);
+//        for(ItemPedido it:pedido.getItensPedido()){
+//            it.setPedido(pedido);
+//        }
+        Pedido ped = pedidoService.SalvarPedido(pedido);
+       // System.out.println(ped.getId());
+
     }
 
 }

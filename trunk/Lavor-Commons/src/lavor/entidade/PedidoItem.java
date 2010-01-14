@@ -5,54 +5,30 @@
 
 package lavor.entidade;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author marcelo
  */
 @Entity
-public class ItemPedido implements Serializable {
+public class PedidoItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=IDENTITY)
-    private Long id;    
-    //@ManyToOne(cascade=CascadeType.ALL)
-    //@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido_id")
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @JoinColumn(name = "id_pedido", referencedColumnName = "id")
+    @ManyToOne
+    private Pedido idPedido;
     @ManyToOne(cascade=CascadeType.ALL)
-    private Pedido pedido;
-    @OneToOne(cascade=CascadeType.ALL)
     private Peca peca;
-
-    public ItemPedido() {
-        this.pedido = new Pedido();
-    }
-
-    public Peca getPeca() {
-        return peca;
-    }
-
-    public void setPeca(Peca peca) {
-        this.peca = peca;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
 
     public Long getId() {
         return id;
@@ -62,6 +38,22 @@ public class ItemPedido implements Serializable {
         this.id = id;
     }
 
+    public Pedido getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(Pedido idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public Peca getPeca() {
+        return peca;
+    }
+
+    public void setPeca(Peca peca) {
+        this.peca = peca;
+    }
+   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -72,10 +64,10 @@ public class ItemPedido implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ItemPedido)) {
+        if (!(object instanceof PedidoItem)) {
             return false;
         }
-        ItemPedido other = (ItemPedido) object;
+        PedidoItem other = (PedidoItem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -84,7 +76,7 @@ public class ItemPedido implements Serializable {
 
     @Override
     public String toString() {
-        return "lavor.entidade.ItemPedido[id=" + id + "]";
+        return "lavor.entidade.PedidoItem[id=" + id + "]";
     }
 
 }
