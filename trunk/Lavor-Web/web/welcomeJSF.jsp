@@ -20,6 +20,8 @@
         <body>
             <h1><h:outputText value="Lavor wach"/></h1>
             <rich:separator />
+
+
         </body>
     </html>
 </f:view>
