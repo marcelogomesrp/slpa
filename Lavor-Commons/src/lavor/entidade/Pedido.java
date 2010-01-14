@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -30,15 +32,24 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="postodeatendimento_id", referencedColumnName="id")
     private PostoDeAtendimento postoDeAtendimento;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDaSolicitacao;
-    @OneToMany(mappedBy = "pedido", cascade=CascadeType.ALL)
-    private List<ItemPedido> itensPedido;
+    @OneToMany(mappedBy = "idPedido", cascade=CascadeType.ALL)
+    private List<PedidoItem> itensPedido;
+
+
+    //@OneToMany(mappedBy="item_pedido", cascade=CascadeType.ALL)
+    //@JoinColumn(name="itemid", referencedColumnName="id")
+    //private List<ItemPedido> itensPedido;
+
+
+
 
     public Pedido() {
-        this.itensPedido = new ArrayList<ItemPedido>();
+        this.itensPedido = new ArrayList<PedidoItem>();
     }
 
 
@@ -58,11 +69,17 @@ public class Pedido implements Serializable {
         this.dataDaSolicitacao = dataDaSolicitacao;
     }
 
-    public List<ItemPedido> getItensPedido() {
+    public List<PedidoItem> getItensPedido() {
+        if(itensPedido == null){
+            itensPedido = new ArrayList<PedidoItem>();
+        }
         return itensPedido;
     }
 
-    public void setItensPedido(List<ItemPedido> itensPedido) {
+    public void setItensPedido(List<PedidoItem> itensPedido) {
+        for(PedidoItem pedido:itensPedido){
+            pedido.setIdPedido(this);
+        }
         this.itensPedido = itensPedido;
     }
 

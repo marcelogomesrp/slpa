@@ -92,4 +92,15 @@
         <property name="listaDePrecoDao" ref="listaDePrecoDao" />
     </bean>
 
+    <bean id="pedidoDao" class="lavor.dao.imp.PedidoDaoImp" />
+
+    <bean id="pedidoService" class="lavor.service.PedidoService" >
+        <property name="pedidoDao" ref="pedidoDao" />
+    </bean>
+
+    <bean id="itemPedidoDao" class="lavor.dao.imp.ItemPedidoDaoImp" />
+
+    
+
+
 </beans>
