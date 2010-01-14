@@ -14,7 +14,21 @@
     <!-- <lifecycle>
         <phase-listener>lavor.util.Xerife</phase-listener>
     </lifecycle> -->
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.Logar}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/paginas/pecas/solilcitarPecas.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{solicitarPecasBB.DoConfirmaSolicitarPeca}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/paginas/pecas/ConfirmaSolicitacaoDePecas.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
+
+
 
 
 

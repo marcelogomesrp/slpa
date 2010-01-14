@@ -39,10 +39,11 @@ public class PostoDeAtendimentoBB {
         System.out.println("Login");
         PostoDeAtendimento po = postoDeAtendimentoService.BuscarPorEmailESenha(postoDeAtendimentoMB.getPostoDeAtendimento().getEmail(),postoDeAtendimentoMB.getPostoDeAtendimento().getSenha());
         if(po == null){
-            System.out.println("falha");
+            lavor.util.FacesUtils.mensErro("Login ou senha inválidos");
+            return "falha";
         }else{
-            System.out.println("sucesso");
+            postoDeAtendimentoMB.setPostoDeAtendimento(po);
+            return "sucesso";
         }
-        return "sucesso";
     }
 }
