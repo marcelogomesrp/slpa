@@ -10,8 +10,8 @@
 
     <ui:define name="content">
         <h:form>
+            <h:messages id="message" />
             <h:outputText value="Confirmacao de solicitacao de pecas" />
-            
             <h:panelGrid columns="2" >
                 <h:outputText value="Nome" />
                 <h:outputText value="#{pedidoMB.pedido.postoDeAtendimento.nome}" />

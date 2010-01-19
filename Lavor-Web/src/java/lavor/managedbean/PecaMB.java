@@ -5,11 +5,9 @@
 
 package lavor.managedbean;
 
-import javax.annotation.Resource;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Peca;
-import lavor.service.PecaService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 

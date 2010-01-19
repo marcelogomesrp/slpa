@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="./../../template/template.xhtml">
+
+    <ui:define name="content">
+        Peca
+        <h:form>
+            <h:outputText value="Pecas" />
+            <rich:dataTable value="#{pecaMB.listaDePecas}" var="peca" >
+                <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{peca.nome}"/>
+                </rich:column>
+                <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Solicitar"/>
+                    </f:facet>
+                    <h:commandLink value="solicitar" action="#{garantiaBB.SolicitarPeca}"/>
+
+                </rich:column>
+            </rich:dataTable>
+            <h:commandButton value="Confirma" action="#{garantiaBB.DoConfirma}" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>

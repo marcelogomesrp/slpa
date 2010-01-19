@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
-import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
 import lavor.entidade.PedidoItem;
@@ -66,17 +65,16 @@ public class SolicitarPecasBB {
     }
 
     public String DoConfirmaSolicitarPeca(){
-//        pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         pedidoMB.getPedido().setDataDaSolicitacao(new Date());
         this.pedidoMB.setPecasSolicitada(new ListDataModel(pedidoMB.getPedido().getItensPedido()));
-
         return "sucesso";
     }
 
-    
-
     public String ConfirmaPedido(){
-        pedidoService.SalvarPedido(this.pedidoMB.getPedido());
+        this.pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        Pedido pedido = pedidoService.SalvarPedido(this.pedidoMB.getPedido());        
+        lavor.util.FacesUtils.mensInfo("Pedido adicionado com sucesso nº" + pedido.getId() + " valor " + pedido.getTotal());
+        this.pedidoMB.setPecasSolicitada(new ListDataModel());
         this.pedidoMB.setPedido(new Pedido());
         return "service";
     }
