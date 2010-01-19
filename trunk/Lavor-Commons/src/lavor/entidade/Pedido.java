@@ -13,14 +13,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -39,6 +41,18 @@ public class Pedido implements Serializable {
     private Date dataDaSolicitacao;
     @OneToMany(mappedBy = "idPedido", cascade=CascadeType.ALL)
     private List<PedidoItem> itensPedido;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    @Transient
+    private Float total;
+
+    public Float getTotal() {
+        total = 0F;
+        for(PedidoItem item:itensPedido){
+            total += item.getPeca().getValor();
+        }
+        return total;
+    }
 
 
     //@OneToMany(mappedBy="item_pedido", cascade=CascadeType.ALL)
@@ -50,6 +64,7 @@ public class Pedido implements Serializable {
 
     public Pedido() {
         this.itensPedido = new ArrayList<PedidoItem>();
+        this.status = status.Cadastrado;
     }
 
 
@@ -90,6 +105,16 @@ public class Pedido implements Serializable {
     public void setPostoDeAtendimento(PostoDeAtendimento postoDeAtendimento) {
         this.postoDeAtendimento = postoDeAtendimento;
     }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    
 
 
     @Override

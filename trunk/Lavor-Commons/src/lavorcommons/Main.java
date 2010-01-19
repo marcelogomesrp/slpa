@@ -62,27 +62,27 @@ public class Main {
 //            System.out.println("isso");
 //        }
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        PedidoService pedidoService = (PedidoService) context.getBean("pedidoService");
-        PostoDeAtendimentoService postoDeAtendimentoService =  (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
-        PecaService pecaService =  (PecaService) context.getBean("pecaService");
-        Pedido pedido = new Pedido();
-        pedido.setDataDaSolicitacao(new Date());
-        pedido.setPostoDeAtendimento(postoDeAtendimentoService.BuscarPorEmailESenha("marcelo", "admin..."));
-
-        System.out.println("Posto " + pedido.getPostoDeAtendimento().getNome());
-        List<PedidoItem> lista = new ArrayList<PedidoItem>();
-        for(Long x = 1L ; x < 4; x++){
-            PedidoItem itemPedido = new PedidoItem();
-            itemPedido.setPeca(pecaService.BuscarPecaPorId(x));
-            lista.add(itemPedido);
-        }
-        pedido.setItensPedido(lista);
-//        for(ItemPedido it:pedido.getItensPedido()){
-//            it.setPedido(pedido);
+//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        PedidoService pedidoService = (PedidoService) context.getBean("pedidoService");
+//        PostoDeAtendimentoService postoDeAtendimentoService =  (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+//        PecaService pecaService =  (PecaService) context.getBean("pecaService");
+//        Pedido pedido = new Pedido();
+//        pedido.setDataDaSolicitacao(new Date());
+//        pedido.setPostoDeAtendimento(postoDeAtendimentoService.BuscarPorEmailESenha("marcelo", "admin..."));
+//
+//        System.out.println("Posto " + pedido.getPostoDeAtendimento().getNome());
+//        List<PedidoItem> lista = new ArrayList<PedidoItem>();
+//        for(Long x = 1L ; x < 4; x++){
+//            PedidoItem itemPedido = new PedidoItem();
+//            itemPedido.setPeca(pecaService.BuscarPecaPorId(x));
+//            lista.add(itemPedido);
 //        }
-        Pedido ped = pedidoService.SalvarPedido(pedido);
-       // System.out.println(ped.getId());
+//        pedido.setItensPedido(lista);
+////        for(ItemPedido it:pedido.getItensPedido()){
+////            it.setPedido(pedido);
+////        }
+//        Pedido ped = pedidoService.SalvarPedido(pedido);
+//       // System.out.println(ped.getId());
 
     }
 

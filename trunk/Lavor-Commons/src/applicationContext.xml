@@ -98,9 +98,6 @@
         <property name="pedidoDao" ref="pedidoDao" />
     </bean>
 
-    <bean id="itemPedidoDao" class="lavor.dao.imp.ItemPedidoDaoImp" />
-
-    
 
 
 </beans>

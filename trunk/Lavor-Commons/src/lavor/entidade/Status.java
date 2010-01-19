@@ -3,14 +3,14 @@
  * and open the template in the editor.
  */
 
-package lavor.dao;
-
-import lavor.entidade.ItemPedido;
+package lavor.entidade;
 
 /**
  *
  * @author marcelo
  */
-public interface ItemPedidoDao extends DaoGenerico<ItemPedido, Long>{
-
+public enum Status {
+    Cadastrado,
+    Processado,
+    Finalizado
 }
