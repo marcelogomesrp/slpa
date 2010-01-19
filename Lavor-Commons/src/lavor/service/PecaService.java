@@ -69,6 +69,14 @@ public class PecaService {
         return pecaDao.todos();
     }
 
+    public List<Peca> BuscarPecaPorEquipamento(Long id){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        String SQL = "SELECT p FROM Peca p WHERE p.equipamento.id = :id";
+        List<Peca> pecas = pecaDao.listPesqParam(SQL, params);
+        return pecas;
+    }
+
 
 
 

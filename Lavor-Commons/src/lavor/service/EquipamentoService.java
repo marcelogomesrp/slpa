@@ -54,6 +54,14 @@ public class EquipamentoService {
         return equipamentos;
     }
 
+    public List<Equipamento> LocalizarEquipamentoPorCategoria(Long id){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id",id);
+        String sql = "SELECT e FROM Equipamento e WHERE e.categoria.id = :id";
+        List<Equipamento> equipamentos = equipamentoDao.listPesqParam(sql, params);
+        return equipamentos;
+    }
+
     public List<Equipamento> LocalizarPorNome(String nome){
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("nome", nome);

@@ -9,13 +9,10 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lavor.dao.DaoGenerico;
-import lavor.util.ConnectionFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,8 +52,7 @@ public class DaoGenericoImp<T, ID extends Serializable> implements DaoGenerico<T
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public T atualizar(T object) {
-        getEntityManager().merge(object);
-
+        object = getEntityManager().merge(object);
         return object;
 
     }
