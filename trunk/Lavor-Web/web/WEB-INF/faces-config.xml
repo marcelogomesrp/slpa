@@ -25,8 +25,33 @@
             <from-outcome>sucesso</from-outcome>
             <to-view-id>/paginas/pecas/ConfirmaSolicitacaoDePecas.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>solicitarPecas</from-outcome>
+            <to-view-id>/paginas/pecas/solilcitarPecas.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-action>#{garantiaBB.DoSolicitarGarantiaPage}</from-action>
+            <from-outcome>solicitarGarantiaPage</from-outcome>
+            <to-view-id>/paginas/garantia/ListarCategorias.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{garantiaBB.SelecionarCategoria}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/paginas/garantia/ListaDeEquipamentos.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{garantiaBB.DoSolicitarPecaPage}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/paginas/garantia/ListaDePecas.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
+
+
+
 
 
 
