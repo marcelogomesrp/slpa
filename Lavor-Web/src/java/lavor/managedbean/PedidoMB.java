@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 public class PedidoMB {
     private Pedido pedido;
     private ListDataModel pecasSolicitada;
+    private ListDataModel pedidos;
 
     public Pedido getPedido() {
         return pedido;
@@ -31,6 +32,7 @@ public class PedidoMB {
 
     public PedidoMB() {
         this.pedido = new Pedido();
+        this.pedidos = new ListDataModel();
     }
 
     public ListDataModel getPecasSolicitada() {
@@ -39,6 +41,14 @@ public class PedidoMB {
 
     public void setPecasSolicitada(ListDataModel pecasSolicitada) {
         this.pecasSolicitada = pecasSolicitada;
+    }
+
+    public ListDataModel getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ListDataModel pedidos) {
+        this.pedidos = pedidos;
     }
 
 }
