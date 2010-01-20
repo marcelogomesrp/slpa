@@ -45,8 +45,22 @@
             <from-outcome>sucesso</from-outcome>
             <to-view-id>/paginas/garantia/ListaDePecas.xhtml</to-view-id>
         </navigation-case>
+
+        
+        <navigation-case>
+            <from-action>#{pedidoBB.DoListarPedidoPage}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/paginas/pedido/ListarPedido.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>listarPedido</from-outcome>
+            <to-view-id>/paginas/pedido/ListarPedido.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
 
 
 
