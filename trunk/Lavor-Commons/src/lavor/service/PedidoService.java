@@ -11,6 +11,7 @@ import java.util.Map;
 import lavor.dao.PedidoDao;
 import lavor.entidade.Pedido;
 import lavor.entidade.PedidoItem;
+import lavor.entidade.Status;
 
 /**
  *
@@ -47,6 +48,17 @@ public class PedidoService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id",id);
         String sql = "SELECT p FROM Pedido p WHERE p.postoDeAtendimento.id = :id";
+        List<Pedido> pedidos = pedidoDao.listPesqParam(sql, params);
+        return pedidos;
+    }
+
+    public List<Pedido> LocalizarPorPostoDeAtendimentoEStatus(Long id, Status status){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id",id);
+        params.put("status", status);
+        String sql = "SELECT p FROM Pedido p " +
+                "WHERE p.postoDeAtendimento.id = :id " +
+                "  AND p.status = :status" ;
         List<Pedido> pedidos = pedidoDao.listPesqParam(sql, params);
         return pedidos;
     }

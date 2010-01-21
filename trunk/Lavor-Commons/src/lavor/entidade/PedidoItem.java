@@ -13,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author marcelo
  */
 @Entity
+@Table(name="pedido_item")
 public class PedidoItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,8 +31,12 @@ public class PedidoItem implements Serializable {
     private Pedido idPedido;
     @ManyToOne(cascade=CascadeType.ALL)
     private Peca peca;
+    private int quantidade;
+    private Float valor;
+
 
     public Long getId() {
+
         return id;
     }
 
@@ -53,6 +59,24 @@ public class PedidoItem implements Serializable {
     public void setPeca(Peca peca) {
         this.peca = peca;
     }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+
+
    
     @Override
     public int hashCode() {

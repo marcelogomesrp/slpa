@@ -5,13 +5,7 @@
 
 package lavorcommons;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import lavor.entidade.Pedido;
-import lavor.entidade.PedidoItem;
-import lavor.service.PecaService;
-import lavor.service.PedidoService;
+import lavor.entidade.PostoDeAtendimento;
 import lavor.service.PostoDeAtendimentoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,19 +28,19 @@ public class Main {
 //        System.out.println("Posto Salvo com sucesso");
 
         
-        //ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        //PostoDeAtendimento pa = (PostoDeAtendimento) context.getBean("postoDeAtendimento");
-        //pa.setNome("ok spring");
-        //System.out.println("Nome " + pa.getNome());
+//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        PostoDeAtendimento pa = (PostoDeAtendimento) context.getBean("postoDeAtendimento");
+//        pa.setNome("ok spring");
+//        System.out.println("Nome " + pa.getNome());
 
         
-//        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        for(int x = 0; x < 10000; x++){
-//            PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
-//            PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
-//            postoDeAtendimento.setNome("Salvo com o hibernate + c3p0 n" + x);
-//            //pa.Salvar(postoDeAtendimento);
-//        }
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        for(int x = 0; x < 10000; x++){
+            PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+            PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
+            postoDeAtendimento.setNome("Salvo com o hibernate + c3p0 n" + x);
+            pa.Salvar(postoDeAtendimento);
+        }
         
 
 //        org.apache.log4j.Logger log = org.apache.log4j.Logger.getRootLogger();
