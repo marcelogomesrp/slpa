@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
 
@@ -29,6 +30,7 @@ import javax.persistence.Transient;
  * @author marcelo
  */
 @Entity
+@Table(name="pedido")
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,6 +47,7 @@ public class Pedido implements Serializable {
     private Status status;
     @Transient
     private Float total;
+    private String mensagem;
 
     public Float getTotal() {
         total = 0F;
@@ -112,6 +115,14 @@ public class Pedido implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     
