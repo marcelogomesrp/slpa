@@ -5,8 +5,12 @@
 
 package lavor.managedbean;
 
+import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Pedido;
+import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Status;
+import lavor.service.PedidoService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -18,6 +22,12 @@ import org.springframework.stereotype.Controller;
 @Controller("pedidoMB")
 @Scope("session")
 public class PedidoMB {
+    @Resource
+    private PedidoService pedidoService;
+
+    @Resource
+    private PostoDeAtendimentoMB postoDeAtendimentoMB;
+
     private Pedido pedido;
     private ListDataModel pecasSolicitada;
     private ListDataModel pedidos;
@@ -44,6 +54,10 @@ public class PedidoMB {
     }
 
     public ListDataModel getPedidos() {
+        Long id = postoDeAtendimentoMB.getPostoDeAtendimento().getId();
+        if(pedidos == null){
+            this.pedidos = new ListDataModel(pedidoService.LocalizarPorPostoDeAtendimentoEStatus(id, Status.Cadastrado));
+        }
         return pedidos;
     }
 

@@ -7,6 +7,7 @@ package lavor.backbean;
 
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import lavor.entidade.Status;
 import lavor.managedbean.PedidoMB;
 import lavor.managedbean.PostoDeAtendimentoMB;
 import lavor.service.PedidoService;
@@ -36,6 +37,12 @@ public class PedidoBB {
         //this.pedidoMB.setPedidos(new ListDataModel(pedidoService.LocalizarTodosOsPedidos()));
         Long id = postoDeAtendimentoMB.getPostoDeAtendimento().getId();
         this.pedidoMB.setPedidos(new ListDataModel(pedidoService.LocalizarPorPostoDeAtendimento(id)));
+        return "sucesso";
+    }
+
+    public String DoListarMensagens(){
+        Long id = postoDeAtendimentoMB.getPostoDeAtendimento().getId();
+        this.pedidoMB.setPedidos(new ListDataModel(pedidoService.LocalizarPorPostoDeAtendimentoEStatus(id, Status.Cadastrado)));
         return "sucesso";
     }
 
