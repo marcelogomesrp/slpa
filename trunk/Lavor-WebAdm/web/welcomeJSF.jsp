@@ -2,6 +2,10 @@
 
 <%@taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 <%@taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
+<%@taglib prefix="a4j"  uri="http://richfaces.org/a4j"%>
+<%@taglib prefix="rich"  uri="http://richfaces.org/rich"%>
+
+            
 
 
 
@@ -17,9 +21,5 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>JSP Page</title>
         </head>
-        <body>
-            <h1><h:outputText value="JavaServer Faces"/></h1>
-            
-        </body>
     </html>
 </f:view>

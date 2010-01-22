@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 import lavor.entidade.Usuario;
 import lavor.managedbean.UsuarioMB;
 import lavor.service.UsuarioService;
