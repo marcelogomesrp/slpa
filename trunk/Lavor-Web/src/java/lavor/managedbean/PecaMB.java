@@ -5,6 +5,7 @@
 
 package lavor.managedbean;
 
+import java.util.ArrayList;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Peca;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 public class PecaMB {
     private Peca peca;
     private ListDataModel listaDePecas;
+    private ArrayList<Peca> pecas;
 
     public DataModel getListaDePecas() {
         return listaDePecas;
@@ -41,6 +43,15 @@ public class PecaMB {
 
     public PecaMB() {
         this.peca = new Peca();
+        this.pecas = new ArrayList<Peca>();
+    }
+
+    public ArrayList<Peca> getPecas() {
+        return pecas;
+    }
+
+    public void setPecas(ArrayList<Peca> pecas) {
+        this.pecas = pecas;
     }
 
 
