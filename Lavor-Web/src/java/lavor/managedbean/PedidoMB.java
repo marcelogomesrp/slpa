@@ -8,7 +8,6 @@ package lavor.managedbean;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Pedido;
-import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Status;
 import lavor.service.PedidoService;
 import org.springframework.context.annotation.Scope;
@@ -31,6 +30,7 @@ public class PedidoMB {
     private Pedido pedido;
     private ListDataModel pecasSolicitada;
     private ListDataModel pedidos;
+
 
     public Pedido getPedido() {
         return pedido;

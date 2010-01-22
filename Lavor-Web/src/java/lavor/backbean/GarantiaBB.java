@@ -5,7 +5,9 @@
 
 package lavor.backbean;
 
+import java.util.ArrayList;
 import javax.annotation.Resource;
+import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Categoria;
 import lavor.entidade.Equipamento;
@@ -89,8 +91,7 @@ public class GarantiaBB {
 
     public String DoConfirma(){
         pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
-        pedidoService.SalvarPedido(pedidoMB.getPedido());
-        pedidoMB.setPedido(new Pedido());
+        pedidoService.SalvarPedido(pedidoMB.getPedido());        
         return "sucesso";
     }
 
