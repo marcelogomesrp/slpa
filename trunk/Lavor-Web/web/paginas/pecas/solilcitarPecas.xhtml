@@ -10,6 +10,36 @@
 
     <ui:define name="content">
         <h:form>
+            <h:messages id="message" />
+            <rich:dataTable value="#{pedidoMB.pecasSolicitada}"  var="pecaSolicitada" >
+                <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{pecaSolicitada.peca.nome}" />
+                </rich:column>
+
+                <rich:column >
+                    <f:facet name="header">
+                        <h:outputText value="Quantidade"/>
+                    </f:facet>
+                    <h:inputText value="#{pecaSolicitada.quantidade}">
+                        <f:convertNumber />
+                    </h:inputText>
+                </rich:column>
+
+                <rich:column >
+                    <f:facet name="header">
+                        <h:outputText value="Remover"/>
+                    </f:facet>
+                    <h:commandLink value="remover" action="#{solicitarPecasBB.RemoverPecaSolicitada}" />
+                </rich:column>
+
+
+            </rich:dataTable>
+
+
+
         <rich:dataTable value="#{solicitarPecasBB.listaDePecas}" var="peca" rows="20" reRender="listaPecasFooter" >
             <rich:column sortBy="#{peca.nome}">
                 <f:facet name="header">
@@ -17,6 +47,13 @@
                 </f:facet>
                 <h:outputText value="#{peca.nome}"/>
             </rich:column>
+            <rich:column sortBy="#{peca.codigoImportacao}">
+                <f:facet name="header">
+                    <h:outputText value="Cod. Importacao"/>
+                </f:facet>
+                <h:outputText value="#{peca.codigoImportacao}"/>
+            </rich:column>
+
             <f:facet name="footer">
                 <rich:datascroller id="listaPecasFooter"/>
             </f:facet>
@@ -32,6 +69,10 @@
                 </f:facet>
                 <h:commandLink value="solicitar" action="#{solicitarPecasBB.AddItem}" />
             </rich:column>
+
+
+
+
             <f:facet name="footer">
                 <rich:datascroller id="listaPecasFooter"/>
             </f:facet>

@@ -63,6 +63,13 @@ public class PedidoMB {
 
     public void setPedidos(ListDataModel pedidos) {
         this.pedidos = pedidos;
+        this.SincronizaPecaSolicitadas();
     }
+
+    public void SincronizaPecaSolicitadas(){
+        this.pecasSolicitada = new ListDataModel(this.pedido.getItensPedido());
+    }
+
+
 
 }

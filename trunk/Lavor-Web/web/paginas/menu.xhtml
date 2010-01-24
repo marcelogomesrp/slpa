@@ -4,10 +4,10 @@
              xmlns:f="http://java.sun.com/jsf/core">
     <h:form>
         <ul>
-            <li><h:commandLink value="Mensagens" action="#{pedidoBB.DoListarMensagens}" /></li>
+            <li><h:commandLink value="Mensagens" action="#{DoSolcitarPecasPage.DoListarMensagens}" /></li>
         </ul>
-        <ul>
-            <li><h:commandLink value="Solicitar pecas" action="solicitarPecas" /></li>
+        <ul>            
+            <li><h:commandLink value="Solicitar pecas" action="#{solicitarPecasBB.DoSolicitarPecasPage}" /></li>
         </ul>
         <ul>
             <li><h:commandLink value="Solicitar garantia" action="#{garantiaBB.DoSolicitarGarantiaPage}" /></li>
