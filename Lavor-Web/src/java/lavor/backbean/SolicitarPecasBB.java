@@ -5,7 +5,6 @@
 
 package lavor.backbean;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -40,6 +39,9 @@ public class SolicitarPecasBB {
     @Resource
     private PedidoService pedidoService;
 
+    // private ListDataModel pecasSolicitas;
+
+
 
 
 
@@ -59,26 +61,54 @@ public class SolicitarPecasBB {
 
     public String AddItem(){
         PedidoItem pedidoItem = new PedidoItem();
-        pedidoItem.setPeca((Peca) pecaMB.getListaDePecas().getRowData());
+        Peca pecaEscolhida = (Peca) pecaMB.getListaDePecas().getRowData();
+        pedidoItem.setPeca(pecaEscolhida);
+        pedidoItem.setValorUnitario(pecaEscolhida.getValor());
         this.pedidoMB.getPedido().getItensPedido().add(pedidoItem);
+        this.pedidoMB.SincronizaPecaSolicitadas();
         return "sucesso";
     }
 
     public String DoConfirmaSolicitarPeca(){
         pedidoMB.getPedido().setDataDaSolicitacao(new Date());
         this.pedidoMB.setPecasSolicitada(new ListDataModel(pedidoMB.getPedido().getItensPedido()));
+        this.pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         return "sucesso";
     }
 
     public String ConfirmaPedido(){
-        this.pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        //this.pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         Pedido pedido = pedidoService.SalvarPedido(this.pedidoMB.getPedido());        
-        lavor.util.FacesUtils.mensInfo("Pedido adicionado com sucesso nº" + pedido.getId() + " valor " + pedido.getTotal());
+        lavor.util.FacesUtils.mensInfo("Pedido adicionado com sucesso nº" + pedido.getId() + " valor " + pedido.getValorTotal());
         this.pedidoMB.setPecasSolicitada(new ListDataModel());
         this.pedidoMB.setPedido(new Pedido());
         return "service";
     }
 
+//    public ListDataModel getPecasSolicitas() {
+//        this.pecasSolicitas = new ListDataModel(pedidoMB.getPedido().getItensPedido());
+//        return pecasSolicitas;
+//    }
+//
+//    public void setPecasSolicitas(ListDataModel pecasSolicitas) {
+//        this.pecasSolicitas = pecasSolicitas;
+//    }
 
+
+
+    public String RemoverPecaSolicitada(){
+        PedidoItem pedidoItemRemover = (PedidoItem) pedidoMB.getPecasSolicitada().getRowData();
+        int index = pedidoMB.getPecasSolicitada().getRowIndex();
+        lavor.util.FacesUtils.mensInfo("Remover " + pedidoItemRemover.getPeca().getNome() + "index " + index);
+        this.pedidoMB.getPedido().getItensPedido().remove(index);
+        return "sucesso";
+    }
+
+    public String DoSolicitarPecasPage(){
+        this.pedidoMB.setPecasSolicitada(new ListDataModel());
+        this.pedidoMB.setPedido(new Pedido());
+        this.pedidoMB.setPedidos(new ListDataModel());
+        return "solicitarPecas";
+    }
 
 }

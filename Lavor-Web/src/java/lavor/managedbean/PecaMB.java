@@ -23,6 +23,7 @@ public class PecaMB {
     private Peca peca;
     private ListDataModel listaDePecas;
     private ArrayList<Peca> pecas;
+    private ListDataModel pecasSolicitas;
 
     public DataModel getListaDePecas() {
         return listaDePecas;
@@ -52,6 +53,14 @@ public class PecaMB {
 
     public void setPecas(ArrayList<Peca> pecas) {
         this.pecas = pecas;
+    }
+
+    public ListDataModel getPecasSolicitas() {
+        return pecasSolicitas;
+    }
+
+    public void setPecasSolicitas(ListDataModel pecasSolicitas) {
+        this.pecasSolicitas = pecasSolicitas;
     }
 
 
