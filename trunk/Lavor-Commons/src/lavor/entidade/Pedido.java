@@ -46,15 +46,19 @@ public class Pedido implements Serializable {
     @Enumerated(EnumType.STRING)
     private Status status;
     @Transient
-    private Float total;
+    private Float valorTotal;
     private String mensagem;
 
-    public Float getTotal() {
-        total = 0F;
+    public Float getValorTotal() {
+        valorTotal = 0F;
         for(PedidoItem item:itensPedido){
-            total += item.getPeca().getValor();
+            valorTotal += item.getValorTotal();
         }
-        return total;
+        return valorTotal;
+    }
+
+    public void setValorTotal(Float valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
 

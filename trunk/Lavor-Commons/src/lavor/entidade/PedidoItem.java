@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -32,7 +33,13 @@ public class PedidoItem implements Serializable {
     @ManyToOne(cascade=CascadeType.ALL)
     private Peca peca;
     private int quantidade;
-    private Float valor;
+    private Float valorUnitario;
+    @Transient
+    private Float valorTotal;
+
+    public PedidoItem() {
+        this.quantidade = 1;
+    }
 
 
     public Long getId() {
@@ -68,13 +75,24 @@ public class PedidoItem implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Float getValor() {
-        return valor;
+    public Float getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValor(Float valor) {
-        this.valor = valor;
+    public void setValorUnitario(Float valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
+
+    public Float getValorTotal() {
+        this.valorTotal = valorUnitario * quantidade;
+        return valorTotal;
+    }
+
+    public void setValorTotal(Float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    
 
 
    

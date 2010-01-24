@@ -26,7 +26,8 @@ public class Peca implements Serializable {
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
     private String nome;
-    private String descricao;    
+    private String descricao;
+    private String codigoImportacao;
     //@ManyToMany(mappedBy = "pecas")
     //private Collection<Equipamento> equipamentos;
     @ManyToMany(mappedBy = "pecas", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
@@ -83,6 +84,14 @@ public class Peca implements Serializable {
         //equipamentos = new ArrayList<Equipamento>();
     }
 
+    public String getCodigoImportacao() {
+        return codigoImportacao;
+    }
+
+    public void setCodigoImportacao(String codigoImportacao) {
+        this.codigoImportacao = codigoImportacao;
+    }
+
 
 
 
@@ -92,6 +101,8 @@ public class Peca implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+
+
 
     @Override
     public boolean equals(Object object) {
