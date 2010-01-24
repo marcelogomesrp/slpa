@@ -84,8 +84,11 @@ public class GarantiaBB {
 
     public String SolicitarPeca(){
         PedidoItem pedidoItem = new PedidoItem();
-        pedidoItem.setPeca((Peca) pecaMB.getListaDePecas().getRowData());
+        Peca pecaEscolhida = (Peca) pecaMB.getListaDePecas().getRowData();
+        pedidoItem.setPeca(pecaEscolhida);
+        pedidoItem.setValorUnitario(pecaEscolhida.getValor());
         pedidoMB.getPedido().getItensPedido().add(pedidoItem);
+        this.pedidoMB.SincronizaPecaSolicitadas();
         return "sucesso";
     }
 
@@ -93,6 +96,10 @@ public class GarantiaBB {
         pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         pedidoService.SalvarPedido(pedidoMB.getPedido());        
         return "sucesso";
+    }
+
+    public String DoConfirmacaoPedidoPage(){
+        return "ConfirmacaoPedido";
     }
 
 }

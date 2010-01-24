@@ -64,8 +64,13 @@
             <from-outcome>listarPedido</from-outcome>
             <to-view-id>/paginas/pedido/ListarPedido.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>ConfirmacaoPedido</from-outcome>
+            <to-view-id>/paginas/garantia/ConfirmacaoPedido.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 
