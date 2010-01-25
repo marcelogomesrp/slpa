@@ -10,10 +10,12 @@
 
     <ui:define name="content">
         Confirmacao Pedido
+        <h:messages id="message" />
         <h:form>
+
             <h:outputText value="Confirmacao" />
             <br />
-            <h:commandButton value="Confirma" />
+            <h:commandButton value="Confirma" action="#{garantiaBB.DoConfirma}" />
             <h:commandButton value="Cancela" action="ListaDePecas" />
         </h:form>
     </ui:define>

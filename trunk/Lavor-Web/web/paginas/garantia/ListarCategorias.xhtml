@@ -11,6 +11,19 @@
     <ui:define name="content">
         Garantia
         <h:form>
+            <rich:panel>
+                <f:facet name="header" >
+                        <h:outputText value="Dados do cliente" />
+                    </f:facet>
+                <h:panelGrid columns="2" >
+                    <h:outputText value="Nome" />
+                    <h:inputText value="#{clienteMB.cliente.nome}"/>
+                    <h:commandButton value="Localizar cliente" action="#{clienteBB.DoLocalizarClientePage}"/>
+                </h:panelGrid>
+
+            </rich:panel>
+
+
             <rich:dataTable value="#{categoriaMB.listaDeCategoria}" var="categoria" >
             <rich:column>
                 <f:facet name="header">

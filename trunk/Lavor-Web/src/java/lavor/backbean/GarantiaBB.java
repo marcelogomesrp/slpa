@@ -5,9 +5,7 @@
 
 package lavor.backbean;
 
-import java.util.ArrayList;
 import javax.annotation.Resource;
-import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Categoria;
 import lavor.entidade.Equipamento;
@@ -15,6 +13,7 @@ import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
 import lavor.entidade.PedidoItem;
 import lavor.managedbean.CategoriaMB;
+import lavor.managedbean.ClienteMB;
 import lavor.managedbean.EquipamentoMB;
 import lavor.managedbean.PecaMB;
 import lavor.managedbean.PedidoMB;
@@ -61,6 +60,9 @@ public class GarantiaBB {
     @Resource
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
 
+    @Resource
+    private ClienteMB clienteMB;
+
     public GarantiaBB() {
     }
 
@@ -94,7 +96,10 @@ public class GarantiaBB {
 
     public String DoConfirma(){
         pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
-        pedidoService.SalvarPedido(pedidoMB.getPedido());        
+        pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
+        pedidoService.SalvarPedido(pedidoMB.getPedido());
+        lavor.util.FacesUtils.mensInfo("Pedido Adicionado com sucesso"  );
+        pedidoMB.setPedido(new Pedido());
         return "sucesso";
     }
 
