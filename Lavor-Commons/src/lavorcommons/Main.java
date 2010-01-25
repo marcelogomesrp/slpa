@@ -5,8 +5,11 @@
 
 package lavorcommons;
 
-import lavor.entidade.PostoDeAtendimento;
-import lavor.service.PostoDeAtendimentoService;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import lavor.entidade.Cliente;
+import lavor.service.ClienteService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -35,14 +38,51 @@ public class Main {
 
         
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        for(int x = 0; x < 10000; x++){
-            PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
-            PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
-            postoDeAtendimento.setNome("Salvo com o hibernate + c3p0 n" + x);
-            pa.Salvar(postoDeAtendimento);
-        }
-        
+//        for(int x = 0; x < 10000; x++){
+//            PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+//            PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();
+//            postoDeAtendimento.setNome("Salvo com o hibernate + c3p0 n" + x);
+//            pa.Salvar(postoDeAtendimento);
+//        }
 
+        ClienteService cs = (ClienteService) context.getBean("clienteService");
+        for(Cliente cliente:cs.BuscarClientePorNome("teste%")){
+            System.out.println(cliente.getNome());
+        }
+
+//
+//        Categoria cat = new Categoria("nova categoria", "cheio de equipamento", Boolean.TRUE);
+//        PecaService pecaService = (PecaService) context.getBean("pecaService");
+//        EquipamentoService es = (EquipamentoService) context.getBean("equipamentoService");
+//        //for(int i = 0 ; i < 100; i++){
+//            Equipamento equipamento = new Equipamento();
+//            equipamento.setNome("Equipamento power");
+//            equipamento.setCategoria(cat);
+//            List<Peca> pecas = new ArrayList<Peca>();
+//            for(Peca peca:pecaService.BuscarTodasAsPecas()){
+//                pecas.add(peca);
+//            }
+//            es.Salvar(equipamento);
+            
+        //}
+//        ClienteService cs = (ClienteService) context.getBean("clienteService");
+//        PedidoService ps = (PedidoService) context.getBean("pedidoService");
+//        Pedido pedido = new Pedido();
+//        Cliente cliente = new Cliente();
+//        cliente.setNome("Cliente criado pelo pedido");
+//        pedido.setDataDaSolicitacao(new Date());
+//        pedido.setCliente(cliente);
+//        pedido.setMensagem("Pedido criado com cliente");
+//        ps.SalvarPedido(pedido);
+
+
+//        for(int x = 0; x < 10; x++){
+//        Cliente cli = new Cliente();
+//        //cl.setId(1L);
+//        cli.setNome("teste c = " + x);
+//        cs.Salvar(cli);
+//        //Main.persist(cli);
+//        }
 //        org.apache.log4j.Logger log = org.apache.log4j.Logger.getRootLogger();
 //        JOptionPane.showMessageDialog(null, "Log esta " + log.getLevel().toString());
 //        log.debug("mensagem debug ***************************************************************************************************************************");
@@ -79,5 +119,23 @@ public class Main {
 //       // System.out.println(ped.getId());
 
     }
+
+    public static void persist(Object object) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Lavor-CommonsPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(object);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+
+
+
 
 }
