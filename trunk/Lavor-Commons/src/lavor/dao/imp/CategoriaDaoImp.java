@@ -12,6 +12,6 @@ import lavor.entidade.Categoria;
  *
  * @author marcelo
  */
-public class CategoriaDaoImp  extends DaoGenericoImp<Categoria, Long> implements CategoriaDao{
+public class CategoriaDaoImp extends DaoGenericoImp<Categoria, Long> implements CategoriaDao{
 
 }

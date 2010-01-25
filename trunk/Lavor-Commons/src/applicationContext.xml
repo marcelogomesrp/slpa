@@ -98,6 +98,10 @@
         <property name="pedidoDao" ref="pedidoDao" />
     </bean>
 
+    <bean id="clienteDao" class="lavor.dao.imp.ClienteDaoImp" />
 
+    <bean id="clienteService" class="lavor.service.ClienteService">
+        <property name="clienteDao" ref="clienteDao" />
+    </bean>
 
 </beans>

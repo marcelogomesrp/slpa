@@ -48,6 +48,8 @@ public class Pedido implements Serializable {
     @Transient
     private Float valorTotal;
     private String mensagem;
+    @OneToOne(cascade=CascadeType.ALL)
+    private Cliente cliente;
 
     public Float getValorTotal() {
         valorTotal = 0F;
@@ -59,6 +61,14 @@ public class Pedido implements Serializable {
 
     public void setValorTotal(Float valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
 
