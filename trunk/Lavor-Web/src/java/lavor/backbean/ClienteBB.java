@@ -7,6 +7,7 @@ package lavor.backbean;
 
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import javax.swing.JOptionPane;
 import lavor.entidade.Cliente;
 import lavor.managedbean.ClienteMB;
 import lavor.managedbean.PedidoMB;
@@ -41,16 +42,17 @@ public class ClienteBB {
     }
 
     public String SelecionarCliente(){
-        this.clienteMB.setCliente((Cliente) this.clientes.getRowData());
-        this.pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
+        JOptionPane.showMessageDialog(null, "to rodando");
+        this.clienteMB.setCliente((Cliente) clientes.getRowData());
+        this.pedidoMB.getPedido().setCliente(clienteMB.getCliente());
         //return "ListaDeCategorias";
         return "sucesso";
     }
 
 
     public String LocalizarClientePorNome(){
-        lavor.util.FacesUtils.mensInfo("nome a acahar " + nomeAchar);
-        this.clienteMB.setClientes(clienteService.BuscarClientePorNome(nomeAchar));
+        lavor.util.FacesUtils.mensInfo("nome a acahar " + this.clienteMB.getCliente().getNome());
+        this.clienteMB.setClientes(clienteService.BuscarClientePorNome(this.clienteMB.getCliente().getNome()));
         this.clientes = new ListDataModel(this.clienteMB.getClientes());
         return "sucesso2";
     }

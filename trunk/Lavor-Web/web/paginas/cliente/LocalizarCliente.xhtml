@@ -12,27 +12,34 @@
         Localizar cliente
         <h:messages id="message" />
         <h:form>
+            <h:outputText value="Cliente Selecionado" />
+            <h:outputText value="#{clienteMB.cliente.id}" />
+            <br />
+
             <h:outputText value="Nome" />
-            <h:inputText value="#{clienteBB.nomeAchar}" />
+            <h:inputText value="#{clienteMB.cliente.nome}" />
             <br />
             <h:commandButton value="Localizar" action="#{clienteBB.LocalizarClientePorNome}"/>
+            <h:commandButton value="Ok" action="ListaDeCategorias"/>
+            <h:commandLink value="selecionar" action="#{clienteBB.SelecionarCliente}" />
 
-            <rich:dataTable value="#{clienteBB.clientes}" var="cliente" >
-                <rich:column>
+            <h:dataTable value="#{clienteBB.clientes}" var="cliente" >
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nome"/>
                     </f:facet>
                     <h:outputText value="#{cliente.nome}" />
-                </rich:column>
-                <rich:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="Selecionar"/>
                     </f:facet>
                     <h:commandLink value="selecionar" action="#{clienteBB.SelecionarCliente}" />
-                </rich:column>
-                    
-            </rich:dataTable>
-            <h:commandButton value="Localizar" action="sucesso"/>
+                </h:column>
+                <h:column >
+                    <h:commandLink value="okok" action="#{clienteBB.SelecionarCliente}" />
+                </h:column>
+            </h:dataTable>
         </h:form>
     </ui:define>
 
