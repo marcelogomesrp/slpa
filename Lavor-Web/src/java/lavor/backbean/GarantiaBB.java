@@ -97,6 +97,7 @@ public class GarantiaBB {
     public String DoConfirma(){
         pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
+        pedidoMB.getPedido().getCliente().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         pedidoService.SalvarPedido(pedidoMB.getPedido());
         lavor.util.FacesUtils.mensInfo("Pedido Adicionado com sucesso"  );
         pedidoMB.setPedido(new Pedido());
