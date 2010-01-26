@@ -12,18 +12,12 @@
         Localizar cliente
         <h:messages id="message" />
         <h:form>
-            <h:outputText value="Cliente Selecionado" />
-            <h:outputText value="#{clienteMB.cliente.id}" />
-            <br />
-
             <h:outputText value="Nome" />
             <h:inputText value="#{clienteMB.cliente.nome}" />
             <br />
             <h:commandButton value="Localizar" action="#{clienteBB.LocalizarClientePorNome}"/>
-            <h:commandButton value="Ok" action="ListaDeCategorias"/>
-            <h:commandLink value="selecionar" action="#{clienteBB.SelecionarCliente}" />
 
-            <h:dataTable value="#{clienteBB.clientes}" var="cliente" >
+            <h:dataTable value="#{clienteMB.clientesModelo}" var="cliente" >
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nome"/>
@@ -35,9 +29,6 @@
                         <h:outputText value="Selecionar"/>
                     </f:facet>
                     <h:commandLink value="selecionar" action="#{clienteBB.SelecionarCliente}" />
-                </h:column>
-                <h:column >
-                    <h:commandLink value="okok" action="#{clienteBB.SelecionarCliente}" />
                 </h:column>
             </h:dataTable>
         </h:form>
