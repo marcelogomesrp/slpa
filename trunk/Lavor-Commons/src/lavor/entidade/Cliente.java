@@ -8,9 +8,11 @@ package lavor.entidade;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,11 +26,17 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
+    @OneToOne(cascade=CascadeType.ALL)
+    private PostoDeAtendimento postoDeAtendimento;
 
     private String nome;
 
     private String cpf;
 
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    private Endereco endereco;
+    
     public String getCpf() {
         return cpf;
     }
@@ -53,7 +61,19 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    
+
     public Cliente() {
+        this.endereco = new Endereco();
+        this.postoDeAtendimento = new PostoDeAtendimento();
     }
 
     public Cliente(String nome, String cpf) {
@@ -65,6 +85,14 @@ public class Cliente implements Serializable {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public PostoDeAtendimento getPostoDeAtendimento() {
+        return postoDeAtendimento;
+    }
+
+    public void setPostoDeAtendimento(PostoDeAtendimento postoDeAtendimento) {
+        this.postoDeAtendimento = postoDeAtendimento;
     }
 
     
