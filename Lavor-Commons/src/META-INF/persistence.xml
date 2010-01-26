@@ -12,6 +12,7 @@
     <class>lavor.entidade.Pedido</class>
     <class>lavor.entidade.PedidoItem</class>
     <class>lavor.entidade.Cliente</class>
+    <class>lavor.entidade.Endereco</class>
     <properties>
       <property name="hibernate.connection.username" value="marcelo"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
