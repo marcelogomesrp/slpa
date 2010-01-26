@@ -31,37 +31,56 @@ public class ClienteBB {
     private ClienteMB clienteMB;
     @Resource
     private PedidoMB pedidoMB;
+    private Boolean novoCliente;
 
-    private ListDataModel clientes;
+    public Boolean getNovoCliente() {
+
+        if (clienteMB.getCliente().getId() == null) {
+            novoCliente = Boolean.TRUE;
+        } else {
+            novoCliente = Boolean.FALSE;
+        }
+
+        return novoCliente;
+    }
+
+    public void setNovoCliente(Boolean novoCliente) {
+        this.novoCliente = novoCliente;
+    }
+
+    
 
 
     private String nomeAchar;
 
     public ClienteBB() {
-        this.clientes = new ListDataModel();
     }
 
     public String SelecionarCliente(){
-        JOptionPane.showMessageDialog(null, "to rodando");
-        this.clienteMB.setCliente((Cliente) clientes.getRowData());
+        this.clienteMB.setCliente((Cliente) clienteMB.getClientesModelo().getRowData());
         this.pedidoMB.getPedido().setCliente(clienteMB.getCliente());
-        //return "ListaDeCategorias";
-        return "sucesso";
+        return "ListaDeCategorias";
+        //return "sucesso";
     }
 
 
     public String LocalizarClientePorNome(){
         lavor.util.FacesUtils.mensInfo("nome a acahar " + this.clienteMB.getCliente().getNome());
         this.clienteMB.setClientes(clienteService.BuscarClientePorNome(this.clienteMB.getCliente().getNome()));
-        this.clientes = new ListDataModel(this.clienteMB.getClientes());
+        //this.clientes = new ListDataModel(this.clienteMB.getClientes());
+        clienteMB.setClientesModelo(new ListDataModel(this.clienteMB.getClientes()));
         return "sucesso2";
     }
 
     public String DoLocalizarClientePage(){
+        if(!this.clienteMB.getCliente().getNome().isEmpty()) {
+            this.LocalizarClientePorNome();
+        }
         return "LocalizarCliente";
     }
 
     public String getNomeAchar() {
+
         return nomeAchar;
     }
 
@@ -69,12 +88,10 @@ public class ClienteBB {
         this.nomeAchar = nomeAchar;
     }
 
-    public ListDataModel getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(ListDataModel clientes) {
-        this.clientes = clientes;
+    public String NovoCliente(){
+        this.clienteMB.setCliente(new Cliente());
+        return "sucesso";
+        
     }
 
 }

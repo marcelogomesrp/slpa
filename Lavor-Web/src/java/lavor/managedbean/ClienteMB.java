@@ -8,6 +8,7 @@ package lavor.managedbean;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class ClienteMB {
 
     private Cliente cliente;
     private List<Cliente> clientes;
+    private ListDataModel clientesModelo;
 
     public Cliente getCliente() {
         return cliente;
@@ -42,9 +44,24 @@ public class ClienteMB {
         this.clientes = clientes;
     }
 
+    public ListDataModel getClientesModelo() {
+        return clientesModelo;
+    }
+
+    public void setClientesModelo(ListDataModel clientesModelo) {
+        this.clientesModelo = clientesModelo;
+    }
+    
+
     public ClienteMB() {
         cliente = new Cliente();
         this.clientes = new ArrayList<Cliente>();
+        this.SincronixarClienteComModelo();
+    }
+
+    public String SincronixarClienteComModelo(){
+        this.clientesModelo = new ListDataModel(clientes);
+        return "sucesso";
     }
 
 

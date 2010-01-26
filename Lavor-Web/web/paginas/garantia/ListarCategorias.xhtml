@@ -16,9 +16,36 @@
                         <h:outputText value="Dados do cliente" />
                     </f:facet>
                 <h:panelGrid columns="2" >
+                    <h:commandButton value="Localizar cliente" action="#{clienteBB.DoLocalizarClientePage}"  />
+                    <h:commandButton value="Novo cliente" action="#{clienteBB.NovoCliente}"  />
+
                     <h:outputText value="Nome" />
                     <h:inputText value="#{clienteMB.cliente.nome}"/>
-                    <h:commandButton value="Localizar cliente" action="#{clienteBB.DoLocalizarClientePage}"/>
+
+                    <h:outputText value="CPF" />
+                    <h:inputText value="#{clienteMB.cliente.cpf}" />
+
+                    <h:outputText value="Logradouro" />
+                    <h:inputText value="#{clienteMB.cliente.endereco.logradouro}" />
+
+                    <h:outputText value="Número" />
+                    <h:inputText value="#{clienteMB.cliente.endereco.numero}" />
+
+                    <h:outputText value="Complemento" />
+                    <h:inputText value="#{clienteMB.cliente.endereco.complemento}" />
+
+                    <h:outputText value="Bairro" />
+                    <h:inputText value="#{clienteMB.cliente.endereco.bairro}" />
+
+                    <h:outputText value="Cidade" />
+                    <h:inputText value="#{clienteMB.cliente.endereco.cidade}" />
+
+                    <h:outputText value="UF" />
+
+                    <h:selectOneMenu value="#{clienteMB.cliente.endereco.uf}" >
+                        <f:selectItems value="#{estadosBB.estados}" />
+                    </h:selectOneMenu>
+                                 
                 </h:panelGrid>
 
             </rich:panel>

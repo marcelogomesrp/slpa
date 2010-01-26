@@ -22,7 +22,7 @@
                     <h:outputText value="login"/>
                     <h:inputText  value="#{postoDeAtendimentoMB.postoDeAtendimento.email}"/>
                     <h:outputText value="senha" />
-                    <h:inputText  value="#{postoDeAtendimentoMB.postoDeAtendimento.senha}"/>
+                    <h:inputSecret  value="#{postoDeAtendimentoMB.postoDeAtendimento.senha}"/>
                 </h:panelGrid>
                 <h:commandButton value="Entrar" action="#{postoDeAtendimentoBB.Logar}"/>
             </h:form>
