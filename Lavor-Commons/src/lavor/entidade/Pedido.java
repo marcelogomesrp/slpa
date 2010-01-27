@@ -50,6 +50,14 @@ public class Pedido implements Serializable {
     private String mensagem;
     @OneToOne(cascade=CascadeType.ALL)
     private Cliente cliente;
+    @OneToOne(cascade=CascadeType.ALL)
+    private Fornecedor fornecedor;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataDaCompra;
+    private Boolean garantia;
+
+
+    
 
     public Float getValorTotal() {
         valorTotal = 0F;
@@ -72,16 +80,13 @@ public class Pedido implements Serializable {
     }
 
 
-    //@OneToMany(mappedBy="item_pedido", cascade=CascadeType.ALL)
-    //@JoinColumn(name="itemid", referencedColumnName="id")
-    //private List<ItemPedido> itensPedido;
-
 
 
 
     public Pedido() {
-        this.itensPedido = new ArrayList<PedidoItem>();
-        this.status = status.Cadastrado;
+        this.itensPedido    = new ArrayList<PedidoItem>();
+        this.status         = status.Cadastrado;
+        this.fornecedor     = new Fornecedor();
     }
 
 
@@ -137,6 +142,30 @@ public class Pedido implements Serializable {
 
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
+    }
+
+    public Date getDataDaCompra() {
+        return dataDaCompra;
+    }
+
+    public void setDataDaCompra(Date dataDaCompra) {
+        this.dataDaCompra = dataDaCompra;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public Boolean getGarantia() {
+        return garantia;
+    }
+
+    public void setGarantia(Boolean garantia) {
+        this.garantia = garantia;
     }
 
     

@@ -5,12 +5,12 @@
 
 package lavor.dao;
 
-import lavor.entidade.ListaDePreco;
+import lavor.entidade.Servico;
 
 /**
  *
- * @author marcelo
+ * @author Marcelo
  */
-public interface ListaDePrecoDao extends DaoGenerico<ListaDePreco, Long>{
+public interface ServicoDao extends DaoGenerico<Servico, Long>{
 
 }
