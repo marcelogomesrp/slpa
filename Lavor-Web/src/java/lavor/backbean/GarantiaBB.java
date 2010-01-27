@@ -15,6 +15,7 @@ import lavor.entidade.PedidoItem;
 import lavor.managedbean.CategoriaMB;
 import lavor.managedbean.ClienteMB;
 import lavor.managedbean.EquipamentoMB;
+import lavor.managedbean.FornecedorMB;
 import lavor.managedbean.PecaMB;
 import lavor.managedbean.PedidoMB;
 import lavor.managedbean.PostoDeAtendimentoMB;
@@ -61,6 +62,9 @@ public class GarantiaBB {
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
 
     @Resource
+    private FornecedorMB fornecedorMB;
+
+    @Resource
     private ClienteMB clienteMB;
 
     public GarantiaBB() {
@@ -98,6 +102,7 @@ public class GarantiaBB {
         pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
         pedidoMB.getPedido().getCliente().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        pedidoMB.getPedido().setFornecedor(fornecedorMB.getFornecedor());
         pedidoService.SalvarPedido(pedidoMB.getPedido());
         lavor.util.FacesUtils.mensInfo("Pedido Adicionado com sucesso"  );
         pedidoMB.setPedido(new Pedido());

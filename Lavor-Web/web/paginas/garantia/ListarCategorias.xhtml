@@ -51,6 +51,34 @@
             </rich:panel>
 
 
+            <rich:panel>
+                <f:facet name="header" >
+                        <h:outputText value="Garantia" />
+                    </f:facet>
+                <h:panelGrid columns="2" >
+                    <h:outputText value="Nome" />
+                    <h:inputText value="#{fornecedorMB.fornecedor.nome}" />
+
+                </h:panelGrid>
+
+            </rich:panel>
+
+
+            <rich:panel>
+                <f:facet name="header" >
+                        <h:outputText value="Local da compra" />
+                    </f:facet>
+                <h:panelGrid columns="2" >
+                    <h:outputText value="Nome" />
+                    <h:inputText value="#{fornecedorMB.fornecedor.nome}" />
+
+                </h:panelGrid>
+
+            </rich:panel>
+
+
+
+
             <rich:dataTable value="#{categoriaMB.listaDeCategoria}" var="categoria" >
             <rich:column>
                 <f:facet name="header">
