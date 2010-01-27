@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -34,6 +35,8 @@ public class Peca implements Serializable {
     private List<Equipamento> equipamentos;
     //DecimalFormat valor = new DecimalFormat("#,###.00");
     private Float valor;
+    @OneToOne
+    private Servico servico;
 
     public Float getValor() {
         return valor;
@@ -78,9 +81,18 @@ public class Peca implements Serializable {
         this.equipamentos = equipamentos;
     }
 
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
     
 
     public Peca() {
+        this.servico = new Servico();
         //equipamentos = new ArrayList<Equipamento>();
     }
 

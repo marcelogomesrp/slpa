@@ -8,8 +8,8 @@ package lavorcommons;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import lavor.entidade.Cliente;
-import lavor.service.ClienteService;
+import lavor.entidade.Servico;
+import lavor.service.ServicoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -45,10 +45,17 @@ public class Main {
 //            pa.Salvar(postoDeAtendimento);
 //        }
 
-        ClienteService cs = (ClienteService) context.getBean("clienteService");
-        for(Cliente cliente:cs.BuscarClientePorNome("teste%")){
-            System.out.println(cliente.getNome());
-        }
+//        ServicoService ss = (ServicoService) context.getBean("servicoService");
+//        Servico s = new Servico();
+//        s.setNome("Abre motor");
+//        s.setValor(9F);
+//        ss.SalvarServico(s);
+
+        
+//        ClienteService cs = (ClienteService) context.getBean("clienteService");
+//        for(Cliente cliente:cs.BuscarClientePorNome("teste%")){
+//            System.out.println(cliente.getNome());
+//        }
 
 //
 //        Categoria cat = new Categoria("nova categoria", "cheio de equipamento", Boolean.TRUE);

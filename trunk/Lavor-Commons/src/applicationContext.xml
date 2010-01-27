@@ -104,4 +104,18 @@
         <property name="clienteDao" ref="clienteDao" />
     </bean>
 
+    <bean id="servicoDao" class="lavor.dao.imp.ServicoDaoImp" />
+
+    <bean id="servicoService" class="lavor.service.ServicoService">
+        <property name="servicoDao" ref="servicoDao" />
+    </bean>
+
+
+    <bean id="fornecedorDao" class="lavor.dao.imp.FornecedorDaoImp" />
+
+    <bean id="fornecedorService" class="lavor.service.FornecedorService">
+        <property name="fornecedorDao" ref="fornecedorDao" />
+    </bean>
+
+
 </beans>
