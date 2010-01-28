@@ -5,8 +5,11 @@
 
 package lavor.managedbean;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import lavor.entidade.Pedido;
 import lavor.entidade.Status;
 import lavor.service.PedidoService;
@@ -30,7 +33,18 @@ public class PedidoMB {
     private Pedido pedido;
     private ListDataModel pecasSolicitada;
     private ListDataModel pedidos;
+    List<SelectItem> garantia;
 
+    public List<SelectItem> getGarantia() {
+        return garantia;
+    }
+
+    public void setGarantia(List<SelectItem> garantia) {
+        this.garantia = garantia;
+    }
+
+
+    
 
     public Pedido getPedido() {
         return pedido;
@@ -43,6 +57,9 @@ public class PedidoMB {
     public PedidoMB() {
         this.pedido = new Pedido();
         this.pedidos = new ListDataModel();
+        this.garantia = new ArrayList<SelectItem>();
+        this.garantia.add(new SelectItem(Boolean.TRUE, "Sim"));
+        this.garantia.add(new SelectItem(Boolean.FALSE, "Não"));
     }
 
     public ListDataModel getPecasSolicitada() {

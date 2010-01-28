@@ -12,6 +12,7 @@ import lavor.entidade.Equipamento;
 import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
 import lavor.entidade.PedidoItem;
+import lavor.entidade.Servico;
 import lavor.managedbean.CategoriaMB;
 import lavor.managedbean.ClienteMB;
 import lavor.managedbean.EquipamentoMB;
@@ -99,17 +100,41 @@ public class GarantiaBB {
     }
 
     public String DoConfirma(){
-        pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
-        pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
-        pedidoMB.getPedido().getCliente().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
-        pedidoMB.getPedido().setFornecedor(fornecedorMB.getFornecedor());
+//        pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+//        pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
+//        pedidoMB.getPedido().getCliente().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+//        pedidoMB.getPedido().setFornecedor(fornecedorMB.getFornecedor());
         pedidoService.SalvarPedido(pedidoMB.getPedido());
         lavor.util.FacesUtils.mensInfo("Pedido Adicionado com sucesso"  );
         pedidoMB.setPedido(new Pedido());
         return "sucesso";
     }
 
-    public String DoConfirmacaoPedidoPage(){
+    public String DoConfirmacaoPedidoPage() {
+        // TODO: Warning - Todo pedido sem garantia esta criando um novo servico
+        // TODO: Warning - Descobri pq o finalizar pedido não esta mostrando este cara
+        Float valorTotal = 0F;
+
+        pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        pedidoMB.getPedido().setCliente(this.clienteMB.getCliente());
+        pedidoMB.getPedido().getCliente().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        pedidoMB.getPedido().setFornecedor(fornecedorMB.getFornecedor());
+
+
+        for (PedidoItem pedidoItem : pedidoMB.getPedido().getItensPedido()) {
+            valorTotal += pedidoItem.getValorTotal();
+            if (pedidoItem.getPeca().getServico().getValor() > pedidoMB.getPedido().getGarantiaSevico().getValor()) {
+                //pedidoMB.getPedido().getGarantiaSevico().setValor(pedidoItem.getPeca().getServico().getValor());
+                pedidoMB.getPedido().setGarantiaSevico(pedidoItem.getPeca().getServico());
+            }
+        }
+        if (pedidoMB.getPedido().getGarantia()) {
+            valorTotal += pedidoMB.getPedido().getGarantiaSevico().getValor();
+        } else {
+            pedidoMB.getPedido().setGarantiaSevico(new Servico());
+        }
+
+        pedidoMB.getPedido().setValorTotal(valorTotal);
         return "ConfirmacaoPedido";
     }
 

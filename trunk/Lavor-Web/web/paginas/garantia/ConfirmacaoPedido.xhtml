@@ -13,8 +13,25 @@
         <h:messages id="message" />
         <h:form>
 
-            <h:outputText value="Confirmacao" />
+            
             <br />
+            <rich:panel >
+                <f:facet name="header" >
+                    <h:outputText value="Confirmacao do pedido" />
+                </f:facet>
+            <h:panelGrid columns="2" >
+
+                <h:outputText value="Posto de Atendimento ID " />
+                <h:outputText value="#{PedidoMB.pedido.postoDeAtendimento.id}" />
+
+                <h:outputText value="Posto de Atendimento" />
+                <h:outputText value="#{PedidoMB.pedido.postoDeAtendimento.nome}" />
+
+                <h:outputText value="Valor Total" />
+                <h:outputText value="#{PedidoMB.pedido.valorTotal}" />
+
+            </h:panelGrid>
+                </rich:panel>
             <h:commandButton value="Confirma" action="#{garantiaBB.DoConfirma}" />
             <h:commandButton value="Cancela" action="ListaDePecas" />
         </h:form>
