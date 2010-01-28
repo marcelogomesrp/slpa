@@ -56,8 +56,10 @@
                         <h:outputText value="Garantia" />
                     </f:facet>
                 <h:panelGrid columns="2" >
-                    <h:outputText value="Nome" />
-                    <h:inputText value="#{fornecedorMB.fornecedor.nome}" />
+                    <h:outputText value="Equipamento esta na garantia " />
+                    <h:selectOneRadio value="#{pedidoMB.pedido.garantia}" >
+                        <f:selectItems  value="#{pedidoMB.garantia}" />
+                    </h:selectOneRadio>
 
                 </h:panelGrid>
 
