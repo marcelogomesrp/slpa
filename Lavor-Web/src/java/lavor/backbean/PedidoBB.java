@@ -7,6 +7,7 @@ package lavor.backbean;
 
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import lavor.entidade.Pedido;
 import lavor.entidade.Status;
 import lavor.managedbean.PedidoMB;
 import lavor.managedbean.PostoDeAtendimentoMB;
@@ -43,6 +44,27 @@ public class PedidoBB {
     public String DoListarMensagens(){
         Long id = postoDeAtendimentoMB.getPostoDeAtendimento().getId();
         this.pedidoMB.setPedidos(new ListDataModel(pedidoService.LocalizarPorPostoDeAtendimentoEStatus(id, Status.Cadastrado)));
+        return "sucesso";
+    }
+
+    public String DoDetalhePage(){
+        pedidoMB.setPedido((Pedido) pedidoMB.getPedidos().getRowData());
+        pedidoMB.SincronizarPedidoItens();
+        return "DoDetalhePage";
+    }
+
+    public String DoEditarPedidoPage(){
+        pedidoMB.setPedido((Pedido) pedidoMB.getPedidos().getRowData());
+        return "DoEditarPedidoPage";
+    }
+
+    public String SalvarPedido(){
+        try{
+            Pedido pedido = pedidoService.SalvarPedido(pedidoMB.getPedido());
+            lavor.util.FacesUtils.mensInfo("Pedido salvo com sucesso");
+        }catch(Exception ex){
+            lavor.util.FacesUtils.mensErro("Erro ao salvar pedido");
+        }
         return "sucesso";
     }
 

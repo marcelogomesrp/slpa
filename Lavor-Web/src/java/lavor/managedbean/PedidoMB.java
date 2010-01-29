@@ -35,12 +35,22 @@ public class PedidoMB {
     private ListDataModel pedidos;
     List<SelectItem> garantia;
 
+    private ListDataModel pedidoItens;
+
     public List<SelectItem> getGarantia() {
         return garantia;
     }
 
     public void setGarantia(List<SelectItem> garantia) {
         this.garantia = garantia;
+    }
+
+    public ListDataModel getPedidoItens() {
+        return pedidoItens;
+    }
+
+    public void setPedidoItens(ListDataModel pedidoItens) {
+        this.pedidoItens = pedidoItens;
     }
 
 
@@ -60,6 +70,7 @@ public class PedidoMB {
         this.garantia = new ArrayList<SelectItem>();
         this.garantia.add(new SelectItem(Boolean.TRUE, "Sim"));
         this.garantia.add(new SelectItem(Boolean.FALSE, "Não"));
+        this.pedidoItens = new ListDataModel();
     }
 
     public ListDataModel getPecasSolicitada() {
@@ -85,6 +96,10 @@ public class PedidoMB {
 
     public void SincronizaPecaSolicitadas(){
         this.pecasSolicitada = new ListDataModel(this.pedido.getItensPedido());
+    }
+
+    public void SincronizarPedidoItens(){
+        this.pedidoItens = new ListDataModel(pedido.getItensPedido());
     }
 
 

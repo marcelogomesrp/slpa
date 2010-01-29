@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="./../../template/template.xhtml">
+
+    <ui:define name="content">
+       Detalhe
+        <h:form>
+            <rich:panel>
+                <f:facet name="header" >
+                    <h:outputText value="Detalhes do pedido" />
+                </f:facet>
+
+                <rich:panel >
+                    <f:facet name="header" >
+                        <h:outputText value="Pedido" />
+                    </f:facet>
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Status" />
+                        <h:outputText value="#{pedidoMB.pedido.status}" />
+
+                        <h:outputText value="Valor total" />
+                        <h:outputText value="#{pedidoMB.pedido.valorTotal}" />
+
+                        <h:outputText value="Data da solicitação" />
+                        <h:outputText value="#{pedidoMB.pedido.dataDaSolicitacao}" />
+
+                    </h:panelGrid>
+                </rich:panel>
+
+
+
+                <rich:panel >
+                    <f:facet name="header" >
+                        <h:outputText value="Cliente" />
+                    </f:facet>
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Nome" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.nome}" />
+
+                        <h:outputText value="CPF" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.cpf}" />
+
+                        <h:outputText value="Logradouro" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.endereco.logradouro}" />
+
+                        <h:outputText value="Número" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.endereco.numero}" />
+
+                        <h:outputText value="Complemento" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.endereco.complemento}" />
+
+                        <h:outputText value="Bairro" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.endereco.bairro}" />
+
+                        <h:outputText value="Cidade" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.endereco.cidade}" />
+
+                        <h:outputText value="Estado" />
+                        <h:outputText value="#{pedidoMB.pedido.cliente.endereco.uf}" />
+
+                    </h:panelGrid>
+                </rich:panel>
+
+                <rich:panel >
+                    <f:facet name="header" >
+                        <h:outputText value="Itens" />
+                    </f:facet>
+                    <h:panelGrid columns="2" >
+                        <rich:dataTable value="#{pedidoMB.pedidoItens}" var="pedidoItem" >
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Peca" />
+                                </f:facet>
+                                <h:outputText value="#{pedidoItem.peca.nome}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Código Importacao" />
+                                </f:facet>
+                                <h:outputText value="#{pedidoItem.peca.codigoImportacao}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição" />
+                                </f:facet>
+                                <h:outputText value="#{pedidoItem.peca.descricao}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Quantidade" />
+                                </f:facet>
+                                <h:outputText value="#{pedidoItem.quantidade}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor Unitário" />
+                                </f:facet>
+                                <h:outputText value="#{pedidoItem.valorUnitario}" />
+                            </rich:column>
+
+                            <rich:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor total do item" />
+                                </f:facet>
+                                <h:outputText value="#{pedidoItem.valorTotal}" />
+                            </rich:column>
+
+                        </rich:dataTable>
+                        
+
+                    </h:panelGrid>
+                </rich:panel>
+            </rich:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
