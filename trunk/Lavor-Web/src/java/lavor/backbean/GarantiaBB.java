@@ -24,6 +24,7 @@ import lavor.service.CategoriaService;
 import lavor.service.EquipamentoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
+import lavor.service.ServicoService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -67,6 +68,9 @@ public class GarantiaBB {
 
     @Resource
     private ClienteMB clienteMB;
+
+    @Resource
+    private ServicoService servicoService;
 
     public GarantiaBB() {
     }
@@ -131,7 +135,7 @@ public class GarantiaBB {
         if (pedidoMB.getPedido().getGarantia()) {
             valorTotal += pedidoMB.getPedido().getGarantiaSevico().getValor();
         } else {
-            pedidoMB.getPedido().setGarantiaSevico(new Servico());
+            pedidoMB.getPedido().setGarantiaSevico(servicoService.BuscarServicoPorID(1L));
         }
 
         pedidoMB.getPedido().setValorTotal(valorTotal);
