@@ -7,16 +7,16 @@
                 xmlns:a4j="http://richfaces.org/a4j"
                 xmlns:rich="http://richfaces.org/rich"
                 template="./../template/loginTemplate.xhtml">
-    
+
     <ui:define name="top">        
     </ui:define>
-    
+
     <ui:define name="content">
-        <rich:panel>
-        <f:facet name="header">
-            Login
-        </f:facet>
-            <h:form id="formulario">
+        <rich:panel id="loginPanel" style="max-width: 250px; " >
+            <f:facet name="header">
+                Login
+            </f:facet>
+            <h:form id="formulario" >
                 <h:messages id="message" />
                 <h:panelGrid columns="2">
                     <h:outputText value="login"/>
@@ -24,8 +24,11 @@
                     <h:outputText value="senha" />
                     <h:inputSecret  value="#{postoDeAtendimentoMB.postoDeAtendimento.senha}"/>
                 </h:panelGrid>
-                <h:commandButton value="Entrar" action="#{postoDeAtendimentoBB.Logar}"/>
+                <h:panelGrid columns="2">
+                    <h:commandButton value="Entrar" action="#{postoDeAtendimentoBB.Logar}"/>
+                    <h:commandButton value="Sair" action="#{postoDeAtendimentoBB.Logar}"/>
+                </h:panelGrid>
             </h:form>
-         </rich:panel>
+        </rich:panel>
     </ui:define>
 </ui:composition>
