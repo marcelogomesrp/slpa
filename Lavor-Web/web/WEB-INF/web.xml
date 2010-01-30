@@ -16,8 +16,15 @@
         <!-- Rich faces -->
     <context-param>
         <param-name>org.richfaces.SKIN</param-name>
-        <param-value>blueSky</param-value>
+        <!--<param-value>blueSky</param-value> -->
+        <param-value>emeraldTown</param-value>
     </context-param>
+
+    	<context-param>
+    	<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+    	<param-value>true</param-value>
+	</context-param>
+
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
