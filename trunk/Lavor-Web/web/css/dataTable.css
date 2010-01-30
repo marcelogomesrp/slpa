@@ -1,0 +1,33 @@
+/* 
+    Document   : dataTable
+    Created on : 30/01/2010, 10:39:43
+    Author     : Marcelo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.odd-row {
+        background-color: #FFFFFF;
+}
+.even-row {
+        background-color: #DDDDDD;
+}
+.active-row {
+        background-color: orange;
+}
+
+.dataTableHeader {
+        color: white;
+        background-color: #32547F;
+        text-align: center;
+        font-weight: bold;
+}
+
+a:link:hover, a:visited:hover  {
+  color: fuchsia;
+}

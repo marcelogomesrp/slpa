@@ -9,100 +9,110 @@
                 template="./../../template/template.xhtml">
 
     <ui:define name="content">
-                    <rich:panel>
-                <f:facet name="header" >
-                        <h:outputText value="Garantia" />
-                    </f:facet>
-        
-        <h:form>
-            <rich:panel>
-                <f:facet name="header" >
+        <rich:panel>
+            <f:facet name="header" >
+                <h:outputText value="Garantia" />
+            </f:facet>
+
+            <h:form>
+                <rich:panel>
+                    <f:facet name="header" >
                         <h:outputText value="Dados do cliente" />
                     </f:facet>
-                <h:panelGrid columns="2" >
-                    <h:commandButton value="Localizar cliente" action="#{clienteBB.DoLocalizarClientePage}"  />
-                    <h:commandButton value="Novo cliente" action="#{clienteBB.NovoCliente}"  />
+                    <h:panelGrid columns="2" >
+                        <h:commandButton value="Localizar cliente" action="#{clienteBB.DoLocalizarClientePage}"  />
+                        <h:commandButton value="Novo cliente" action="#{clienteBB.NovoCliente}"  />
 
-                    <h:outputText value="Nome" />
-                    <h:inputText value="#{clienteMB.cliente.nome}"/>
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{clienteMB.cliente.nome}"/>
 
-                    <h:outputText value="CPF" />
-                    <h:inputText value="#{clienteMB.cliente.cpf}" />
+                        <h:outputText value="CPF" />
+                        <h:inputText value="#{clienteMB.cliente.cpf}" />
 
-                    <h:outputText value="Logradouro" />
-                    <h:inputText value="#{clienteMB.cliente.endereco.logradouro}" />
+                        <h:outputText value="Logradouro" />
+                        <h:inputText value="#{clienteMB.cliente.endereco.logradouro}" />
 
-                    <h:outputText value="Número" />
-                    <h:inputText value="#{clienteMB.cliente.endereco.numero}" />
+                        <h:outputText value="Número" />
+                        <h:inputText value="#{clienteMB.cliente.endereco.numero}" />
 
-                    <h:outputText value="Complemento" />
-                    <h:inputText value="#{clienteMB.cliente.endereco.complemento}" />
+                        <h:outputText value="Complemento" />
+                        <h:inputText value="#{clienteMB.cliente.endereco.complemento}" />
 
-                    <h:outputText value="Bairro" />
-                    <h:inputText value="#{clienteMB.cliente.endereco.bairro}" />
+                        <h:outputText value="Bairro" />
+                        <h:inputText value="#{clienteMB.cliente.endereco.bairro}" />
 
-                    <h:outputText value="Cidade" />
-                    <h:inputText value="#{clienteMB.cliente.endereco.cidade}" />
+                        <h:outputText value="Cidade" />
+                        <h:inputText value="#{clienteMB.cliente.endereco.cidade}" />
 
-                    <h:outputText value="UF" />
+                        <h:outputText value="UF" />
 
-                    <h:selectOneMenu value="#{clienteMB.cliente.endereco.uf}" >
-                        <f:selectItems value="#{estadosBB.estados}" />
-                    </h:selectOneMenu>
-                                 
-                </h:panelGrid>
+                        <h:selectOneMenu value="#{clienteMB.cliente.endereco.uf}" >
+                            <f:selectItems value="#{estadosBB.estados}" />
+                        </h:selectOneMenu>
 
-            </rich:panel>
+                    </h:panelGrid>
+
+                </rich:panel>
 
 
-            <rich:panel>
-                <f:facet name="header" >
+                <rich:panel>
+                    <f:facet name="header" >
                         <h:outputText value="Garantia" />
                     </f:facet>
-                <h:panelGrid columns="2" >
-                    <h:outputText value="Equipamento esta na garantia " />
-                    <h:selectOneRadio value="#{pedidoMB.pedido.garantia}" >
-                        <f:selectItems  value="#{pedidoMB.garantia}" />
-                    </h:selectOneRadio>
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Equipamento esta na garantia " />
+                        <h:selectOneRadio value="#{pedidoMB.pedido.garantia}" >
+                            <f:selectItems  value="#{pedidoMB.garantia}" />
+                        </h:selectOneRadio>
 
-                </h:panelGrid>
+                    </h:panelGrid>
 
-            </rich:panel>
+                </rich:panel>
 
 
-            <rich:panel>
-                <f:facet name="header" >
+                <rich:panel>
+                    <f:facet name="header" >
                         <h:outputText value="Local da compra" />
                     </f:facet>
-                <h:panelGrid columns="2" >
-                    <h:outputText value="Nome" />
-                    <h:inputText value="#{fornecedorMB.fornecedor.nome}" />
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.nome}" />
 
-                </h:panelGrid>
+                    </h:panelGrid>
 
-            </rich:panel>
-
-
+                </rich:panel>
 
 
-            <rich:dataTable value="#{categoriaMB.listaDeCategoria}" var="categoria" >
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Nome"/>
-                </f:facet>
-                <h:outputText value="#{categoria.nome}"/>
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Selecionar"/>
-                </f:facet>
-                <h:commandLink value="Selecionar" action="#{garantiaBB.SelecionarCategoria}"/>
-            </rich:column>
 
-        </rich:dataTable>
-            
-        </h:form>
-                            </rich:panel>
+
+                <rich:dataTable id="items" value="#{categoriaMB.listaDeCategoria}" var="categoria" >
+                    <rich:column>
+                        <f:facet name="header">
+ <!--                            <rich:columnGroup styleClass="dataTableHeader"> -->
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                            <h:outputText value="#{categoria.nome}"/>
+                    </rich:column>
+                    <rich:column>
+                        <f:facet name="header">
+                            <h:outputText value="Selecionar"/>
+                        </f:facet>
+                        <h:commandLink value="Selecionar" action="#{garantiaBB.SelecionarCategoria}"/>
+                    </rich:column>
+
+                </rich:dataTable>
+
+
+<rich:jQuery selector="#items tr:odd" query="addClass('odd-row')" />
+<rich:jQuery selector="#items tr:even" query="addClass('even-row')" />
+<rich:jQuery selector="#items tr" query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+<rich:jQuery selector="#items tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+
+
+
+            </h:form>
+        </rich:panel>
     </ui:define>
 
 </ui:composition>
