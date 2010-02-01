@@ -25,13 +25,13 @@
                                 <h:commandButton value="Limpar filtro" action="#{solicitarPecasBB.LimparFiltro}"/>
                             </h:panelGrid>
                         </f:facet>
-                        <rich:column sortBy="#{peca.nome}" filterBy="#{peca.nome}" filterEvent="onkeyup" filterValue="#{pecaMB.pecaFiltro.nome}">
+                        <rich:column sortBy="#{peca.nome}" filterBy="#{peca.nome}" filterEvent="onkeyup">
                             <f:facet name="header">
                                 <h:outputText value="Nome"/>
                             </f:facet>
                             <h:outputText value="#{peca.nome}"/>
                         </rich:column>
-                        <rich:column sortBy="#{peca.codigoImportacao}" filterBy="#{peca.codigoImportacao}" filterEvent="onkeyup" filterValue="#{pecaMB.pecaFiltro.codigoImportacao}">
+                        <rich:column sortBy="#{peca.codigoImportacao}" filterBy="#{peca.codigoImportacao}" filterEvent="onkeyup" >
                             <f:facet name="header">
                                 <h:outputText value="Cod. Importacao"/>
                             </f:facet>
@@ -41,7 +41,7 @@
                         <f:facet name="footer">
                             <rich:datascroller id="listaPecasFooter"/>
                         </f:facet>
-                        <rich:column sortBy="#{peca.valor}" filterBy="#{peca.valor}" filterEvent="onkeyup" filterValue="#{pecaMB.pecaFiltro.valor}" >
+                        <rich:column sortBy="#{peca.valor}" filterBy="#{peca.valor}" filterEvent="onkeyup"  >
                             <f:facet name="header">
                                 <h:outputText value="Valor"/>
                             </f:facet>
