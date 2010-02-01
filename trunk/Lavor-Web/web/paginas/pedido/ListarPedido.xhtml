@@ -9,57 +9,61 @@
                 template="./../../template/template.xhtml">
 
     <ui:define name="content">
-        Garantia
-        <h:form>
-            <rich:dataTable value="#{pedidoMB.pedidos}" var="pedido" >
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="ID"/>
-                </f:facet>
-                <h:outputText value="#{pedido.id}"/>
-            </rich:column>
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Cliente"/>
-                </f:facet>
-                <h:outputText value="#{pedido.cliente.nome}"/>
-            </rich:column>
-
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Data de solicitação"/>
-                </f:facet>
-                <h:outputText value="#{pedido.dataDaSolicitacao}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
-            </rich:column>
-
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="valorTotalo"/>
-                </f:facet>
-                <h:outputText value="#{pedido.valorTotal}" >
-                </h:outputText>
-            </rich:column>
-
-           <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Detalhes"/>
-                </f:facet>
-                <h:commandLink value="detalhes" action="#{pedidoBB.DoDetalhePage}"/>
-            </rich:column>
+        <rich:panel >
+            <f:facet name="header" >
+                <h:outputText value="Lista de pedidos" />
+            </f:facet>
+            <h:form>
+                <rich:dataTable value="#{pedidoMB.pedidos}" var="pedido" id="listaDePedidos" width="100%">
+                    <f:facet name="header">
+                        <rich:columnGroup styleClass="dataTableHeader">
+                            <h:column><h:outputText value="ID"/></h:column>
+                            <h:column><h:outputText value="Cliente"/></h:column>
+                            <h:column><h:outputText value="Data de solicitação"/></h:column>
+                            <h:column><h:outputText value="valorTotalo"/></h:column>
+                            <h:column><h:outputText value="Detalhes"/></h:column>
+                            <h:column><h:outputText value="Selecionar"/></h:column>
+                        </rich:columnGroup>
+                    </f:facet>
 
 
-            <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Selecionar"/>
-                </f:facet>                    
-                    <h:commandLink value="Editar" rendered="#{pedido.status == 'Cadastrado'}" action="#{pedidoBB.DoEditarPedidoPage}"/>
-            </rich:column>
+                    <rich:column>
+                        <h:outputText value="#{pedido.id}"/>
+                    </rich:column>
+                    <rich:column>
+                        <h:outputText value="#{pedido.cliente.nome}"/>
+                    </rich:column>
 
-        </rich:dataTable>
-            
-        </h:form>
+                    <rich:column>
+                        <h:outputText value="#{pedido.dataDaSolicitacao}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </rich:column>
+
+                    <rich:column>
+                        <h:outputText value="#{pedido.valorTotal}" >
+                        </h:outputText>
+                    </rich:column>
+
+                    <rich:column>
+                        <h:commandLink value="detalhes" action="#{pedidoBB.DoDetalhePage}"/>
+                    </rich:column>
+
+
+                    <rich:column>
+                        <h:commandLink value="Editar" rendered="#{pedido.status == 'Cadastrado'}" action="#{pedidoBB.DoEditarPedidoPage}"/>
+                    </rich:column>
+
+                </rich:dataTable>
+
+
+                <rich:jQuery selector="#listaDePedidos tr:odd" query="addClass('odd-row')" />
+                <rich:jQuery selector="#listaDePedidos tr:even" query="addClass('even-row')" />
+                <rich:jQuery selector="#listaDePedidos tr" query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                <rich:jQuery selector="#listaDePedidos tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+            </h:form>
+        </rich:panel>
     </ui:define>
 
 </ui:composition>

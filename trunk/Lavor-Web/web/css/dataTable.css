@@ -18,7 +18,8 @@
         background-color: #DDDDDD;
 }
 .active-row {
-        background-color: orange;
+        background-color: green;
+        
 }
 
 .dataTableHeader {
@@ -28,6 +29,3 @@
         font-weight: bold;
 }
 
-a:link:hover, a:visited:hover  {
-  color: fuchsia;
-}

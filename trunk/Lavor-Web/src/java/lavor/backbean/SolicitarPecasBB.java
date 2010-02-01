@@ -66,6 +66,7 @@ public class SolicitarPecasBB {
         pedidoItem.setValorUnitario(pecaEscolhida.getValor());
         this.pedidoMB.getPedido().getItensPedido().add(pedidoItem);
         this.pedidoMB.SincronizaPecaSolicitadas();
+        this.pedidoMB.setTemPedido(Boolean.TRUE);
         return "sucesso";
     }
 
@@ -101,6 +102,9 @@ public class SolicitarPecasBB {
         int index = pedidoMB.getPecasSolicitada().getRowIndex();
         lavor.util.FacesUtils.mensInfo("Remover " + pedidoItemRemover.getPeca().getNome() + "index " + index);
         this.pedidoMB.getPedido().getItensPedido().remove(index);
+        if(this.pedidoMB.getPedido().getItensPedido().isEmpty()){
+            this.pedidoMB.setTemPedido(Boolean.FALSE);
+        }
         return "sucesso";
     }
 
@@ -109,6 +113,11 @@ public class SolicitarPecasBB {
         this.pedidoMB.setPedido(new Pedido());
         this.pedidoMB.setPedidos(new ListDataModel());
         return "solicitarPecas";
+    }
+
+    public String LimparFiltro(){
+        this.pecaMB.setPecaFiltro(new Peca());
+        return "sucesso";
     }
 
 }

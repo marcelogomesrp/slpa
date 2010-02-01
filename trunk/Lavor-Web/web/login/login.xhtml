@@ -18,15 +18,32 @@
             </f:facet>
             <h:form id="formulario" >
                 <h:messages id="message" />
-                <h:panelGrid columns="2">
-                    <h:outputText value="login"/>
-                    <h:inputText  value="#{postoDeAtendimentoMB.postoDeAtendimento.email}"/>
-                    <h:outputText value="senha" />
-                    <h:inputSecret  value="#{postoDeAtendimentoMB.postoDeAtendimento.senha}"/>
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="login " value="Login" />
+                    <h:inputText  value="#{postoDeAtendimentoMB.postoDeAtendimento.email}" id="login" />
+                    	<rich:toolTip for="login" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Entre com o e-mail cadastrado" />
+			</rich:toolTip>
+                    
+
+                    <h:outputLabel for="senha" value="senha" />
+                        <h:inputSecret  id="senha" value="#{postoDeAtendimentoMB.postoDeAtendimento.senha}"/>
+                        <rich:toolTip for="senha" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Entre com a sua senha" />
+			</rich:toolTip>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
-                    <h:commandButton value="Entrar" action="#{postoDeAtendimentoBB.Logar}"/>
-                    <h:commandButton value="Sair" action="#{postoDeAtendimentoBB.Logar}"/>
+                    <h:commandButton value="Entrar" action="#{postoDeAtendimentoBB.Logar}" id="entrarBtn">
+                        <rich:toolTip for="entrarBtn" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Após informar o usuário e a senha clique aqui para entra no sistema" />
+			</rich:toolTip>
+                    </h:commandButton>
+
+                    <h:commandButton value="Sair" action="#{postoDeAtendimentoBB.Logar}" id="sairBtn">
+                        <rich:toolTip for="sairBtn" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Clique aqui para voltar ao site institucional" />
+			</rich:toolTip>
+                    </h:commandButton>
                 </h:panelGrid>
             </h:form>
         </rich:panel>
