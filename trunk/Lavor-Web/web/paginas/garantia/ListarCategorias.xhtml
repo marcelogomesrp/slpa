@@ -27,7 +27,7 @@
                         <h:inputText value="#{clienteMB.cliente.nome}"/>
 
                         <h:outputText value="CPF" />
-                        <h:inputText value="#{clienteMB.cliente.cpf}" maxlength="14" id="cpf">
+                        <h:inputText value="#{clienteMB.cliente.cpf}" maxlength="14" id="cpf" styleClass="cpf">
                             <rich:jQuery selector="#cpf" query="mask('999.999.999-99')" timing="onload"/>
                         </h:inputText>
 
@@ -84,37 +84,22 @@
 
                 </rich:panel>
 
+                <rich:panel >
+                    <f:facet name="header">
+                        <h:outputText value="Selecione a categoria" />
+                    </f:facet>
+                <rich:dataGrid id="listaDeCategoria2" value="#{categoriaMB.listaDeCategoria}" var="categoria" columns="2" elements="4" width="100%">
 
+                    <h:commandLink action="#{garantiaBB.SelecionarCategoria}">
+                        <h:graphicImage value="/img/categoria/#{categoria.id}.png" />
+                    </h:commandLink>
+                </rich:dataGrid>
+                </rich:panel>
 
-
-                <rich:dataTable id="listaDeCategoria" value="#{categoriaMB.listaDeCategoria}" var="categoria" >
-                    
-                        <f:facet name="header">
-                            <rich:columnGroup styleClass="dataTableHeader">
-                                <h:column>
-                                    <h:outputText value="Nome"/>
-                                </h:column>
-                                <h:column>
-                                    <h:outputText value="Selecionar"/>
-                                </h:column>
-                            </rich:columnGroup>
-                        </f:facet>
-
-                    <rich:column>
-                            <h:outputText value="#{categoria.nome}"/>
-                    </rich:column>
-
-                    <rich:column>
-                        <h:commandLink value="Selecionar" action="#{garantiaBB.SelecionarCategoria}"/>
-                    </rich:column>
-
-                </rich:dataTable>
-
-
-<rich:jQuery selector="#listaDeCategoria tr:odd" query="addClass('odd-row')" />
-<rich:jQuery selector="#listaDeCategoria tr:even" query="addClass('even-row')" />
-<rich:jQuery selector="#listaDeCategoria tr" query="mouseover(function(){jQuery(this).addClass('active-row')})" />
-<rich:jQuery selector="#listaDeCategoria tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+                <rich:jQuery selector="#listaDeCategoria tr:odd" query="addClass('odd-row')" />
+                <rich:jQuery selector="#listaDeCategoria tr:even" query="addClass('even-row')" />
+                <rich:jQuery selector="#listaDeCategoria tr" query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                <rich:jQuery selector="#listaDeCategoria tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
 
 
 
