@@ -24,6 +24,7 @@ public class PecaMB {
     private ListDataModel listaDePecas;
     private ArrayList<Peca> pecas;
     private ListDataModel pecasSolicitas;
+    private Peca pecaFiltro;
 
     public DataModel getListaDePecas() {
         return listaDePecas;
@@ -43,8 +44,9 @@ public class PecaMB {
 
 
     public PecaMB() {
-        this.peca = new Peca();
-        this.pecas = new ArrayList<Peca>();
+        this.peca       = new Peca();
+        this.pecas      = new ArrayList<Peca>();
+        this.pecaFiltro = new Peca();
     }
 
     public ArrayList<Peca> getPecas() {
@@ -61,6 +63,14 @@ public class PecaMB {
 
     public void setPecasSolicitas(ListDataModel pecasSolicitas) {
         this.pecasSolicitas = pecasSolicitas;
+    }
+
+    public Peca getPecaFiltro() {
+        return pecaFiltro;
+    }
+
+    public void setPecaFiltro(Peca pecaFiltro) {
+        this.pecaFiltro = pecaFiltro;
     }
 
 

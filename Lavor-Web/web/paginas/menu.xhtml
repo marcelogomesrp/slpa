@@ -3,17 +3,19 @@
              xmlns:h="http://java.sun.com/jsf/html"
              xmlns:f="http://java.sun.com/jsf/core">
     <h:form>
-        <ul>
+        <ul id="menu" >
+        
             <li><h:commandLink value="Mensagens" action="#{pedidoBB.DoListarMensagens}" /></li>
-        </ul>
-        <ul>            
+        
+        
             <li><h:commandLink value="Solicitar pecas" action="#{solicitarPecasBB.DoSolicitarPecasPage}" /></li>
-        </ul>
-        <ul>
+        
+        
             <li><h:commandLink value="Solicitar garantia" action="#{garantiaBB.DoSolicitarGarantiaPage}" /></li>
-        </ul>
-        <ul>
+        
+        
             <li><h:commandLink value="Listar pedidos"    action="#{pedidoBB.DoListarPedidoPage}" /></li>            
-        </ul>
+        
+            </ul>
     </h:form>
 </ui:fragment>

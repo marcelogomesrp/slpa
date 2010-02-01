@@ -10,74 +10,93 @@
 
     <ui:define name="content">
         <h:form>
-            <h:messages id="message" />
-            <rich:dataTable value="#{pedidoMB.pecasSolicitada}"  var="pecaSolicitada" >
-                <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Nome"/>
-                    </f:facet>
-                    <h:outputText value="#{pecaSolicitada.peca.nome}" />
-                </rich:column>
-
-                <rich:column >
-                    <f:facet name="header">
-                        <h:outputText value="Quantidade"/>
-                    </f:facet>
-                    <h:inputText value="#{pecaSolicitada.quantidade}">
-                        <f:convertNumber />
-                    </h:inputText>
-                </rich:column>
-
-                <rich:column >
-                    <f:facet name="header">
-                        <h:outputText value="Remover"/>
-                    </f:facet>
-                    <h:commandLink value="remover" action="#{solicitarPecasBB.RemoverPecaSolicitada}" />
-                </rich:column>
-
-
-            </rich:dataTable>
-
-
-
-        <rich:dataTable value="#{solicitarPecasBB.listaDePecas}" var="peca" rows="20" reRender="listaPecasFooter" >
-            <rich:column sortBy="#{peca.nome}">
-                <f:facet name="header">
-                    <h:outputText value="Nome"/>
+            <rich:panel>
+                <f:facet name="header" >
+                    <h:outputText value="Selecione as pecas desejadas" />
                 </f:facet>
-                <h:outputText value="#{peca.nome}"/>
-            </rich:column>
-            <rich:column sortBy="#{peca.codigoImportacao}">
-                <f:facet name="header">
-                    <h:outputText value="Cod. Importacao"/>
-                </f:facet>
-                <h:outputText value="#{peca.codigoImportacao}"/>
-            </rich:column>
 
-            <f:facet name="footer">
-                <rich:datascroller id="listaPecasFooter"/>
-            </f:facet>
-            <rich:column sortBy="#{peca.valor}">
-                <f:facet name="header">
-                    <h:outputText value="Valor"/>
-                </f:facet>
-                <h:outputText value="R$ #{peca.valor}"/>
-            </rich:column>
-           <rich:column>
-                <f:facet name="header">
-                    <h:outputText value="Solicitar"/>
-                </f:facet>
-                <h:commandLink value="solicitar" action="#{solicitarPecasBB.AddItem}" />
-            </rich:column>
+                <h:messages id="message" />
+                <h:commandButton value="Confirma" action="#{solicitarPecasBB.DoConfirmaSolicitarPeca}" />
+                <h:panelGrid columns="2">
+                    <rich:dataTable value="#{solicitarPecasBB.listaDePecas}" var="peca" rows="10" reRender="listaPecasFooter"  width="100%">
+                        <f:facet name="header">
+                            <h:panelGrid columns="2" width="100%">
+                                <h:outputText value="Peças disponiveis" />
+                                <h:commandButton value="Limpar filtro" action="#{solicitarPecasBB.LimparFiltro}"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <rich:column sortBy="#{peca.nome}" filterBy="#{peca.nome}" filterEvent="onkeyup" filterValue="#{pecaMB.pecaFiltro.nome}">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{peca.nome}"/>
+                        </rich:column>
+                        <rich:column sortBy="#{peca.codigoImportacao}" filterBy="#{peca.codigoImportacao}" filterEvent="onkeyup" filterValue="#{pecaMB.pecaFiltro.codigoImportacao}">
+                            <f:facet name="header">
+                                <h:outputText value="Cod. Importacao"/>
+                            </f:facet>
+                            <h:outputText value="#{peca.codigoImportacao}"/>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:datascroller id="listaPecasFooter"/>
+                        </f:facet>
+                        <rich:column sortBy="#{peca.valor}" filterBy="#{peca.valor}" filterEvent="onkeyup" filterValue="#{pecaMB.pecaFiltro.valor}" >
+                            <f:facet name="header">
+                                <h:outputText value="Valor"/>
+                            </f:facet>
+                            <h:outputText value="R$ #{peca.valor}"/>
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">
+                                <h:outputText value="Solicitar"/>
+                            </f:facet>
+                            <h:commandLink value="solicitar" action="#{solicitarPecasBB.AddItem}" />
+                        </rich:column>
 
 
 
 
-            <f:facet name="footer">
-                <rich:datascroller id="listaPecasFooter"/>
-            </f:facet>
-        </rich:dataTable>
-            <h:commandButton value="Confirma" action="#{solicitarPecasBB.DoConfirmaSolicitarPeca}" />
+                        <f:facet name="footer">
+                            <rich:datascroller id="listaPecasFooter"/>
+                        </f:facet>
+                    </rich:dataTable>
+
+
+                    <rich:dataTable value="#{pedidoMB.pecasSolicitada}"  var="pecaSolicitada"   width="100%" >
+                        <f:facet name="header">
+                            <h:outputText value="Pecas solicitadas #{pedidoMB.temPedido}"/>
+                        </f:facet>
+
+
+                        <rich:column sortBy="#{pecaSolicitada.peca.nome}">
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{pecaSolicitada.peca.nome}" />
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade" />
+                            </f:facet>
+                            <h:inputText value="#{pecaSolicitada.quantidade}">
+                                <f:convertNumber />
+                            </h:inputText>
+                        </rich:column>
+
+                        <rich:column >
+                            <f:facet name="header">
+                                <h:outputText value="Remover" />
+                            </f:facet>
+                            <h:commandLink value="remover" action="#{solicitarPecasBB.RemoverPecaSolicitada}" />
+                        </rich:column>
+
+
+                    </rich:dataTable>
+
+                </h:panelGrid>
+            </rich:panel>
         </h:form>
     </ui:define>
 
