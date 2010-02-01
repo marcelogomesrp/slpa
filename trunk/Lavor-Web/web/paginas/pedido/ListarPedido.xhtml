@@ -20,7 +20,7 @@
                             <h:column><h:outputText value="ID"/></h:column>
                             <h:column><h:outputText value="Cliente"/></h:column>
                             <h:column><h:outputText value="Data de solicitação"/></h:column>
-                            <h:column><h:outputText value="valorTotalo"/></h:column>
+                           <!--<h:column><h:outputText value="valorTotalo"/></h:column> -->
                             <h:column><h:outputText value="Detalhes"/></h:column>
                             <h:column><h:outputText value="Selecionar"/></h:column>
                         </rich:columnGroup>
@@ -28,30 +28,41 @@
 
 
                     <rich:column>
-                        <h:outputText value="#{pedido.id}"/>
-                    </rich:column>
-                    <rich:column>
-                        <h:outputText value="#{pedido.cliente.nome}"/>
+                        <h:commandLink action="#{pedidoBB.DoDetalhePage}">
+                            <h:outputText value="#{pedido.id}"/>
+                        </h:commandLink>
                     </rich:column>
 
                     <rich:column>
+                        <h:commandLink action="#{pedidoBB.DoDetalhePage}">
+                            <h:outputText value="#{pedido.cliente.nome}"/>
+                        </h:commandLink>
+                    </rich:column>
+
+                    <rich:column>
+                        <h:commandLink action="#{pedidoBB.DoDetalhePage}">
                         <h:outputText value="#{pedido.dataDaSolicitacao}" >
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
+                        </h:commandLink>
                     </rich:column>
 
-                    <rich:column>
-                        <h:outputText value="#{pedido.valorTotal}" >
-                        </h:outputText>
-                    </rich:column>
+                    <!-- <rich:column>
+                        <h:commandLink action="{pedidoBB.DoDetalhePage}">
+                            <h:outputText value="{pedido.valorTotal}" />
+                        </h:commandLink>
+                    </rich:column> -->
 
                     <rich:column>
+                        <h:graphicImage value="/img/lupa.png" alt="15px" height="15px"/>
                         <h:commandLink value="detalhes" action="#{pedidoBB.DoDetalhePage}"/>
                     </rich:column>
 
 
                     <rich:column>
-                        <h:commandLink value="Editar" rendered="#{pedido.status == 'Cadastrado'}" action="#{pedidoBB.DoEditarPedidoPage}"/>
+                        <h:graphicImage value="/img/edit.png" alt="15px" height="15px" rendered="#{pedido.status == 'Cadastrado'}"/>
+                        <h:commandLink value="Editar" rendered="#{pedido.status == 'Cadastrado'}" action="#{pedidoBB.DoEditarPedidoPage}" >
+                        </h:commandLink>
                     </rich:column>
 
                 </rich:dataTable>
