@@ -85,8 +85,13 @@
             <from-outcome>DoEditarPedidoPage</from-outcome>
             <to-view-id>/paginas/pedido/EditarPedido.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>LocalizarFornecedor</from-outcome>
+            <to-view-id>/paginas/fornecedor/LocalizarFornecedor.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 

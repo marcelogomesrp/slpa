@@ -52,6 +52,12 @@
                             <f:selectItems value="#{estadosBB.estados}" />
                         </h:selectOneMenu>
 
+                        <h:outputText value="Telefone" />
+                        <h:inputText value="#{clienteMB.cliente.telefone}" />
+
+                        <h:outputText value="Celular" />
+                        <h:inputText value="#{clienteMB.cliente.celular}" />
+
                     </h:panelGrid>
 
                 </rich:panel>
@@ -72,13 +78,40 @@
                 </rich:panel>
 
 
-                <rich:panel>
+                <rich:panel id="fornecedorBx">
                     <f:facet name="header" >
                         <h:outputText value="Local da compra" />
                     </f:facet>
                     <h:panelGrid columns="2" >
+                        <h:commandButton value="Localizar" action="#{fornecedorBB.DoLocalizarFornecedorPage}"/>
+                        <a4j:commandButton value="Novo Fornecedor" action="#{fornecedorBB.NovoFornecedor}" reRender="fornecedorBx"/>                        
+                        
                         <h:outputText value="Nome" />
                         <h:inputText value="#{fornecedorMB.fornecedor.nome}" />
+
+                        <h:outputText value="CNPJ" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.cnpj}" />
+
+                        <h:outputText value="Logradouro" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.endereco.logradouro}" />
+
+                        <h:outputText value="Número" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.endereco.numero}" />
+
+                        <h:outputText value="Complemento" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.endereco.complemento}" />
+
+                        <h:outputText value="Bairro" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.endereco.bairro}" />
+
+                        <h:outputText value="Cidade" />
+                        <h:inputText value="#{fornecedorMB.fornecedor.endereco.cidade}" />
+
+                        <h:outputText value="UF" />
+
+                        <h:selectOneMenu value="#{fornecedorMB.fornecedor.endereco.uf}" >
+                            <f:selectItems value="#{estadosBB.estados}" />
+                        </h:selectOneMenu>
 
                     </h:panelGrid>
 
