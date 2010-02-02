@@ -31,4 +31,9 @@ public class ServicoService {
         return servico;
     }
 
+    public Servico BuscarServicoPorID(Long id){
+        Servico servico = servicoDao.pesquisarPorId(id);
+        return servico;
+    }
+
 }

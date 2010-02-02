@@ -41,21 +41,35 @@ public class Pedido implements Serializable {
     private PostoDeAtendimento postoDeAtendimento;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDaSolicitacao;
-    @OneToMany(mappedBy = "idPedido", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "idPedido", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<PedidoItem> itensPedido;
     @Enumerated(EnumType.STRING)
     private Status status;
     @Transient
     private Float valorTotal;
     private String mensagem;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Cliente cliente;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private Fornecedor fornecedor;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDaCompra;
     private Boolean garantia;
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private Servico garantiaSevico;
+    @Transient
+    private Integer quantidadeDeItens;
 
+    public Integer getQuantidadeDeItens() {
+        this.quantidadeDeItens = itensPedido.size();
+        return quantidadeDeItens;
+    }
+
+    public void setQuantidadeDeItens(Integer quantidadeDeItens) {
+        this.quantidadeDeItens = quantidadeDeItens;
+    }
+
+   
 
     
 
@@ -79,14 +93,25 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
     }
 
+    public Servico getGarantiaSevico() {
+        return garantiaSevico;
+    }
+
+    public void setGarantiaSevico(Servico garantiaSevico) {
+        this.garantiaSevico = garantiaSevico;
+    }
 
 
 
 
-    public Pedido() {
-        this.itensPedido    = new ArrayList<PedidoItem>();
-        this.status         = status.Cadastrado;
-        this.fornecedor     = new Fornecedor();
+
+    public Pedido() {        
+        this.itensPedido        = new ArrayList<PedidoItem>();
+        this.status             = status.Cadastrado;
+        this.fornecedor         = new Fornecedor();
+        this.garantia           = Boolean.FALSE;
+        this.garantiaSevico     = new Servico();
+        this.dataDaSolicitacao  = new Date();
     }
 
 

@@ -38,7 +38,9 @@ public class Equipamento implements Serializable {
     private String nome;
     private String descricao;
     @ManyToOne(cascade=CascadeType.ALL)
-    private Categoria categoria;    
+    private Categoria categoria;
+    private String numeroDeSerie;
+    private String numeroDaNotaFiscal;
     //@ManyToMany(cascade=CascadeType.ALL)
     //private Collection<Peca> pecas;
     @ManyToMany( fetch=FetchType.LAZY, cascade=CascadeType.ALL)
@@ -84,6 +86,22 @@ public class Equipamento implements Serializable {
 
     public void setPecas(Collection<Peca> pecas) {
         this.pecas = pecas;
+    }
+
+    public String getNumeroDaNotaFiscal() {
+        return numeroDaNotaFiscal;
+    }
+
+    public void setNumeroDaNotaFiscal(String numeroDaNotaFiscal) {
+        this.numeroDaNotaFiscal = numeroDaNotaFiscal;
+    }
+
+    public String getNumeroDeSerie() {
+        return numeroDeSerie;
+    }
+
+    public void setNumeroDeSerie(String numeroDeSerie) {
+        this.numeroDeSerie = numeroDeSerie;
     }
 
     
