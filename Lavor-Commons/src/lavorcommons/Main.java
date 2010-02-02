@@ -5,11 +5,12 @@
 
 package lavorcommons;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import lavor.entidade.Servico;
-import lavor.service.ServicoService;
+import lavor.entidade.Pedido;
+import lavor.service.PedidoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -38,6 +39,19 @@ public class Main {
 
         
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PedidoService pe = (PedidoService) context.getBean("pedidoService");
+        List<Pedido> pedidos = pe.LocalizarTodosOsPedidos();
+
+        for(Pedido p:pedidos){
+            System.out.println("Pedido id: " + p.getId());
+            try{
+                System.out.println("\tCliente: " + p.getCliente().getId());
+                System.out.println("\tCliente nome: " + p.getCliente().getNome());
+            }catch(Exception e){
+                System.err.println("ERRO: " + e.getMessage() + e.getCause());
+            }
+        }
+
 //        for(int x = 0; x < 10000; x++){
 //            PostoDeAtendimentoService pa = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
 //            PostoDeAtendimento postoDeAtendimento = new PostoDeAtendimento();

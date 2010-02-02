@@ -32,9 +32,6 @@ public class Fornecedor implements Serializable {
         this.endereco = new Endereco();
     }
 
-
-
-
     public Long getId() {
         return id;
     }

@@ -12,6 +12,8 @@ import lavor.dao.PedidoDao;
 import lavor.entidade.Pedido;
 import lavor.entidade.PedidoItem;
 import lavor.entidade.Status;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -44,6 +46,7 @@ public class PedidoService {
         return pedidoDao.todos();
     }
 
+    
     public List<Pedido> LocalizarPorPostoDeAtendimento(Long id){
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id",id);

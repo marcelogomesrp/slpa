@@ -38,7 +38,10 @@ public class PedidoItem implements Serializable {
     private Float valorTotal;
 
     public PedidoItem() {
-        this.quantidade = 1;
+        this.quantidade     = 1;
+        this.peca           = new Peca();
+        this.valorTotal     = 0F;
+        this.valorUnitario  = 0F;
     }
 
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- Configurador que substitui os marcadores ${...} com os valores definidos no arquivo de properties -->
     <!-- (in this case, JDBC-related settings for the dataSource definition below) -->
@@ -39,6 +39,10 @@
 
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+    <bean name="openEntityManagerInViewInterceptor" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" >
+        
+    </bean>
 
 
 
@@ -80,7 +84,7 @@
         <property name="pecaDao" ref="pecaDao" />
     </bean>
 
-   <bean id="pecaValorDao" class="lavor.dao.imp.PecaValorDaoImp" />
+    <bean id="pecaValorDao" class="lavor.dao.imp.PecaValorDaoImp" />
 
     <bean id="pecaValorService" class="lavor.service.PecaValorService" >
         <property name="pecaValorDao" ref="pecaValorDao" />
