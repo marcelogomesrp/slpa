@@ -74,6 +74,7 @@ public class SolicitarPecasBB {
         pedidoMB.getPedido().setDataDaSolicitacao(new Date());
         this.pedidoMB.setPecasSolicitada(new ListDataModel(pedidoMB.getPedido().getItensPedido()));
         this.pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        this.pedidoMB.setAdicionadoPedido(Boolean.FALSE);
         return "sucesso";
     }
 
@@ -81,6 +82,7 @@ public class SolicitarPecasBB {
         //this.pedidoMB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         Pedido pedido = pedidoService.SalvarPedido(this.pedidoMB.getPedido());        
         lavor.util.FacesUtils.mensInfo("Pedido adicionado com sucesso nº" + pedido.getId() + " valor " + pedido.getValorTotal());
+        this.pedidoMB.setAdicionadoPedido(Boolean.TRUE);
         this.pedidoMB.setPecasSolicitada(new ListDataModel());
         this.pedidoMB.setPedido(new Pedido());
         return "service";

@@ -16,13 +16,12 @@
                 </f:facet>
 
                 <h:messages id="message" />
-                <h:commandButton value="Confirma" action="#{solicitarPecasBB.DoConfirmaSolicitarPeca}" />
+                <h:commandButton value="Continuar" action="#{solicitarPecasBB.DoConfirmaSolicitarPeca}" />
                 <h:panelGrid columns="2">
                     <rich:dataTable value="#{solicitarPecasBB.listaDePecas}" var="peca" rows="10" reRender="listaPecasFooter"  width="100%">
                         <f:facet name="header">
                             <h:panelGrid columns="2" width="100%">
-                                <h:outputText value="Peças disponiveis" />
-                                <h:commandButton value="Limpar filtro" action="#{solicitarPecasBB.LimparFiltro}"/>
+                                <h:outputText value="Peças disponiveis" />                                
                             </h:panelGrid>
                         </f:facet>
                         <rich:column sortBy="#{peca.nome}" filterBy="#{peca.nome}" filterEvent="onkeyup">

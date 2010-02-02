@@ -11,7 +11,7 @@
     <ui:define name="content">
         <h:form>
             <h:messages id="message" />
-            <rich:panel>
+            <rich:panel rendered="#{!pedidoMB.adicionadoPedido}">
                 <f:facet name="header">
                     <h:panelGroup>
                         <h:outputText value="Confirmacao de solicitacao de pecas" />
@@ -25,38 +25,30 @@
                         </h:panelGrid>
                     </h:panelGroup>
                 </f:facet>
-                
-                
-                
 
-
-                <rich:dataTable value="#{pedidoMB.pecasSolicitada}" var="item" >
+                <rich:dataTable value="#{pedidoMB.pecasSolicitada}" var="item" width="100%">
+                    <f:facet name="header">
+                        <rich:columnGroup styleClass="dataTableHeader">
+                            <h:column><h:outputText value="Peca"/></h:column>
+                            <h:column><h:outputText value="Quantidade"/></h:column>
+                            <h:column><h:outputText value="Valor unitário"/></h:column>
+                            <h:column><h:outputText value="Valor Total"/></h:column>
+                        </rich:columnGroup>
+                    </f:facet>
 
                     <rich:column >
-                        <f:facet name="header">
-                            <h:outputText value="Peca"/>
-                        </f:facet>
                         <h:outputText value="#{item.peca.nome}"/>
                     </rich:column>
 
                     <rich:column >
-                        <f:facet name="header">
-                            <h:outputText value="Quantidade"/>
-                        </f:facet>
                         <h:outputText value="#{item.quantidade}" />
                     </rich:column>
 
                     <rich:column >
-                        <f:facet name="header">
-                            <h:outputText value="Valor Unitário"/>
-                        </f:facet>
                         <h:outputText value="#{item.valorUnitario}"/>
                     </rich:column>
 
                     <rich:column >
-                        <f:facet name="header">
-                            <h:outputText value="Valor Total"/>
-                        </f:facet>
                         <h:outputText value="#{item.valorTotal}"/>
                     </rich:column>
                 </rich:dataTable>
