@@ -13,17 +13,17 @@
         <param-value>client</param-value>
     </context-param>
 
-        <!-- Rich faces -->
+    <!-- Rich faces -->
     <context-param>
         <param-name>org.richfaces.SKIN</param-name>
         <!--<param-value>blueSky</param-value> -->
         <param-value>emeraldTown</param-value>
     </context-param>
 
-    	<context-param>
-    	<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
-    	<param-value>true</param-value>
-	</context-param>
+    <context-param>
+        <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+        <param-value>true</param-value>
+    </context-param>
 
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
@@ -41,6 +41,19 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/applicationContext.xml, WEB-INF/webContext.xml</param-value>
     </context-param>
+
+        <filter>
+        <filter-name>openEntityManager</filter-name>
+        <filter-class>
+            org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>openEntityManager</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
     <filter>
         <display-name>RichFaces Filter</display-name>
         <filter-name>richfaces</filter-name>
@@ -57,53 +70,9 @@
 
     <!-- Fim RichFaces -->
 
-     <!-- Filtro para a entrada do usuário -->
 
 
 
-
-<!--
- <filter>
-  <description>Filtro para restringir a entrada do usuÃ¡rio</description>
-  <filter-name>FiltroUsuario</filter-name>
-  <filter-class>lavor.util.SegurancaFiltro</filter-class>
- </filter>
-
-
-    <filter-mapping>
-        <filter-name>FiltroUsuario</filter-name>
-        <url-pattern>/postodeatendimento/*</url-pattern>
-    </filter-mapping>
-
-    -->
-
-    <!-- <filter>
-        <filter-name>lazyLoadingFilter</filter-name>
-        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>lazyLoadingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
--->
-
-<!--
-
-<filter>
-    <filter-name>teste</filter-name>
-    <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
-    <init-param>
-        <param-name>singleSession</param-name>
-        <param-value>true</param-value>
-    </init-param>
-</filter>
-<filter-mapping>
-    <filter-name>teste</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
-
--->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -126,5 +95,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>forwardToJSF.jsp</welcome-file>
-        </welcome-file-list>
-    </web-app>
+    </welcome-file-list>
+</web-app>

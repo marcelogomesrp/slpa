@@ -34,6 +34,7 @@ public class PedidoMB {
     private ListDataModel pecasSolicitada;
     private ListDataModel pedidos;
     List<SelectItem> garantia;
+    private Boolean adicionadoPedido;
 
     private ListDataModel pedidoItens;
 
@@ -74,6 +75,7 @@ public class PedidoMB {
         this.garantia.add(new SelectItem(Boolean.FALSE, "Não"));
         this.pedidoItens = new ListDataModel();
         this.temPedido = Boolean.FALSE;
+        this.adicionadoPedido = Boolean.FALSE;
     }
 
     public ListDataModel getPecasSolicitada() {
@@ -111,6 +113,14 @@ public class PedidoMB {
 
     public void setTemPedido(Boolean temPedido) {
         this.temPedido = temPedido;
+    }
+
+    public Boolean getAdicionadoPedido() {
+        return adicionadoPedido;
+    }
+
+    public void setAdicionadoPedido(Boolean adicionadoPedido) {
+        this.adicionadoPedido = adicionadoPedido;
     }
 
 
