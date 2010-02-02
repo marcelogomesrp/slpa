@@ -28,6 +28,7 @@ public class Fornecedor implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     private Endereco endereco;
 
+
     public Fornecedor() {
         this.endereco = new Endereco();
     }
