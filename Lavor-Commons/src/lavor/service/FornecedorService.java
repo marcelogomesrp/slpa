@@ -5,6 +5,7 @@
 
 package lavor.service;
 
+import java.util.List;
 import lavor.dao.FornecedorDao;
 import lavor.entidade.Fornecedor;
 
@@ -29,6 +30,10 @@ public class FornecedorService {
     public Fornecedor SalvarFornecedor(Fornecedor fornecedor){
         fornecedor = fornecedorDao.atualizar(fornecedor);
         return fornecedor;
+    }
+
+    public List<Fornecedor> BuscarTodosFornecedores(){
+        return fornecedorDao.todos();
     }
 
 }

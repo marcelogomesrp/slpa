@@ -32,6 +32,8 @@ public class Cliente implements Serializable {
     private String nome;
 
     private String cpf;
+    private String telefone;
+    private String celular;
 
     
     @OneToOne(cascade=CascadeType.ALL)
@@ -93,6 +95,22 @@ public class Cliente implements Serializable {
 
     public void setPostoDeAtendimento(PostoDeAtendimento postoDeAtendimento) {
         this.postoDeAtendimento = postoDeAtendimento;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     
