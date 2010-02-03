@@ -11,6 +11,7 @@ package lavor.entidade;
  */
 public enum Status {
     Cadastrado,
+    Cancelado,
     Processado,
     Finalizado
 }
