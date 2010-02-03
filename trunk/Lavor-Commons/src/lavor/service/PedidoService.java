@@ -5,6 +5,8 @@
 
 package lavor.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +53,16 @@ public class PedidoService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id",id);
         String sql = "SELECT p FROM Pedido p WHERE p.postoDeAtendimento.id = :id";
+        List<Pedido> pedidos = pedidoDao.listPesqParam(sql, params);
+        return pedidos;
+    }
+
+    public List<Pedido> LocalizarPorPostoDeAtendimentoMesEStatus(Long id, String mes, String status){
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id",id);
+        params.put("mes", Integer.valueOf(mes));
+        params.put("status", Status.valueOf(status));
+        String sql = "SELECT p FROM Pedido p WHERE p.postoDeAtendimento.id = :id AND status = :status AND month(dataDaSolicitacao) = :mes" ;
         List<Pedido> pedidos = pedidoDao.listPesqParam(sql, params);
         return pedidos;
     }
