@@ -30,6 +30,8 @@ public class PedidoBB {
     private PedidoService pedidoService;
     @Resource
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
+    private String mesBuscar;
+    private String statusBuscar;
 
     public PedidoBB() {
     }
@@ -67,5 +69,40 @@ public class PedidoBB {
         }
         return "sucesso";
     }
+
+
+    public String DoListarPedidoDoMesPage(){
+        this.pedidoMB.setPedidos(new ListDataModel());
+        return "ListarPedidoDomes";
+    }
+
+    public String BuscarPorAnoMes(){
+        //System.out.println("Valores = " + mesBuscar + " " + statusBuscar) ;
+        Long id = postoDeAtendimentoMB.getPostoDeAtendimento().getId();
+        pedidoMB.setPedidos(new ListDataModel(pedidoService.LocalizarPorPostoDeAtendimentoMesEStatus(id, mesBuscar, statusBuscar)));
+        return "sucesso";
+    }
+
+    public String getMesBuscar() {
+        return mesBuscar;
+    }
+
+    public void setMesBuscar(String mesBuscar) {
+        this.mesBuscar = mesBuscar;
+    }
+
+    public String getStatusBuscar() {
+        return statusBuscar;
+    }
+
+    public void setStatusBuscar(String statusBuscar) {
+        this.statusBuscar = statusBuscar;
+    }
+
+
+
+
+
+    
 
 }

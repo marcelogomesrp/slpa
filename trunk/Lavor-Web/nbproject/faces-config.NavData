@@ -5,11 +5,13 @@
         <Node id="paginas/pecas/solilcitarPecas.xhtml" x="150" y="300" zoom="true"/>
         <Node id="paginas/garantia/ListaDeEquipamentos.xhtml" x="650" y="300" zoom="true"/>
         <Node id="paginas/menu.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="paginas/pedido/ListarPedidoDomes.xhtml" x="1650" y="150" zoom="true"/>
         <Node id="template-client.xhtml" x="150" y="750" zoom="true"/>
-        <Node id="template.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="paginas/garantia/ConfirmacaoPedido.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="paginas/pedido/EditarPedido.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="template.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="paginas/pedido/DetalhePedido.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="paginas/equipamentos/ListarManuais.xhtml" x="1400" y="300" zoom="true"/>
         <Node id="postodeatendimento/index.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="paginas/garantia/ListarCategorias.xhtml" x="900" y="150" zoom="true"/>
         <Node id="welcomeJSF.jsp" x="400" y="150" zoom="true"/>
@@ -17,8 +19,8 @@
         <Node id="paginas/fornecedor/LocalizarFornecedor.xhtml" x="150" y="900" zoom="true"/>
         <Node id="paginas/pedido/ListarMensagensPedido.xhtml" x="650" y="450" zoom="true"/>
         <Node id="paginas/pedido/ListarPedido.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="paginas/pecas/ConfirmaSolicitacaoDePecas.xhtml" x="150" y="450" zoom="true"/>
         <Node id="paginas/cliente/LocalizarCliente.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="paginas/pecas/ConfirmaSolicitacaoDePecas.xhtml" x="150" y="450" zoom="true"/>
         <Node id="template/loginTemplate.xhtml" x="400" y="600" zoom="true"/>
         <Node id="template/template.xhtml" x="900" y="300" zoom="true"/>
         <Node id="forwardToJSF.jsp" x="150" y="150" zoom="true"/>
