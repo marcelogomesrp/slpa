@@ -89,8 +89,18 @@
             <from-outcome>LocalizarFornecedor</from-outcome>
             <to-view-id>/paginas/fornecedor/LocalizarFornecedor.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>ListarManuais</from-outcome>
+            <to-view-id>/paginas/equipamentos/ListarManuais.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ListarPedidoDomes</from-outcome>
+            <to-view-id>/paginas/pedido/ListarPedidoDomes.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
 
 
 

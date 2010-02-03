@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="./../../template/template.xhtml">
+
+    <ui:define name="content">
+        <rich:panel >
+            <f:facet name="header" >
+                <h:outputText value="Lista de pedidos do mês" />
+            </f:facet>
+            <h:form>
+                <h:outputText value="Escolha o mês"/>
+                <h:selectOneMenu value="#{pedidoBB.mesBuscar}">
+                    <f:selectItems value="#{anoBB.meses}" />
+                </h:selectOneMenu>
+
+                <h:outputText value="Escolha o status" />
+                <h:selectOneMenu value="#{pedidoBB.statusBuscar}">
+                    <f:selectItems value="#{statusBB.status}" />
+                </h:selectOneMenu>
+
+                <h:commandButton value="OK" action="#{pedidoBB.BuscarPorAnoMes}" />
+
+                <rich:dataTable value="#{pedidoMB.pedidos}" var="pedido" id="listaDePedidos" width="100%">
+                    <f:facet name="header">
+                        <rich:columnGroup styleClass="dataTableHeader">
+                            <h:column><h:outputText value="ID"/></h:column>
+                            <h:column><h:outputText value="Cliente"/></h:column>
+                            <h:column><h:outputText value="Data de solicitação"/></h:column>
+                           <!--<h:column><h:outputText value="valorTotalo"/></h:column> -->
+                            <h:column><h:outputText value="Detalhes"/></h:column>
+                            <h:column><h:outputText value="Selecionar"/></h:column>
+                        </rich:columnGroup>
+                    </f:facet>
+
+
+                    <rich:column>
+                        <h:commandLink action="#{pedidoBB.DoDetalhePage}">
+                            <h:outputText value="#{pedido.id}"/>
+                        </h:commandLink>
+                    </rich:column>
+
+                    <rich:column>
+                        <h:commandLink action="#{pedidoBB.DoDetalhePage}">
+                            <h:outputText value="#{pedido.cliente.nome}"/>
+                        </h:commandLink>
+                    </rich:column>
+
+                    <rich:column>
+                        <h:commandLink action="#{pedidoBB.DoDetalhePage}">
+                        <h:outputText value="#{pedido.dataDaSolicitacao}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        </h:commandLink>
+                    </rich:column>
+
+                    <!-- <rich:column>
+                        <h:commandLink action="{pedidoBB.DoDetalhePage}">
+                            <h:outputText value="{pedido.valorTotal}" />
+                        </h:commandLink>
+                    </rich:column> -->
+
+                    <rich:column>
+                        <h:graphicImage value="/img/lupa.png" alt="15px" height="15px"/>
+                        <h:commandLink value="detalhes" action="#{pedidoBB.DoDetalhePage}"/>
+                    </rich:column>
+
+
+                    <rich:column>
+                        <h:graphicImage value="/img/edit.png" alt="15px" height="15px" rendered="#{pedido.status == 'Cadastrado'}"/>
+                        <h:commandLink value="Editar" rendered="#{pedido.status == 'Cadastrado'}" action="#{pedidoBB.DoEditarPedidoPage}" >
+                        </h:commandLink>
+                    </rich:column>
+
+                </rich:dataTable>
+
+
+                <rich:jQuery selector="#listaDePedidos tr:odd" query="addClass('odd-row')" />
+                <rich:jQuery selector="#listaDePedidos tr:even" query="addClass('even-row')" />
+                <rich:jQuery selector="#listaDePedidos tr" query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                <rich:jQuery selector="#listaDePedidos tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+            </h:form>
+        </rich:panel>
+    </ui:define>
+
+</ui:composition>

@@ -9,22 +9,32 @@
                 template="./../../template/template.xhtml">
 
     <ui:define name="content">
-        Listar mensagem Pedido
+
         <h:form>
-            <h:dataTable value="#{pedidoMB.pedidos}" var="pedido" >
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="ID" />
-                    </f:facet>
-                    <h:outputText value="#{pedido.id}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="ID" />
-                    </f:facet>
-                    <h:outputText value="#{pedido.mensagem}" />
-                </h:column>
-            </h:dataTable>
+            <rich:panel >
+                <f:facet name="header" >
+                    <h:outputText value="Listar mensagem Pedido" />
+                </f:facet>
+                <rich:dataGrid value="#{pedidoMB.pedidos}" var="pedido" columns="2" width="100%">
+                    <!-- <h:panelGrid> -->
+                        <rich:panel>
+                            <f:facet name="header">
+                                <h:outputText value="Pedido id: #{pedido.id}" />
+                            </f:facet>
+                            <h:panelGrid columns="2" >
+                                <h:outputText value="Pedido realizado em: " />
+                                <h:outputText value="#{pedido.dataDaSolicitacao}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                                <h:outputText value="Status  #{pedido.status}" />
+                            </h:panelGrid>
+                            <br />
+                            <h:inputTextarea rows="4" cols="20" value="#{pedido.mensagem}" disabled="true"/>
+
+                        </rich:panel>
+                    <!-- </h:panelGrid> -->
+                </rich:dataGrid>
+            </rich:panel>
         </h:form>
     </ui:define>
 
