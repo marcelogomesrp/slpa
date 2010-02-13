@@ -46,4 +46,11 @@ public class PostoDeAtendimentoBB {
             return "sucesso";
         }
     }
+
+        public String LogarA(){
+//            for(int x =0; x < 100; x++){
+//                System.out.println("Okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" +x );
+//            }
+            return "ok";
+        }
 }
