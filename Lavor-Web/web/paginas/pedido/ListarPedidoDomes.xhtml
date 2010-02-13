@@ -14,6 +14,7 @@
                 <h:outputText value="Lista de pedidos do mês" />
             </f:facet>
             <h:form>
+
                 <h:outputText value="Escolha o mês"/>
                 <h:selectOneMenu value="#{pedidoBB.mesBuscar}">
                     <f:selectItems value="#{anoBB.meses}" />
@@ -24,7 +25,11 @@
                     <f:selectItems value="#{statusBB.status}" />
                 </h:selectOneMenu>
 
-                <h:commandButton value="OK" action="#{pedidoBB.BuscarPorAnoMes}" />
+                <h:commandButton value="OK" action="#{pedidoBB.BuscarPorAnoMes}" >
+<!--                    <a4j:support event="onclick" reRender="idDaCidadeSelecionada" /> -->
+                </h:commandButton>
+
+
 
                 <rich:dataTable value="#{pedidoMB.pedidos}" var="pedido" id="listaDePedidos" width="100%">
                     <f:facet name="header">
@@ -86,6 +91,8 @@
                 <rich:jQuery selector="#listaDePedidos tr" query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
 
             </h:form>
+
+
         </rich:panel>
     </ui:define>
 

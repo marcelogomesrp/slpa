@@ -50,7 +50,7 @@
                             <f:facet name="header">
                                 <h:outputText value="Solicitar"/>
                             </f:facet>
-                            <h:commandLink value="solicitar" action="#{solicitarPecasBB.AddItem}" />
+                            <a4j:commandLink value="Solicitar" action="#{solicitarPecasBB.AddItem}" reRender="listaPecasSolicitada" />
                         </rich:column>
 
 
@@ -62,7 +62,7 @@
                     </rich:dataTable>
 
 
-                    <rich:dataTable value="#{pedidoMB.pecasSolicitada}"  var="pecaSolicitada"   width="100%" >
+                    <rich:dataTable id="listaPecasSolicitada" value="#{pedidoMB.pecasSolicitada}"  var="pecaSolicitada"  rows="10" reRender="listaPecasSolicitadaFooter"  width="100%" >
                         <f:facet name="header">
                             <h:outputText value="Pecas solicitadas #{pedidoMB.temPedido}"/>
                         </f:facet>
@@ -87,15 +87,21 @@
                         <rich:column >
                             <f:facet name="header">
                                 <h:outputText value="Remover" />
-                            </f:facet>
-                            <h:commandLink value="remover" action="#{solicitarPecasBB.RemoverPecaSolicitada}" />
+                            </f:facet>                            
+                            <a4j:commandLink value="remover" action="#{solicitarPecasBB.RemoverPecaSolicitada}" reRender="listaPecasSolicitada" />
                         </rich:column>
 
+                        <f:facet name="footer">
+                            <rich:datascroller id="listaPecasSolicitadaFooter"/>
+                        </f:facet>
 
                     </rich:dataTable>
 
                 </h:panelGrid>
             </rich:panel>
+
+
+
         </h:form>
     </ui:define>
 
