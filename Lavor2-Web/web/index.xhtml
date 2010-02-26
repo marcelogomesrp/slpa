@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+                        
+        <ui:composition template="/WEB-INF/template/template.xhtml">
+            <ui:define name="body">
+                <h:form>
+                    <rich:panel >
+                        <f:facet name="header">
+                            <h:outputText value="Login" />
+                        </f:facet>
+                        <h:messages id="message" />
+                    <h:panelGrid columns="4" >
+                        <h:outputText id="emailOutput" value="Email*" />
+                        <h:inputText  id="emailInput" value="#{usuarioMB.usuario.email}" size="60" required="true" maxlength="60" requiredMessage="O email deve ser informado" >
+                            <f:validator validatorId="emailValidador" />
+                        </h:inputText>
+                        <h:message for="emailInput"></h:message>
+                        <rich:toolTip for="emailInput" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Entre com o seu e-mail cadastrado" />
+                        </rich:toolTip>
+
+
+                        <h:outputText  id="senhaOutput" value="Senha*" />
+                        <h:inputSecret id="senhaInput" value="#{usuarioMB.usuario.senha}" size="60" required="true" requiredMessage="A senha deve ser informado" />
+                        <h:message for="senhaInput"></h:message>
+                        <rich:toolTip for="senhaInput" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Entre com a sua senha" />
+                        </rich:toolTip>
+
+                        <h:commandButton value="Entrar"  action="#{indexBB.Entrar}"     id="entrarBtn"/>
+                        
+                        <h:commandButton value="Cancela" action="#{indexBB.Cancelar}"   id="cancelarBtn"/>
+                        
+                        <rich:toolTip for="entrarBtn" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Clique aqui para entrar no sistema" />
+                        </rich:toolTip>
+
+                        <rich:toolTip for="cancelarBtn" followMouse="true" direction="top-right" showDelay="500" styleClass="tooltip">
+                            <h:outputText value="Clique aqui para limpar os dados informados" />
+                        </rich:toolTip>
+                    </h:panelGrid>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+            
+        </ui:composition>
+        
+    </body>
+</html>
+

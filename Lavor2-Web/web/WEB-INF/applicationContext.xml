@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+        <!-- Classe responsavel pela gestao das entidades  -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="Lavor-CommonsPU" />
+	</bean>
+
+
+	<!-- Identifica os beans anotados com @Service, @Repository, @Controller  -->
+	<context:component-scan base-package="lavor" />
+
+	<!-- Habilita a configuracao de beans via anotacoes
+	sem a necessidade de usar PersistenceAnnotationBeanPostProcessor,
+	AutowiredAnnotationBeanPostProcessor e etc
+	 -->
+	<context:annotation-config />
+
+<!-- Trabalha com a anotacao  @Autowired
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+	 Trabalha com a anotacao  @Resource
+	<bean
+		class="org.springframework.orm.jpa.support.
+			PersistenceAnnotationBeanPostProcessor" />
+-->
+
+	<!-- Classe responsavel pela gestao das transacoes  -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Marcacao de transacoes atraves de anotacoes  -->
+	<tx:annotation-driven />
+
+	<!-- Declaracao de Beans no Spring -->
+
+        <bean class="lavor.dao.imp.UsuarioDaoImp"               id="usuarioDao" />
+        <bean class="lavor.dao.imp.PostoDeAtendimentoDaoImp"    id="postoDeAtendimentoDao" />
+        <bean class="lavor.dao.imp.CidadeDaoImp"                id="cidadeDao" />
+
+        <bean class="lavor.service.UsuarioService"              id="usuarioService" >
+            <property name="usuarioDao"             ref="usuarioDao" />
+        </bean>
+
+        <bean class="lavor.service.PostoDeAtendimentoService"   id="postoDeAtendimentoService" >
+            <property name="postoDeAtendimentoDao"  ref="postoDeAtendimentoDao" />
+            <property name="usuarioService"             ref="usuarioService" />
+        </bean>
+
+        <bean class="lavor.service.CidadeService"               id="cidadeService" >
+            <property name="cidadeDao"              ref="cidadeDao" />
+        </bean>
+
+	<!-- Envia E-mail 
+	<bean id="enviarEmail"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="HOST"/>
+		<property name="username" value="USUARIO@HOST"/>
+		<property name="password" value="SUA_SENHA"/>
+	</bean>
+        -->
+
+</beans>
