@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <application>
+        <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+        <!-- Configura o Spring 2.5 para trabalhar com JSF 1.2 
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver> -->
+        <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+    </application>
+
+    <validator>
+        <validator-id>emailValidador</validator-id>
+        <validator-class>lavor.validadores.EmailValidador</validator-class>
+    </validator>
+    <validator>
+        <validator-id>razaoSocialValidator</validator-id>
+        <validator-class>lavor.validadores.postodeatendimento.RazaoSocialValidator</validator-class>
+    </validator>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{indexBB.Entrar}</from-action>
+            <from-outcome>posto/index</from-outcome>
+            <to-view-id>/posto/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{indexBB.Entrar}</from-action>
+            <from-outcome>admin/index</from-outcome>
+            <to-view-id>/admin/Index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.DoNovoPage}</from-action>
+            <from-outcome>/admin/posto/novo</from-outcome>
+            <to-view-id>/admin/posto/novo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/posto/novo.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.Salvar}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/posto/novo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
+
+
+
+
+
