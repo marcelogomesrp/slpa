@@ -45,8 +45,12 @@ public class PostoDeAtendimento implements Serializable {
     private String bairro;
     @Column(length=9)
     private String cep;
-    @Column(length=14)
-    private String fone;
+    @Column(length=10)
+    private String telefone;
+    @Column(length=10)
+    private String celular;
+    @Column(length=60, name="nome_contato")
+    private String nomeContato;
 
     public PostoDeAtendimento() {
         this.usuario    = new Usuario();
@@ -111,14 +115,6 @@ public class PostoDeAtendimento implements Serializable {
         this.endereco = endereco;
     }
 
-    public String getFone() {
-        return fone;
-    }
-
-    public void setFone(String fone) {
-        this.fone = fone;
-    }
-
     public String getCnpj() {
         return cnpj;
     }
@@ -126,6 +122,32 @@ public class PostoDeAtendimento implements Serializable {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj.replaceAll("[^\\d{L}]", "");
         //this.cnpj = cnpj;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular.replaceAll("[^\\d{L}]", "");
+    }
+
+    public String getNomeContato() {
+        return nomeContato;
+    }
+
+    public void setNomeContato(String nomeContato) {
+        this.nomeContato = nomeContato;
+    }
+
+
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone.replaceAll("[^\\d{L}]", "");
     }
 
 

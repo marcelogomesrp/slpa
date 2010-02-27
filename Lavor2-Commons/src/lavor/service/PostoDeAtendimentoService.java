@@ -18,7 +18,10 @@ public class PostoDeAtendimentoService {
     private PostoDeAtendimentoDao postoDeAtendimentoDao;
     private UsuarioService usuarioService;
 
+    private ServiceException serviceException;
+
     public PostoDeAtendimentoService() {
+        this.serviceException = new ServiceException();
     }
 
     public PostoDeAtendimentoDao getPostoDeAtendimentoDao() {
@@ -39,8 +42,7 @@ public class PostoDeAtendimentoService {
 
 
 
-    private void RazaoSocialValida(String razaoSocial) throws ServiceException {
-        ServiceException serviceException = new ServiceException();
+    private void RazaoSocialValida(String razaoSocial) {
          if(lavor.utils.StringUtils.isNullOrEmpty(razaoSocial)){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "A razao social deve ser informada");
          }
@@ -48,18 +50,12 @@ public class PostoDeAtendimentoService {
         if(postoDeAtendimento != null){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "A razao social já foi cadastrada");
         }
-        if (serviceException.hasMessages()) {
-            throw serviceException;
-        }
     }
 
-    private void CepValido(String cep) throws ServiceException{
-        ServiceException serviceException = new ServiceException();
+    private void CepValido(String cep){
         if(lavor.utils.StringUtils.isNullOrEmpty(cep)){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "O CEP informado não e valido");
         }else{
-
-
             cep = cep.replaceAll("[^\\d{L}]", "");
 
             if(cep.length() < 8){
@@ -67,14 +63,11 @@ public class PostoDeAtendimentoService {
             }
         }
         
-        if (serviceException.hasMessages()) {
-            throw serviceException;
-        }
     }
 
 
     private boolean PodeSerSalvo(PostoDeAtendimento postoDeAtendimento) throws ServiceException{
-        ServiceException serviceException = new ServiceException();
+        this.serviceException = new ServiceException();
 
         this.RazaoSocialValida(postoDeAtendimento.getRazaoSocial());
         this.usuarioService.PodeSerSalvo(postoDeAtendimento.getUsuario());
