@@ -5,6 +5,7 @@
 
 package lavor.service;
 
+import java.io.Serializable;
 import java.util.List;
 import lavor.dao.CidadeDao;
 import lavor.entidade.Cidade;
@@ -14,7 +15,7 @@ import lavor.entidade.Estado;
  *
  * @author marcelo
  */
-public class CidadeService {
+public class CidadeService implements Serializable{
     private CidadeDao cidadeDao;
 
     public CidadeService() {

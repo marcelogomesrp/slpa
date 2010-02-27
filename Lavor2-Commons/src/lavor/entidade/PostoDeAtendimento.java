@@ -31,6 +31,8 @@ public class PostoDeAtendimento implements Serializable {
     private Long id;
     @Column(name="razao_social", length=60, nullable=false, unique=true)
     private String razaoSocial;
+    @Column(name="cnpj", length=14, nullable=false, unique=true)
+    private String cnpj;
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(nullable=false, unique=true,name="usuario_id")
     private Usuario usuario;
@@ -89,7 +91,8 @@ public class PostoDeAtendimento implements Serializable {
     }
 
     public void setCep(String cep) {
-        this.cep = cep;
+        this.cep = cep.replaceAll("[^\\d{L}]", "");
+        //this.cep = cep;
     }
 
     public Cidade getCidade() {
@@ -114,6 +117,15 @@ public class PostoDeAtendimento implements Serializable {
 
     public void setFone(String fone) {
         this.fone = fone;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj.replaceAll("[^\\d{L}]", "");
+        //this.cnpj = cnpj;
     }
 
 
