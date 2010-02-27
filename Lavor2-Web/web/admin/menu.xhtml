@@ -8,15 +8,17 @@
         <rich:toolBar>
             <rich:dropDownMenu>
                 <f:facet name="label">
-                    <h:outputText value="Posto de Atendimento1" />
+                    <h:outputText value="Posto de Atendimento" />
                 </f:facet>
                 <rich:menuItem action="#{postoDeAtendimentoBB.DoNovoPage}" >
                     <h:outputText value="Novo" />
-                </rich:menuItem><rich:menuItem>
-                    <h:outputText value="valorB" />
-                </rich:menuItem><rich:menuItem>
-                    <h:outputText value="valorC" />
                 </rich:menuItem>
+
+                <rich:menuItem action="#{postoDeAtendimentoBB.DoListarPage}">
+                    <h:outputText value="Listar" />
+                </rich:menuItem>
+
+                
 
             </rich:dropDownMenu>
 

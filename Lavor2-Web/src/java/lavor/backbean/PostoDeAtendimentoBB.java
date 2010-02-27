@@ -57,6 +57,11 @@ public class PostoDeAtendimentoBB {
         return "/admin/posto/novo";
     }
 
+    public String DoListarPage(){
+        postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
+        return "/admin/posto/listar";
+    }
+
     public String Salvar(){
         PostoDeAtendimento novoPostoDeAtendimento = postoDeAtendimentoMB.getPostoDeAtendimento();
         Cidade cidade = novoPostoDeAtendimento.getCidade();
