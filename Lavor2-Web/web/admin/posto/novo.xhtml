@@ -19,44 +19,47 @@
                                 <h:outputText value="Razao social*" />
                                 <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.razaoSocial}" id="razaoSocialInput" size="60" required="true" maxlength="60" requiredMessage="A razao social deve ser informada" />
 
+                                <h:outputText value="CNPJ*" />
+                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cnpj}" id="cnpjInput" size="18" required="true" maxlength="18" requiredMessage="O cnpj deve ser informado" />
+
                                 <h:outputText value="E-mail*" />
                                 <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.usuario.email}" id="emailInput" size="60" required="true" maxlength="255" requiredMessage="O email deve ser informado" />
 
                                 <h:outputText value="Senha*" />
                                 <h:inputSecret value="#{postoDeAtendimentoMB.postoDeAtendimento.usuario.senha}" id="senhaInput" size="60" required="true" requiredMessage="A senha deve ser informada" />
 
-                                <h:outputText value="Endereco" />
-                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.endereco}" id="enderecoInput" />
+                                <h:outputText value="Endereco*" />
+                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.endereco}" id="enderecoInput" size="60" maxlength="255" required="true" requiredMessage="O endereco deve ser informado"/>
 
-                                <h:outputText value="Bairro" />
-                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.bairro}" id="bairroInput"/>
-
-                                <h:outputText value="CEP" />
-                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cep}" id="cepInput"/>
+                                <h:outputText value="Bairro *" />
+                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.bairro}" id="bairroInput" size="60" maxlength="100" required="true" requiredMessage="O bairro deve ser informado"/>
 
 
-                                <h:outputText value="UF" />
+                                <h:outputText value="CEP*" />
+                                <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cep}" id="cepInput" size="9" maxlength="9" required="true" requiredMessage="O cep deve ser informado"/>
+
+
+
+                                <h:outputText value="UF*" />
                                 <a4j:region id="regiaoajx">
-                                    <h:selectOneMenu id="ufInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.estado}" >
+                                    <h:selectOneMenu id="ufInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
                                         <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
                                         <f:selectItems value="#{estadosBB.estados}" />
                                     </h:selectOneMenu>
                                 </a4j:region>
 
-                                <h:outputText value="Cidade" />
-
+                                <h:outputText value="Cidade*" />
                                 <a4j:status id="statusajax" for="regiaoajx">
                                     <f:facet name="start">
                                         <h:outputText value="Carregando as cidades, por favor aguarde..."/>
                                     </f:facet>
                                     <f:facet name="stop">
-                                        <h:selectOneMenu id="cidadeInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.cidade}">
+                                        <h:selectOneMenu id="cidadeInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
                                             <f:selectItems value="#{cidadeMB.cidades}" />
                                         </h:selectOneMenu>
                                     </f:facet>
                                 </a4j:status>
 
-                                <h:commandLink value="novo cidade" />
                                 <h:commandButton value="Salvar" action="#{postoDeAtendimentoBB.Salvar}"  />
                             </h:panelGrid>
                             
