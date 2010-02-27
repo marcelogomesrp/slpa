@@ -37,6 +37,8 @@ public class PostoDeAtendimentoService {
         this.usuarioService = usuarioService;
     }
 
+
+
     private void RazaoSocialValida(String razaoSocial) throws ServiceException {
         ServiceException serviceException = new ServiceException();
          if(lavor.utils.StringUtils.isNullOrEmpty(razaoSocial)){
@@ -49,23 +51,35 @@ public class PostoDeAtendimentoService {
         if (serviceException.hasMessages()) {
             throw serviceException;
         }
-
     }
+
+    private void CepValido(String cep) throws ServiceException{
+        ServiceException serviceException = new ServiceException();
+        if(lavor.utils.StringUtils.isNullOrEmpty(cep)){
+            serviceException.addMessage(GenericExceptionMessageType.WARNING, "O CEP informado não e valido");
+        }else{
+
+
+            cep = cep.replaceAll("[^\\d{L}]", "");
+
+            if(cep.length() < 8){
+                serviceException.addMessage(GenericExceptionMessageType.WARNING, "O CEP informado não e valido");
+            }
+        }
+        
+        if (serviceException.hasMessages()) {
+            throw serviceException;
+        }
+    }
+
 
     private boolean PodeSerSalvo(PostoDeAtendimento postoDeAtendimento) throws ServiceException{
         ServiceException serviceException = new ServiceException();
 
         this.RazaoSocialValida(postoDeAtendimento.getRazaoSocial());
         this.usuarioService.PodeSerSalvo(postoDeAtendimento.getUsuario());
+        this.CepValido(postoDeAtendimento.getCep());
 
-
-
-        if (postoDeAtendimento.getBairro().equalsIgnoreCase("geraldo")) {
-            serviceException.addMessage(GenericExceptionMessageType.WARNING, "O bairro nao pode ser este");
-        }
-        if (postoDeAtendimento.getEndereco().equalsIgnoreCase("geraldo")) {
-            serviceException.addMessage(GenericExceptionMessageType.WARNING, "O endereco nao pode ser este");
-        }
         if (serviceException.hasMessages()) {
             throw serviceException;
         }
