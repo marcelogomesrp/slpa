@@ -6,6 +6,7 @@
 package lavor.dao.imp;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.entidade.PostoDeAtendimento;
@@ -23,6 +24,15 @@ public class PostoDeAtendimentoDaoImp extends DaoGenericoImp<PostoDeAtendimento,
         params.put("razaoSocial", razaoSocial);
         PostoDeAtendimento postoDeAtendimento = this.pesqParam(SQL, params);
         return postoDeAtendimento;
+    }
+
+    public List pesquisarPorCidade(Long id) {
+        String SQL = "SELECT p from PostoDeAtendimento p WHERE cidade.id = :id";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        List<PostoDeAtendimento> postosDeAtendimento = listPesqParam(SQL, params);
+         //List<PostoDeAtendimento> postosDeAtendimento  = this.todos();
+        return postosDeAtendimento;        
     }
 
 }
