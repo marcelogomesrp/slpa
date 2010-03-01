@@ -80,6 +80,20 @@ public class PostoDeAtendimentoService {
         return true;
     }
 
+    public boolean PodeSerAtualizardo(PostoDeAtendimento novoPostoDeAtendimento, PostoDeAtendimento originalPostoDeAtendimento) throws ServiceException{
+        this.serviceException = new ServiceException();
+
+        if(!novoPostoDeAtendimento.getRazaoSocial().equals(originalPostoDeAtendimento.getRazaoSocial())){
+            this.RazaoSocialValida(novoPostoDeAtendimento.getRazaoSocial());
+        }
+        this.usuarioService.PodeSerAtualizador(novoPostoDeAtendimento.getUsuario(), originalPostoDeAtendimento.getUsuario());
+
+        if (serviceException.hasMessages()) {
+            throw serviceException;
+        }
+        return true;
+    }
+
 
     public PostoDeAtendimento Salvar(PostoDeAtendimento postoDeAtendimento) throws ServiceException{
         try{
@@ -91,6 +105,18 @@ public class PostoDeAtendimentoService {
         }
         
         return postoDeAtendimento;
+    }
+    
+    public void Atualizar(PostoDeAtendimento postoDeAtendimento) throws ServiceException {
+        PostoDeAtendimento postoOriginal = this.postoDeAtendimentoDao.pesquisarPorId(postoDeAtendimento.getId());
+        try{
+            if(this.PodeSerAtualizardo(postoDeAtendimento, postoOriginal)){
+                postoDeAtendimento = postoDeAtendimentoDao.atualizar(postoDeAtendimento);
+            }
+        }catch(DataAccessException ex){
+            throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);
+        }
+
     }
 
     public PostoDeAtendimento pesquisarPorRazaoSocial(String razaoSocial){
@@ -105,6 +131,8 @@ public class PostoDeAtendimentoService {
 
 
     }
+
+
 
 
 

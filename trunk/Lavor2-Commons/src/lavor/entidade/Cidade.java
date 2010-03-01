@@ -8,6 +8,7 @@ package lavor.entidade;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,8 +28,10 @@ public class Cidade implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
+    @Column(name="cidade", length=100)
     private String cidade;
     @Enumerated(EnumType.STRING)
+    @Column(name="estado", length=2)
     private Estado estado;
 
     public Cidade() {
