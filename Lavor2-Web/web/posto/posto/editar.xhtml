@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+
+
+            <ui:define name="content">
+                <h:messages id="message" />
+                <h:form>
+                    <h:panelGrid columns="2" >
+
+                        <h:outputText value="Razao social*" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.razaoSocial}" id="razaoSocialInput" size="60" required="true" maxlength="60" requiredMessage="A razao social deve ser informada" />
+
+                        <h:outputText value="CNPJ*" />
+
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cnpj}" id="cnpjInput" size="18" required="true" maxlength="18" requiredMessage="O cnpj deve ser informado" >
+                            <rich:jQuery selector="#cnpjInput" query="mask('99.999.999/9999-99')" timing="onload"/>
+                        </h:inputText>
+
+
+                        <h:outputText value="E-mail*" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.usuario.email}" id="emailInput" size="60" required="true" maxlength="255" requiredMessage="O email deve ser informado" />
+
+                        <h:outputText value="Telefone" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.telefone}" id="telefoneInput" size="14" maxlength="14" required="true" requiredMessage="O telefone deve ser informado" >
+                            <rich:jQuery selector="#telefoneInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="Celular" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.celular}" id="celularInput" size="14" maxlength="14" >
+                            <rich:jQuery selector="#celularInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="Nome contato" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.nomeContato}" id="contatoInput" size="60" maxlength="60" />
+
+
+                        <h:outputText value="Endereco*" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.endereco}" id="enderecoInput" size="60" maxlength="255" required="true" requiredMessage="O endereco deve ser informado"/>
+
+                        <h:outputText value="Bairro *" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.bairro}" id="bairroInput" size="60" maxlength="100" required="true" requiredMessage="O bairro deve ser informado"/>
+
+
+                        <h:outputText value="CEP*" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cep}" id="cepInput" size="9" maxlength="9" required="true" requiredMessage="O cep deve ser informado">
+                            <rich:jQuery selector="#cepInput" query="mask('99999-999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:commandButton value="Salvar" action="#{postoDeAtendimentoBB.PostoAtualizar}"  />
+                    </h:panelGrid>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

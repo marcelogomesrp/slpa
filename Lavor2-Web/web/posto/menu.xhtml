@@ -1,0 +1,41 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:a4j="http://richfaces.org/a4j"
+             xmlns:rich="http://richfaces.org/rich">
+    <h:form>
+        <rich:toolBar>
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Posto de Atendimento" />
+                </f:facet>
+                <rich:menuItem action="#{postoDeAtendimentoBB.PostoDoEditar}">
+                    <h:outputText value="Atualizar meus dados" />
+                </rich:menuItem>
+
+                <rich:menuItem action="#{postoDeAtendimentoBB.PostoDoTrocarSenha}" >
+                    <h:outputText value="Trocar senha" />
+                </rich:menuItem>
+
+                
+
+            </rich:dropDownMenu>
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Principal2" />
+                </f:facet>
+                <rich:menuItem>
+                    <h:outputText value="valorA" />
+                </rich:menuItem><rich:menuItem>
+                    <h:outputText value="valorB" />
+                </rich:menuItem><rich:menuItem>
+                    <h:outputText value="valorC" />
+                </rich:menuItem>
+
+            </rich:dropDownMenu>
+        </rich:toolBar>
+    </h:form>
+
+</ui:fragment>

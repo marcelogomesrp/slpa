@@ -11,11 +11,11 @@ import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import lavor.entidade.Cidade;
-import lavor.entidade.Estado;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.TipoUsuario;
 import lavor.managedBean.CidadeMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
+import lavor.managedBean.UsuarioMB;
 import lavor.service.CidadeService;
 import lavor.service.PostoDeAtendimentoService;
 import lavor.service.UsuarioService;
@@ -37,6 +37,8 @@ public class PostoDeAtendimentoBB {
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
     @Resource
     private CidadeMB cidadeMB;
+    @Resource
+    private UsuarioMB usuarioMB;
 
     @Resource
     private PostoDeAtendimentoService postoDeAtendimentoService;
@@ -97,6 +99,14 @@ public class PostoDeAtendimentoBB {
         return "posto/editar";
     }
 
+    public String DoLogout(){
+
+//        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//        if (session != null) {
+//            session.invalidate();
+//        }
+        return "index";
+    }
     
 
     public String Salvar(){
@@ -143,5 +153,33 @@ public class PostoDeAtendimentoBB {
 
         return "sucesso";
     }
+
+    //Metodos do posto
+
+    public String PostoDoEditar(){
+        return "editar";
+    }
+    
+    public String PostoDoTrocarSenha(){
+        return "/posto/trocarSenha";
+    }
+
+    public String PostoAtualizar(){
+        PostoDeAtendimento novoPostoDeAtendimento = postoDeAtendimentoMB.getPostoDeAtendimento();
+        Cidade cidade = novoPostoDeAtendimento.getCidade();
+        cidade = cidadeService.PesquisarPorCidadeEstado(cidade.getCidade(), cidade.getEstado());
+        novoPostoDeAtendimento.setCidade(cidade);
+        try{
+            postoDeAtendimentoService.Atualizar(novoPostoDeAtendimento);
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Posto atualizado com sucesso" );
+            postoDeAtendimentoMB.setPostoDeAtendimento(novoPostoDeAtendimento);
+        }catch(Exception ex){
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar..");
+        }
+        return "sucesso";
+    }
+
+
+    // fim posto
 
 }
