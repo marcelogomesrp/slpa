@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import lavor.entidade.TipoUsuario;
 import lavor.entidade.Usuario;
+import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.managedBean.UsuarioMB;
+import lavor.service.PostoDeAtendimentoService;
 import lavor.service.UsuarioService;
 import lavor.utils.FacesUtils;
 import lavor.utils.GenericExceptionMessageType;
@@ -29,7 +31,11 @@ public class indexBB implements Serializable{
     @Resource
     private UsuarioMB usuarioMB;
     @Resource
+    private PostoDeAtendimentoMB postoDeAtendimentoMB;
+    @Resource
     private UsuarioService usuarioService;
+    @Resource
+    private PostoDeAtendimentoService postoDeAtendimentoService;
 
     public indexBB() {        
     }
@@ -41,6 +47,7 @@ public class indexBB implements Serializable{
             if (usuario.getId() != null) {
                 if (usuario.getTipoUsuario().equals(TipoUsuario.postoDeAtendimento)) {
                     usuarioMB.setUsuario(usuario);
+                    postoDeAtendimentoMB.setPostoDeAtendimento(postoDeAtendimentoService.PesquisarPorUsuario(usuario));
                     return "posto/index";
                 } else {
                     if (usuario.getTipoUsuario().equals(TipoUsuario.administrador)) {

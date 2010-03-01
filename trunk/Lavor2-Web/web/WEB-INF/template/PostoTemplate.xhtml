@@ -8,6 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="#{facesContext.externalContext.requestContextPath}/css/default.css" rel="stylesheet" type="text/css" />
         <link href="#{facesContext.externalContext.requestContextPath}/css/cssLayout.css" rel="stylesheet" type="text/css" />
+
+        <script src="#{facesContext.externalContext.requestContextPath}/js/mascaras.js" type="text/javascript" />
         <title>Facelets Template</title>
     </head>
     
@@ -15,6 +17,12 @@
         
         <div id="top" class="top">
             <ui:insert name="top">Top</ui:insert>
+        </div>
+
+        <div id="menu" class="menu">
+            <ui:insert name="menu">
+                    <ui:include src="/posto/menu.xhtml"/>
+            </ui:insert>
         </div>
         
         <div id="content" class="center_content">

@@ -81,8 +81,29 @@
             <from-outcome>sucesso</from-outcome>
             <to-view-id>/admin/posto/listar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.DoLogout}</from-action>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.PostoDoEditar}</from-action>
+            <from-outcome>editar</from-outcome>
+            <to-view-id>/posto/posto/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.PostoDoTrocarSenha}</from-action>
+            <from-outcome>/posto/trocarSenha</from-outcome>
+            <to-view-id>/posto/posto/trocarSenha.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
+
+
+
 
 
 
