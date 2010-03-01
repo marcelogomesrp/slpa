@@ -10,12 +10,61 @@
     <body>
         <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
             <ui:define name="content">
-                <a4j:form>
+                <h:form>
                     <h:messages id="message" />
-                    <h:inputText id="tt" styleClass="CEPMask">
-                        <rich:jQuery query="" timing="onload"/>
-                    </h:inputText>
-                </a4j:form>
+                    <h:outputText value="UF*" />
+                    <a4j:region id="regiaoajx">
+                        <h:selectOneMenu id="ufInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                            <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
+                            <f:selectItems value="#{estadosBB.estados}" />
+                        </h:selectOneMenu>
+                    </a4j:region>
+
+                    <h:outputText value="Cidade*" />
+                    <a4j:status id="statusajax" for="regiaoajx">
+                        <f:facet name="start">
+                            <h:outputText value="Carregando as cidades, por favor aguarde..."/>
+                        </f:facet>
+                        <f:facet name="stop">
+                            <h:selectOneMenu id="cidadeInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
+                                <f:selectItems value="#{cidadeMB.cidades}" />
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </a4j:status>
+                    <h:commandButton value="Pesquisar" action="#{postoDeAtendimentoBB.PesquisarPorCidade}" />
+
+                    
+                    <rich:dataTable value="#{postoDeAtendimentoMB.postosDeAtendimento}" id="lista" var="postoDeAtendimento" width="100%" rendered="#{postoDeAtendimentoBB.postosDeAtendimentoTemItem}">
+                        <f:facet name="header">
+                        <rich:columnGroup styleClass="dataTableHeader">
+                            <h:column><h:outputText value="ID"/></h:column>
+                            <h:column><h:outputText value="Razao social"/></h:column>
+                            <h:column><h:outputText value="Detalhes"/></h:column>
+                            <h:column><h:outputText value="Editar"/></h:column>
+                        </rich:columnGroup>
+
+                    </f:facet>
+                        <rich:column>
+                            <h:outputText value="#{postoDeAtendimento.id}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{postoDeAtendimento.razaoSocial}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="detalhes" action="#{postoDeAtendimentoBB.DoDetalhesPage}"/>
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="editar" action="#{postoDeAtendimentoBB.DoEditarPage}"/>
+                        </rich:column>
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+                    <br />
+                    <h:outputText value="Selecione o estado e a cidade para visualizar os postos de atendimento" rendered="#{!postoDeAtendimentoBB.postosDeAtendimentoTemItem}" />
+                </h:form>
             </ui:define>
         </ui:composition>
 

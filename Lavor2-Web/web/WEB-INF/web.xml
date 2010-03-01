@@ -4,14 +4,17 @@
         <param-name>com.sun.faces.verifyObjects</param-name>
         <param-value>false</param-value>
     </context-param>
+
     <context-param>
         <param-name>com.sun.faces.validateXml</param-name>
         <param-value>true</param-value>
     </context-param>
+
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
     </context-param>
+
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
@@ -24,13 +27,13 @@
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
-    <!--
+    <!-- comentario inicio -->
     <context-param>
-        param-name>facelets.SKIP_COMMENTS</param-name>
-        param-value>true</param-value>
+        <param-name>facelets.SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
     </context-param>
-    -->
-    <!-- Rich faces -->
+    <!-- comentario fim-->
+    <!--richfaces inicio -->
     <context-param>
         <param-name>org.richfaces.SKIN</param-name>
         <param-value>blueSky</param-value>
@@ -38,7 +41,6 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>WEB-INF/applicationContext.xml</param-value>
-        <!-- <param-value>classpath:/applicationContext.xml, WEB-INF/webContext.xml</param-value> -->
     </context-param>
     <filter>
         <display-name>RichFaces Filter</display-name>
@@ -52,7 +54,7 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
-    <!-- Fim RichFaces -->
+    <!--Fim RichFaces  -->
     <filter>
         <filter-name>validaPosto</filter-name>
         <filter-class>lavor.controle.ValidarPosto</filter-class>
@@ -70,6 +72,7 @@
         <filter-name>validaAdmin</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
+    <!-- comentario fim -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -91,7 +94,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.jsf</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
