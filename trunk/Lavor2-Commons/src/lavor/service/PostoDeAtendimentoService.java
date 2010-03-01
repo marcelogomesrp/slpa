@@ -8,6 +8,7 @@ package lavor.service;
 import java.util.List;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Usuario;
 import lavor.utils.GenericExceptionMessageType;
 import org.springframework.dao.DataAccessException;
 
@@ -128,8 +129,10 @@ public class PostoDeAtendimentoService {
 
     public List pesquisarPorCidade(Long id) {
         return this.postoDeAtendimentoDao.pesquisarPorCidade(id);
+    }
 
-
+    public PostoDeAtendimento PesquisarPorUsuario(Usuario usuario){
+        return this.postoDeAtendimentoDao.pesquisarPorUsuario(usuario);
     }
 
 
