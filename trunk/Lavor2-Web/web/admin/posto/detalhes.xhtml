@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich">
+    
+    <body>
+        
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <h:form>
+                    <h:messages id="message" />
+                    <h:panelGrid columns="2" >
+
+                        <h:outputText value="Razao social" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.razaoSocial}" id="razaoSocialInput" size="60" />
+
+                        <h:outputText value="CNPJ" />
+
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cnpj}" id="cnpjInput" size="18" >
+                            <rich:jQuery selector="#cnpjInput" query="mask('99.999.999/9999-99')" timing="onload"/>
+                        </h:inputText>
+
+
+                        <h:outputText value="E-mail" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.usuario.email}" id="emailInput" size="60"/>
+
+                        <h:outputText value="Telefone" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.telefone}" id="telefoneInput" size="14" >
+                                     <rich:jQuery selector="#telefoneInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="Celular" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.celular}" id="celularInput" size="14" maxlength="14" >
+                            <rich:jQuery selector="#celularInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="Nome contato" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.nomeContato}" />
+
+
+                        <h:outputText value="Endereco" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.endereco}" id="enderecoInput" size="60" />
+
+                        <h:outputText value="Bairro" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.bairro}" id="bairroInput" size="60" />
+
+
+                        <h:outputText value="CEP" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.cep}" id="cepInput" size="9" >
+                            <rich:jQuery selector="#cepInput" query="mask('99999-999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="UF" />
+                        <h:inputText id="ufInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.estado}" size="2"/>
+
+                        <h:outputText value="Cidade" />
+                        <h:inputText id="cidadeInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.cidade}" />
+
+                    </h:panelGrid>                    
+                    <h:commandButton value="Voltar" action="#{postoDeAtendimentoBB.DoListarPageVoltar}" />
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

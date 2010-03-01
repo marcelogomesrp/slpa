@@ -3,15 +3,16 @@
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
 
 <faces-config version="1.2" 
-    xmlns="http://java.sun.com/xml/ns/javaee" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
     <application>
         <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-        <!-- Configura o Spring 2.5 para trabalhar com JSF 1.2 
+        <!-- Configura o Spring 2.5 para trabalhar com JSF 1.2
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver> -->
         <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
     </application>
+
 
     <validator>
         <validator-id>emailValidador</validator-id>
@@ -21,7 +22,8 @@
         <validator-id>razaoSocialValidator</validator-id>
         <validator-class>lavor.validadores.postodeatendimento.RazaoSocialValidator</validator-class>
     </validator>
-    
+
+
     <navigation-rule>
         <navigation-case>
             <from-action>#{indexBB.Entrar}</from-action>
@@ -35,14 +37,29 @@
             <to-view-id>/admin/Index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-
         <navigation-case>
             <from-action>#{postoDeAtendimentoBB.DoNovoPage}</from-action>
             <from-outcome>/admin/posto/novo</from-outcome>
             <to-view-id>/admin/posto/novo.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.DoDetalhesPage}</from-action>
+            <from-outcome>posto/detalhes</from-outcome>
+            <to-view-id>/admin/posto/detalhes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.DoEditarPage}</from-action>
+            <from-outcome>posto/editar</from-outcome>
+            <to-view-id>/admin/posto/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-action>#{postoDeAtendimentoBB.DoListarPage}</from-action>
+            <from-outcome>/admin/posto/listar</from-outcome>
+            <to-view-id>/admin/posto/listar.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.DoListarPageVoltar}</from-action>
             <from-outcome>/admin/posto/listar</from-outcome>
             <to-view-id>/admin/posto/listar.xhtml</to-view-id>
         </navigation-case>
@@ -58,7 +75,17 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>        
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.PesquisarPorCidade}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/posto/listar.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
+
+
+
 
 
 

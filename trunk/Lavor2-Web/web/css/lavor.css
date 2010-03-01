@@ -1,0 +1,22 @@
+/* 
+    Document   : lavor
+    Created on : Mar 1, 2010, 11:07:46 AM
+    Author     : marcelo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.odd-row {
+    background-color: #ECF3FE;
+}
+.even-row {
+    background-color: #FCFFFE;
+}
+.active-row {
+    background-color: #FFEBDA;
+}

@@ -12,6 +12,11 @@
         <ui:composition template="/WEB-INF/template/template.xhtml">
             <ui:define name="body">
                 <h:form>
+
+                    <h:inputText id="cpf">
+                         <rich:jQuery selector="#cpf" query="mask('9.9.9.999.999-  99')" timing="onload"/>
+                     </h:inputText>
+
                     <rich:panel >
                         <f:facet name="header">
                             <h:outputText value="Login" />
