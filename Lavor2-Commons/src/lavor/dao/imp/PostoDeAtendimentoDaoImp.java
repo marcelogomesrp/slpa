@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Usuario;
 
 /**
  *
@@ -33,6 +34,17 @@ public class PostoDeAtendimentoDaoImp extends DaoGenericoImp<PostoDeAtendimento,
         List<PostoDeAtendimento> postosDeAtendimento = listPesqParam(SQL, params);
          //List<PostoDeAtendimento> postosDeAtendimento  = this.todos();
         return postosDeAtendimento;        
+    }
+
+    public PostoDeAtendimento pesquisarPorUsuario(Usuario usuario) {
+        String SQL = "SELECT p from PostoDeAtendimento p WHERE usuario.id = :id";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", usuario.getId());
+        List<PostoDeAtendimento> postosDeAtendimento = listPesqParam(SQL, params);
+        if(postosDeAtendimento.size() == 1 ){
+            return postosDeAtendimento.get(0);
+        }
+        return new PostoDeAtendimento();
     }
 
 }
