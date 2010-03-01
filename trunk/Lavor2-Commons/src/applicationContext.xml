@@ -29,13 +29,13 @@
         <property name="usuarioDao"             ref="usuarioDao" />
     </bean>
 
-    <bean class="lavor.service.PostoDeAtendimentoService"   id="postoDeAtendimentoService" >
-        <property name="postoDeAtendimentoDao"  ref="postoDeAtendimentoDao" />
-        <property name="usuarioService"             ref="cidadeService" />
-    </bean>
-
     <bean class="lavor.service.CidadeService"               id="cidadeService" >
         <property name="cidadeDao"              ref="cidadeDao" />
+    </bean>
+
+    <bean class="lavor.service.PostoDeAtendimentoService"   id="postoDeAtendimentoService" >
+        <property name="postoDeAtendimentoDao"      ref="postoDeAtendimentoDao" />
+        <property name="usuarioService"             ref="usuarioService" />
     </bean>
 
 </beans>

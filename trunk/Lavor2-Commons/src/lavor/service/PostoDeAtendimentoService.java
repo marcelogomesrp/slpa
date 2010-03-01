@@ -5,6 +5,7 @@
 
 package lavor.service;
 
+import java.util.List;
 import lavor.dao.PostoDeAtendimentoDao;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.utils.GenericExceptionMessageType;
@@ -98,6 +99,14 @@ public class PostoDeAtendimentoService {
     public PostoDeAtendimento pesquisarPorRazaoSocial(PostoDeAtendimento postoDeAtendimento){
         return this.pesquisarPorRazaoSocial(postoDeAtendimento.getRazaoSocial());
     }
+
+    public List pesquisarPorCidade(Long id) {
+        return this.postoDeAtendimentoDao.pesquisarPorCidade(id);
+
+
+    }
+
+
 
 
 }
