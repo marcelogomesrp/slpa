@@ -121,8 +121,15 @@ public class UsuarioService {
         this.SenhaValida(usuario.getSenha());
         this.TipoUsuarioValido(usuario.getTipoUsuario());
         return true;
-
     }
+
+    void PodeSerAtualizador(Usuario usuarioNovo, Usuario usuario0riginal) throws ServiceException {
+        if(!usuarioNovo.getEmail().equals(usuario0riginal.getEmail())){
+            this.EmailValido(usuarioNovo.getEmail());
+            this.EmailExitente(usuarioNovo.getEmail());
+        }        
+    }
+
     
     public Usuario PesqPorId(Long id){
         Usuario usuario = this.usuarioDao.pesquisarPorId(id);
@@ -133,6 +140,8 @@ public class UsuarioService {
     public Usuario PesqPorEmail(String email){
         return this.usuarioDao.pesquisarPorEmail(email);
     }
+
+
 
 
 
