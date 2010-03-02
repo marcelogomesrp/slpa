@@ -23,19 +23,24 @@
     <bean class="lavor.dao.imp.UsuarioDaoImp"               id="usuarioDao" />
     <bean class="lavor.dao.imp.PostoDeAtendimentoDaoImp"    id="postoDeAtendimentoDao" />
     <bean class="lavor.dao.imp.CidadeDaoImp"                id="cidadeDao" />
+    <bean class="lavor.dao.imp.LinhaDaoImp"                 id="linhaDao" />
 
 
     <bean class="lavor.service.UsuarioService"              id="usuarioService" >
-        <property name="usuarioDao"             ref="usuarioDao" />
+        <property name="usuarioDao"                 ref="usuarioDao" />
     </bean>
 
     <bean class="lavor.service.CidadeService"               id="cidadeService" >
-        <property name="cidadeDao"              ref="cidadeDao" />
+        <property name="cidadeDao"                  ref="cidadeDao" />
     </bean>
 
     <bean class="lavor.service.PostoDeAtendimentoService"   id="postoDeAtendimentoService" >
         <property name="postoDeAtendimentoDao"      ref="postoDeAtendimentoDao" />
         <property name="usuarioService"             ref="usuarioService" />
+    </bean>
+
+    <bean class="lavor.service.LinhaService"                id="linhaService" >
+        <property name="linhaDao"                   ref="linhaDao" />
     </bean>
 
 </beans>
