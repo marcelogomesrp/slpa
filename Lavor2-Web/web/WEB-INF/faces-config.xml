@@ -97,8 +97,14 @@
             <from-outcome>/posto/trocarSenha</from-outcome>
             <to-view-id>/posto/posto/trocarSenha.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{linhaBB.DoNovoLinhaPage}</from-action>
+            <from-outcome>/linha/novo</from-outcome>
+            <to-view-id>/admin/linha/novo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 

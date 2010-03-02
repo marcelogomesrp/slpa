@@ -24,11 +24,13 @@
 
             <rich:dropDownMenu>
                 <f:facet name="label">
-                    <h:outputText value="Principal2" />
+                    <h:outputText value="Linha" />
                 </f:facet>
+                <rich:menuItem action="#{linhaBB.DoNovoLinhaPage}">
+                    <h:outputText value="Nova" />
+                </rich:menuItem>
+
                 <rich:menuItem>
-                    <h:outputText value="valorA" />
-                </rich:menuItem><rich:menuItem>
                     <h:outputText value="valorB" />
                 </rich:menuItem><rich:menuItem>
                     <h:outputText value="valorC" />
