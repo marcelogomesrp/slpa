@@ -5,6 +5,7 @@
     <class>lavor.entidade.Usuario</class>
     <class>lavor.entidade.PostoDeAtendimento</class>
     <class>lavor.entidade.Cidade</class>
+    <class>lavor.entidade.Linha</class>
     <properties>
       <!-- Para buscar as entidades tem qua adicionar uma anotacao na entidade
       <property name="hibernate.archive.autodetection" value="class, hbm"/> -->
