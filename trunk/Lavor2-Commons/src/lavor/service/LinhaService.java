@@ -51,7 +51,16 @@ public class LinhaService {
             throw serviceException;
         }
         return true;
+    }
 
+    private boolean PodeSerAtualizado(Linha linha) throws ServiceException {
+        // TODO: testar se o nome foi troca caso sim se ele eh o unico
+        this.NomeValido(linha.getNome());
+        
+        if (serviceException.hasMessages()) {
+            throw serviceException;
+        }
+        return true;
     }
 
     public Linha Salvar(Linha linha) throws ServiceException{
@@ -65,12 +74,30 @@ public class LinhaService {
         }
         return linha;
     }
+    public void Atualizar(Linha linha) throws ServiceException {
+        this.serviceException = new ServiceException();
+        try{
+            if(this.PodeSerAtualizado(linha)){
+                linha = this.linhaDao.atualizar(linha);
+            }
+        }catch(DataAccessException ex){
+            throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);
+        }
+    }
 
     public List<Linha> PesquisarPorNome(String nome){
         List linhas = null;
         linhas = this.linhaDao.pesquisarPorNome(nome);
         return linhas;
     }
+
+    public List<Linha> Todos(){
+        return linhaDao.todos();
+    }
+
+
+
+
 
 
 
