@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <body>
+        
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+
+
+            <ui:define name="content">
+                <h:form>
+                    <h:messages id="message" />
+                    <h:panelGrid columns="2" >
+
+                        <h:outputText value="ID " />
+                        <h:outputText value="#{linhaMB.linha.id}" />
+
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{linhaMB.linha.nome}" />
+
+                        <h:outputText value="Descricao" />
+                        <h:inputText value="#{linhaMB.linha.descricao}" />
+
+                     </h:panelGrid>
+                    <h:commandButton value="Atualizar" action="#{linhaBB.Atualizar}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

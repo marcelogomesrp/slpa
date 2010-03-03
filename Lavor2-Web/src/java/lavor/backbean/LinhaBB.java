@@ -5,7 +5,9 @@
 
 package lavor.backbean;
 
+import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Linha;
 import lavor.managedBean.LinhaMB;
 import lavor.service.LinhaService;
@@ -37,6 +39,17 @@ public class LinhaBB {
         return "/linha/novo";
     }
 
+    public String DoListarPage(){
+        List<Linha> linhas = linhaService.Todos();
+        this.linhaMB.setLinhas(new ListDataModel(linhas));
+        return "/linha/listar";
+    }
+
+    public String DoEditarPage(){
+        this.linhaMB.setLinha((Linha) linhaMB.getLinhas().getRowData());
+        return "/linha/editar";
+    }
+
     public String Salvar(){
         try{
             linhaService.Salvar(linhaMB.getLinha());
@@ -44,6 +57,16 @@ public class LinhaBB {
             linhaMB.setLinha(new Linha());
         }catch(Exception ex){
             FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
+        }
+        return "sucesso";
+    }
+
+    public String Atualizar(){
+        try{
+            linhaService.Atualizar(linhaMB.getLinha());
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Linha atualizada com sucesso" );
+        }catch(Exception ex){
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar..");
         }
         return "sucesso";
     }

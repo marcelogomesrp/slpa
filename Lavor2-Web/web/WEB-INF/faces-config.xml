@@ -102,8 +102,20 @@
             <from-outcome>/linha/novo</from-outcome>
             <to-view-id>/admin/linha/novo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{linhaBB.DoListarPage}</from-action>
+            <from-outcome>/linha/listar</from-outcome>
+            <to-view-id>/admin/linha/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{linhaBB.DoEditarPage}</from-action>
+            <from-outcome>/linha/editar</from-outcome>
+            <to-view-id>/admin/linha/editar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
 
 
 
