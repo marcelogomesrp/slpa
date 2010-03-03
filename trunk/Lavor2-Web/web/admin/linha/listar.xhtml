@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <body>
+        
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+
+
+            <ui:define name="content">
+                <h:form>
+                    <h:messages id="message" />
+
+                    <h:dataTable value="#{linhaMB.linhas}" var="linha" width="100%" >
+
+                        <f:facet name="header">
+                        <rich:columnGroup styleClass="dataTableHeader">
+                            <h:column><h:outputText value="ID"/></h:column>
+                            <h:column><h:outputText value="Nome"/></h:column>
+                            <h:column><h:outputText value="Editar"/></h:column>
+                        </rich:columnGroup>
+                    </f:facet>
+                        <h:column>
+                            <h:outputText value="#{linha.id}" />
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{linha.nome}" />
+                        </h:column>
+                        <h:column>
+                            <h:commandLink value="editar" action="#{linhaBB.DoEditarPage}" />
+                        </h:column>
+                    </h:dataTable>
+
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
