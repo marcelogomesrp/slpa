@@ -6,7 +6,10 @@
 package principal;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Usuario;
 import lavor.service.PostoDeAtendimentoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,6 +33,15 @@ public class Main {
              System.out.println("Posto " + posto.getId() + posto.getRazaoSocial());
 
          }
+
+         Usuario usuario = new Usuario();
+        try {
+            usuario.setSenha("admin...");
+            System.out.println(usuario.getSenha());
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 //
 //        String regex = "[0-9]+";
 //        Pattern pattern = Pattern.compile(regex);
