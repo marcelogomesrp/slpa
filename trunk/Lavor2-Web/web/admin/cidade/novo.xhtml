@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    
+    <body>
+        
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+
+
+            <ui:define name="content">
+                Cidade
+                <h:form>
+                    <h:messages id="message" />
+                    <h:panelGrid columns="2" >
+
+                        <h:outputText value="Cidade" />
+                        <h:inputText value="#{cidadeMB.cidade.cidade}" id="cidadeInput" required="true" requiredMessage="A cidade deve ser informada"/>
+
+                        <h:outputText value="Estado" />
+                         <h:selectOneMenu id="ufInput" value="#{cidadeMB.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                                <f:selectItems value="#{estadosBB.estados}" />
+                            </h:selectOneMenu>
+
+                     </h:panelGrid>
+                    <h:commandButton value="Salvar" action="#{cidadeBB.Salvar}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

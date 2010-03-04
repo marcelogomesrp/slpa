@@ -18,8 +18,6 @@
                     <h:outputText value="Listar" />
                 </rich:menuItem>
 
-                
-
             </rich:dropDownMenu>
 
             <rich:dropDownMenu>
@@ -34,6 +32,16 @@
                     <h:outputText value="Listar" />
                 </rich:menuItem><rich:menuItem>
                     <h:outputText value="valorC" />
+                </rich:menuItem>
+
+            </rich:dropDownMenu>
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Cidade" />
+                </f:facet>
+                <rich:menuItem action="#{cidadeBB.DoNovoCidadePage}" >
+                    <h:outputText value="Nova" />
                 </rich:menuItem>
 
             </rich:dropDownMenu>

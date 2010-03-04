@@ -112,8 +112,14 @@
             <from-outcome>/linha/editar</from-outcome>
             <to-view-id>/admin/linha/editar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{cidadeBB.DoNovoCidadePage}</from-action>
+            <from-outcome>/cidade/admin</from-outcome>
+            <to-view-id>/admin/cidade/novo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 

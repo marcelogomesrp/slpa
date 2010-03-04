@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 @Controller("cidadeMB")
 @Scope("session")
 public class CidadeMB implements Serializable{
+    private Cidade cidade;
 
     List<SelectItem> cidades;
     @Resource
@@ -31,7 +32,16 @@ public class CidadeMB implements Serializable{
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
 
     public CidadeMB() {
+        this.cidade  = new Cidade();
         this.cidades = new ArrayList<SelectItem>();
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     public List<SelectItem> getCidades() {
@@ -67,8 +77,8 @@ public class CidadeMB implements Serializable{
     public String AtualizarListaDeCidades(){
         this.LimparListaDeCidades();
         List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
-        for(Cidade cidade:ListaDeCidades){
-            cidades.add(new SelectItem(cidade.getCidade().toString()));
+        for(Cidade cid:ListaDeCidades){
+            cidades.add(new SelectItem(cid.getCidade().toString()));
         }
         return null;
     }
