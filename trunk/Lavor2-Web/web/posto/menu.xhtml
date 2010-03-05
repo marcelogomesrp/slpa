@@ -18,16 +18,14 @@
                     <h:outputText value="Trocar senha" />
                 </rich:menuItem>
 
-                
-
             </rich:dropDownMenu>
 
             <rich:dropDownMenu>
                 <f:facet name="label">
-                    <h:outputText value="Principal2" />
+                    <h:outputText value="Cliente" />
                 </f:facet>
-                <rich:menuItem>
-                    <h:outputText value="valorA" />
+                <rich:menuItem action="#{clienteBB.DoNovoClientePage}" >
+                    <h:outputText value="Novo" />
                 </rich:menuItem><rich:menuItem>
                     <h:outputText value="valorB" />
                 </rich:menuItem><rich:menuItem>

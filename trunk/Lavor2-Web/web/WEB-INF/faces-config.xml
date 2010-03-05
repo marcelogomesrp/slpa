@@ -116,9 +116,16 @@
             <from-action>#{cidadeBB.DoNovoCidadePage}</from-action>
             <from-outcome>/cidade/admin</from-outcome>
             <to-view-id>/admin/cidade/novo.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-action>#{clienteBB.DoNovoClientePage}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/posto/cliente/novo.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
 
 
 
