@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+
+
+            <ui:define name="content">
+                <h:messages id="message" />
+                
+                <h:form>
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{clienteMB.cliente.nome}" id="nomeInput" size="60" maxlength="255" required="true" requiredMessage="O nome deve ser informado"/>
+
+                        <h:outputText value="Telefone" />
+                        <h:inputText value="#{clienteMB.cliente.telefone}" id="telefoneInput" size="10" maxlength="10" >
+                            <rich:jQuery selector="#telefoneInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="Celular" />
+                        <h:inputText value="#{clienteMB.cliente.celular}" id="celularInput" size="10" maxlength="10" >
+                            <rich:jQuery selector="#celularInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
+                        <h:outputText value="Endereco" />
+                        <h:inputText value="#{clienteMB.cliente.endereco}" id="enderecoInput" size="60" maxlength="255" />
+
+
+                        <h:outputText value="UF" />
+                        <a4j:region id="regiaoajx">
+                            <h:selectOneMenu id="ufInput" value="#{clienteMB.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                                <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
+                                <f:selectItems value="#{estadosBB.estados}" />
+                            </h:selectOneMenu>
+                        </a4j:region>
+
+                        <h:outputText value="Cidade" />
+                        <a4j:status id="statusajax" for="regiaoajx">
+                            <f:facet name="start">
+                                <h:outputText value="Carregando as cidades, por favor aguarde..."/>
+                            </f:facet>
+                            <f:facet name="stop">
+                                <h:selectOneMenu id="cidadeInput" value="#{clienteMB.cliente.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
+                                    <f:selectItems value="#{cidadeMB.cidades}" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </a4j:status>
+
+                    </h:panelGrid>
+                    <h:commandButton value="Salvar" action="#{clienteBB.Salvar}"/>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
