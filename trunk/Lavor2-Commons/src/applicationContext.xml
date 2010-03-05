@@ -24,6 +24,7 @@
     <bean class="lavor.dao.imp.PostoDeAtendimentoDaoImp"    id="postoDeAtendimentoDao" />
     <bean class="lavor.dao.imp.CidadeDaoImp"                id="cidadeDao" />
     <bean class="lavor.dao.imp.LinhaDaoImp"                 id="linhaDao" />
+    <bean class="lavor.dao.imp.ClienteDaoImp"               id="clienteDao" />
 
 
     <bean class="lavor.service.UsuarioService"              id="usuarioService" >
@@ -41,6 +42,10 @@
 
     <bean class="lavor.service.LinhaService"                id="linhaService" >
         <property name="linhaDao"                   ref="linhaDao" />
+    </bean>
+
+    <bean class="lavor.service.ClienteService"              id="clienteService" >
+        <property name="clienteDao"                 ref="cidadeDao" />
     </bean>
 
 </beans>

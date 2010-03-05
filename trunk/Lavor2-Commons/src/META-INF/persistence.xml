@@ -6,6 +6,14 @@
     <class>lavor.entidade.PostoDeAtendimento</class>
     <class>lavor.entidade.Cidade</class>
     <class>lavor.entidade.Linha</class>
+    <class>lavor.entidade.Cliente</class>
+    <class>lavor.entidade.Equipamento</class>
+    <class>lavor.entidade.Peca</class>
+    <class>lavor.entidade.EquipamentCliente</class>
+    <class>lavor.entidade.Pedido</class>
+    <class>lavor.entidade.ItemPedido</class>
+    <class>lavor.entidade.Servico</class>
+    <class>lavor.entidade.Revenda</class>
     <properties>
       <!-- Para buscar as entidades tem qua adicionar uma anotacao na entidade
       <property name="hibernate.archive.autodetection" value="class, hbm"/> -->
