@@ -5,10 +5,11 @@
 
 package lavor.backbean;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
+import lavor.managedBean.CidadeMB;
 import lavor.managedBean.ClienteMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.CidadeService;
@@ -31,6 +32,8 @@ public class ClienteBB {
     private ClienteMB clienteMB;
     @Resource
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
+    @Resource
+    private CidadeMB cidadeMB;
 
     @Resource
     private CidadeService cidadeService;
@@ -42,7 +45,13 @@ public class ClienteBB {
 
     public String DoNovoClientePage(){
         this.clienteMB.setCliente(new Cliente());
+        this.clienteMB.setClientes(new ListDataModel());
+        this.cidadeMB.LimparListaDeCidades();
         return "sucesso";
+    }
+    public String DoLocalizarClientePage(){
+        this.clienteMB.setCliente(new Cliente());
+        return "/cliente/listar";
     }
 
     public String Salvar(){
@@ -52,10 +61,20 @@ public class ClienteBB {
             cliente.setCidade(cidadeService.PesquisarPorCidadeEstado(cliente.getCidade().getCidade(), cliente.getCidade().getEstado()));
             this.clienteService.Salvar(cliente);
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente gravado com sucesso" );
+            this.DoNovoClientePage();
         } catch (ServiceException ex) {
             FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
         }
         return "sucesso";
+    }
+
+    public String Pesquisar(){
+        //List<Cliente> clientes = this.clienteService.PesquisarPorNome(this.clienteMB.getCliente().getNome());
+        String nome = this.clienteMB.getCliente().getNome();
+        Long   id   = this.postoDeAtendimentoMB.getPostoDeAtendimento().getId();
+        List<Cliente> clientes = this.clienteService.PesquisarPorNomePostoDeAtendimento(nome, id);
+        this.clienteMB.setClientes( new ListDataModel(clientes));
+        return "cliente/listar";
     }
 
 }

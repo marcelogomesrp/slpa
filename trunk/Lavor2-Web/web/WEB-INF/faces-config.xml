@@ -122,8 +122,19 @@
             <from-outcome>sucesso</from-outcome>
             <to-view-id>/posto/cliente/novo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{clienteBB.DoLocalizarClientePage}</from-action>
+            <from-outcome>/cliente/listar</from-outcome>
+            <to-view-id>/posto/cliente/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{clienteBB.Pesquisar}</from-action>
+            <from-outcome>/cliente/listar</from-outcome>
+            <to-view-id>/posto/cliente/listar.xhtml</to-view-id>
+        </navigation-case>        
     </navigation-rule>
 </faces-config>
+
 
 
 
