@@ -6,6 +6,7 @@
 package lavor.managedBean;
 
 import java.io.Serializable;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -19,9 +20,11 @@ import org.springframework.stereotype.Controller;
 @Scope("session")
 public class ClienteMB implements Serializable{
     private Cliente cliente;
+    private ListDataModel clientes;
 
     public ClienteMB() {
-        this.cliente = new Cliente();
+        this.cliente    = new Cliente();
+        this.clientes   = new ListDataModel();
     }
 
     public Cliente getCliente() {
@@ -30,6 +33,14 @@ public class ClienteMB implements Serializable{
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public ListDataModel getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ListDataModel clientes) {
+        this.clientes = clientes;
     }
 
 

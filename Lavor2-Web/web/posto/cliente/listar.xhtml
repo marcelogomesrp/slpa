@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+
+
+            <ui:define name="content">
+                <h:messages id="message" />
+                
+                <h:form>
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{clienteMB.cliente.nome}" id="nomeInput" size="60" maxlength="255" required="true" requiredMessage="O nome deve ser informado"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Pesquisar" action="#{clienteBB.Pesquisar}" />
+                    <br />
+                    <rich:dataTable value="#{clienteMB.clientes}" id="lista" var="cliente" width="100%" >
+                            <f:facet name="header">
+                                <rich:columnGroup styleClass="dataTableHeader">
+                                    <h:column><h:outputText value="ID"/></h:column>
+                                    <h:column><h:outputText value="nome"/></h:column>
+                                    <h:column><h:outputText value="telefone"/></h:column>
+                                    <h:column><h:outputText value="celular"/></h:column>
+                                </rich:columnGroup>
+                            </f:facet>
+
+                            <h:column>
+                                <h:outputText value="#{cliente.id}" />
+                            </h:column>
+
+                            <h:column>
+                                <h:outputText value="#{cliente.nome}" />
+                            </h:column>
+
+                            <h:column>
+                                <h:outputText value="#{cliente.telefone}" />
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="#{cliente.celular}" />
+                            </h:column>
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
