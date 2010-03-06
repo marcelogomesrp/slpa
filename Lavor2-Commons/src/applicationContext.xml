@@ -45,7 +45,7 @@
     </bean>
 
     <bean class="lavor.service.ClienteService"              id="clienteService" >
-        <property name="clienteDao"                 ref="cidadeDao" />
+        <property name="clienteDao"                 ref="clienteDao" />
     </bean>
 
 </beans>

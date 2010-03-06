@@ -8,15 +8,16 @@ package principal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Cliente;
 import lavor.entidade.Usuario;
-import lavor.service.PostoDeAtendimentoService;
+import lavor.service.ClienteService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
  * @author marcelo
+ * admin... c40147fb475416501cbf295d97a881f2
  */
 public class Main {
 
@@ -26,21 +27,21 @@ public class Main {
     public static void main(String[] args) {
          ApplicationContext context  = new ClassPathXmlApplicationContext("applicationContext.xml");
          //PostoDeAtendimentoDao postoDeAtendimentoDao = (PostoDeAtendimentoDao) context.getBean("postoDeAtendimentoDao");
-         PostoDeAtendimentoService postoDeAtendimentoService = (PostoDeAtendimentoService) context.getBean("postoDeAtendimentoService");
+         ClienteService clienteService = (ClienteService) context.getBean("clienteService");
 
-         List<PostoDeAtendimento> postos = postoDeAtendimentoService.pesquisarPorCidade(1L);
-         for(PostoDeAtendimento posto:postos){
-             System.out.println("Posto " + posto.getId() + posto.getRazaoSocial());
+         List<Cliente> clientes = clienteService.PesquisarPorNome("Cliente%");
+         for(Cliente cliente:clientes){
+             System.out.println("Cliente: " + cliente.getId() + cliente.getNome());
 
          }
-
-         Usuario usuario = new Usuario();
-        try {
-            usuario.setSenha("admin...");
-            System.out.println(usuario.getSenha());
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//
+////         Usuario usuario = new Usuario();
+////        try {
+////            usuario.setSenha("admin...");
+////            System.out.println(usuario.getSenha());
+////        } catch (Exception ex) {
+////            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+////        }
 
 //
 //        String regex = "[0-9]+";
