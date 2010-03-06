@@ -6,10 +6,14 @@
 package lavor.entidade;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +25,11 @@ public class Equipamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name="modelo", length=200, nullable=false)
+    private String modelo;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_linha", nullable=false)
+    private Linha linha;
 
     public Long getId() {
         return id;
@@ -29,6 +38,23 @@ public class Equipamento implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Linha getLinha() {
+        return linha;
+    }
+
+    public void setLinha(Linha linha) {
+        this.linha = linha;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+    
 
     @Override
     public int hashCode() {

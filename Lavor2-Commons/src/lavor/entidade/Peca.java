@@ -6,10 +6,14 @@
 package lavor.entidade;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +25,17 @@ public class Peca implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable=false)
+    private int posicao;
+    @Column(name="codigo_importacao", length=20, nullable=false)
+    private String codigoImportacao;
+    @Column(nullable=false, name="quantidade_maxima")
+    private int quantidadeMaxima;
+    @Column(nullable=false, length=255)
+    private String descricao;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="id_equipamento", nullable=false)
+    private Equipamento equipamento;
 
     public Long getId() {
         return id;
@@ -29,6 +44,47 @@ public class Peca implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getCodigoImportacao() {
+        return codigoImportacao;
+    }
+
+    public void setCodigoImportacao(String codigoImportacao) {
+        this.codigoImportacao = codigoImportacao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Equipamento getEquipamento() {
+        return equipamento;
+    }
+
+    public void setEquipamento(Equipamento equipamento) {
+        this.equipamento = equipamento;
+    }
+
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
+
+    public int getQuantidadeMaxima() {
+        return quantidadeMaxima;
+    }
+
+    public void setQuantidadeMaxima(int quantidadeMaxima) {
+        this.quantidadeMaxima = quantidadeMaxima;
+    }
+
 
     @Override
     public int hashCode() {
