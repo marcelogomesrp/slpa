@@ -32,7 +32,6 @@ public class PostoDeAtendimentoDaoImp extends DaoGenericoImp<PostoDeAtendimento,
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", id);
         List<PostoDeAtendimento> postosDeAtendimento = listPesqParam(SQL, params);
-         //List<PostoDeAtendimento> postosDeAtendimento  = this.todos();
         return postosDeAtendimento;        
     }
 

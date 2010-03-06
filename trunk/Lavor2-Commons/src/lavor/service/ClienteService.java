@@ -6,8 +6,11 @@
 package lavor.service;
 
 import java.io.Serializable;
+import java.lang.String;
+import java.util.List;
 import lavor.dao.ClienteDao;
 import lavor.entidade.Cliente;
+import lavor.entidade.PostoDeAtendimento;
 import lavor.utils.GenericExceptionMessageType;
 
 /**
@@ -53,6 +56,18 @@ public class ClienteService implements Serializable{
         }
         return cliente;
     }
+
+    public List<Cliente> PesquisarPorNome(String nome){
+        return this.clienteDao.PesquisarPorNome(nome);
+        //return this.clienteDao.todos();
+    }
+    
+    public List<Cliente> PesquisarPorNomePostoDeAtendimento(String nome, Long id){        
+        return this.clienteDao.PesquisarPorNomePostoDeAtendimento(nome, id);
+        //return this.clienteDao.todos();
+    }
+
+
 
 
 
