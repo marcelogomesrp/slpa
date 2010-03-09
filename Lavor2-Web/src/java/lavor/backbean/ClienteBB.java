@@ -51,6 +51,7 @@ public class ClienteBB {
     }
     public String DoLocalizarClientePage(){
         this.clienteMB.setCliente(new Cliente());
+        this.clienteMB.setClientes(new ListDataModel());
         return "/cliente/listar";
     }
 

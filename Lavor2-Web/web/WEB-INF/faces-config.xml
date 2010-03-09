@@ -131,9 +131,15 @@
             <from-action>#{clienteBB.Pesquisar}</from-action>
             <from-outcome>/cliente/listar</from-outcome>
             <to-view-id>/posto/cliente/listar.xhtml</to-view-id>
-        </navigation-case>        
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{equipamentoBB.DoNovoEquipamentoPage}</from-action>
+            <from-outcome>/equipamento/novo</from-outcome>
+            <to-view-id>/admin/equipamento/novo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 
