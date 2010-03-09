@@ -16,4 +16,6 @@ public interface EquipamentoDao extends DaoGenerico<Equipamento, Long> {
 
     public List<Equipamento> PesquisarPorNome(String nome);
 
+    public List<Equipamento> PesquisarPorLinha(Long id);
+
 }

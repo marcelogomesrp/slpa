@@ -5,6 +5,8 @@
 
 package lavor.dao;
 
+import java.util.List;
+import lavor.entidade.Equipamento;
 import lavor.entidade.Peca;
 
 /**
@@ -12,5 +14,7 @@ import lavor.entidade.Peca;
  * @author marcelo
  */
 public interface PecaDao extends DaoGenerico<Peca, Long>{
+
+    public List<Peca> PesquisarPorPosicaoEquipamento(int posicao, Equipamento equipamento);
 
 }

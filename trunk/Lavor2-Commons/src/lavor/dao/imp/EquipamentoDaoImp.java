@@ -23,7 +23,15 @@ public class EquipamentoDaoImp extends DaoGenericoImp<Equipamento, Long> impleme
         params.put("nome", nome);
         List<Equipamento> equipamentos = this.listPesqParam(SQL, params);
         return equipamentos;
-    }        
+    }
+
+    public List<Equipamento> PesquisarPorLinha(Long id) {
+        String SQL = "SELECT e from Equipamento e  WHERE linha.id = :id";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        List<Equipamento> equipamentos = this.listPesqParam(SQL, params);
+        return equipamentos;
+    }
 
 
 }
