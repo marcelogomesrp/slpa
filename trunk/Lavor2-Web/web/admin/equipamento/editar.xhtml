@@ -13,7 +13,8 @@
         <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
 
 
-            <ui:define name="content">                
+            <ui:define name="content">
+                Editar
                 <h:form>
                     <h:messages id="message" />
                     <h:panelGrid columns="2" >
@@ -25,9 +26,11 @@
                         <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
                                 <f:selectItems value="#{linhaMB.selectLinhas}" />
                         </h:selectOneMenu>
-
+                        <br />
+                        <h:commandButton value="Atualizar" action="#{equipamentoBB.Atualizar}" />
+                        <h:commandButton value="Adicionar Peca" action="#{pecaBB.DoNovoPage}" />
                      </h:panelGrid>
-                    <h:commandButton value="Salvar" action="#{equipamentoBB.Salvar}" />
+                    
                     
                 </h:form>
             </ui:define>

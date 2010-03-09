@@ -137,8 +137,26 @@
             <from-outcome>/equipamento/novo</from-outcome>
             <to-view-id>/admin/equipamento/novo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{equipamentoBB.DoPesquisarPage}</from-action>
+            <from-outcome>/equipamento/listar</from-outcome>
+            <to-view-id>/admin/equipamento/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{equipamentoBB.DoEditarPage}</from-action>
+            <from-outcome>/equipamento/editar</from-outcome>
+            <to-view-id>/admin/equipamento/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pecaBB.DoNovoPage}</from-action>
+            <from-outcome>/peca/novo</from-outcome>
+            <to-view-id>/admin/peca/novo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
+
 
 
 

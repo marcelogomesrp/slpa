@@ -5,7 +5,9 @@
 
 package lavor.backbean;
 
+import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Equipamento;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.LinhaMB;
@@ -45,6 +47,18 @@ public class EquipamentoBB {
         return "/equipamento/novo" ;
     }
 
+    public String DoPesquisarPage(){
+        this.equipamentoMB.setEquipamento(new Equipamento());
+        this.linhaBB.TodasAsLinhas();
+        this.equipamentoMB.setEquipamentos(new ListDataModel());
+        return "/equipamento/listar";
+    }
+
+    public String DoEditarPage(){
+        this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        return "/equipamento/editar";
+    }
+
     public String Salvar(){
         try{
             equipamentoService.Salvar(equipamentoMB.getEquipamento());
@@ -55,5 +69,24 @@ public class EquipamentoBB {
         }
         return "sucesso";
     }
+
+    public String Atualizar(){
+        Equipamento equipamentoAtualizado =  new Equipamento();
+        try{
+            equipamentoAtualizado = equipamentoService.Atualizar(equipamentoMB.getEquipamento());
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Equipamento gravado com sucesso" );
+        }catch(Exception ex){
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar..");
+        }
+        return "sucesso";
+    }
+
+    public String PesquisarLinha(){
+        List<Equipamento> equipamentos = this.equipamentoService.PesquisarPorLinha(this.equipamentoMB.getEquipamento().getLinha().getId());
+        this.equipamentoMB.setEquipamentos(new ListDataModel(equipamentos));
+        return "/equipamento/listar";
+    }
+
+
 
 }
