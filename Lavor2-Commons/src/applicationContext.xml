@@ -51,11 +51,14 @@
     </bean>
 
     <bean class="lavor.service.EquipamentoService"          id="equipamentoService" >
-        <property name="equipamentoDao"                 ref="equipamentoDao" />
+        <property name="equipamentoDao"             ref="equipamentoDao" />
+        <property name="linhaService"               ref="linhaService" />
     </bean>
 
-    <bean class="lavor.service.PecaService"          id="pecaService" >
-        <property name="pecaDao"                 ref="pecaDao" />
+    <bean class="lavor.service.PecaService"                 id="pecaService" >
+        <property name="pecaDao"                    ref="pecaDao" />
     </bean>
+
+
 
 </beans>

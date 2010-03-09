@@ -14,22 +14,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 /**
  *
  * @author marcelo
  */
 @Entity
+@Table(name="equipamento")
 public class Equipamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="modelo", length=200, nullable=false)
+    @Column(name="modelo", length=200, nullable=false, unique=true)
     private String modelo;
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="id_linha", nullable=false)
     private Linha linha;
+
+    public Equipamento() {
+        this.linha = new Linha();
+    }
+
+
 
     public Long getId() {
         return id;
@@ -79,6 +88,7 @@ public class Equipamento implements Serializable {
     @Override
     public String toString() {
         return "lavor.entidade.Equipamento[id=" + id + "]";
+
     }
 
 }
