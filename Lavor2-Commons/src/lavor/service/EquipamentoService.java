@@ -40,7 +40,7 @@ public class EquipamentoService {
         this.linhaService = linhaService;
     }
 
-    
+     
     private void ModeloValido(String modelo) {
         if(lavor.utils.StringUtils.isNullOrEmpty(modelo)){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "O modelo deve ser informado");
@@ -52,6 +52,10 @@ public class EquipamentoService {
         if(equipamentos.size() > 0 ){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "O modelo já esta na base de dados");
         }
+    }
+
+    private Equipamento PesquisarPorID(Long id) {
+        return this.equipamentoDao.pesquisarPorId(id);
     }
 
     private boolean EquipamentoValido(Equipamento equipamento) throws ServiceException {
@@ -74,9 +78,38 @@ public class EquipamentoService {
         return equipamento;
     }
 
+    public Equipamento Atualizar(Equipamento equipamento) throws ServiceException {
+        this.serviceException = new ServiceException();
+
+        Equipamento equipamentoOriginal = this.PesquisarPorID(equipamento.getId());
+        if(this.PodeSerAtualizado(equipamento, equipamentoOriginal)){
+            equipamento = equipamentoDao.atualizar(equipamento);
+        }
+        return equipamento;
+    }
+
     public List<Equipamento> PesquisarPorNome(String nome){
         return this.equipamentoDao.PesquisarPorNome(nome);
     }
+
+    public List<Equipamento> PesquisarPorLinha(Long id) {
+        return this.equipamentoDao.PesquisarPorLinha(id);
+    }
+
+    private boolean PodeSerAtualizado(Equipamento equipamento, Equipamento equipamentoOriginal) throws ServiceException {
+        if(!equipamentoOriginal.getModelo().equals(equipamento.getModelo())){
+            this.ModeloValido(equipamento.getModelo());
+            this.ModeloUnico(equipamento.getModelo());
+        }
+        if (serviceException.hasMessages()) {
+            throw serviceException;
+        }
+        return Boolean.TRUE;
+    }
+
+
+
+
 
 
 

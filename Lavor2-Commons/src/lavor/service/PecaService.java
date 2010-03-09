@@ -5,7 +5,10 @@
 
 package lavor.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import lavor.dao.PecaDao;
+import lavor.entidade.Equipamento;
 import lavor.entidade.Peca;
 import lavor.utils.GenericExceptionMessageType;
 
@@ -30,13 +33,20 @@ public class PecaService {
         this.pecaDao = pecaDao;
     }
 
-    private void PosicaoValida(int posicao) {
-        // buscar por equipamento posicao
-        serviceException.addMessage(GenericExceptionMessageType.WARNING, "A posicao já foi usada");
+    private List<Peca> PesquisarPorPosicaoEquipamento(int posicao, Equipamento equipamento) {
+        return this.pecaDao.PesquisarPorPosicaoEquipamento(posicao, equipamento);
+    }
+
+    private void PosicaoValida(int posicao, Equipamento equipamento) {
+        List<Peca> pecas = new ArrayList<Peca>();
+        pecas = this.PesquisarPorPosicaoEquipamento(posicao, equipamento);
+        if(pecas.size() != 0){
+            serviceException.addMessage(GenericExceptionMessageType.WARNING, "A posicao já foi usada");
+        }
     }
 
     private boolean PodeSerSalva(Peca peca) throws ServiceException {
-        this.PosicaoValida(peca.getPosicao());
+        this.PosicaoValida(peca.getPosicao(), peca.getEquipamento());
         if (serviceException.hasMessages()) {
             throw serviceException;
         }
@@ -54,6 +64,8 @@ public class PecaService {
         }
         return peca;
     }
+
+
 
 
 
