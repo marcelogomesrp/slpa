@@ -5,9 +5,11 @@
 
 package lavor.backbean;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import lavor.entidade.Linha;
 import lavor.managedBean.LinhaMB;
 import lavor.service.LinhaService;
@@ -69,6 +71,14 @@ public class LinhaBB {
             FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar..");
         }
         return "sucesso";
+    }
+
+    public void TodasAsLinhas(){
+        List<SelectItem> lista = new ArrayList<SelectItem>();
+        for(Linha li:linhaService.Todos()){
+            lista.add(new SelectItem(li.getId(), li.getNome()));
+        }
+        this.linhaMB.setSelectLinhas(lista);
     }
 
 
