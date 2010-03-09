@@ -5,6 +5,7 @@
 
 package lavor.dao;
 
+import java.util.List;
 import lavor.entidade.Equipamento;
 
 /**
@@ -12,5 +13,7 @@ import lavor.entidade.Equipamento;
  * @author marcelo
  */
 public interface EquipamentoDao extends DaoGenerico<Equipamento, Long> {
+
+    public List<Equipamento> PesquisarPorNome(String nome);
 
 }

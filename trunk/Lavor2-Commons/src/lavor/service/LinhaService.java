@@ -95,6 +95,10 @@ public class LinhaService {
         return linhaDao.todos();
     }
 
+    Linha PesquisarPorId(Long id) {
+        return this.linhaDao.pesquisarPorId(id);
+    }
+
 
 
 
