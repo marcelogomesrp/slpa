@@ -5,6 +5,8 @@
 
 package lavor.managedBean;
 
+import java.io.Serializable;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Peca;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,12 +17,14 @@ import org.springframework.stereotype.Controller;
  */
 @Controller("pecaMB")
 @Scope("session")
-public class PecaMB {
+public class PecaMB implements  Serializable{
 
     private Peca peca;
+    private ListDataModel pecas;
 
     public PecaMB() {
-        this.peca = new Peca();
+        this.peca   = new Peca();
+        this.pecas  = new ListDataModel();
     }
 
     public Peca getPeca() {
@@ -31,5 +35,13 @@ public class PecaMB {
         this.peca = peca;
     }
 
+    public ListDataModel getPecas() {
+        return pecas;
+    }
+
+    public void setPecas(ListDataModel pecas) {
+        this.pecas = pecas;
+    }
+ 
 
 }
