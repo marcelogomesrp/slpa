@@ -17,4 +17,6 @@ public interface PecaDao extends DaoGenerico<Peca, Long>{
 
     public List<Peca> PesquisarPorPosicaoEquipamento(int posicao, Equipamento equipamento);
 
+    public List<Peca> PesquisarPorEquipamento(Equipamento equipamento);
+
 }

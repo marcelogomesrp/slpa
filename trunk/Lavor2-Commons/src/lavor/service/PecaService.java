@@ -65,6 +65,12 @@ public class PecaService {
         return peca;
     }
 
+    public List<Peca> PesquisarPorEquipamento(Equipamento equipamento) {
+        return this.pecaDao.PesquisarPorEquipamento(equipamento);
+    }
+
+
+
 
 
 

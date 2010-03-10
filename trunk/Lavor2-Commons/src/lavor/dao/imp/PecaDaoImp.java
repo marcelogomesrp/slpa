@@ -27,4 +27,12 @@ public class PecaDaoImp extends DaoGenericoImp<Peca, Long> implements PecaDao {
         return pecas;
     }
 
+    public List<Peca> PesquisarPorEquipamento(Equipamento equipamento) {
+        String SQL = "SELECT p from Peca p  WHERE equipamento.id = :id_equipamento ";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id_equipamento", equipamento.getId());
+        List<Peca> pecas = this.listPesqParam(SQL, params);
+        return pecas;
+    }
+
 }

@@ -74,6 +74,7 @@ public class EquipamentoService {
             Linha ln = linhaService.PesquisarPorId(equipamento.getLinha().getId());
             equipamento.setLinha(ln); 
             equipamento = equipamentoDao.atualizar(equipamento);
+            
         }
         return equipamento;
     }
