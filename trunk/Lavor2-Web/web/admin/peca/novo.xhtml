@@ -17,10 +17,32 @@
 
                 <h:form>
                     <h:messages id="message" />
+                    <rich:panel>
+                        <h:outputText value="Equipamento id: " />
+                        <h:outputText value="#{equipamentoMB.equipamento.id}" />
+                        <br />
+                        <h:outputText value="Modelo: " />
+                        <h:outputText value="#{equipamentoMB.equipamento.modelo}" />
+                    </rich:panel>
                     <h:panelGrid columns="2" >
-                        <h:outputText value="Modelo*" />                       
+                        <h:outputText value="Posicao*" />
+                        <h:inputText id="posicaoInput" value="#{pecaMB.peca.posicao}" size="5" required="true" requiredMessage="A posicao deve ser informada">
+                            <f:convertNumber />
+                        </h:inputText>
+
+                        <h:outputText value="Codigo de importacao*" />
+                        <h:inputText id="codigoInportacaoInput" value="#{pecaMB.peca.codigoImportacao}" size="20" maxlength="20" required="true" requiredMessage="O codigo de importacao deve ser informado"/>
+
+                        <h:outputText value="Quantidade maxima*" />
+                        <h:inputText id="quantidadeMaximaInput" value="#{pecaMB.peca.quantidadeMaxima}" size="5" required="true" requiredMessage="A quantidade maxima deve ser informada">
+                            <f:convertNumber />
+                        </h:inputText>
+
+                        <h:outputText value="Descricao" />
+                        <h:inputText id="descricaoInput" value="#{pecaMB.peca.descricao}" size="60" maxlength="255"/>
                      </h:panelGrid>
-                    
+
+                    <h:commandButton value="Salvar" action="#{pecaBB.Salvar}" />
                     
                 </h:form>
             </ui:define>

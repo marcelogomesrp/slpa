@@ -9,9 +9,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Equipamento;
+import lavor.entidade.Peca;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.LinhaMB;
+import lavor.managedBean.PecaMB;
 import lavor.service.EquipamentoService;
+import lavor.service.PecaService;
 import lavor.utils.FacesUtils;
 import lavor.utils.GenericExceptionMessageType;
 import org.springframework.context.annotation.Scope;
@@ -30,9 +33,15 @@ public class EquipamentoBB {
     @Resource
     private EquipamentoMB equipamentoMB;
     @Resource
+    private PecaMB pecaMB;
+    @Resource
     private LinhaMB linhaMB;
     @Resource
     private LinhaBB linhaBB;
+    
+    @Resource
+    private PecaService pecaService;
+
 
 
     @Resource
@@ -44,6 +53,7 @@ public class EquipamentoBB {
     public String DoNovoEquipamentoPage(){
         this.equipamentoMB.setEquipamento(new Equipamento());
         this.linhaBB.TodasAsLinhas();
+        this.equipamentoMB.setEquipamentoAtivo(Boolean.FALSE);
         return "/equipamento/novo" ;
     }
 
@@ -56,6 +66,8 @@ public class EquipamentoBB {
 
     public String DoEditarPage(){
         this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        List<Peca> pecas = pecaService.PesquisarPorEquipamento(this.equipamentoMB.getEquipamento());
+        this.pecaMB.setPecas(new ListDataModel(pecas));
         return "/equipamento/editar";
     }
 
@@ -63,8 +75,13 @@ public class EquipamentoBB {
         try{
             equipamentoService.Salvar(equipamentoMB.getEquipamento());
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Equipamento gravado com sucesso" );
-            equipamentoMB.setEquipamento(new Equipamento());
+            List<Equipamento> lista = equipamentoService.PesquisarPorNome(equipamentoMB.getEquipamento().getModelo());
+            equipamentoMB.setEquipamento(lista.get(0));
+            //equipamentoService.PesquisarPorNome(equipamentoMB.getEquipamento().getModelo()));
+            this.equipamentoMB.setEquipamentoAtivo(Boolean.TRUE);
+            //equipamentoMB.setEquipamento(new Equipamento());
         }catch(Exception ex){
+            this.equipamentoMB.setEquipamentoAtivo(Boolean.FALSE);
             FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
         }
         return "sucesso";

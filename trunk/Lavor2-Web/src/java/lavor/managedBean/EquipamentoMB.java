@@ -20,10 +20,12 @@ public class EquipamentoMB {
 
     private Equipamento equipamento;
     private ListDataModel equipamentos;
+    private Boolean equipamentoAtivo;
 
     public EquipamentoMB() {
         this.equipamento    = new Equipamento();
         this.equipamentos   = new ListDataModel();
+        this.equipamentoAtivo = Boolean.FALSE;
     }
 
     public Equipamento getEquipamento() {
@@ -40,6 +42,14 @@ public class EquipamentoMB {
 
     public void setEquipamentos(ListDataModel equipamentos) {
         this.equipamentos = equipamentos;
+    }
+
+    public Boolean getEquipamentoAtivo() {
+        return equipamentoAtivo;
+    }
+
+    public void setEquipamentoAtivo(Boolean equipamentoAtivo) {
+        this.equipamentoAtivo = equipamentoAtivo;
     }
 
 

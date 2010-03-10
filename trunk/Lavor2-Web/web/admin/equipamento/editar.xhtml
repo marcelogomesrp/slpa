@@ -30,7 +30,30 @@
                         <h:commandButton value="Atualizar" action="#{equipamentoBB.Atualizar}" />
                         <h:commandButton value="Adicionar Peca" action="#{pecaBB.DoNovoPage}" />
                      </h:panelGrid>
-                    
+
+
+                    <rich:dataTable value="#{pecaMB.pecas}" var="peca" id="lista" width="100%" >
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">
+                                <h:column><h:outputText value="ID"/></h:column>
+                                <h:column><h:outputText value="Posicao"/></h:column>
+                                <h:column><h:outputText value="Codigo de importacao"/></h:column>
+                                <h:column><h:outputText value="Quantidade maxima"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+                        <rich:column>
+                            <h:outputText value="#{peca.id}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{peca.posicao}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{peca.codigoImportacao}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{peca.quantidadeMaxima}" />
+                        </rich:column>
+                    </rich:dataTable>
                     
                 </h:form>
             </ui:define>

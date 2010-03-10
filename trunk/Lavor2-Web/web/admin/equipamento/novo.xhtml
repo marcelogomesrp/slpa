@@ -16,6 +16,7 @@
             <ui:define name="content">                
                 <h:form>
                     <h:messages id="message" />
+                    <h:panelGroup rendered="#{!equipamentoMB.equipamentoAtivo}">
                     <h:panelGrid columns="2" >
                         <h:outputText value="Modelo*" />
                         <h:inputText value="#{equipamentoMB.equipamento.modelo}" id="inputModelo" maxlength="200" size="100" required="true" requiredMessage="O momdelo deve ser informado"/>
@@ -28,7 +29,11 @@
 
                      </h:panelGrid>
                     <h:commandButton value="Salvar" action="#{equipamentoBB.Salvar}" />
-                    
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{equipamentoMB.equipamentoAtivo}">
+                        <h:commandButton value="Novo"   action="#{equipamentoBB.DoNovoEquipamentoPage}" />
+                        <h:commandButton value="Adicionar Peca" action="#{pecaBB.DoNovoPage}" />
+                    </h:panelGroup>
                 </h:form>
             </ui:define>
 
