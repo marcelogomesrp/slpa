@@ -5,25 +5,29 @@
 
 package lavor.entidade;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author marcelo
  */
+
 @Entity
+@Table(name="peca")
 public class Peca implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=IDENTITY)
     private Long id;
     @Column(nullable=false)
     private int posicao;
@@ -36,6 +40,12 @@ public class Peca implements Serializable {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="id_equipamento", nullable=false)
     private Equipamento equipamento;
+    private Float valor;
+
+    public Peca() {
+        this.equipamento = new Equipamento();
+    }
+
 
     public Long getId() {
         return id;
@@ -83,6 +93,14 @@ public class Peca implements Serializable {
 
     public void setQuantidadeMaxima(int quantidadeMaxima) {
         this.quantidadeMaxima = quantidadeMaxima;
+    }
+
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
     }
 
 
