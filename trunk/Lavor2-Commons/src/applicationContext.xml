@@ -27,6 +27,9 @@
     <bean class="lavor.dao.imp.ClienteDaoImp"               id="clienteDao" />
     <bean class="lavor.dao.imp.EquipamentoDaoImp"           id="equipamentoDao" />
     <bean class="lavor.dao.imp.PecaDaoImp"                  id="pecaDao" />
+    <bean class="lavor.dao.imp.RevendaDaoImp"               id="revendaDao" />
+    <bean class="lavor.dao.imp.EquipamentoClienteImp"       id="equipamentoClienteDao" />
+    
 
 
     <bean class="lavor.service.UsuarioService"              id="usuarioService" >
@@ -59,6 +62,13 @@
         <property name="pecaDao"                    ref="pecaDao" />
     </bean>
 
+    <bean class="lavor.service.RevendaService"             id="revendaService" >
+        <property name="revendaDao"                    ref="revendaDao" />
+    </bean>
+
+    <bean class="lavor.service.EquipamentoClienteService"                 id="equipamentoClienteService" >
+        <property name="equipamentoClienteDao"                    ref="equipamentoDao" />
+    </bean>
 
 
 </beans>
