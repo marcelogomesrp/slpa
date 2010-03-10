@@ -16,7 +16,15 @@
                 <h:messages id="message" />
                 
                 <h:form>
-                    Novo pedido
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Razao social" />
+                        <h:inputText value="#{revendaMB.revenda.razaoSocial}" />
+
+                        <h:outputText value="CNPJ" />
+                        <h:inputText value="#{revendaMB.revenda.cnpj}" />
+
+                    </h:panelGrid>
+                    <h:commandButton value="Salvar" action="#{revendaBB.Salvar}" />
                 </h:form>
 
             </ui:define>

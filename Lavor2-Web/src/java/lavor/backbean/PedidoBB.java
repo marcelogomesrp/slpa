@@ -6,6 +6,7 @@
 package lavor.backbean;
 
 import javax.annotation.Resource;
+import lavor.entidade.Pedido;
 import lavor.managedBean.PedidoMB;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,11 @@ public class PedidoBB {
     private PedidoMB pedidoMB;
 
     public PedidoBB() {
+    }
+
+    public String DoNovoPedidoPage(){
+        this.pedidoMB.setPedido(new Pedido());
+        return "/pedido/novo";
     }
 
 

@@ -29,11 +29,35 @@
                 </rich:menuItem>
                 <rich:menuItem action="#{clienteBB.DoLocalizarClientePage}">
                     <h:outputText value="Localizar" />
-                </rich:menuItem><rich:menuItem>
-                    <h:outputText value="valorC" />
+                </rich:menuItem>
+
+
+            </rich:dropDownMenu>
+
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Revenda" />
+                </f:facet>
+                <rich:menuItem action="#{revendaBB.DoNovaRevendaPage}" >
+                    <h:outputText value="Novo" />
                 </rich:menuItem>
 
             </rich:dropDownMenu>
+
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Pedido" />
+                </f:facet>
+                <rich:menuItem action="#{pedidoBB.DoNovoPedidoPage}" >
+                    <h:outputText value="Novo" />
+                </rich:menuItem>
+
+            </rich:dropDownMenu>
+
+
+
         </rich:toolBar>
     </h:form>
 
