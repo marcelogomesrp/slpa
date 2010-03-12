@@ -81,7 +81,7 @@ public class DaoGenericoImp<T, ID extends Serializable> implements DaoGenerico<T
 		return (T) getEntityManager().find(oClass, id);
 	}
 
-
+//@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public T salvar(T object) {

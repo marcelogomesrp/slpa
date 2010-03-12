@@ -48,8 +48,8 @@ public class ClienteService implements Serializable{
         this.serviceException = new ServiceException();
         try{
             if(this.PodeSerSalvo(cliente)){
-                //cliente = this.clienteDao.salvar(cliente);
-                cliente = this.clienteDao.atualizar(cliente);
+                cliente = this.clienteDao.salvar(cliente);
+                //cliente = this.clienteDao.atualizar(cliente);
             }
         }catch(Exception ex){
             throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);

@@ -38,10 +38,12 @@ public class Cliente implements Serializable {
     private String celular;
     @Column(name="endereco", length=255)
     private String endereco;
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name="id_cidade")
     private Cidade cidade;
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name="id_posto_de_atendimento")
     private PostoDeAtendimento postoDeAtendimento;
 
