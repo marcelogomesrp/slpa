@@ -23,11 +23,14 @@ public class PedidoBB {
     @Resource
     private PedidoMB pedidoMB;
 
+    @Resource
+    private ClienteBB clienteBB;
+
     public PedidoBB() {
     }
 
     public String DoNovoPedidoPage(){
-        this.pedidoMB.setPedido(new Pedido());
+        this.clienteBB.DoNovoClientePage();
         return "/pedido/novo";
     }
 
