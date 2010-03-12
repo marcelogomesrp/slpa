@@ -13,12 +13,15 @@
 
 
             <ui:define name="content">
-                
-                
+
+
                 <h:form>
                     <h:messages id="message" />
 
                     <h:panelGrid columns="2" >
+                        <h:outputText value="ID:" />
+                        <h:outputText value="#{clienteMB.cliente.id}" />
+
                         <h:outputText value="Nome" />
                         <h:inputText value="#{clienteMB.cliente.nome}" id="nomeInput" size="60" maxlength="255" required="true" requiredMessage="O nome deve ser informado"/>
 
@@ -57,9 +60,10 @@
                         </a4j:status>
                     </h:panelGrid>
 
-                    <h:commandButton value="Salvar" action="#{clienteBB.Salvar}"/>
-                    <h:commandButton value="Proximo" />
+                    <h:commandButton value="Salvar" action="#{clienteBB.SalvarEManter}"/>
 
+                    <h:commandButton value="Proximo" />
+                </h:form>
             </ui:define>
 
         </ui:composition>

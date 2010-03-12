@@ -157,8 +157,14 @@
             <from-outcome>/revenda/novo</from-outcome>
             <to-view-id>/posto/revenda/novo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DoNovoPedidoPage}</from-action>
+            <from-outcome>/pedido/novo</from-outcome>
+            <to-view-id>/posto/pedido/clientenovo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 

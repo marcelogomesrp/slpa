@@ -78,4 +78,17 @@ public class ClienteBB {
         return "cliente/listar";
     }
 
+        public String SalvarEManter(){
+        try {
+            Cliente cliente = clienteMB.getCliente();
+            cliente.setPostoDeAtendimento(this.postoDeAtendimentoMB.getPostoDeAtendimento());
+            cliente.setCidade(cidadeService.PesquisarPorCidadeEstado(cliente.getCidade().getCidade(), cliente.getCidade().getEstado()));
+            cliente = this.clienteService.Salvar(cliente);
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente gravado com sucesso" );            
+        } catch (ServiceException ex) {
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
+        }
+        return "sucesso";
+    }
+
 }
