@@ -11,6 +11,7 @@ import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
 import lavor.managedBean.CidadeMB;
 import lavor.managedBean.ClienteMB;
+import lavor.managedBean.PedidoMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.CidadeService;
 import lavor.service.ClienteService;
@@ -34,6 +35,9 @@ public class ClienteBB {
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
     @Resource
     private CidadeMB cidadeMB;
+
+    @Resource
+    private PedidoMB pedidoMB;
 
     @Resource
     private CidadeService cidadeService;
@@ -84,6 +88,7 @@ public class ClienteBB {
             cliente.setPostoDeAtendimento(this.postoDeAtendimentoMB.getPostoDeAtendimento());
             cliente.setCidade(cidadeService.PesquisarPorCidadeEstado(cliente.getCidade().getCidade(), cliente.getCidade().getEstado()));
             cliente = this.clienteService.Salvar(cliente);
+            this.pedidoMB.setClienteSelecionado(Boolean.TRUE);
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente gravado com sucesso" );            
         } catch (ServiceException ex) {
             FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");

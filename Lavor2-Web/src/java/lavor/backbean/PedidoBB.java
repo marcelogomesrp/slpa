@@ -31,8 +31,21 @@ public class PedidoBB {
 
     public String DoNovoPedidoPage(){
         this.clienteBB.DoNovoClientePage();
+        this.pedidoMB.setClienteSelecionado(Boolean.FALSE);
+        this.pedidoMB.setEquipamentoSelecionado(Boolean.FALSE);
         return "/pedido/novo";
     }
+    
+    public String DoNovoEquipamentoPage(){
+        if(this.pedidoMB.getClienteSelecionado()){
+            // limpar equipamento cliste
+            return "/pedido/equipamentonovo";
+        }else{
+            return "/pedido/novo";
+        }
+    }
+
+
 
 
 

@@ -7,24 +7,29 @@
       xmlns:rich="http://richfaces.org/rich"
       xmlns:f="http://java.sun.com/jsf/core">
 
+    
     <body>
-
-        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+        
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
 
 
             <ui:define name="content">
-                
-                
+                Defeito
                 <h:form>
-                    equipamento novo 
                     <h:messages id="message" />
-
-
-
                     <h:panelGrid columns="2" >
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{defeitoMB.defeito.nome}" />
+
+                        <h:outputText value="Descricao" />
+                        <h:inputText value="#{defeitoMB.defeito.descricao}" />
+                        
+                     </h:panelGrid>
+                    <h:commandButton value="Salvar" action="#{defeitoBB.Salvar}" />
+                </h:form>
             </ui:define>
 
         </ui:composition>
-
+        
     </body>
 </html>
