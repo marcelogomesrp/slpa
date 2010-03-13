@@ -162,8 +162,14 @@
             <from-outcome>/pedido/novo</from-outcome>
             <to-view-id>/posto/pedido/clientenovo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{defeitoBB.DoNovoDefeitoPage}</from-action>
+            <from-outcome>/defeito/novo</from-outcome>
+            <to-view-id>/admin/defeito/novo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
 
 
 

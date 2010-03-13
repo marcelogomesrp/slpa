@@ -55,6 +55,20 @@
                 </rich:menuItem>
             </rich:dropDownMenu>
 
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Defeito" />
+                </f:facet>
+                <rich:menuItem action="#{defeitoBB.DoNovoDefeitoPage}" >
+                    <h:outputText value="Novo" />
+                </rich:menuItem>
+
+                <rich:menuItem action="#{defeitoBB.DoListarPage}" >
+                    <h:outputText value="Listar" />
+                </rich:menuItem>
+            </rich:dropDownMenu>
+
         </rich:toolBar>
     </h:form>
 

@@ -18,9 +18,14 @@ import org.springframework.stereotype.Controller;
 @Scope("session")
 public class PedidoMB {
     private Pedido pedido;
+    private Boolean clienteSelecionado;
+    private Boolean equipamentoSelecionado;
+
 
     public PedidoMB() {
         this.pedido = new Pedido();
+        this.clienteSelecionado = Boolean.FALSE;
+        this.equipamentoSelecionado = Boolean.FALSE;
     }
 
     public Pedido getPedido() {
@@ -31,5 +36,20 @@ public class PedidoMB {
         this.pedido = pedido;
     }
 
+    public Boolean getClienteSelecionado() {
+        return clienteSelecionado;
+    }
+
+    public void setClienteSelecionado(Boolean clienteSelecionado) {
+        this.clienteSelecionado = clienteSelecionado;
+    }
+
+    public Boolean getEquipamentoSelecionado() {
+        return equipamentoSelecionado;
+    }
+
+    public void setEquipamentoSelecionado(Boolean equipamentoSelecionado) {
+        this.equipamentoSelecionado = equipamentoSelecionado;
+    }
 
 }
