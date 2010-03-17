@@ -158,7 +158,7 @@
             <to-view-id>/posto/revenda/novo.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{pedidoBB.DoNovoPedidoPage}</from-action>
+            <from-action>#{pedidoBB.DoNovoClientePage}</from-action>
             <from-outcome>/pedido/novo</from-outcome>
             <to-view-id>/posto/pedido/clientenovo.xhtml</to-view-id>
         </navigation-case>
@@ -167,8 +167,25 @@
             <from-outcome>/defeito/novo</from-outcome>
             <to-view-id>/admin/defeito/novo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DoNovoEquipamentoPage}</from-action>
+            <from-outcome>/pedido/equipamentonovo</from-outcome>
+            <to-view-id>/posto/pedido/equipamentonovo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DoNovoEquipamentoPage}</from-action>
+            <from-outcome>/pedido/novo</from-outcome>
+            <to-view-id>/posto/pedido/clientenovo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DoNovoPedidoPage}</from-action>
+            <from-outcome>/pedido/pedidonovo</from-outcome>
+            <to-view-id>/posto/pedido/pedidonovo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
+
+
 
 
 

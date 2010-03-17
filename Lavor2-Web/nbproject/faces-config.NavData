@@ -7,14 +7,15 @@
         <Node id="posto/pedido/clientenovo.xhtml" x="1900" y="150" zoom="true"/>
         <Node id="template.xhtml" x="150" y="600" zoom="true"/>
         <Node id="posto/revenda/novo.xhtml" x="650" y="750" zoom="true"/>
-        <Node id="admin/defeito/novo.xhtml" x="650" y="900" zoom="true"/>
         <Node id="posto/menu.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="admin/equipamento/editar.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="admin/defeito/novo.xhtml" x="650" y="900" zoom="true"/>
         <Node id="teste.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="admin/equipamento/editar.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="posto/pedido/equipamentonovo.xhtml" x="900" y="750" zoom="true"/>
         <Node id="admin/menu.xhtml" x="400" y="300" zoom="true"/>
         <Node id="admin/linha/novo.xhtml" x="150" y="750" zoom="true"/>
         <Node id="posto/pedido/pedido.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="posto/pedido/pedidonovo.xhtml" x="400" y="1050" zoom="true"/>
         <Node id="admin/Index.xhtml" x="900" y="150" zoom="true"/>
         <Node id="posto/cliente/listar.xhtml" x="150" y="900" zoom="true"/>
         <Node id="posto/pedido/equipamentolistar.xhtml" x="1400" y="450" zoom="true"/>

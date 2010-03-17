@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+
+
+            <ui:define name="content">
+                
+                
+                <h:form>
+                    <h:messages id="message" />
+
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Selecionar pecas do pedido" />
+                    </h:panelGrid>
+
+                        <rich:dataTable value="#{pecaMB.pecas}" id="lista" var="peca" width="100%" >
+                            <f:facet name="header">
+                                <rich:columnGroup styleClass="dataTableHeader">
+                                    <h:column ><h:outputText value="Qtd. solicitada"/></h:column>
+                                    <h:column ><h:outputText value="Posicao"/></h:column>
+                                    <h:column><h:outputText value="Cod. Importacao"/></h:column>
+                                    <h:column><h:outputText value="Descricao"/></h:column>
+                                </rich:columnGroup>
+                            </f:facet>
+
+                           <rich:column width="10%">
+                               <h:inputText value="#{peca.quantidadeMaxima}" />
+                            </rich:column>
+
+                            <rich:column width="10%">
+                                <h:outputText value="#{peca.posicao}" />
+                            </rich:column>
+
+                            <rich:column width="20%">
+                                <h:outputText value="#{peca.codigoImportacao}" />
+                            </rich:column>
+
+                            <rich:column width="70%">
+                                <h:outputText value="#{peca.descricao}" />
+                            </rich:column>
+
+                        </rich:dataTable>
+                    <h:commandLink value="Salvar" action="#{pedidoBB.Salvar}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

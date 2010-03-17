@@ -19,9 +19,50 @@
                     equipamento novo 
                     <h:messages id="message" />
 
+                    <h:panelGrid columns="2" >
+                    <h:outputText value="Data da compra" />
+                    <rich:calendar datePattern="dd/MM/yyyy" value="#{equipamentoClienteMB.equipamentoCliente.dataDaCompra}" />
 
+                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
+                                <f:selectItems value="#{linhaMB.selectLinhas}" />
+                        </h:selectOneMenu>
+
+                     </h:panelGrid>
+                    <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
+                    <br />
+                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%">
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">
+                                <h:column><h:outputText value="ID"/></h:column>
+                                <h:column><h:outputText value="Modelo"/></h:column>
+                                <h:column><h:outputText value="Selecionar"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <rich:column>
+                            <h:outputText value="#{equipamento.id}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{equipamento.modelo}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="Selecionar" action="#{equipamentoBB.SelecionarEquipamento}"/>
+                        </rich:column>
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+                    <h:commandButton value="Salvar" action="#{equipamentoClienteBB.SalvarEManter}" />
+                    <h:commandButton value="Proximo" action="#{pedidoBB.DoNovoPedidoPage}" />
+                </h:form>
 
                     <h:panelGrid columns="2" >
+                        
+                    </h:panelGrid>
+
             </ui:define>
 
         </ui:composition>
