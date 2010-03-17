@@ -104,6 +104,11 @@ public class EquipamentoBB {
         return "/equipamento/listar";
     }
 
+    public String SelecionarEquipamento(){
+        this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        return "sucesso";
+    }
+
 
 
 }
