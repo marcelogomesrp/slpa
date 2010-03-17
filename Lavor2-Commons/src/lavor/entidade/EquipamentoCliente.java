@@ -31,8 +31,6 @@ public class EquipamentoCliente implements Serializable {
     private Equipamento equipamento;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDaCompra;
-    @OneToOne
-    private Defeito defeito;
 
     public Long getId() {
         return id;
@@ -50,13 +48,7 @@ public class EquipamentoCliente implements Serializable {
         this.dataDaCompra = dataDaCompra;
     }
 
-    public Defeito getDefeito() {
-        return defeito;
-    }
 
-    public void setDefeito(Defeito defeito) {
-        this.defeito = defeito;
-    }
 
     public Equipamento getEquipamento() {
         return equipamento;
