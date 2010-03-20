@@ -13,21 +13,26 @@
 
 
             <ui:define name="content">
-                
-                
+
+
                 <h:form>
-                    equipamento novo 
                     <h:messages id="message" />
 
                     <h:panelGrid columns="2" >
-                    <h:outputText value="Data da compra" />
-                    <rich:calendar datePattern="dd/MM/yyyy" value="#{equipamentoClienteMB.equipamentoCliente.dataDaCompra}" />
-
-                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
-                                <f:selectItems value="#{linhaMB.selectLinhas}" />
+                        
+                        <h:outputText value="Revenda" />
+                        <h:selectOneMenu value="#{revendaMB.revenda.id}" required="true" requiredMessage="A revenda deve ser informada">
+                            <f:selectItems value="#{revendaMB.revendas}" />
                         </h:selectOneMenu>
 
-                     </h:panelGrid>
+                        <h:outputText value="Data da compra" />
+                        <rich:calendar datePattern="dd/MM/yyyy" value="#{equipamentoClienteMB.equipamentoCliente.dataDaCompra}" />
+
+                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
+                            <f:selectItems value="#{linhaMB.selectLinhas}" />
+                        </h:selectOneMenu>
+
+                    </h:panelGrid>
                     <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
                     <br />
                     <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%">
@@ -59,9 +64,9 @@
                     <h:commandButton value="Proximo" action="#{pedidoBB.DoNovoPedidoPage}" />
                 </h:form>
 
-                    <h:panelGrid columns="2" >
-                        
-                    </h:panelGrid>
+                <h:panelGrid columns="2" >
+
+                </h:panelGrid>
 
             </ui:define>
 
