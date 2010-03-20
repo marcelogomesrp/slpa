@@ -5,7 +5,9 @@
 
 package lavor.service;
 
+import java.util.List;
 import lavor.dao.RevendaDao;
+import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Revenda;
 import lavor.utils.GenericExceptionMessageType;
 
@@ -55,6 +57,10 @@ public class RevendaService {
         if(lavor.utils.StringUtils.isNullOrEmpty(razaoSocial)){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "A razao social deve ser informada");
         }
+    }
+
+    public List<Revenda> PesquisarPorPosto(PostoDeAtendimento postoDeAtendimento) {
+        return this.revendaDao.PesquisarPorPosto(postoDeAtendimento);
     }
 
     

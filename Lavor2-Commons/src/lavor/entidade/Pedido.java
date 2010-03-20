@@ -5,11 +5,12 @@
 
 package lavor.entidade;
 
+import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,6 +18,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,10 +34,10 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name="id_posto_de_atendimento")
     private PostoDeAtendimento postoDeAtendimento;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name="id_cliente")
     private Cliente cliente;
     @OneToOne
@@ -49,7 +51,9 @@ public class Pedido implements Serializable {
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
     @Column(name="valor_total")
-    private Float valorTotal;
+    private Float valorTotal;    
+    @OneToMany
+    private List<ItemPedido> ItemPedido;
 
     
 
@@ -59,6 +63,7 @@ public class Pedido implements Serializable {
         this.revenda            = new Revenda();
         this.equipamentoCliente = new EquipamentoCliente();
         this.dataDoPedido       = new Date();
+        this.ItemPedido         = new ArrayList<ItemPedido>();
     }
 
     public Long getId() {
@@ -141,5 +146,23 @@ public class Pedido implements Serializable {
     public String toString() {
         return "lavor.entidade.Pedido[id=" + id + "]";
     }
+
+    public List<ItemPedido> getItemPedido() {
+        return ItemPedido;
+    }
+
+    public void setItemPedido(List<ItemPedido> ItemPedido) {
+        this.ItemPedido = ItemPedido;
+    }
+
+    public Float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+
 
 }
