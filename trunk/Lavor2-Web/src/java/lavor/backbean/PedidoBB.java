@@ -6,15 +6,24 @@
 package lavor.backbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.EquipamentoCliente;
+import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
+import lavor.entidade.Pedido;
+import lavor.entidade.Situacao;
+import lavor.managedBean.ClienteMB;
 import lavor.managedBean.EquipamentoClienteMB;
 import lavor.managedBean.PecaMB;
 import lavor.managedBean.PedidoMB;
+import lavor.managedBean.PostoDeAtendimentoMB;
+import lavor.managedBean.RevendaMB;
 import lavor.service.PecaService;
+import lavor.service.PedidoService;
+import lavor.service.ServiceException;
 import lavor.utils.FacesUtils;
 import lavor.utils.GenericExceptionMessageType;
 import org.springframework.context.annotation.Scope;
@@ -35,6 +44,12 @@ public class PedidoBB {
     private EquipamentoClienteMB equipamentoClienteMB;
     @Resource
     private PecaMB pecaMB;
+    @Resource
+    private ClienteMB clienteMB;
+    @Resource
+    private PostoDeAtendimentoMB postoDeAtendimentoMB;
+    @Resource
+    private RevendaMB revendaMB;
 
     @Resource
     private ClienteBB clienteBB;
@@ -43,6 +58,11 @@ public class PedidoBB {
 
     @Resource
     private PecaService pecaService;
+
+    @Resource
+    private PedidoService pedidoService;
+    @Resource
+    private RevendaBB revendaBB;
 
     public PedidoBB() {
     }
@@ -59,6 +79,7 @@ public class PedidoBB {
             // limpar equipamento cliste
             this.equipamentoClienteMB.setEquipamentoCliente(new EquipamentoCliente());
             this.equipamentoBB.DoPesquisarPage();
+            this.revendaBB.CriarRevendaSelectItem(postoDeAtendimentoMB.getPostoDeAtendimento());
             return "/pedido/equipamentonovo";
         }else{
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.ERROR, "O cliente deve ser informado antes de continuar");
@@ -81,14 +102,35 @@ public class PedidoBB {
     public String Salvar(){
         ListDataModel pecas =  pecaMB.getPecas();
         List<Peca> pecasSolicitada = new ArrayList<Peca>();
+
+        Pedido pedido = new Pedido();
+
         for (int x = 0; x < pecas.getRowCount(); x++){
             pecas.setRowIndex(x);
             Peca peca = (Peca) pecas.getRowData();
             if(peca.getQuantidadeMaxima() > 0 ){
                 pecasSolicitada.add(peca);
+                ItemPedido itemPedido = new ItemPedido();
+                itemPedido.setPeca(peca);
+                itemPedido.setValor(peca.getValor());
+                pedido.getItemPedido().add(itemPedido);
             }
         }
         this.pecaMB.setPecasSolicitada(pecasSolicitada);
+        
+        pedido.setCliente(clienteMB.getCliente());
+        pedido.setDataDoPedido(new Date());
+        pedido.setEquipamentoCliente(equipamentoClienteMB.getEquipamentoCliente());
+        pedido.setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+        pedido.setRevenda(revendaMB.getRevenda());
+        pedido.setSituacao(Situacao.Cadastrado);
+
+        try{
+            pedidoService.Salvar(pedido);
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
+        }catch(ServiceException ex){
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar..");
+        }
         return "ok";
     }
 

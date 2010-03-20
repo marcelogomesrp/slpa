@@ -5,7 +5,11 @@
 
 package lavor.backbean;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.model.SelectItem;
+import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Revenda;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.managedBean.RevendaMB;
@@ -53,6 +57,20 @@ public class RevendaBB {
         revenda.setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
         revendaMB.setRevenda(revenda);
         return "/revenda/novo";
+    }
+
+    public List<Revenda> PesquisarRevendaPorPosto(PostoDeAtendimento postoDeAtendimento){
+        List<Revenda> revendas = this.revendaService.PesquisarPorPosto(postoDeAtendimento);
+        return revendas;
+        
+    }
+
+    public void CriarRevendaSelectItem(PostoDeAtendimento postoDeAtendimento){
+        List<Revenda> revendas = this.PesquisarRevendaPorPosto(postoDeAtendimento);
+        this.revendaMB.setRevendas(new ArrayList<SelectItem>());
+        for(Revenda revenda:revendas){
+            revendaMB.getRevendas().add(new SelectItem(revenda.getId(), revenda.getRazaoSocial()));
+        }
     }
 
 
