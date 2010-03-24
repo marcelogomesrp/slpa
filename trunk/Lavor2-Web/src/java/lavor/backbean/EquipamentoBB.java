@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Equipamento;
+import lavor.entidade.EquipamentoCliente;
 import lavor.entidade.Peca;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.LinhaMB;
@@ -42,6 +43,9 @@ public class EquipamentoBB {
     @Resource
     private PecaService pecaService;
 
+
+    @Resource
+    private EquipamentoClienteBB equipamentoClienteBB;
 
 
     @Resource
@@ -106,6 +110,11 @@ public class EquipamentoBB {
 
     public String SelecionarEquipamento(){
         this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        return "sucesso";
+    }
+
+    public String LimparEquipamento(){
+        this.equipamentoMB.setEquipamento(new Equipamento());
         return "sucesso";
     }
 

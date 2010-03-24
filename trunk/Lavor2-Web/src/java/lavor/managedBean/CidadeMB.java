@@ -30,6 +30,8 @@ public class CidadeMB implements Serializable{
     private CidadeService cidadeService;
     @Resource
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
+    @Resource
+    private ClienteMB clienteMB;
 
     public CidadeMB() {
         this.cidade  = new Cidade();
@@ -74,15 +76,24 @@ public class CidadeMB implements Serializable{
     }
     
 
+//    public String AtualizarListaDeCidades(){
+//        this.LimparListaDeCidades();
+//        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
+//        for(Cidade cid:ListaDeCidades){
+//            cidades.add(new SelectItem(cid.getCidade().toString()));
+//        }
+//        return null;
+//    }
+
+
     public String AtualizarListaDeCidades(){
         this.LimparListaDeCidades();
-        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
+        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(clienteMB.getCliente().getCidade().getEstado());
         for(Cidade cid:ListaDeCidades){
             cidades.add(new SelectItem(cid.getCidade().toString()));
         }
         return null;
     }
-
 
 
 }
