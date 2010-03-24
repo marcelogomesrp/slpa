@@ -9,12 +9,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,10 +27,10 @@ public class ItemPedido implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    //@OneToOne()
+    @OneToOne()
     //@ManyToOne
-    //@JoinColumn(name="id_pedido")
-    //private Pedido pedido;
+    @JoinColumn(name="id_pedido")
+    private Pedido pedido;
     @OneToOne()
     @JoinColumn(name="id_peca")
     private Peca peca;
@@ -40,7 +38,7 @@ public class ItemPedido implements Serializable {
 
     public ItemPedido() {
         this.peca   = new Peca();
-      //  this.pedido = new Pedido();
+        this.pedido = new Pedido();
     }
 
 
@@ -66,6 +64,14 @@ public class ItemPedido implements Serializable {
 
     public void setValor(Float valor) {
         this.valor = valor;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
 
