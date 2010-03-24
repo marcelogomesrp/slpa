@@ -21,11 +21,22 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public Pedido salvar(Pedido pedido) {
 		getEntityManager().clear();
+                float total = 0F;
                 //TODO: modificar este valor
                 for(ItemPedido itemPedido:pedido.getItemPedido()){
+                    itemPedido.setValor(itemPedido.getPeca().getValor());
+                    //getEntityManager().persist(itemPedido);
+                    total+=itemPedido.getValor() * itemPedido.getPeca().getQuantidadeMaxima();
+                }
+                pedido.setValorTotal(total);
+		getEntityManager().persist(pedido);
+
+                for(ItemPedido itemPedido:pedido.getItemPedido()){
+                    itemPedido.setValor(itemPedido.getPeca().getValor() * itemPedido.getPeca().getQuantidadeMaxima());
+                    itemPedido.setPedido(pedido);
                     getEntityManager().persist(itemPedido);
                 }
-		getEntityManager().persist(pedido);
+
 		return pedido;
 	}
 
