@@ -19,7 +19,7 @@
                     <h:messages id="message" />
 
                     <h:panelGrid columns="2" >
-                        
+
                         <h:outputText value="Revenda" />
                         <h:selectOneMenu value="#{revendaMB.revenda.id}" required="true" requiredMessage="A revenda deve ser informada">
                             <f:selectItems value="#{revendaMB.revendas}" />
@@ -28,14 +28,18 @@
                         <h:outputText value="Data da compra" />
                         <rich:calendar datePattern="dd/MM/yyyy" value="#{equipamentoClienteMB.equipamentoCliente.dataDaCompra}" />
 
-                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
+
+                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada"  rendered="#{equipamentoMB.equipamento.id == null}">
                             <f:selectItems value="#{linhaMB.selectLinhas}" />
                         </h:selectOneMenu>
 
+
+                        <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" rendered="#{equipamentoMB.equipamento.id == null}" />
+
                     </h:panelGrid>
-                    <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
-                    <br />
-                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%">
+
+
+                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%" rendered="#{equipamentoMB.equipamento.id == null}" >
                         <f:facet name="header">
                             <rich:columnGroup styleClass="dataTableHeader">
                                 <h:column><h:outputText value="ID"/></h:column>
@@ -60,13 +64,30 @@
                     <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
                     <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
 
-                    <h:commandButton value="Salvar" action="#{equipamentoClienteBB.SalvarEManter}" />
-                    <h:commandButton value="Proximo" action="#{pedidoBB.DoNovoPedidoPage}" />
+
+
+
+
+
+                    <h:panelGrid columns="2" rendered="#{equipamentoMB.equipamento.id != null}">
+
+                        <h:outputText value="id" />
+                        <h:outputText value="#{equipamentoMB.equipamento.id}" />
+                        
+                        <h:outputText value="modelo" />
+                        <h:outputText value="#{equipamentoMB.equipamento.modelo}" />
+
+                        <h:outputText value="linha" />
+                        <h:outputText value="#{equipamentoMB.equipamento.linha.nome}" />
+
+                        <h:commandButton value="Trocar equipamento" action="#{equipamentoBB.LimparEquipamento}"/><h:panelGroup />
+                        <h:commandButton value="Salvar" action="#{equipamentoClienteBB.SalvarEManter}" />
+                        <h:commandButton value="Proximo" action="#{pedidoBB.DoNovoPedidoPage}" />
+                    </h:panelGrid>
+
+
+
                 </h:form>
-
-                <h:panelGrid columns="2" >
-
-                </h:panelGrid>
 
             </ui:define>
 
