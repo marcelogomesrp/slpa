@@ -22,11 +22,11 @@
         <Node id="admin/equipamento/novo.xhtml" x="1650" y="150" zoom="true"/>
         <Node id="admin/equipamento/listar.xhtml" x="1400" y="300" zoom="true"/>
         <Node id="welcomeJSF.jsp" x="400" y="150" zoom="true"/>
-        <Node id="posto/cliente/novo.xhtml" x="400" y="750" zoom="true"/>
         <Node id="admin/linha/listar.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="posto/cliente/novo.xhtml" x="400" y="750" zoom="true"/>
         <Node id="admin/posto/novo.xhtml" x="150" y="450" zoom="true"/>
-        <Node id="forward.jsp" x="150" y="150" zoom="true"/>
         <Node id="posto/pedido/revendanovo.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="forward.jsp" x="150" y="150" zoom="true"/>
         <Node id="admin/posto/editar.xhtml" x="900" y="300" zoom="true"/>
         <Node id="posto/posto/editar.xhtml" x="650" y="450" zoom="true"/>
         <Node id="admin/posto/listar.xhtml" x="650" y="300" zoom="true"/>
