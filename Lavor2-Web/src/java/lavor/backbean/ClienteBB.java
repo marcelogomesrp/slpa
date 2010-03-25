@@ -9,8 +9,10 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
+import lavor.entidade.EquipamentoCliente;
 import lavor.managedBean.CidadeMB;
 import lavor.managedBean.ClienteMB;
+import lavor.managedBean.EquipamentoClienteMB;
 import lavor.managedBean.PedidoMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.CidadeService;
@@ -43,6 +45,16 @@ public class ClienteBB {
     private CidadeService cidadeService;
     @Resource
     private ClienteService clienteService;
+
+
+
+    @Resource
+    private EquipamentoClienteMB equipamentoClienteMB;
+    @Resource
+    private RevendaBB revendaBB;
+    @Resource
+    private EquipamentoBB equipamentoBB;
+
 
     public ClienteBB() {
     }
@@ -82,18 +94,52 @@ public class ClienteBB {
         return "cliente/listar";
     }
 
-        public String SalvarEManter(){
+    public String SalvarEManter() {
         try {
             Cliente cliente = clienteMB.getCliente();
             cliente.setPostoDeAtendimento(this.postoDeAtendimentoMB.getPostoDeAtendimento());
             cliente.setCidade(cidadeService.PesquisarPorCidadeEstado(cliente.getCidade().getCidade(), cliente.getCidade().getEstado()));
             cliente = this.clienteService.Salvar(cliente);
             this.pedidoMB.setClienteSelecionado(Boolean.TRUE);
-            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente gravado com sucesso" );            
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente gravado com sucesso");
         } catch (ServiceException ex) {
             FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
         }
         return "sucesso";
     }
+
+    public String PedidoSalvar(){
+
+        try {
+            Cliente cliente = clienteMB.getCliente();
+            cliente.setPostoDeAtendimento(this.postoDeAtendimentoMB.getPostoDeAtendimento());
+            cliente.setCidade(cidadeService.PesquisarPorCidadeEstado(cliente.getCidade().getCidade(), cliente.getCidade().getEstado()));
+            cliente = this.clienteService.Salvar(cliente);
+            this.pedidoMB.setClienteSelecionado(Boolean.TRUE);
+           // FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente gravado com sucesso");
+        } catch (ServiceException ex) {
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
+            return "/pedido/novo";
+        }
+
+        if(this.pedidoMB.getClienteSelecionado()){
+            this.equipamentoClienteMB.setEquipamentoCliente(new EquipamentoCliente());
+            this.equipamentoBB.DoPesquisarPage();
+            this.revendaBB.CriarRevendaSelectItem(postoDeAtendimentoMB.getPostoDeAtendimento());
+            //return "/equipamento/novo";
+            return "/pedido/equipamentonovo";
+
+        }else{
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.ERROR, "O cliente deve ser informado antes de continuar");
+            return "/pedido/novo";
+        }
+
+    }
+
+    public String DoListarPage(){
+        return "/pedido/clientenovo";
+    }
+
+
 
 }

@@ -60,9 +60,10 @@
                         </a4j:status>
                     </h:panelGrid>
 
-                    <h:commandButton value="Salvar" action="#{clienteBB.SalvarEManter}"/>
+                    <h:commandButton value="Localizar" action="#{clienteBB.DoListarPage}" />
+                    <h:commandButton value="Proximo" action="#{clienteBB.PedidoSalvar}" />
 
-                    <h:commandButton value="Proximo" action="#{pedidoBB.DoNovoEquipamentoPage}"/>
+                    
                 </h:form>
             </ui:define>
 

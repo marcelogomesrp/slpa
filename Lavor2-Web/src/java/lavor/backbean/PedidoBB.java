@@ -75,6 +75,10 @@ public class PedidoBB {
     }
     
     public String DoNovoEquipamentoPage(){
+
+        //clienteBB.SalvarEManter();
+
+
         if(this.pedidoMB.getClienteSelecionado()){
             // limpar equipamento cliste
             this.equipamentoClienteMB.setEquipamentoCliente(new EquipamentoCliente());
