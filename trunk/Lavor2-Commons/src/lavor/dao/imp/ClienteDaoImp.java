@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import lavor.dao.ClienteDao;
 import lavor.entidade.Cliente;
+import lavor.entidade.PostoDeAtendimento;
 
 /**
  *
@@ -34,5 +35,6 @@ public class ClienteDaoImp extends DaoGenericoImp<Cliente, Long> implements Clie
         return clientes;
         
     }
+
 
 }

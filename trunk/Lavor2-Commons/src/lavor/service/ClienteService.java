@@ -67,6 +67,10 @@ public class ClienteService implements Serializable{
         //return this.clienteDao.todos();
     }
 
+    public List<Cliente> PesquisarPorPostoDeAtendimento(String nome, PostoDeAtendimento postoDeAtendimento) {
+        return this.clienteDao.PesquisarPorNomePostoDeAtendimento(nome, postoDeAtendimento.getId());
+    }
+
 
 
 
