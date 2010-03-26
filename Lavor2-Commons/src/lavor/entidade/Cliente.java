@@ -94,6 +94,19 @@ public class Cliente implements Serializable {
     }
 
     public String getTelefone() {
+//        if(lavor.utils.StringUtils.isNullOrEmpty(telefone)){
+//            return "";
+//        }else{
+//        StringBuilder fone = new StringBuilder("(");
+//        fone.append(telefone.charAt(0));
+//        fone.append(telefone.charAt(1));
+//        fone.append(") ");
+//        for(int x = 2; x< telefone.length();x++){
+//            fone.append(telefone.charAt(x));
+//        }
+//        return fone.toString();
+//        //return telefone;
+//        }
         return telefone;
     }
 
