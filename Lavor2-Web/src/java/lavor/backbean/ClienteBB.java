@@ -5,6 +5,7 @@
 
 package lavor.backbean;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
@@ -87,6 +88,7 @@ public class ClienteBB {
 
     public String Pesquisar(){
         //List<Cliente> clientes = this.clienteService.PesquisarPorNome(this.clienteMB.getCliente().getNome());
+        this.pedidoMB.setClienteSelecionado(Boolean.FALSE);
         String nome = this.clienteMB.getCliente().getNome();
         Long   id   = this.postoDeAtendimentoMB.getPostoDeAtendimento().getId();
         List<Cliente> clientes = this.clienteService.PesquisarPorNomePostoDeAtendimento(nome, id);
@@ -137,7 +139,16 @@ public class ClienteBB {
     }
 
     public String DoListarPage(){
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        clientes = clienteService.PesquisarPorPostoDeAtendimento(clienteMB.getCliente().getNome(), postoDeAtendimentoMB.getPostoDeAtendimento());
+        this.clienteMB.setClientes(new ListDataModel(clientes));
         return "/pedido/clientenovo";
+    }
+
+    public String DoSelecionarCliente(){
+        this.pedidoMB.setClienteSelecionado(Boolean.TRUE);
+        this.clienteMB.setCliente((Cliente) clienteMB.getClientes().getRowData());
+        return "sucesso";
     }
 
 

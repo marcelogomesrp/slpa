@@ -19,7 +19,58 @@
                     <h:messages id="message" />
 
                     <h:panelGrid columns="2" >
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{clienteMB.cliente.nome}" />
+                        <h:commandButton value="Pesquisar" action="#{clienteBB.Pesquisar}" />
+                    </h:panelGrid>
 
+                    <rich:dataTable value="#{clienteMB.clientes}" id="lista" var="cliente" width="100%" rendered="#{pedidoMB.clienteSelecionado == false }">
+                            <f:facet name="header">
+                                <rich:columnGroup styleClass="dataTableHeader">
+                                    <h:column><h:outputText value="ID"/></h:column>
+                                    <h:column><h:outputText value="Nome"/></h:column>
+                                    <h:column><h:outputText value="Telefone"/></h:column>
+                                    <h:column><h:outputText value="Celular"/></h:column>
+                                    <h:column><h:outputText value="Selecionar"/></h:column>
+                                </rich:columnGroup>
+                            </f:facet>
+
+                        <h:column >
+                            <h:outputText value="#{cliente.id}" />
+                        </h:column>
+
+                         <h:column >
+                            <h:outputText value="#{cliente.nome}" />
+                        </h:column>
+
+                         <h:column >
+                            <h:outputText value="#{cliente.telefone}" />
+                        </h:column>
+
+                        <h:column >
+                            <h:outputText value="#{cliente.celular}" />
+                        </h:column>
+
+                        <h:column >
+                            <h:commandLink value="selecionar" action="#{clienteBB.DoSelecionarCliente}"/>
+                        </h:column>
+
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+                    <h:panelGrid columns="2" rendered="#{pedidoMB.clienteSelecionado == true}" >
+                        <h:outputText value="ID" />
+                        <h:outputText value="#{clienteMB.cliente.id}" />
+                        <h:outputText value="Nome" />
+                        <h:outputText value="#{clienteMB.cliente.nome}" />
+                        <h:outputText value="Telefone" />
+                        <h:outputText value="#{clienteMB.cliente.telefone}" />
+                        <h:outputText value="Celular" />
+                        <h:outputText value="#{clienteMB.cliente.celular}" />
                     </h:panelGrid>
                 </h:form>
 
