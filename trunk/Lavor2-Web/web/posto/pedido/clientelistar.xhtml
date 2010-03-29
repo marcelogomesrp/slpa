@@ -14,14 +14,16 @@
 
             <ui:define name="content">
                 
-                
-                <h:form>
-                    <h:messages id="message" />
+                <h:messages id="message" />
+
+                <h:form rendered="#{pedidoMB.clienteSelecionado == false}">
 
                     <h:panelGrid columns="2" >
                         <h:outputText value="Nome" />
                         <h:inputText value="#{clienteMB.cliente.nome}" />
                         <h:commandButton value="Pesquisar" action="#{clienteBB.Pesquisar}" />
+                        <br />
+                        <h:commandButton value="Novo" action="#{pedidoBB.DoNovoClientePage}" />
                     </h:panelGrid>
 
                     <rich:dataTable value="#{clienteMB.clientes}" id="lista" var="cliente" width="100%" rendered="#{pedidoMB.clienteSelecionado == false }">
@@ -71,6 +73,23 @@
                         <h:outputText value="#{clienteMB.cliente.telefone}" />
                         <h:outputText value="Celular" />
                         <h:outputText value="#{clienteMB.cliente.celular}" />
+                    </h:panelGrid>
+                </h:form>
+
+
+
+
+
+                <h:form rendered="#{pedidoMB.clienteSelecionado == true}" >
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="ID" />
+                        <h:outputText value="#{clienteMB.cliente.id}" />
+                        <h:outputText value="Telefone" />
+                        <h:outputText value="#{clienteMB.cliente.telefone}" />
+                        <h:outputText value="Celular" />
+                        <h:outputText value="#{clienteMB.cliente.celular}" />
+                        <h:commandButton value="Proximo" action="#{pedidoBB.DoNovoEquipamentoPage}"/>
+                        <h:commandButton value="Selecionar outro cliente" action="#{pedidoBB.NovaPesquisaDeCliente}"/>
                     </h:panelGrid>
                 </h:form>
 

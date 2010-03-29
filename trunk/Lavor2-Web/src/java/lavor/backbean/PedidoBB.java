@@ -17,10 +17,12 @@ import lavor.entidade.Pedido;
 import lavor.entidade.Situacao;
 import lavor.managedBean.ClienteMB;
 import lavor.managedBean.EquipamentoClienteMB;
+import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.PecaMB;
 import lavor.managedBean.PedidoMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.managedBean.RevendaMB;
+import lavor.service.EquipamentoClienteService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
 import lavor.service.ServiceException;
@@ -52,18 +54,24 @@ public class PedidoBB {
     private RevendaMB revendaMB;
 
     @Resource
+    private EquipamentoMB equipamentoMB;
+
+    @Resource
     private ClienteBB clienteBB;
     @Resource
     private EquipamentoBB equipamentoBB;
-
-    @Resource
-    private PecaService pecaService;
-
-    @Resource
-    private PedidoService pedidoService;
     @Resource
     private RevendaBB revendaBB;
 
+
+    @Resource
+    private PecaService pecaService;
+    @Resource
+    private PedidoService pedidoService;
+    @Resource
+    private EquipamentoClienteService equipamentoClienteService;
+
+    
     public PedidoBB() {
     }
 
@@ -71,6 +79,7 @@ public class PedidoBB {
         this.clienteBB.DoNovoClientePage();
         this.pedidoMB.setClienteSelecionado(Boolean.FALSE);
         this.pedidoMB.setEquipamentoSelecionado(Boolean.FALSE);
+        this.equipamentoClienteMB.setEquipamentoCliente(new EquipamentoCliente());
         return "/pedido/novo";
     }
     
@@ -81,7 +90,10 @@ public class PedidoBB {
 
         if(this.pedidoMB.getClienteSelecionado()){
             // limpar equipamento cliste
-            this.equipamentoClienteMB.setEquipamentoCliente(new EquipamentoCliente());
+            //mudei aqui em ...
+            if(this.equipamentoClienteMB.getEquipamentoCliente().getId() == null){
+                this.equipamentoClienteMB.setEquipamentoCliente(new EquipamentoCliente());
+            }
             this.equipamentoBB.DoPesquisarPage();
             this.revendaBB.CriarRevendaSelectItem(postoDeAtendimentoMB.getPostoDeAtendimento());
             return "/pedido/equipamentonovo";
@@ -92,6 +104,18 @@ public class PedidoBB {
     }
 
     public String DoNovoPedidoPage(){
+
+        try {
+            EquipamentoCliente equipamentoCliente = equipamentoClienteMB.getEquipamentoCliente();
+            equipamentoCliente.setEquipamento(equipamentoMB.getEquipamento());
+            equipamentoClienteMB.setEquipamentoCliente(equipamentoClienteService.Salvar(equipamentoCliente));
+            this.pedidoMB.setEquipamentoSelecionado(Boolean.TRUE);
+            //FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Equipamento do cliente gravado com sucesso" );
+        } catch (Exception ex) {
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar.." + ex.getMessage());
+        }
+
+
         if(this.pedidoMB.getEquipamentoSelecionado()){
             List<Peca> pecas = pecaService.PesquisarPorEquipamento(equipamentoClienteMB.getEquipamentoCliente().getEquipamento());
             pecaMB.setPecas(new ListDataModel(pecas));
@@ -138,8 +162,9 @@ public class PedidoBB {
         return "ok";
     }
 
-
-
-
+    public String NovaPesquisaDeCliente(){
+        this.pedidoMB.setClienteSelecionado(Boolean.FALSE);        
+        return "sucesso";
+    }
 
 }
