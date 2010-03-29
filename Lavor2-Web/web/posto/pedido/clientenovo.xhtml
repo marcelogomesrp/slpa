@@ -59,12 +59,15 @@
                             </f:facet>
                         </a4j:status>
                     </h:panelGrid>
-
-                    <h:commandButton value="Localizar" action="#{clienteBB.DoListarPage}" />
+                    
                     <h:commandButton value="Proximo" action="#{clienteBB.PedidoSalvar}" />
-
                     
                 </h:form>
+                <h:form>
+                    <h:commandButton value="Localizar" action="#{clienteBB.DoListarPage}" />
+                </h:form>
+
+
             </ui:define>
 
         </ui:composition>
