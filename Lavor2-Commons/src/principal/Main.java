@@ -29,15 +29,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         ApplicationContext context  = new ClassPathXmlApplicationContext("applicationContext.xml");
-         //PostoDeAtendimentoDao postoDeAtendimentoDao = (PostoDeAtendimentoDao) context.getBean("postoDeAtendimentoDao");
-         ClienteService clienteService = (ClienteService) context.getBean("clienteService");
-
-         List<Cliente> clientes = clienteService.PesquisarPorNome("Cliente%");
-         for(Cliente cliente:clientes){
-             System.out.println("Cliente: " + cliente.getId() + cliente.getNome());
-
-         }
+//         ApplicationContext context  = new ClassPathXmlApplicationContext("applicationContext.xml");
+//         //PostoDeAtendimentoDao postoDeAtendimentoDao = (PostoDeAtendimentoDao) context.getBean("postoDeAtendimentoDao");
+//         ClienteService clienteService = (ClienteService) context.getBean("clienteService");
+//
+//         List<Cliente> clientes = clienteService.PesquisarPorNome("Cliente%");
+//         for(Cliente cliente:clientes){
+//             System.out.println("Cliente: " + cliente.getId() + cliente.getNome());
+//
+//         }
 //
 ////         Usuario usuario = new Usuario();
 ////        try {
