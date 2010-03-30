@@ -7,9 +7,11 @@ package lavor.service;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import lavor.dao.PedidoDao;
 import lavor.entidade.Pedido;
-import lavor.entidade.Revenda;
+import lavor.entidade.PostoDeAtendimento;
+import lavor.entidade.Situacao;
 import lavor.utils.GenericExceptionMessageType;
 
 /**
@@ -58,6 +60,18 @@ public class PedidoService implements Serializable{
         if(dataDoPedido == null){
             serviceException.addMessage(GenericExceptionMessageType.WARNING, "A data deve ser informada");
         }
+    }
+
+    public List<Pedido> PesquisarPedidoPorPosto(PostoDeAtendimento postoDeAtendimento) {
+        return pedidoDao.pesquisarPorPosto(postoDeAtendimento);
+    }
+
+    public List<Pedido> PesquisarPedidoPorPostoESituacao(PostoDeAtendimento postoDeAtendimento, Situacao situacao) {
+        return pedidoDao.pesquisarPorPostoESituacao(postoDeAtendimento, situacao);
+    }
+
+    public List<Pedido> PesquisarPedidoPorSituacao(Situacao situacao) {
+        return pedidoDao.PesquisarPorSituacao(situacao);
     }
 
 
