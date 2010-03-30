@@ -5,6 +5,7 @@
 
 package lavor.managedBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.model.SelectItem;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller("revendaMB")
 @Scope("session")
-public class RevendaMB {
+public class RevendaMB implements Serializable{
 
     private Revenda revenda;
     private List<SelectItem> revendas;
