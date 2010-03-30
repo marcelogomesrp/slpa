@@ -5,6 +5,7 @@
 
 package lavor.managedBean;
 
+import java.io.Serializable;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Equipamento;
 import org.springframework.context.annotation.Scope;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller("equipamentoMB")
 @Scope("session")
-public class EquipamentoMB {
+public class EquipamentoMB implements Serializable{
 
     private Equipamento equipamento;
     private ListDataModel equipamentos;

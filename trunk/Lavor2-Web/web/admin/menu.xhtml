@@ -69,6 +69,19 @@
                 </rich:menuItem>
             </rich:dropDownMenu>
 
+
+
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Pedido" />
+                </f:facet>
+                <rich:menuItem action="#{pedidoBB.DoListarResumoPage}" >
+                    <h:outputText value="Exportar" />
+                </rich:menuItem>
+
+            </rich:dropDownMenu>
+
         </rich:toolBar>
     </h:form>
 

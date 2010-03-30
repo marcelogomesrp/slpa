@@ -5,11 +5,23 @@
 
 package lavor.backbean;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import lavor.entidade.EquipamentoCliente;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
@@ -55,6 +67,8 @@ public class PedidoBB {
 
     @Resource
     private EquipamentoMB equipamentoMB;
+
+
 
     @Resource
     private ClienteBB clienteBB;
@@ -127,6 +141,18 @@ public class PedidoBB {
 
     }
 
+    public String DoListarPedidoDOPostoPage(){
+        List<Pedido> pedidos = this.pedidoService.PesquisarPedidoPorPostoESituacao(postoDeAtendimentoMB.getPostoDeAtendimento(), Situacao.Cadastrado);
+        this.pedidoMB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido/listarPedidos";
+    }
+
+    public String DoListarResumoPage(){
+        List<Pedido> pedidos = this.pedidoService.PesquisarPedidoPorSituacao(Situacao.Cadastrado);
+        this.pedidoMB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido/resumo";
+    }
+
     public String Salvar(){
         ListDataModel pecas =  pecaMB.getPecas();
         List<Peca> pecasSolicitada = new ArrayList<Peca>();
@@ -166,5 +192,72 @@ public class PedidoBB {
         this.pedidoMB.setClienteSelecionado(Boolean.FALSE);        
         return "sucesso";
     }
+
+    private static byte[] getBytesFromFile(File file) throws IOException {
+        InputStream is = new FileInputStream(file);
+        long length = file.length();
+
+        if (length > Integer.MAX_VALUE) {
+            // File is too large
+        }
+
+        byte[] bytes = new byte[(int) length];
+
+        int offset = 0;
+        int numRead = 0;
+        while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
+            offset += numRead;
+        }
+
+        if (offset < bytes.length) {
+            throw new IOException("Could not completely read file " + file.getName());
+        }
+        is.close();
+        return bytes;
+    }
+
+
+    public String Exportar() {
+        try {
+        List<Pedido> pedidos = new ArrayList<Pedido>();
+        System.out.println("Posto: " + postoDeAtendimentoMB.getPostoDeAtendimento());
+        pedidos = this.pedidoService.PesquisarPedidoPorSituacao(Situacao.Cadastrado);
+        String filename = "Arquivo.txt";
+        //String filename = new Date().toString();
+        File arquivo = new File(filename);
+        FileOutputStream fos;
+        
+        fos = new FileOutputStream(arquivo);
+        for(Pedido pedido:pedidos){
+            fos.write((pedido.getPostoDeAtendimento().getId() + "," ).getBytes());
+            fos.write((pedido.getPostoDeAtendimento().getRazaoSocial() + "," ).getBytes());
+            fos.write((pedido.getCliente().getId()+ "," ).getBytes());
+            fos.write((pedido.getCliente().getNome()+ "\n" ).getBytes());
+        }
+            fos.close();
+
+        byte[] pdf = PedidoBB.getBytesFromFile(new File(filename));
+        FileInputStream filee = new FileInputStream(filename);
+        InputStreamReader reader = new InputStreamReader(filee);
+        BufferedReader br = new BufferedReader(reader);
+        FacesContext faces = FacesContext.getCurrentInstance();
+        HttpServletResponse response = (HttpServletResponse) faces.getExternalContext().getResponse();
+        response.setContentType("application/force-download");
+        response.setHeader("Content-disposition", "inline; filename=\"" + filename + "\"");
+
+            ServletOutputStream out;
+            out = response.getOutputStream();
+            out.write(pdf);
+
+faces.responseComplete();
+
+        } catch (IOException ex) {
+            Logger.getLogger(PedidoBB.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+        return "sucesso";
+    }
+
+
 
 }
