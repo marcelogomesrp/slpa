@@ -118,6 +118,14 @@ public class EquipamentoBB {
         return "sucesso";
     }
 
+    public String Selecionar(){
+        this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        return "sucesso";
+    }
 
+//    public String PesquisarPorLinha(){
+//        this.equipamentoMB.setEquipamentos(new ListDataModel(equipamentoService.PesquisarPorLinha(Long.MIN_VALUE)));
+//        return "sucesso";
+//    }
 
 }

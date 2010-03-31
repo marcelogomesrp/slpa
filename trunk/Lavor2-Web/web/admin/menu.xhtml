@@ -69,9 +69,6 @@
                 </rich:menuItem>
             </rich:dropDownMenu>
 
-
-
-
             <rich:dropDownMenu>
                 <f:facet name="label">
                     <h:outputText value="Pedido" />
@@ -81,6 +78,18 @@
                 </rich:menuItem>
 
             </rich:dropDownMenu>
+
+
+            <rich:dropDownMenu>
+                <f:facet name="label">
+                    <h:outputText value="Vista Explodida" />
+                </f:facet>
+                <rich:menuItem action="#{vistaExplodidaBB.DoNovoPage}" >
+                    <h:outputText value="Exportar" />
+                </rich:menuItem>
+
+            </rich:dropDownMenu>
+
 
         </rich:toolBar>
     </h:form>
