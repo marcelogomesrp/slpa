@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+
+
+            <ui:define name="content">
+                
+                
+                <h:form>
+                    <h:messages id="message" />
+
+                    <h:panelGrid columns="2" >
+                         <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada">
+                            <f:selectItems value="#{linhaMB.selectLinhas}" />
+                        </h:selectOneMenu>
+                        <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}"  />
+                        
+                        <rich:dataList value="#{equipamentoMB.equipamentos}" var="equipamento"  >
+                            <h:outputLink value="#{facesContext.externalContext.requestContextPath}/vista/#{equipamento.id}.pdf">
+                                <h:outputText value="#{equipamento.modelo}" />
+                            </h:outputLink>
+                        </rich:dataList>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

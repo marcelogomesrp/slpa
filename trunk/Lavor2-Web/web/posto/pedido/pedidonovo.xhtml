@@ -26,7 +26,9 @@
                             <f:facet name="header">
                                 <rich:columnGroup styleClass="dataTableHeader">
                                     <h:column ><h:outputText value="Qtd. solicitada"/></h:column>
+                                    <h:column><h:outputText value="UN"/></h:column>
                                     <h:column ><h:outputText value="Posicao"/></h:column>
+                                    <h:column ><h:outputText value="Situacao"/></h:column>
                                     <h:column><h:outputText value="Cod. Importacao"/></h:column>
                                     <h:column><h:outputText value="Descricao"/></h:column>
                                 </rich:columnGroup>
@@ -37,7 +39,15 @@
                             </rich:column>
 
                             <rich:column width="10%">
+                               <h:inputText value="#{peca.unidade}" />
+                            </rich:column>
+
+                            <rich:column width="10%">
                                 <h:outputText value="#{peca.posicao}" />
+                            </rich:column>
+
+                            <rich:column width="10%">
+                                <h:outputText value="#{peca.situacaoPeca}" />
                             </rich:column>
 
                             <rich:column width="20%">
