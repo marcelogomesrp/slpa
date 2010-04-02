@@ -230,9 +230,11 @@
             <from-outcome>/vista/novo</from-outcome>
             <to-view-id>/admin/vista/novo.xhtml</to-view-id>
         </navigation-case>
-
-
-
+        <navigation-case>
+            <from-action>#{vistaExplodidaBB.DoListarVistaPage}</from-action>
+            <from-outcome>/vista/equipamentolistar</from-outcome>
+            <to-view-id>/posto/vista/equipamentolistar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -245,6 +247,7 @@
 
     </navigation-rule>
 </faces-config>
+
 
 
 

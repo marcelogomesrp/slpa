@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package lavor.backbean;
 
 import java.io.File;
@@ -24,10 +23,10 @@ import org.springframework.stereotype.Controller;
  *
  * @author marcelo
  */
-
 @Controller("vistaExplodidaBB")
 @Scope("request")
-public class VistaExplodidaBB implements Serializable{
+public class VistaExplodidaBB implements Serializable {
+
     private String nome;
     @Resource
     private EquipamentoMB equipamentoMB;
@@ -38,14 +37,13 @@ public class VistaExplodidaBB implements Serializable{
         this.nome = "original";
     }
 
-
-    public String DoNovoPage(){
+    public String DoNovoPage() {
         this.equipamentoMB.setEquipamento(new Equipamento());
         this.linhaBB.TodasAsLinhas();
         return "/vista/novo";
     }
 
-        public void UploadComAjax(UploadEvent event){
+    public void UploadComAjax(UploadEvent event) {
         FacesContext fc = FacesContext.getCurrentInstance();
         ServletContext sc = (ServletContext) fc.getExternalContext().getContext();
         String realPath = sc.getRealPath("/");
@@ -58,16 +56,25 @@ public class VistaExplodidaBB implements Serializable{
 //            fileName = st.nextToken();
 //        }
         //realPath = realPath + "upload//" + fileName;
-        realPath = realPath + "upload/" + fileName;
-        JOptionPane.showMessageDialog(null, realPath);
+        realPath = realPath + "vista/" + fileName;
+        //JOptionPane.showMessageDialog(null, realPath);
         file.renameTo(new File(realPath));
 
     }
 
-        public String Troca(){
-            this.nome = "trocado";
-            return "ok";
-        }
+
+    public String DoListarVistaPage(){
+        this.linhaBB.TodasAsLinhas();
+        return "/vista/equipamentolistar";
+    }
+
+
+    public String Troca() {
+        this.nome = "trocado";
+        return "ok";
+    }
+
+
 
     public String getNome() {
         return nome;
@@ -76,6 +83,4 @@ public class VistaExplodidaBB implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
 }
