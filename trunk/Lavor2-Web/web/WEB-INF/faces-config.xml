@@ -210,7 +210,29 @@
             <to-view-id>/posto/pedido/clientelistar.xhtml</to-view-id>
         </navigation-case>
 
+
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoListarPedidoDOPostoPage}</from-action>
+            <from-outcome>/pedido/listarPedidos</from-outcome>
+            <to-view-id>/posto/pedido/listarPedidos.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoListarResumoPage}</from-action>
+            <from-outcome>/pedido/resumo</from-outcome>
+            <to-view-id>/admin/pedido/resumo.xhtml</to-view-id>
+        </navigation-case>
+
         
+        <navigation-case>
+            <from-action>#{vistaExplodidaBB.DoNovoPage}</from-action>
+            <from-outcome>/vista/novo</from-outcome>
+            <to-view-id>/admin/vista/novo.xhtml</to-view-id>
+        </navigation-case>
+
+
+
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -219,8 +241,14 @@
             <from-outcome>cliente/listar</from-outcome>
             <to-view-id>/posto/pedido/clientelistar.xhtml</to-view-id>
         </navigation-case>
+
+
     </navigation-rule>
 </faces-config>
+
+
+
+
 
 
 
