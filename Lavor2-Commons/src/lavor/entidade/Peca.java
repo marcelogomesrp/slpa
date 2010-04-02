@@ -11,6 +11,8 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -41,6 +43,11 @@ public class Peca implements Serializable {
     @JoinColumn(name="id_equipamento", nullable=false)
     private Equipamento equipamento;
     private Float valor;
+    private String unidade;
+    private Float ipi;
+    @Enumerated(EnumType.STRING)
+    @Column(name="situacao_peca")
+    private SituacaoPeca situacaoPeca;
 
     public Peca() {
         this.equipamento = new Equipamento();
@@ -102,6 +109,32 @@ public class Peca implements Serializable {
     public void setValor(Float valor) {
         this.valor = valor;
     }
+
+    public Float getIpi() {
+        return ipi;
+    }
+
+    public void setIpi(Float ipi) {
+        this.ipi = ipi;
+    }
+
+    public SituacaoPeca getSituacaoPeca() {
+        return situacaoPeca;
+    }
+
+    public void setSituacaoPeca(SituacaoPeca situacaoPeca) {
+        this.situacaoPeca = situacaoPeca;
+    }
+
+    public String getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(String unidade) {
+        this.unidade = unidade;
+    }
+
+    
 
 
     @Override
