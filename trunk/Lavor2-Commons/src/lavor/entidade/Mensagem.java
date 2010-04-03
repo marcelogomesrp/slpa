@@ -7,41 +7,35 @@ package lavor.entidade;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author marcelo
  */
 @Entity
-@Table(name="item_pedido")
-public class ItemPedido implements Serializable {
+@Table(name="mensagem")
+public class Mensagem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    @OneToOne()
-    //@ManyToOne
-    @JoinColumn(name="id_pedido")
-    private Pedido pedido;
-    @OneToOne()
-    @JoinColumn(name="id_peca")
-    private Peca peca;
-    private Integer quantidade;
-    private Float valor;
+    private String titulo;
+    @Lob
+    private String mensagem;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataCriacao;
 
-    public ItemPedido() {
-        this.peca   = new Peca();
-        this.pedido = new Pedido();
+    public Mensagem() {
+        this.dataCriacao = new Date();
     }
-
 
     public Long getId() {
         return id;
@@ -51,40 +45,31 @@ public class ItemPedido implements Serializable {
         this.id = id;
     }
 
-    public Peca getPeca() {
-        return peca;
+    public String getMensagem() {
+        return mensagem;
     }
 
-    public void setPeca(Peca peca) {
-        this.peca = peca;
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
-    public Float getValor() {
-        return valor;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setValor(Float valor) {
-        this.valor = valor;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public Date getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
 
-    
 
     @Override
     public int hashCode() {
@@ -96,10 +81,10 @@ public class ItemPedido implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ItemPedido)) {
+        if (!(object instanceof Mensagem)) {
             return false;
         }
-        ItemPedido other = (ItemPedido) object;
+        Mensagem other = (Mensagem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +93,7 @@ public class ItemPedido implements Serializable {
 
     @Override
     public String toString() {
-        return "lavor.entidade.ItemPedido[id=" + id + "]";
+        return "lavor.entidade.Mensagem[id=" + id + "]";
     }
 
 }

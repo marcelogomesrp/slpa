@@ -15,6 +15,7 @@
     <class>lavor.entidade.Revenda</class>
     <class>lavor.entidade.EquipamentoCliente</class>
     <class>lavor.entidade.Defeito</class>
+    <class>lavor.entidade.Mensagem</class>
     <properties>
       <!-- Para buscar as entidades tem qua adicionar uma anotacao na entidade
       <property name="hibernate.archive.autodetection" value="class, hbm"/> -->
