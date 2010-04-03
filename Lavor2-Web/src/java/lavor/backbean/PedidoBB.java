@@ -170,6 +170,7 @@ public class PedidoBB {
                 ItemPedido itemPedido = new ItemPedido();
                 itemPedido.setPeca(peca);
                 itemPedido.setValor(peca.getValor());
+                itemPedido.setQuantidade(peca.getQuantidadeMaxima());
                 pedido.getItemPedido().add(itemPedido);
             }
         }
