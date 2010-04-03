@@ -235,6 +235,40 @@
             <from-outcome>/vista/equipamentolistar</from-outcome>
             <to-view-id>/posto/vista/equipamentolistar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{mensagemBB.DoNovoMensagemPage}</from-action>
+            <from-outcome>/mensagem/novo</from-outcome>
+            <to-view-id>/admin/mensagem/novo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{mensagemBB.DoListarMensagemPage}</from-action>
+            <from-outcome>/mensagem/listar</from-outcome>
+            <to-view-id>/admin/mensagem/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{mensagemBB.DoEditarPage}</from-action>
+            <from-outcome>/mensagem/editar</from-outcome>
+            <to-view-id>/admin/mensagem/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{mensagemBB.DoExcluirPage}</from-action>
+            <from-outcome>/mensagem/excluir</from-outcome>
+            <to-view-id>/admin/mensagem/excluir.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{mensagemBB.DoListarMensagemPostoPage}</from-action>
+            <from-outcome>/mensagem/listar</from-outcome>
+            <to-view-id>/posto/mensagem/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{mensagemBB.DoDetalhesPage}</from-action>
+            <from-outcome>/mensagem/detalhes</from-outcome>
+            <to-view-id>/posto/mensagem/detalhes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DoDetalhePage}</from-action>
+            <to-view-id>/posto/pedido/detalhes.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -247,6 +281,10 @@
 
     </navigation-rule>
 </faces-config>
+
+
+
+
 
 
 

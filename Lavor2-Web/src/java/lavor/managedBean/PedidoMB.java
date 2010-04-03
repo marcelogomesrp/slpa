@@ -22,13 +22,15 @@ public class PedidoMB {
     private Boolean clienteSelecionado;
     private Boolean equipamentoSelecionado;
     private ListDataModel pedidos;
+    private ListDataModel itemPedido;
 
 
     public PedidoMB() {
-        this.pedido = new Pedido();
-        this.clienteSelecionado = Boolean.FALSE;
+        this.pedido                 = new Pedido();
+        this.clienteSelecionado     = Boolean.FALSE;
         this.equipamentoSelecionado = Boolean.FALSE;
-        this.pedidos = new ListDataModel();
+        this.pedidos                = new ListDataModel();
+        this.itemPedido             = new ListDataModel();
     }
 
     public Pedido getPedido() {
@@ -61,6 +63,14 @@ public class PedidoMB {
 
     public void setPedidos(ListDataModel pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public ListDataModel getItemPedido() {
+        return itemPedido;
+    }
+
+    public void setItemPedido(ListDataModel itemPedido) {
+        this.itemPedido = itemPedido;
     }
 
     

@@ -3,24 +3,29 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="posto/index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="posto/mensagem/detalhes.xhtml" x="400" y="1200" zoom="true"/>
         <Node id="admin/cidade/novo.xhtml" x="650" y="600" zoom="true"/>
         <Node id="posto/pedido/clientenovo.xhtml" x="1900" y="150" zoom="true"/>
-        <Node id="template.xhtml" x="150" y="600" zoom="true"/>
         <Node id="posto/pedido/listarPedidos.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="template.xhtml" x="150" y="600" zoom="true"/>
         <Node id="posto/revenda/novo.xhtml" x="650" y="750" zoom="true"/>
-        <Node id="posto/menu.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="posto/pedido/detalhes.xhtml" x="2400" y="150" zoom="true"/>
         <Node id="admin/defeito/novo.xhtml" x="650" y="900" zoom="true"/>
-        <Node id="teste.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="posto/menu.xhtml" x="400" y="600" zoom="true"/>
         <Node id="admin/equipamento/editar.xhtml" x="1150" y="450" zoom="true"/>
-        <Node id="admin/menu.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="teste.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="posto/pedido/equipamentonovo.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="admin/menu.xhtml" x="400" y="300" zoom="true"/>
         <Node id="admin/linha/novo.xhtml" x="150" y="750" zoom="true"/>
         <Node id="posto/pedido/pedido.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="posto/mensagem/listar.xhtml" x="150" y="1350" zoom="true"/>
         <Node id="posto/pedido/pedidonovo.xhtml" x="400" y="1050" zoom="true"/>
         <Node id="admin/Index.xhtml" x="900" y="150" zoom="true"/>
         <Node id="posto/cliente/listar.xhtml" x="150" y="900" zoom="true"/>
-        <Node id="posto/pedido/equipamentolistar.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="admin/mensagem/listar.xhtml" x="1150" y="750" zoom="true"/>
         <Node id="admin/pedido/resumo.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="posto/pedido/equipamentolistar.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="admin/mensagem/editar.xhtml" x="650" y="1050" zoom="true"/>
         <Node id="posto/vista/equipamentolistar.xhtml" x="1650" y="450" zoom="true"/>
         <Node id="admin/equipamento/novo.xhtml" x="1650" y="150" zoom="true"/>
         <Node id="admin/equipamento/listar.xhtml" x="1400" y="300" zoom="true"/>
@@ -36,10 +41,12 @@
         <Node id="admin/posto/listar.xhtml" x="650" y="300" zoom="true"/>
         <Node id="index.xhtml" x="150" y="300" zoom="true"/>
         <Node id="posto/pedido/clientelistar.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="admin/mensagem/novo.xhtml" x="1400" y="600" zoom="true"/>
         <Node id="admin/linha/editar.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="admin/peca/novo.xhtml" x="400" y="900" zoom="true"/>
         <Node id="admin/posto/detalhes.xhtml" x="400" y="450" zoom="true"/>
         <Node id="posto/posto/trocarSenha.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="admin/mensagem/excluir.xhtml" x="900" y="900" zoom="true"/>
         <Node id="posto/pedido/revendalistar.xhtml" x="1650" y="300" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
