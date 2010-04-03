@@ -5,7 +5,10 @@
 
 package lavor.service;
 
+import java.util.List;
 import lavor.dao.ItemPedidoDao;
+import lavor.entidade.ItemPedido;
+import lavor.entidade.Pedido;
 
 /**
  *
@@ -23,6 +26,10 @@ public class ItemPedidoService {
 
     public void setItemPedidoDao(ItemPedidoDao itemPedidoDao) {
         this.itemPedidoDao = itemPedidoDao;
+    }
+
+    public List<ItemPedido> PesquisarPorPedido(Pedido pedido){
+        return this.itemPedidoDao.pesquisarPorPedido(pedido);
     }
 
 }

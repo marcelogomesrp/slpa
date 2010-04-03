@@ -5,12 +5,16 @@
 
 package lavor.dao;
 
+import java.util.List;
 import lavor.entidade.ItemPedido;
+import lavor.entidade.Pedido;
 
 /**
  *
  * @author marcelo
  */
 public interface ItemPedidoDao extends DaoGenerico<ItemPedido, Long> {
+
+    public List<ItemPedido> pesquisarPorPedido(Pedido pedido);
 
 }
