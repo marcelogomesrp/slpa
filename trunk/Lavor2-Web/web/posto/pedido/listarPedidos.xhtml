@@ -26,6 +26,7 @@
                                     <h:column><h:outputText value="Celular"/></h:column>
                                     <h:column><h:outputText value="Data do pedido"/></h:column>
                                     <h:column><h:outputText value="Valor total"/></h:column>
+                                    <h:column><h:outputText value="Detalhes"/></h:column>
                                 </rich:columnGroup>
                             </f:facet>
 
@@ -47,7 +48,9 @@
                         <h:column >
                             <h:outputText value="#{pedido.valorTotal}"/>
                         </h:column>
-
+                        <h:column >
+                            <h:commandLink value="detalhes" action="#{pedidoBB.DoDetalhePage}"/>
+                        </h:column>
                     </rich:dataTable>
 
                     <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />

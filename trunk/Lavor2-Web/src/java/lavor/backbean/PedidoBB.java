@@ -35,6 +35,7 @@ import lavor.managedBean.PedidoMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.managedBean.RevendaMB;
 import lavor.service.EquipamentoClienteService;
+import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
 import lavor.service.ServiceException;
@@ -84,6 +85,8 @@ public class PedidoBB {
     private PedidoService pedidoService;
     @Resource
     private EquipamentoClienteService equipamentoClienteService;
+    @Resource
+    private ItemPedidoService itemPedidoService;
 
     
     public PedidoBB() {
@@ -256,6 +259,14 @@ faces.responseComplete();
         } 
 
         return "sucesso";
+    }
+
+    public String DoDetalhePage(){
+        this.pedidoMB.setPedido((Pedido) pedidoMB.getPedidos().getRowData());
+        List<ItemPedido> itens = itemPedidoService.PesquisarPorPedido(pedidoMB.getPedido());
+        this.pedidoMB.setItemPedido(new ListDataModel(itens));
+        return "/pedido/detalhes";
+        
     }
 
 
