@@ -30,9 +30,13 @@ public class Equipamento implements Serializable {
     private Long id;
     @Column(name="modelo", length=200, nullable=false, unique=true)
     private String modelo;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name="id_linha", nullable=false)
     private Linha linha;
+    @Column(name="codigo_importacao", length=20, nullable=false)
+    private String codigoImportacao;
+    @Column(name="serie")
+    private int serie;
 
     public Equipamento() {
         this.linha = new Linha();
@@ -62,6 +66,22 @@ public class Equipamento implements Serializable {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public String getCodigoImportacao() {
+        return codigoImportacao;
+    }
+
+    public void setCodigoImportacao(String codigoImportacao) {
+        this.codigoImportacao = codigoImportacao;
+    }
+
+    public int getSerie() {
+        return serie;
+    }
+
+    public void setSerie(int serie) {
+        this.serie = serie;
     }
     
 

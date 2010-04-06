@@ -22,14 +22,14 @@
       <!--Configuracoes de dialeto e conexao-->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <!--
       <property name="hibernate.connection.url" value="jdbc:mysql://guaraba.com.br/lavor2"/>
       <property name="hibernate.connection.username" value="lavor2"/>
       <property name="hibernate.connection.password" value="admin..."/>
-      <!--
+      -->
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost/lavor2"/>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.password" value="admin..."/>
-      -->
 
       <!--Configuracoes de Debug-->
       <property name="hibernate.show_sql" value="true"/>
