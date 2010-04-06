@@ -18,8 +18,17 @@
                     <h:messages id="message" />
                     <h:panelGroup rendered="#{!equipamentoMB.equipamentoAtivo}">
                     <h:panelGrid columns="2" >
+
+                        <h:outputText value="Codigo importacao*" />
+                        <h:inputText value="#{equipamentoMB.equipamento.codigoImportacao}" id="inputCodigoImportaca" maxlength="20" size="20" required="true" requiredMessage="O codigo de importacao deve ser informado"/>
+
                         <h:outputText value="Modelo*" />
                         <h:inputText value="#{equipamentoMB.equipamento.modelo}" id="inputModelo" maxlength="200" size="100" required="true" requiredMessage="O momdelo deve ser informado"/>
+
+                        <h:outputText value="Serie" />
+                        <h:inputText value="#{equipamentoMB.equipamento.serie}" id="inputSerie" size="20" >
+                            <f:convertNumber />
+                        </h:inputText>
 
                         <h:outputText value="Linha" />
 
