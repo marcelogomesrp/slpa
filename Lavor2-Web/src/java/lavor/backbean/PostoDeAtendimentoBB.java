@@ -6,6 +6,7 @@
 package lavor.backbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
@@ -123,7 +124,7 @@ public class PostoDeAtendimentoBB {
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Posto gravado com sucesso" );
             postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
         }catch(Exception ex){
-            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar.." + ex.getMessage() + " causa " + ex.getCause());
         }        
         return "sucesso";
     }
@@ -134,7 +135,7 @@ public class PostoDeAtendimentoBB {
         cidade = cidadeService.PesquisarPorCidadeEstado(cidade.getCidade(), cidade.getEstado());
         novoPostoDeAtendimento.setCidade(cidade);
         try{
-            //postoDeAtendimentoService.Atualizar(novoPostoDeAtendimento);
+            postoDeAtendimentoService.Atualizar(novoPostoDeAtendimento);
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Posto atualizado com sucesso" );
             postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
         }catch(Exception ex){
@@ -169,7 +170,7 @@ public class PostoDeAtendimentoBB {
         Cidade cidade = novoPostoDeAtendimento.getCidade();
         cidade = cidadeService.PesquisarPorCidadeEstado(cidade.getCidade(), cidade.getEstado());
         novoPostoDeAtendimento.setCidade(cidade);
-        try{
+        try{            
             postoDeAtendimentoService.Atualizar(novoPostoDeAtendimento);
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Posto atualizado com sucesso" );
             postoDeAtendimentoMB.setPostoDeAtendimento(novoPostoDeAtendimento);
