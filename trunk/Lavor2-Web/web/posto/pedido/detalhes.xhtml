@@ -48,9 +48,17 @@
                         <h:outputText value="#{pedidoMB.pedido.equipamentoCliente.dataDaCompra}" />
                         
                     </h:panelGrid>
-                    <h:outputText value="#{pedidoMB.itemPedido.rowCount}" />
+                    <!-- h:outputText value="{pedidoMB.itemPedido.rowCount}" /> -->
 
-                    <h:dataTable value="#{pedidoMB.itemPedido}" var="item" >
+                    <rich:dataTable value="#{pedidoMB.itemPedido}" var="item"  id="lista" width="100%" >
+                        <f:facet name="header">
+                                <rich:columnGroup styleClass="dataTableHeader">
+                                    <h:column><h:outputText value="ID"/></h:column>
+                                    <h:column><h:outputText value="Codigo importacao"/></h:column>
+                                    <h:column><h:outputText value="Descricao"/></h:column>
+                                    <h:column><h:outputText value="Valor"/></h:column>
+                                </rich:columnGroup>
+                        </f:facet>
                     <h:column>
                         <h:outputText value="#{item.id}" />
                     </h:column>
@@ -68,7 +76,8 @@
                     </h:column>
 
 
-                    </h:dataTable>
+                    </rich:dataTable>
+                    
 
                 </h:form>
             </ui:define>
