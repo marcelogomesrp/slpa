@@ -108,6 +108,9 @@ public class EquipamentoService {
         return Boolean.TRUE;
     }
 
+    public Equipamento PesquisarPorId(Equipamento equipamento){
+        return this.equipamentoDao.pesquisarPorId(equipamento.getId());
+    }
 
 
 
