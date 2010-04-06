@@ -25,6 +25,12 @@
                             <rich:jQuery selector="#cnpjInput" query="mask('99.999.999/9999-99')" timing="onload"/>
                         </h:inputText>
 
+                        <h:outputText value="Inscricao Estadual*" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.inscricaoEstadual}" id="inscricaoEstadualInput" size="60" required="true" maxlength="60" requiredMessage="A inscricao deve ser informada" />
+
+                        <h:outputText value="Nome Fantasia*" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.nomeFantasia}" id="nomeFantasaiInput" size="60" required="true" maxlength="60" requiredMessage="A inscricao deve ser informada" />
+
 
                         <h:outputText value="E-mail*" />
                         <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.usuario.email}" id="emailInput" size="60" required="true" maxlength="255" requiredMessage="O email deve ser informado" />
@@ -42,9 +48,19 @@
                             <rich:jQuery selector="#celularInput" query="mask('(99) 9999-9999')" timing="onload"/>
                         </h:inputText>
 
+                        <h:outputText value="Fax" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.fax}" id="faxInput" size="14" maxlength="14" >
+                            <rich:jQuery selector="#faxInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                        </h:inputText>
+
                         <h:outputText value="Nome contato" />
                         <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.nomeContato}" id="contatoInput" size="60" maxlength="60" />
 
+                        <h:outputText value="MSN" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.msn}" id="msnInput" size="60" maxlength="250" />
+
+                        <h:outputText value="Skype" />
+                        <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.skype}" id="skypeInput" size="60" maxlength="250" />
 
                         <h:outputText value="Endereco*" />
                         <h:inputText value="#{postoDeAtendimentoMB.postoDeAtendimento.endereco}" id="enderecoInput" size="60" maxlength="255" required="true" requiredMessage="O endereco deve ser informado"/>

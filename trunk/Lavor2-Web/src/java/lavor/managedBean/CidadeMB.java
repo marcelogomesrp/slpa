@@ -76,24 +76,27 @@ public class CidadeMB implements Serializable{
     }
     
 
-//    public String AtualizarListaDeCidades(){
-//        this.LimparListaDeCidades();
-//        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
-//        for(Cidade cid:ListaDeCidades){
-//            cidades.add(new SelectItem(cid.getCidade().toString()));
-//        }
-//        return null;
-//    }
-
-
     public String AtualizarListaDeCidades(){
         this.LimparListaDeCidades();
-        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(clienteMB.getCliente().getCidade().getEstado());
+        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
         for(Cidade cid:ListaDeCidades){
             cidades.add(new SelectItem(cid.getCidade().toString()));
         }
         return null;
     }
+
+
+
+
+//    O cadastro de posto não estava mostrando as cidades.
+//    public String AtualizarListaDeCidades(){
+//        //this.LimparListaDeCidades();
+//        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(clienteMB.getCliente().getCidade().getEstado());
+//        for(Cidade cid:ListaDeCidades){
+//            cidades.add(new SelectItem(cid.getCidade().toString()));
+//        }
+//        return null;
+//    }
 
 
 }
