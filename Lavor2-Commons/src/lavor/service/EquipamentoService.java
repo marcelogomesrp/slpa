@@ -73,7 +73,8 @@ public class EquipamentoService {
         if(this.EquipamentoValido(equipamento)){
             Linha ln = linhaService.PesquisarPorId(equipamento.getLinha().getId());
             equipamento.setLinha(ln); 
-            equipamento = equipamentoDao.atualizar(equipamento);
+            //equipamento = equipamentoDao.atualizar(equipamento);
+            equipamento = equipamentoDao.salvar(equipamento);
             
         }
         return equipamento;
