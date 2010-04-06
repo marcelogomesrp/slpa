@@ -99,7 +99,8 @@ public class PostoDeAtendimentoService {
     public PostoDeAtendimento Salvar(PostoDeAtendimento postoDeAtendimento) throws ServiceException{
         try{
             if(this.PodeSerSalvo(postoDeAtendimento)){
-                postoDeAtendimento = postoDeAtendimentoDao.atualizar(postoDeAtendimento);
+                //postoDeAtendimento = postoDeAtendimentoDao.atualizar(postoDeAtendimento);
+                postoDeAtendimento = postoDeAtendimentoDao.salvar(postoDeAtendimento);
             }
         }catch(DataAccessException ex){
             throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);

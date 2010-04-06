@@ -8,6 +8,7 @@ package lavor.entidade;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -33,12 +35,16 @@ public class PostoDeAtendimento implements Serializable {
     private String razaoSocial;
     @Column(name="cnpj", length=14, nullable=false, unique=true)
     private String cnpj;
-    @OneToOne(cascade=CascadeType.ALL)
+    @Column(name="inscricao_estadual", length=14)
+    private String inscricaoEstadual;
+    @Column(name="nome_fantasia")
+    private String nomeFantasia;
+    @OneToOne()
     @JoinColumn(nullable=false, unique=true,name="usuario_id")
     private Usuario usuario;
     @Column(name="endereco", length=255)
     private String endereco;
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="id_cidade")
     private Cidade cidade;
     @Column(length=100)
@@ -51,10 +57,18 @@ public class PostoDeAtendimento implements Serializable {
     private String celular;
     @Column(length=60, name="nome_contato")
     private String nomeContato;
+    private String msn;
+    private String skype;
+    private String fax;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataDeCadastro;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataDeAtualizacao;
 
     public PostoDeAtendimento() {
-        this.usuario    = new Usuario();
-        this.cidade     = new Cidade();
+        this.usuario        = new Usuario();
+        this.cidade         = new Cidade();
+        this.dataDeCadastro = new Date();
     }
 
 
@@ -150,6 +164,63 @@ public class PostoDeAtendimento implements Serializable {
         this.telefone = telefone.replaceAll("[^\\d{L}]", "");
     }
 
+    public Date getDataDeAtualizacao() {
+        return dataDeAtualizacao;
+    }
+
+    public void setDataDeAtualizacao(Date dataDeAtualizacao) {
+        this.dataDeAtualizacao = dataDeAtualizacao;
+    }
+
+    public Date getDataDeCadastro() {
+        return dataDeCadastro;
+    }
+
+    public void setDataDeCadastro(Date dataDeCadastro) {
+        this.dataDeCadastro = dataDeCadastro;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getMsn() {
+        return msn;
+    }
+
+    public void setMsn(String msn) {
+        this.msn = msn;
+    }
+
+    public String getSkype() {
+        return skype;
+    }
+
+    public void setSkype(String skype) {
+        this.skype = skype;
+    }
+
+    public String getInscricaoEstadual() {
+        return inscricaoEstadual;
+    }
+
+    public void setInscricaoEstadual(String inscricaoEstadual) {
+        this.inscricaoEstadual = inscricaoEstadual;
+    }
+
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    
 
 
     @Override
