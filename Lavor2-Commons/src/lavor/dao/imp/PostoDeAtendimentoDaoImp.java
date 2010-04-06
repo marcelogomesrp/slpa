@@ -5,6 +5,7 @@
 
 package lavor.dao.imp;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,23 @@ public class PostoDeAtendimentoDaoImp extends DaoGenericoImp<PostoDeAtendimento,
             return postosDeAtendimento.get(0);
         }
         return new PostoDeAtendimento();
+    }
+
+    @Override
+    public PostoDeAtendimento salvar(PostoDeAtendimento postoDeAtendimento){
+        this.getEntityManager().clear();
+        Usuario usuario = postoDeAtendimento.getUsuario();
+        this.getEntityManager().persist(usuario);
+        postoDeAtendimento.setUsuario(usuario);
+        postoDeAtendimento.setDataDeCadastro(new Date());
+        this.getEntityManager().persist(postoDeAtendimento);
+        return postoDeAtendimento;
+    }
+
+    @Override
+    public PostoDeAtendimento atualizar(PostoDeAtendimento postoDeAtendimento){
+        postoDeAtendimento.setDataDeAtualizacao(new Date());
+        return super.atualizar(postoDeAtendimento);
     }
 
 }
