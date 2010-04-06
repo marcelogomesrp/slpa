@@ -30,6 +30,8 @@
                             <rich:columnGroup styleClass="dataTableHeader">
                                 <h:column><h:outputText value="ID"/></h:column>
                                 <h:column><h:outputText value="Modelo"/></h:column>
+                                <h:column><h:outputText value="Codigo Importacao"/></h:column>
+                                <h:column><h:outputText value="Serie"/></h:column>
                                 <h:column><h:outputText value="Editar"/></h:column>
                                 <h:column><h:outputText value="Adicionar Peca"/></h:column>
                             </rich:columnGroup>
@@ -40,6 +42,12 @@
                         </rich:column>
                         <rich:column>
                             <h:outputText value="#{equipamento.modelo}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{equipamento.codigoImportacao}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{equipamento.serie}" />
                         </rich:column>
                         <rich:column>
                             <h:commandLink value="editar" action="#{equipamentoBB.DoEditarPage}"/>
