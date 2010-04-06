@@ -22,6 +22,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import lavor.entidade.Equipamento;
 import lavor.entidade.EquipamentoCliente;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
@@ -35,6 +36,7 @@ import lavor.managedBean.PedidoMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.managedBean.RevendaMB;
 import lavor.service.EquipamentoClienteService;
+import lavor.service.EquipamentoService;
 import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
@@ -87,6 +89,8 @@ public class PedidoBB {
     private EquipamentoClienteService equipamentoClienteService;
     @Resource
     private ItemPedidoService itemPedidoService;
+    @Resource
+    private EquipamentoService equipamentoService;
 
     
     public PedidoBB() {
@@ -268,6 +272,17 @@ faces.responseComplete();
         this.pedidoMB.setItemPedido(new ListDataModel(itens));
         return "/pedido/detalhes";
         
+    }
+
+    public String Modificar(){
+        Equipamento equipamento = equipamentoService.PesquisarPorId(this.pedidoMB.getPedido().getEquipamentoCliente().getEquipamento());
+        List<Peca> pecas = pecaService.PesquisarPorEquipamento(equipamento);
+        List<ItemPedido> itens = pedidoMB.getPedido().getItemPedido();
+
+        for(ItemPedido item:itens){
+
+        }
+        return "/pedido/modificar";
     }
 
 
