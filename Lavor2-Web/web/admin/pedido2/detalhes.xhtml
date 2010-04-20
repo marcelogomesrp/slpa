@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+
+
+            <ui:define name="content">
+                
+                
+                <h:form>
+                    <h:messages id="message" />
+
+
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="ID:" />
+                        <h:outputText value="#{pedido2MB.pedido.id}" />
+
+                       
+                        <h:outputText value="Data do pedido" />
+                        <h:outputText value="#{pedido2MB.pedido.dataDoPedido}" >
+                            <f:convertDateTime type="date" dateStyle="short" locale="pt,BR" timeZone="America/Sao_Paulo" pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="Sitacao" />
+                        <h:outputText value="#{pedido2MB.pedido.situacao}" />
+
+                        <h:outputText value="Valor total" />
+                        <h:outputText value="#{pedido2MB.pedido.valorTotal}" />
+
+                        <h:outputText value="Cliente" />
+                        <h:outputText value="#{pedido2MB.pedido.cliente.nome}" />
+
+                        <h:outputText value="Telefone" />
+                        <h:outputText value="#{pedido2MB.pedido.cliente.telefone}" />
+
+                        <h:outputText value="Celular" />
+                        <h:outputText value="#{pedido2MB.pedido.cliente.celular}" />
+
+                        <h:outputText value="Equipamento" />
+                        <h:outputText value="#{pedido2MB.pedido.equipamentoCliente.equipamento.modelo}" />
+
+                        <h:outputText value="Data da compra" />
+                        <h:outputText value="#{pedido2MB.pedido.equipamentoCliente.dataDaCompra}" >
+                            <f:convertDateTime type="date" dateStyle="short" locale="pt,BR" timeZone="America/Sao_Paulo" pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        
+                    </h:panelGrid>
+                    <!-- h:outputText value="{pedidoMB.itemPedido.rowCount}" /> -->
+
+                    <rich:dataTable value="#{pedido2MB.itensPedido}" var="item"  id="lista" width="100%" >
+                        <f:facet name="header">
+                                <rich:columnGroup styleClass="dataTableHeader">
+                                    <h:column><h:outputText value="Codigo importacao"/></h:column>
+                                    <h:column><h:outputText value="Descricao"/></h:column>
+                                    <h:column><h:outputText value="Valor"/></h:column>
+                                    <h:column><h:outputText value="Qtd"/></h:column>
+                                    <h:column><h:outputText value="Remover"/></h:column>
+                                    
+
+                                </rich:columnGroup>
+                        </f:facet>
+
+                    <h:column>
+                        <h:outputText value="#{item.peca.codigoImportacao}" />
+                    </h:column>
+
+                    <h:column>
+                        <h:outputText value="#{item.peca.descricao}" />
+                    </h:column>
+
+                    <h:column>
+                        <h:outputText value="#{item.valor}" />
+                    </h:column>
+
+                   <h:column>
+                       <rich:inputNumberSpinner value="#{item.quantidade}" minValue="0" maxValue="100" />
+                    </h:column>
+
+
+
+                    <h:column>
+                        <h:commandLink value="remover" action="#{pedido2BB.RemoverItem}" />
+                    </h:column>
+
+                    </rich:dataTable>
+                    
+                    <h:commandButton value="Atualizar" action="#{pedido2BB.Atualizar}" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

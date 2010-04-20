@@ -31,6 +31,9 @@
                             <f:convertNumber />
                         </h:inputText>
 
+                        <h:outputText value="Prioridade" />
+                        <h:selectBooleanCheckbox value="#{equipamentoMB.equipamento.prioridade}" />
+
                         <h:outputText value="Linha" />
 
                         <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
