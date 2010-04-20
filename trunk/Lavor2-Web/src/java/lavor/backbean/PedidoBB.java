@@ -14,7 +14,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -160,6 +162,56 @@ public class PedidoBB {
         return "/pedido/resumo";
     }
 
+    public String DolistarPedidosCadastradoPage(){
+        List<Pedido> pedidos = this.pedidoService.PesquisarPedidoPorSituacao(Situacao.Cadastrado);
+        this.pedidoMB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido/listarcadastrado";
+    }
+
+
+    public String DolistarPedidosProcessadoPage(){
+        List<Pedido> pedidos = this.pedidoService.PesquisarPedidoPorSituacao(Situacao.Processado);
+        this.pedidoMB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido/listarprocessado";
+    }
+
+
+    public String DoEditarPage(){
+//        this.pedidoMB.setPedido((Pedido) pedidoMB.getPedidos().getRowData());
+//        List<ItemPedido> itens = pedidoMB.getPedido().getItemPedido();
+//        List<Peca> pecas = new ArrayList<Peca>();
+
+
+        this.pedidoMB.setPedido((Pedido) pedidoMB.getPedidos().getRowData());
+        List<ItemPedido> itens = itemPedidoService.PesquisarPorPedido(pedidoMB.getPedido());
+        Equipamento eq = pedidoMB.getPedido().getEquipamentoCliente().getEquipamento();
+        eq = equipamentoService.PesquisarPorId(eq);
+        List<Peca> pecas = pecaService.PesquisarPorEquipamento(eq);        
+        Map<String, Object> itensPedidos = new HashMap<String, Object>();
+        for(ItemPedido i:itens){
+            itensPedidos.put(String.valueOf(i.getId()), i);
+        }
+        itens = new ArrayList<ItemPedido>();
+        for(Peca peca:pecas){
+            if(itensPedidos.get(String.valueOf(peca.getId())) == null){
+                ItemPedido itemPedido = new ItemPedido();
+                peca.setQuantidadeMaxima(0);
+                itemPedido.setPeca(peca);
+                itens.add(itemPedido);
+            }else{
+                ItemPedido itemPedido = new ItemPedido();
+                itemPedido.setPeca((Peca) itensPedidos.get(String.valueOf(peca.getId())));
+                itens.add(itemPedido);
+            }
+
+        }
+
+        this.pedidoMB.setItemPedido(new ListDataModel(itens));
+
+
+        return "/pedido/editar";
+    }
+
     public String Salvar(){
         ListDataModel pecas =  pecaMB.getPecas();
         List<Peca> pecasSolicitada = new ArrayList<Peca>();
@@ -284,6 +336,28 @@ faces.responseComplete();
         }
         return "/pedido/modificar";
     }
+
+    public String DoRegeitarPage(){
+        Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
+        pedido.setSituacao(Situacao.Regeitado);
+        pedidoService.Atualizar(pedido);
+        return this.DolistarPedidosCadastradoPage();
+    }
+
+    public String DoCancelarPage(){
+        Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
+        pedido.setSituacao(Situacao.Cancelado);
+        pedidoService.Atualizar(pedido);
+        return this.DolistarPedidosCadastradoPage();
+    }
+
+    public String DoFinalizarPage(){
+        Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
+        pedido.setSituacao(Situacao.Finalizado);
+        pedidoService.Atualizar(pedido);
+        return this.DolistarPedidosCadastradoPage();
+    }
+
 
 
 

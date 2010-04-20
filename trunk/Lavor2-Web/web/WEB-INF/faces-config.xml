@@ -269,6 +269,58 @@
             <from-action>#{pedidoBB.DoDetalhePage}</from-action>
             <to-view-id>/posto/pedido/detalhes.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DolistarPedidosCadastradoPage}</from-action>
+            <from-outcome>/pedido/listarcadastrado</from-outcome>
+            <to-view-id>/admin/pedido/listarcadastrado.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedidoBB.DolistarPedidosProcessadoPage}</from-action>
+            <from-outcome>/pedido/listarprocessado</from-outcome>
+            <to-view-id>/admin/pedido/listarprocessado.xhtml</to-view-id>
+        </navigation-case>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoEditarPage}</from-action>
+            <from-outcome>/pedido/editar</from-outcome>
+            <to-view-id>/admin/pedido/editar.xhtml</to-view-id>
+        </navigation-case>
+
+
+
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarPage}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/listarcadastrado.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarPagePrioridade}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/listarcadastrado.xhtml</to-view-id>
+        </navigation-case>
+
+
+        <navigation-case>
+            <from-action>#{pedido2BB.DoDetalhes}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/detalhes.xhtml</to-view-id>
+        </navigation-case>
+
+        
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -280,7 +332,53 @@
 
 
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/pedido/listarcadastrado.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoRegeitarPage}</from-action>
+            <to-view-id>/admin/pedido/listarcadastrado.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoCancelarPage}</from-action>
+            <to-view-id>/admin/pedido/listarcadastrado.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoFinalizarPage}</from-action>
+            <to-view-id>/admin/pedido/listarcadastrado.xhtml</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/pedido/listarprocessado.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoRegeitarPage}</from-action>
+            <to-view-id>/admin/pedido/listarprocessado.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoCancelarPage}</from-action>
+            <to-view-id>/admin/pedido/listarprocessado.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{pedidoBB.DoFinalizarPage}</from-action>
+            <to-view-id>/admin/pedido/listarprocessado.xhtml</to-view-id>
+        </navigation-case>
+
+
+    </navigation-rule>
 </faces-config>
+
+
+
+
+
+
+
 
 
 

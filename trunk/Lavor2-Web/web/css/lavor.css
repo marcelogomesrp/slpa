@@ -13,10 +13,24 @@
 
 .odd-row {
     background-color: #ECF3FE;
+    font-weight: normal;
+    color: black;
 }
 .even-row {
     background-color: #FCFFFE;
+    font-weight: normal;
+    color: black;
 }
 .active-row {
-    background-color: #FFEBDA;
+    background-color: #005000;
+    font-weight: bold;
+    color:#FF0000;
+
+    
 }
+
+
+
+
+
+

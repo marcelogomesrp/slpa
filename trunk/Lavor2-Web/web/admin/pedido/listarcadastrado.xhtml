@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:messages id="message" />
+                    <rich:dataTable value="#{pedidoMB.pedidos}" id="lista" var="pedido" width="100%" >
+
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">
+                                <h:column><h:outputText value="ID"/></h:column>
+                                <h:column><h:outputText value="Posto"/></h:column>
+                                <h:column><h:outputText value="Linha"/></h:column>
+                                <h:column><h:outputText value="Equipamento"/></h:column>
+                                <h:column><h:outputText value="Valor"/></h:column>
+                                <h:column><h:outputText value="Editar"/></h:column>
+                                <h:column><h:outputText value="Regeitar"/></h:column>
+                                <h:column><h:outputText value="Cancelar"/></h:column>
+                                <h:column><h:outputText value="Finalizar"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <rich:column>
+                            <h:outputText value="#{pedido.id}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:outputText value="#{pedido.postoDeAtendimento.nomeFantasia}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:outputText value="#{pedido.equipamentoCliente.equipamento.modelo}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:outputText value="#{pedido.equipamentoCliente.equipamento.linha.nome}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:outputText value="#{pedido.valorTotal}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:commandLink value="editar"   action="#{pedidoBB.DoEditarPage}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="Regeitar" action="#{pedidoBB.DoRegeitarPage}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="Cancelar" action="#{pedidoBB.DoCancelarPage}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="Finalizar" action="#{pedidoBB.DoFinalizarPage}" />
+                        </rich:column>
+
+
+
+
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
