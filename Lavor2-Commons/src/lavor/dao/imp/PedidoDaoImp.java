@@ -45,6 +45,38 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
 		return pedido;
 	}
 
+    	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Pedido atualizar(Pedido pedido) {
+		getEntityManager().clear();
+                float total = 0F;
+                //TODO: modificar este valor
+                for(ItemPedido itemPedido:pedido.getItemPedido()){
+                    itemPedido.setValor(itemPedido.getPeca().getValor());
+                    //getEntityManager().persist(itemPedido);
+                    total+=itemPedido.getValor() * itemPedido.getPeca().getQuantidadeMaxima();
+                }
+                pedido.setValorTotal(total);
+		//getEntityManager().persist(pedido);
+                getEntityManager().merge(pedido);
+
+                for(ItemPedido itemPedido:pedido.getItemPedido()){
+                    itemPedido.setValor(itemPedido.getPeca().getValor() * itemPedido.getPeca().getQuantidadeMaxima());
+                    itemPedido.setPedido(pedido);
+                    if(itemPedido.getId() == null){
+                        getEntityManager().persist(itemPedido);
+                    }else{
+                        getEntityManager().merge(itemPedido);
+                    }
+                }
+
+		return pedido;
+	}
+
+
+
+
+
     public List<Pedido> pesquisarPorPosto(PostoDeAtendimento postoDeAtendimento) {
         String SQL = "SELECT p from Pedido p WHERE postoDeAtendimento = :postoDeAtendimento";
         Map<String, Object> params = new HashMap<String, Object>();
@@ -66,6 +98,15 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
         String SQL = "SELECT p from Pedido p WHERE situacao  = :situacao";
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("situacao", situacao);
+        List<Pedido> pedidos = listPesqParam(SQL, params);
+        return pedidos;
+    }
+
+    public List<Pedido> PesquisarPorSituacao(Situacao situacao, Boolean prioridade) {
+        String SQL = "SELECT p from Pedido p WHERE situacao  = :situacao and equipamentoCliente.equipamento.prioridade = :prioridade";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("situacao", situacao);
+        params.put("prioridade", prioridade);
         List<Pedido> pedidos = listPesqParam(SQL, params);
         return pedidos;
     }

@@ -32,4 +32,8 @@ public class ItemPedidoService {
         return this.itemPedidoDao.pesquisarPorPedido(pedido);
     }
 
+    public void Excluir(ItemPedido itemPedido){
+        this.itemPedidoDao.excluir(itemPedido);
+    }
+
 }

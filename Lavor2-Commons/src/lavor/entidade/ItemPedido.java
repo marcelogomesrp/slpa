@@ -42,6 +42,21 @@ public class ItemPedido implements Serializable {
         this.pedido = new Pedido();
     }
 
+    public ItemPedido(Pedido pedido, Peca peca) {
+        this.pedido = pedido;
+        this.peca = peca;
+    }
+
+    public ItemPedido(Pedido pedido, Peca peca, Integer quantidade, Float valor) {
+        this.pedido = pedido;
+        this.peca = peca;
+        this.quantidade = quantidade;
+        this.valor = valor;
+    }
+
+
+
+
 
     public Long getId() {
         return id;

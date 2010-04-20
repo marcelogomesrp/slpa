@@ -30,7 +30,7 @@
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost/lavor2"/>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.password" value="admin..."/>
-
+      
       <!--Configuracoes de Debug-->
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>

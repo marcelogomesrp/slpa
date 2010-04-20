@@ -74,6 +74,14 @@ public class PedidoService implements Serializable{
         return pedidoDao.PesquisarPorSituacao(situacao);
     }
 
+    public Pedido Atualizar(Pedido pedido){
+        return pedidoDao.atualizar(pedido);
+    }
+
+    public List<Pedido> PesquisarPedidoPorSituacaoEPrioridade(Situacao situacao, Boolean prioridade) {
+        return pedidoDao.PesquisarPorSituacao(situacao, prioridade);
+    }
+
 
 
 }
