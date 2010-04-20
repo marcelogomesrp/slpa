@@ -13,5 +13,6 @@ public enum Situacao {
     Cadastrado,
     Cancelado,
     Processado,
-    Finalizado
+    Finalizado,
+    Regeitado
 }

@@ -22,4 +22,6 @@ public interface PedidoDao  extends DaoGenerico<Pedido, Long>{
 
     public List<Pedido> PesquisarPorSituacao(Situacao situacao);
 
+    public List<Pedido> PesquisarPorSituacao(Situacao situacao, Boolean prioridade);
+
 }

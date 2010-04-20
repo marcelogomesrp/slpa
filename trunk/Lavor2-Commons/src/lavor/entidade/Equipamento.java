@@ -37,9 +37,11 @@ public class Equipamento implements Serializable {
     private String codigoImportacao;
     @Column(name="serie")
     private int serie;
+    private Boolean prioridade;
 
     public Equipamento() {
         this.linha = new Linha();
+        this.prioridade = false;
     }
 
 
@@ -83,6 +85,15 @@ public class Equipamento implements Serializable {
     public void setSerie(int serie) {
         this.serie = serie;
     }
+
+    public Boolean getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(Boolean prioridade) {
+        this.prioridade = prioridade;
+    }
+
     
 
     @Override
