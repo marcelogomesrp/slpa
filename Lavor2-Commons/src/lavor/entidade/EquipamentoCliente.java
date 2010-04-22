@@ -32,6 +32,12 @@ public class EquipamentoCliente implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDaCompra;
 
+    public EquipamentoCliente() {
+        this.equipamento = new Equipamento();
+    }
+
+
+
     public Long getId() {
         return id;
     }

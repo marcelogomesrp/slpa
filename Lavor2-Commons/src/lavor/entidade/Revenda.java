@@ -32,7 +32,7 @@ public class Revenda implements Serializable {
     private String cnpj;
     @Column(name="razao_social", length=60, nullable=false)
     private String razaoSocial;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name="id_posto_de_atendimento")
     private PostoDeAtendimento postoDeAtendimento;
 

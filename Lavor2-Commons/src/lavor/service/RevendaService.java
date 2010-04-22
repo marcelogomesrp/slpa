@@ -37,7 +37,8 @@ public class RevendaService {
         this.serviceException = new ServiceException();
         try{
             if(this.PodeSerSalva(revenda)){
-                revenda = this.revendaDao.atualizar(revenda);
+                //revenda = this.revendaDao.atualizar(revenda);
+                revenda = this.revendaDao.salvar(revenda);
             }
         }catch(Exception ex){
             throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);
