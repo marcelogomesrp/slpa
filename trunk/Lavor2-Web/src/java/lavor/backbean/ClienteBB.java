@@ -151,6 +151,13 @@ public class ClienteBB {
         return "sucesso";
     }
 
+    public List<Cliente> PesquisarClientesPorNomeEPosto(String nome, Long id){
+        List<Cliente> clientes = this.clienteService.PesquisarPorNomePostoDeAtendimento(nome, id);
+        this.clienteMB.setClientes( new ListDataModel(clientes));
+        return clientes;
+    }
+
+
 
 
 }

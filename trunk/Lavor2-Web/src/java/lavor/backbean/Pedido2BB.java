@@ -11,17 +11,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import lavor.entidade.Cliente;
 import lavor.entidade.Equipamento;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
+import lavor.entidade.Revenda;
 import lavor.entidade.Situacao;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.Pedido2MB;
 import lavor.managedBean.PostoDeAtendimentoMB;
+import lavor.service.ClienteService;
 import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
+import lavor.service.RevendaService;
 import lavor.service.ServiceException;
 import lavor.utils.FacesUtils;
 import lavor.utils.GenericExceptionMessageType;
@@ -54,6 +58,12 @@ public class Pedido2BB {
 
     @Resource
     private PecaService pecaService;
+
+    @Resource
+    private ClienteService clienteService;
+
+    @Resource
+    private RevendaService revendaService;
 
     public Pedido2BB() {
 
@@ -166,6 +176,24 @@ public class Pedido2BB {
             Logger.getLogger(Pedido2BB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "sucesso";
+    }
+
+
+    public String PesquisarClientePorTelefone(){        
+        List<Cliente> clientes = clienteService.PesquisarPorTelefoneEPostoDeAtendimento(pedido2MB.getPedido().getCliente().getTelefone(), postoDeAtendimentoMB.getPostoDeAtendimento().getId());
+        if(clientes.size() == 1){
+            pedido2MB.getPedido().setCliente(clientes.get(0));
+        }
+        return "sucesso";
+    }
+
+    public String PesquisarRevendaPorCnpj(){
+        List<Revenda> revendas = revendaService.PesquisarPorCnpjEPosto(pedido2MB.getPedido().getRevenda().getCnpj(), postoDeAtendimentoMB.getPostoDeAtendimento().getId());
+        if(revendas.size() == 1){
+            pedido2MB.getPedido().setRevenda(revendas.get(0));
+        }
+        return "sucesso";
+        //pedido2MB.getItensPedido().getRowCount();
     }
 
 }
