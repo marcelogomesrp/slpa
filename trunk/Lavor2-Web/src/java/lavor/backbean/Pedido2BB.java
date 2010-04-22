@@ -7,12 +7,20 @@ package lavor.backbean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
+import lavor.entidade.Equipamento;
 import lavor.entidade.ItemPedido;
+import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
 import lavor.entidade.Situacao;
+import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.Pedido2MB;
+import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.ItemPedidoService;
+import lavor.service.PecaService;
 import lavor.service.PedidoService;
 import lavor.service.ServiceException;
 import lavor.utils.FacesUtils;
@@ -34,6 +42,18 @@ public class Pedido2BB {
     private PedidoService pedidoService;
     @Resource
     private ItemPedidoService itemPedidoService;
+
+    @Resource
+    private LinhaBB linhaBB;
+
+    @Resource
+    private EquipamentoMB equipamentoMB;
+
+    @Resource
+    private PostoDeAtendimentoMB postoDeAtendimentoMB;
+
+    @Resource
+    private PecaService pecaService;
 
     public Pedido2BB() {
 
@@ -95,5 +115,57 @@ public class Pedido2BB {
         return "sucesso";
     }
 
+    public String DoNovoPedidoPage(){
+        this.pedido2MB.setPedido(new Pedido());
+        pedido2MB.setItensPedido(new ListDataModel());
+        equipamentoMB.setEquipamentos(new ListDataModel());
+        linhaBB.TodasAsLinhas();
+        return "/pedido/novo";
+    }
+
+    public String SelecionarEquipamento(){
+        //this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        Equipamento equipamento = (Equipamento) equipamentoMB.getEquipamentos().getRowData();
+        pedido2MB.getPedido().getEquipamentoCliente().setEquipamento(equipamento);
+        List<ItemPedido> itensAdd = new ArrayList<ItemPedido>();
+
+        for(Peca peca:pecaService.PesquisarPorEquipamento(equipamento)){
+            //item.put(peca.getId(), new ItemPedido(pedido, peca, 0, 0F));
+            itensAdd.add(new ItemPedido(this.pedido2MB.getPedido(), peca, 0, 0F));
+        }
+
+        pedido2MB.setItensPedido(new ListDataModel(itensAdd));
+        return "sucesso";
+    }
+
+
+    public String Salvar(){
+        List<ItemPedido> itens = new ArrayList<ItemPedido>();
+        for(int x = 0; x<pedido2MB.getItensPedido().getRowCount();x++){
+            pedido2MB.getItensPedido().setRowIndex(x);
+            ItemPedido item = (ItemPedido) pedido2MB.getItensPedido().getRowData();
+            if(item.getQuantidade() > 0 ){
+                itens.add(item);
+            }
+        }
+        try {
+            pedido2MB.getPedido().getCliente().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+            pedido2MB.getPedido().getRevenda().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+            pedido2MB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+            pedido2MB.getPedido().setSituacao(Situacao.Cadastrado);
+            pedido2MB.getPedido().setItemPedido(itens);
+            pedidoService.Salvar(pedido2MB.getPedido());
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
+            pedido2MB.setPedido(new Pedido());
+            pedido2MB.setItensPedido(new ListDataModel());
+            equipamentoMB.setEquipamentos(new ListDataModel());
+            linhaBB.TodasAsLinhas();
+
+        } catch (ServiceException ex) {
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar" + ex.getCause() + "<br />" + ex.getMessage());
+            Logger.getLogger(Pedido2BB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "sucesso";
+    }
 
 }
