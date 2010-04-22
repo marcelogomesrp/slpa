@@ -19,5 +19,7 @@ public interface ClienteDao extends DaoGenerico<Cliente, Long>{
 
     public List<Cliente> PesquisarPorNomePostoDeAtendimento(String nome, Long id);
 
+    public List<Cliente> PesquisarPorTelefoneEPostoDeAtendimento(String telefone, Long id);
+
 
 }

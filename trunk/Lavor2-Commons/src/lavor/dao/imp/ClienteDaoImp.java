@@ -36,5 +36,14 @@ public class ClienteDaoImp extends DaoGenericoImp<Cliente, Long> implements Clie
         
     }
 
+    public List<Cliente> PesquisarPorTelefoneEPostoDeAtendimento(String telefone, Long id) {
+        String SQL = "SELECT c from Cliente c WHERE telefone = :telefone and postoDeAtendimento.id = :id";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("telefone",  telefone);
+        params.put("id",    id);
+        List<Cliente> clientes = listPesqParam(SQL, params);
+        return clientes;
+    }
+
 
 }

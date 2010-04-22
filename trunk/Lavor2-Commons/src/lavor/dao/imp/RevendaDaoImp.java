@@ -26,4 +26,13 @@ public class RevendaDaoImp extends DaoGenericoImp<Revenda, Long> implements Reve
         return revendas;
     }
 
+    public List<Revenda> PesquisarPorCnpjEPosto(String cnpj, Long id) {
+        String SQL = "SELECT r from Revenda r WHERE postoDeAtendimento.id = :id and cnpj = :cnpj";
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
+        params.put("cnpj", cnpj);
+        List<Revenda> revendas = listPesqParam(SQL, params);
+        return revendas;
+    }
+
 }
