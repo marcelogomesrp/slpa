@@ -17,4 +17,6 @@ public interface RevendaDao extends DaoGenerico<Revenda, Long>{
 
     public List<Revenda> PesquisarPorPosto(PostoDeAtendimento postoDeAtendimento);
 
+    public List<Revenda> PesquisarPorCnpjEPosto(String cnpj, Long id);
+
 }

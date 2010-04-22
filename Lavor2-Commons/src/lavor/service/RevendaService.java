@@ -64,6 +64,10 @@ public class RevendaService {
         return this.revendaDao.PesquisarPorPosto(postoDeAtendimento);
     }
 
+    public List<Revenda> PesquisarPorCnpjEPosto(String cnpj, Long id) {
+        return this.revendaDao.PesquisarPorCnpjEPosto(cnpj, id);
+    }
+
     
 
 }

@@ -18,6 +18,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -54,7 +55,13 @@ public class Pedido implements Serializable {
     private Float valorTotal;    
     @OneToMany
     private List<ItemPedido> ItemPedido;
-
+    @Column(name="guarantia_do_equipamento")
+    private Boolean garantiaDoEquipamento;
+    @Column(name="garantia_das_pecas")
+    private Boolean garantiaDaspecas;
+    @Lob
+    private String observacao;
+    private Boolean prioridade;
     
 
     public Pedido() {
@@ -64,6 +71,9 @@ public class Pedido implements Serializable {
         this.equipamentoCliente = new EquipamentoCliente();
         this.dataDoPedido       = new Date();
         this.ItemPedido         = new ArrayList<ItemPedido>();
+        this.garantiaDaspecas   = Boolean.FALSE;
+        this.garantiaDaspecas   = Boolean.FALSE;
+        this.prioridade         = Boolean.FALSE;
     }
 
     public Long getId() {
@@ -163,6 +173,37 @@ public class Pedido implements Serializable {
         this.valorTotal = valorTotal;
     }
 
+    public Boolean getGarantiaDaspecas() {
+        return garantiaDaspecas;
+    }
 
+    public void setGarantiaDaspecas(Boolean garantiaDaspecas) {
+        this.garantiaDaspecas = garantiaDaspecas;
+    }
+
+    public Boolean getGarantiaDoEquipamento() {
+        return garantiaDoEquipamento;
+    }
+
+    public void setGarantiaDoEquipamento(Boolean garantiaDoEquipamento) {
+        this.garantiaDoEquipamento = garantiaDoEquipamento;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public Boolean getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(Boolean prioridade) {
+        this.prioridade = prioridade;
+    }
+        
 
 }
