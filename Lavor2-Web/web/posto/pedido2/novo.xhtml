@@ -11,59 +11,98 @@
 
         <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
             <ui:define name="content">
+
+
                 <h:form>                    
                     <h:messages id="message" />
 
-                    <h:panelGrid columns="2" >
-                        <f:facet name="header">
-                            <h:outputText value="Cliente"/>
+                    <a4j:status id="clienteForm" for="clienteRegiao">
+                        <f:facet name="start">
+                            <h:outputText value="Carregando as informações"/>
                         </f:facet>
+                        <f:facet name="stop">
 
-                        <h:outputText value="Nome" />
-                        <h:inputText value="#{pedido2MB.pedido.cliente.nome}" />
 
-                        <h:outputText value="Telefone" />
-                        <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" />
 
-                        <h:outputText value="Celular" />
-                        <h:inputText value="#{pedido2MB.pedido.cliente.celular}" />
 
-                        <h:outputText value="Endereco" />
-                        <h:inputText value="#{pedido2MB.pedido.cliente.endereco}" />
 
-                        <h:outputText value="UF" />
-                        <a4j:region id="regiaoajx">
-                            <h:selectOneMenu id="ufInput" value="#{pedido2MB.pedido.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
-                                <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
-                                <f:selectItems value="#{estadosBB.estados}" />
-                            </h:selectOneMenu>
-                        </a4j:region>
 
-                        <h:outputText value="Cidade" />
-                        <a4j:status id="statusajax" for="regiaoajx">
-                            <f:facet name="start">
-                                <h:outputText value="Carregando as cidades, por favor aguarde..."/>
-                            </f:facet>
-                            <f:facet name="stop">
-                                <h:selectOneMenu id="cidadeInput" value="#{pedido2MB.pedido.cliente.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
-                                    <f:selectItems value="#{cidadeMB.cidades}" />
-                                </h:selectOneMenu>
-                            </f:facet>
-                        </a4j:status>
-                    </h:panelGrid>
+                            <h:panelGrid columns="2">
+                                <f:facet name="header">
+                                    <h:outputText value="Cliente"/>
+                                </f:facet>
+
+                                <h:outputText value="Nome" />
+                                <h:inputText value="#{pedido2MB.pedido.cliente.nome}" />
+
+
+                                <h:outputText value="Telefone" />
+                                <a4j:region id="clienteRegiao">
+                                    <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" >
+                                        <a4j:support event="onchange" action="#{pedido2BB.PesquisarClientePorTelefone}" reRender="clienteForm" />
+                                    </h:inputText>
+                                </a4j:region>
+
+                                <h:outputText value="Celular" />
+                                <h:inputText value="#{pedido2MB.pedido.cliente.celular}" />
+
+                                <h:outputText value="Endereco" />
+                                <h:inputText value="#{pedido2MB.pedido.cliente.endereco}" />
+
+                                <h:outputText value="UF" />
+                                <a4j:region id="regiaoajx">
+                                    <h:selectOneMenu id="ufInput" value="#{pedido2MB.pedido.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                                        <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
+                                        <f:selectItems value="#{estadosBB.estados}" />
+                                    </h:selectOneMenu>
+                                </a4j:region>
+
+                                <h:outputText value="Cidade" />
+                                <a4j:status id="statusajax" for="regiaoajx">
+                                    <f:facet name="start">
+                                        <h:outputText value="Carregando as cidades, por favor aguarde..."/>
+                                    </f:facet>
+                                    <f:facet name="stop">
+                                        <h:selectOneMenu id="cidadeInput" value="#{pedido2MB.pedido.cliente.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
+                                            <f:selectItems value="#{cidadeMB.cidades}" />
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </a4j:status>
+
+                            </h:panelGrid>
+
+
+                        </f:facet>
+                    </a4j:status>
                     <!-- fim do cliente -->
 
-                    <h:panelGrid columns="2" >
-                        <f:facet name="header">
-                            <h:outputText value="Revenda"/>
+                    <a4j:status id="revendaForm" for="regiaoRevenda" >
+                        <f:facet name="start">
+                            <h:outputText value="Carregando as informações"/>
                         </f:facet>
+                        <f:facet name="stop">
 
-                        <h:outputText value="Razao Social" />
-                        <h:inputText value="#{pedido2MB.pedido.revenda.razaoSocial}" />
 
-                        <h:outputText value="CNPJ" />
-                        <h:inputText value="#{pedido2MB.pedido.revenda.cnpj}" />
-                    </h:panelGrid>
+                            <h:panelGrid columns="2" >
+                                <f:facet name="header">
+                                    <h:outputText value="Revenda"/>
+                                </f:facet>
+
+                                <h:outputText value="CNPJ" />
+                                <a4j:region id="regiaoRevenda">
+                                    <h:inputText value="#{pedido2MB.pedido.revenda.cnpj}" >
+                                        <a4j:support event="onchange" action="#{pedido2BB.PesquisarRevendaPorCnpj}" reRender="revendaForm" />
+                                    </h:inputText>
+                                </a4j:region>
+
+                                <h:outputText value="Razao Social" />
+                                <h:inputText value="#{pedido2MB.pedido.revenda.razaoSocial}" />
+
+
+                            </h:panelGrid>
+
+                        </f:facet>
+                    </a4j:status>
                     <!-- fim da revenda -->
 
 
@@ -76,17 +115,33 @@
                         <h:outputText value="Data da compra" />
                         <rich:calendar value="#{pedido2MB.pedido.equipamentoCliente.dataDaCompra}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
 
-                        <h:outputText value="Linha" />
-                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada"  >
-                            <f:selectItems value="#{linhaMB.selectLinhas}" />
-                        </h:selectOneMenu>
+                        <h:outputText value="Equipamento esta na garantia" />
+                        <h:selectBooleanCheckbox value="#{pedido2MB.pedido.garantiaDoEquipamento}" />
 
-                        <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
+                        <h:outputText value="Pecas esta na garantia" />
+                        <h:selectBooleanCheckbox value="#{pedido2MB.pedido.garantiaDaspecas}" />
+
+
+                        <h:outputText value="Observação" />
+                        <rich:editor id="editor" width="400" height="300" value="#{pedido2MB.pedido.observacao}"/>
+
+
+                        <h:outputText value="Linha" />
+                        <h:panelGroup >
+                            <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada"  >
+                                <f:selectItems value="#{linhaMB.selectLinhas}" />
+                            </h:selectOneMenu>
+                            <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
+                        </h:panelGroup>
                     </h:panelGrid>
+
+
 
                     <!-- fim do equipamento -->
 
-                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%"  >
+                    <br /><br />
+                    
+                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%" rendered="#{equipamentoMB.equipamentos.rowCount > 0}" >
                         <f:facet name="header">
                             <rich:columnGroup styleClass="dataTableHeader">                                
                                 <h:column><h:outputText value="Modelo"/></h:column>
@@ -112,7 +167,7 @@
 
                     <br />
 
-                    <rich:dataTable value="#{pedido2MB.itensPedido}" var="item"  id="lista2" width="100%" >
+                    <rich:dataTable value="#{pedido2MB.itensPedido}" var="item"  id="lista2" width="100%" rendered="#{pedido2MB.itensPedido.rowCount > 0}" >
                         <f:facet name="header">
                             <rich:columnGroup styleClass="dataTableHeader">
                                 <h:column><h:outputText value="Codigo importacao"/></h:column>
