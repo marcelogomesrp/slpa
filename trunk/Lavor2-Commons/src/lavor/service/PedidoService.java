@@ -21,6 +21,9 @@ import lavor.utils.GenericExceptionMessageType;
 public class PedidoService implements Serializable{
     private PedidoDao pedidoDao;
     private ServiceException serviceException;
+    private ClienteService clienteService;
+    private RevendaService revendaService;
+    private EquipamentoClienteService equipamentoClienteService;
 
     public PedidoService() {
         this.serviceException = new ServiceException();
@@ -39,10 +42,19 @@ public class PedidoService implements Serializable{
         try{
             if(this.PodeSerSalva(pedido)){
                 // TODO: Warning - Verificar a revenda que esta sendo gravada
+                if(pedido.getCliente().getId() == null){
+                    pedido.setCliente(clienteService.Salvar(pedido.getCliente()));
+                }
+                if(pedido.getRevenda().getId() == null){
+                    pedido.setRevenda(revendaService.Salvar(pedido.getRevenda()));
+                }
+                if(pedido.getEquipamentoCliente().getId() == null){
+                    pedido.setEquipamentoCliente(equipamentoClienteService.Salvar(pedido.getEquipamentoCliente()));
+                }
                 pedido = this.pedidoDao.salvar(pedido);
             }
         }catch(Exception ex){
-            throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);
+            throw new ServiceException("Ocorreu um erro ao tentar salvar" + ex.getMessage() + ex.getCause(), ex);
         }
         return pedido;
     }
@@ -80,6 +92,30 @@ public class PedidoService implements Serializable{
 
     public List<Pedido> PesquisarPedidoPorSituacaoEPrioridade(Situacao situacao, Boolean prioridade) {
         return pedidoDao.PesquisarPorSituacao(situacao, prioridade);
+    }
+
+    public ClienteService getClienteService() {
+        return clienteService;
+    }
+
+    public void setClienteService(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
+
+    public EquipamentoClienteService getEquipamentoClienteService() {
+        return equipamentoClienteService;
+    }
+
+    public void setEquipamentoClienteService(EquipamentoClienteService equipamentoClienteService) {
+        this.equipamentoClienteService = equipamentoClienteService;
+    }
+
+    public RevendaService getRevendaService() {
+        return revendaService;
+    }
+
+    public void setRevendaService(RevendaService revendaService) {
+        this.revendaService = revendaService;
     }
 
 
