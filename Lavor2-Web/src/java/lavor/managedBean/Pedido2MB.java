@@ -47,10 +47,11 @@ public class Pedido2MB {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
-        //this.setItensPedido(itemPedidoService.PesquisarPorPedido(pedido));
 
+        if(pedido.getId() != null){
         HashMap<Long, ItemPedido> item = new HashMap<Long, ItemPedido>();
         Equipamento equipamento = pedido.getEquipamentoCliente().getEquipamento();
+
         for(Peca peca:pecaService.PesquisarPorEquipamento(equipamento)){
             item.put(peca.getId(), new ItemPedido(pedido, peca, 0, 0F));
         }
@@ -66,9 +67,9 @@ public class Pedido2MB {
         }
 
         this.setItensPedido(itensAdd);
-        
-
-
+        }else{
+                this.setItensPedido(new ArrayList<ItemPedido>());
+        }
     }
 
     public ListDataModel getPedidos() {

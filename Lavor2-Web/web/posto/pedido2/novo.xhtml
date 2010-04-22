@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>                    
+                    <h:messages id="message" />
+
+                    <h:panelGrid columns="2" >
+                        <f:facet name="header">
+                            <h:outputText value="Cliente"/>
+                        </f:facet>
+
+                        <h:outputText value="Nome" />
+                        <h:inputText value="#{pedido2MB.pedido.cliente.nome}" />
+
+                        <h:outputText value="Telefone" />
+                        <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" />
+
+                        <h:outputText value="Celular" />
+                        <h:inputText value="#{pedido2MB.pedido.cliente.celular}" />
+
+                        <h:outputText value="Endereco" />
+                        <h:inputText value="#{pedido2MB.pedido.cliente.endereco}" />
+
+                        <h:outputText value="UF" />
+                        <a4j:region id="regiaoajx">
+                            <h:selectOneMenu id="ufInput" value="#{pedido2MB.pedido.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                                <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
+                                <f:selectItems value="#{estadosBB.estados}" />
+                            </h:selectOneMenu>
+                        </a4j:region>
+
+                        <h:outputText value="Cidade" />
+                        <a4j:status id="statusajax" for="regiaoajx">
+                            <f:facet name="start">
+                                <h:outputText value="Carregando as cidades, por favor aguarde..."/>
+                            </f:facet>
+                            <f:facet name="stop">
+                                <h:selectOneMenu id="cidadeInput" value="#{pedido2MB.pedido.cliente.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
+                                    <f:selectItems value="#{cidadeMB.cidades}" />
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </a4j:status>
+                    </h:panelGrid>
+                    <!-- fim do cliente -->
+
+                    <h:panelGrid columns="2" >
+                        <f:facet name="header">
+                            <h:outputText value="Revenda"/>
+                        </f:facet>
+
+                        <h:outputText value="Razao Social" />
+                        <h:inputText value="#{pedido2MB.pedido.revenda.razaoSocial}" />
+
+                        <h:outputText value="CNPJ" />
+                        <h:inputText value="#{pedido2MB.pedido.revenda.cnpj}" />
+                    </h:panelGrid>
+                    <!-- fim da revenda -->
+
+
+                    <h:panelGrid columns="2" >
+
+                        <f:facet name="header">
+                            <h:outputText value="Equipamento"/>
+                        </f:facet>
+
+                        <h:outputText value="Data da compra" />
+                        <rich:calendar value="#{pedido2MB.pedido.equipamentoCliente.dataDaCompra}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
+
+                        <h:outputText value="Linha" />
+                        <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada"  >
+                            <f:selectItems value="#{linhaMB.selectLinhas}" />
+                        </h:selectOneMenu>
+
+                        <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
+                    </h:panelGrid>
+
+                    <!-- fim do equipamento -->
+
+                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%"  >
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">                                
+                                <h:column><h:outputText value="Modelo"/></h:column>
+                                <h:column><h:outputText value="Selecionar"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <rich:column>
+                            <h:outputText value="#{equipamento.modelo}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:commandLink value="Selecionar" action="#{pedido2BB.SelecionarEquipamento}"/>
+                        </rich:column>
+
+                    </rich:dataTable>
+
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+                    <br />
+
+                    <rich:dataTable value="#{pedido2MB.itensPedido}" var="item"  id="lista2" width="100%" >
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">
+                                <h:column><h:outputText value="Codigo importacao"/></h:column>
+                                <h:column><h:outputText value="Descricao"/></h:column>
+                                <h:column><h:outputText value="Valor"/></h:column>
+                                <h:column><h:outputText value="Qtd"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.codigoImportacao}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.descricao}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.valor}" />
+                        </h:column>
+
+                        <h:column>
+                            <rich:inputNumberSpinner value="#{item.quantidade}" minValue="0" maxValue="100" />
+                        </h:column>
+
+                    </rich:dataTable>
+
+                    <h:commandButton value="Salvar" action="#{pedido2BB.Salvar}" />
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

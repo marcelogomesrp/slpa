@@ -319,8 +319,11 @@
             <from-outcome>sucesso</from-outcome>
             <to-view-id>/admin/pedido2/detalhes.xhtml</to-view-id>
         </navigation-case>
-
-        
+        <navigation-case>
+            <from-action>#{pedido2BB.DoNovoPedidoPage}</from-action>
+            <from-outcome>/pedido/novo</from-outcome>
+            <to-view-id>/posto/pedido2/novo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -372,6 +375,7 @@
 
     </navigation-rule>
 </faces-config>
+
 
 
 

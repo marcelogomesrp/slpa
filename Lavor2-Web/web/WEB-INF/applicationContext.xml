@@ -78,6 +78,7 @@
 
         <bean class="lavor.service.ClienteService"                id="clienteService" >
             <property name="clienteDao"               ref="clienteDao" />
+            <property name="cidadeService"            ref="cidadeService" />
         </bean>
 
         <bean class="lavor.service.EquipamentoService"            id="equipamentoService" >
@@ -103,6 +104,9 @@
 
         <bean class="lavor.service.PedidoService"              id="pedidoService" >
             <property name="pedidoDao"                 ref="pedidoDao" />
+            <property name="clienteService"            ref="clienteService" />
+            <property name="revendaService"            ref="revendaService" />
+            <property name="equipamentoClienteService" ref="equipamentoClienteService" />
         </bean>
 
         <bean class="lavor.service.ItemPedidoService"              id="itemPedidoService" >
