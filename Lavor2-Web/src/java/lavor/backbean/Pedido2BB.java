@@ -22,6 +22,8 @@ import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.Pedido2MB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.ClienteService;
+import lavor.service.EquipamentoClienteService;
+import lavor.service.EquipamentoService;
 import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
@@ -46,6 +48,9 @@ public class Pedido2BB {
     private PedidoService pedidoService;
     @Resource
     private ItemPedidoService itemPedidoService;
+
+    @Resource
+    private EquipamentoClienteService equipamentoClienteService;
 
     @Resource
     private LinhaBB linhaBB;
@@ -163,6 +168,7 @@ public class Pedido2BB {
             pedido2MB.getPedido().getRevenda().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
             pedido2MB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
             pedido2MB.getPedido().setSituacao(Situacao.Cadastrado);
+            pedido2MB.getPedido().setPrioridade(pedido2MB.getPedido().getEquipamentoCliente().getEquipamento().getPrioridade());
             pedido2MB.getPedido().setItemPedido(itens);
             pedidoService.Salvar(pedido2MB.getPedido());
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
@@ -183,6 +189,9 @@ public class Pedido2BB {
         List<Cliente> clientes = clienteService.PesquisarPorTelefoneEPostoDeAtendimento(pedido2MB.getPedido().getCliente().getTelefone(), postoDeAtendimentoMB.getPostoDeAtendimento().getId());
         if(clientes.size() == 1){
             pedido2MB.getPedido().setCliente(clientes.get(0));
+            //select * from equipamento_cliente where id in (select id_equipamento_cliente from pedido) ;
+
+
         }
         return "sucesso";
     }
