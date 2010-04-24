@@ -37,7 +37,7 @@
                         <h:outputText value="UF" />
                         <a4j:region id="regiaoajx">
                             <h:selectOneMenu id="ufInput" value="#{clienteMB.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
-                                <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
+                                <a4j:support event="onchange" action="#{clienteBB.AtualizarListaDeCidades}" reRender="statusajax" />
                                 <f:selectItems value="#{estadosBB.estados}" />
                             </h:selectOneMenu>
                         </a4j:region>

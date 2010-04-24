@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.SelectItem;
 import lavor.entidade.Cidade;
+import lavor.entidade.Estado;
 import lavor.service.CidadeService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,7 @@ public class CidadeMB implements Serializable{
     private CidadeService cidadeService;
     @Resource
     private PostoDeAtendimentoMB postoDeAtendimentoMB;
-    @Resource
-    private ClienteMB clienteMB;
+    
 
     public CidadeMB() {
         this.cidade  = new Cidade();
@@ -76,9 +76,21 @@ public class CidadeMB implements Serializable{
     }
     
 
+
+
+    //Estsava vindo todas as cidades do estado do posto.
     public String AtualizarListaDeCidades(){
         this.LimparListaDeCidades();
         List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
+        for(Cidade cid:ListaDeCidades){
+            cidades.add(new SelectItem(cid.getCidade().toString()));
+        }
+        return null;
+    }
+
+    public String AtualizarListaDeCidades(Estado estado){
+        this.LimparListaDeCidades();
+        List<Cidade> ListaDeCidades = cidadeService.PesquisarPorEstado(estado);
         for(Cidade cid:ListaDeCidades){
             cidades.add(new SelectItem(cid.getCidade().toString()));
         }

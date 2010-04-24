@@ -22,24 +22,23 @@
                         </f:facet>
                         <f:facet name="stop">
 
+
+
+
+
+
                             <h:panelGrid columns="2">
                                 <f:facet name="header">
                                     <h:outputText value="Cliente"/>
                                 </f:facet>
 
-                                <h:commandLink  action="#{pedido2BB.NovoCliente}" rendered="#{pedido2MB.pedido.cliente.id != null}">
-                                    <h:outputText value="Novo Cliente" />
-                                </h:commandLink>
-                                <h:panelGrid rendered="#{pedido2MB.pedido.cliente.id != null}" />
-
                                 <h:outputText value="Nome" />
-                                <h:inputText value="#{pedido2MB.pedido.cliente.nome}" disabled="#{pedido2MB.pedido.cliente.id != null}" />
+                                <h:inputText value="#{pedido2MB.pedido.cliente.nome}" />
 
 
                                 <h:outputText value="Telefone" />
                                 <a4j:region id="clienteRegiao">
-                                    <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" id="telefoneInput" size="10" maxlength="10" >
-                                        <rich:jQuery selector="#telefoneInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                                    <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" >
                                         <a4j:support event="onchange" action="#{pedido2BB.PesquisarClientePorTelefone}" reRender="clienteForm" />
                                     </h:inputText>
                                 </a4j:region>
@@ -107,9 +106,6 @@
                     <!-- fim da revenda -->
 
 
-
-
-
                     <h:panelGrid columns="2" >
 
                         <f:facet name="header">
@@ -128,22 +124,6 @@
 
                         <h:outputText value="Observação" />
                         <rich:editor id="editor" width="400" height="300" value="#{pedido2MB.pedido.observacao}"/>
-
-
-
-
-
-
-
-                        <h:outputText value="Vista Explodida" rendered="#{pedido2MB.pedido.equipamentoCliente.equipamento.id != null}" />
-                        <h:outputLink value="#{facesContext.externalContext.requestContextPath}/vista/#{pedido2MB.pedido.equipamentoCliente.equipamento.id}.pdf" rendered="#{pedido2MB.pedido.equipamentoCliente.equipamento.id != null}">
-
-                            
-                            <h:outputText value="#{pedido2MB.pedido.equipamentoCliente.equipamento.modelo}" />
-                        </h:outputLink>
-
-
-
 
 
                         <h:outputText value="Linha" />
@@ -206,11 +186,11 @@
                         </h:column>
 
                         <h:column>
-                            <h:outputText value="#{item.peca.valor}" />
+                            <h:outputText value="#{item.valor}" />
                         </h:column>
 
                         <h:column>
-                            <rich:inputNumberSpinner value="#{item.quantidade}" minValue="0" maxValue="#{item.peca.quantidadeMaxima}" />
+                            <rich:inputNumberSpinner value="#{item.quantidade}" minValue="0" maxValue="100" />
                         </h:column>
 
                     </rich:dataTable>

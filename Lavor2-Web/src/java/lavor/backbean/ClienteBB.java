@@ -158,6 +158,9 @@ public class ClienteBB {
     }
 
 
-
+    public String AtualizarListaDeCidades(){
+        cidadeMB.AtualizarListaDeCidades(clienteMB.getCliente().getCidade().getEstado());
+        return "sucesso";
+    }
 
 }
