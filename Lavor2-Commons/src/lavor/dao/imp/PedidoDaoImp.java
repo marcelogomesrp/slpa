@@ -31,13 +31,14 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
                 for(ItemPedido itemPedido:pedido.getItemPedido()){
                     itemPedido.setValor(itemPedido.getPeca().getValor());
                     //getEntityManager().persist(itemPedido);
-                    total+=itemPedido.getValor() * itemPedido.getPeca().getQuantidadeMaxima();
+                    //total+=itemPedido.getValor() * itemPedido.getPeca().getQuantidadeMaxima();
+                    total+=itemPedido.getValor() * itemPedido.getQuantidade();
                 }
                 pedido.setValorTotal(total);
 		getEntityManager().persist(pedido);
 
                 for(ItemPedido itemPedido:pedido.getItemPedido()){
-                    itemPedido.setValor(itemPedido.getPeca().getValor() * itemPedido.getPeca().getQuantidadeMaxima());
+                    itemPedido.setValor(itemPedido.getPeca().getValor() * itemPedido.getQuantidade());
                     itemPedido.setPedido(pedido);
                     getEntityManager().persist(itemPedido);
                 }
