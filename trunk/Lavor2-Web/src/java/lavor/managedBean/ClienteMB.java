@@ -6,10 +6,13 @@
 package lavor.managedBean;
 
 import java.io.Serializable;
+import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+
 
 /**
  *
@@ -21,6 +24,8 @@ import org.springframework.stereotype.Controller;
 public class ClienteMB implements Serializable{
     private Cliente cliente;
     private ListDataModel clientes;
+    @Resource
+    private CidadeMB cidadeMB;
 
     public ClienteMB() {
         this.cliente    = new Cliente();

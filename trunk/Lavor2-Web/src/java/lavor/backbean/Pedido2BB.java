@@ -11,19 +11,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import lavor.entidade.Cliente;
 import lavor.entidade.Equipamento;
+import lavor.entidade.Estado;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
 import lavor.entidade.Revenda;
 import lavor.entidade.Situacao;
+import lavor.managedBean.CidadeMB;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.Pedido2MB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.ClienteService;
 import lavor.service.EquipamentoClienteService;
-import lavor.service.EquipamentoService;
 import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
@@ -69,6 +71,9 @@ public class Pedido2BB {
 
     @Resource
     private RevendaService revendaService;
+
+    @Resource
+    private CidadeMB cidadeMB;
 
     public Pedido2BB() {
 
@@ -189,9 +194,9 @@ public class Pedido2BB {
         List<Cliente> clientes = clienteService.PesquisarPorTelefoneEPostoDeAtendimento(pedido2MB.getPedido().getCliente().getTelefone(), postoDeAtendimentoMB.getPostoDeAtendimento().getId());
         if(clientes.size() == 1){
             pedido2MB.getPedido().setCliente(clientes.get(0));
+            cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
+            //cidadeMB.setCidades(new ArrayList<SelectItem>());
             //select * from equipamento_cliente where id in (select id_equipamento_cliente from pedido) ;
-
-
         }
         return "sucesso";
     }
@@ -203,6 +208,29 @@ public class Pedido2BB {
         }
         return "sucesso";
         //pedido2MB.getItensPedido().getRowCount();
+    }
+
+
+    public String AtualizarListaDeCidades(){
+        cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
+        return "sucesso";
+    }
+
+    public String DoListarPedidoCadastradoPage(){
+        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorPostoESituacao(postoDeAtendimentoMB.getPostoDeAtendimento(), Situacao.Cadastrado);
+        pedido2MB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido2/listar";
+    }
+
+    public String DoEditarPage(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        return "/pedido2/editar";
+    }
+
+    public String NovoCliente(){
+        pedido2MB.getPedido().setCliente(new Cliente());
+        cidadeMB.setCidades(new ArrayList<SelectItem>());
+        return "sucesso";
     }
 
 }
