@@ -32,9 +32,9 @@ public class Cliente implements Serializable {
     private Long id;
     @Column(name="nome", length=255)
     private String nome;
-    @Column(name="telefone", length=10)
+    @Column(name="telefone", length=15)
     private String telefone;
-    @Column(name="celular", length=10)
+    @Column(name="celular", length=15)
     private String celular;
     @Column(name="endereco", length=255)
     private String endereco;
@@ -65,8 +65,8 @@ public class Cliente implements Serializable {
     }
 
     public void setCelular(String celular) {
-        this.celular = celular.replaceAll("[^\\d{L}]", "");
-        //this.celular = celular;
+        //this.celular = celular.replaceAll("[^\\d{L}]", "");
+        this.celular = celular;
     }
 
     public Cidade getCidade() {
@@ -111,8 +111,8 @@ public class Cliente implements Serializable {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone.replaceAll("[^\\d{L}]", "");
-        //this.telefone = telefone;
+        //this.telefone = telefone.replaceAll("[^\\d{L}]", "");
+        this.telefone = telefone;
     }
 
     public PostoDeAtendimento getPostoDeAtendimento() {
