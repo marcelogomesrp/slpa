@@ -224,12 +224,18 @@ public class Pedido2BB {
 
     public String DoEditarPage(){
         pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
         return "/pedido2/editar";
     }
 
     public String NovoCliente(){
         pedido2MB.getPedido().setCliente(new Cliente());
         cidadeMB.setCidades(new ArrayList<SelectItem>());
+        return "sucesso";
+    }
+
+    public String NovaRevenda(){
+        pedido2MB.getPedido().setRevenda(new Revenda());
         return "sucesso";
     }
 

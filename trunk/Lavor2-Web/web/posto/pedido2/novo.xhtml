@@ -38,21 +38,23 @@
 
                                 <h:outputText value="Telefone" />
                                 <a4j:region id="clienteRegiao">
-                                    <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" id="telefoneInput" size="10" maxlength="10" >
+                                    <h:inputText value="#{pedido2MB.pedido.cliente.telefone}" id="telefoneInput" size="10" maxlength="10" disabled="#{pedido2MB.pedido.cliente.id != null}">
                                         <rich:jQuery selector="#telefoneInput" query="mask('(99) 9999-9999')" timing="onload"/>
                                         <a4j:support event="onchange" action="#{pedido2BB.PesquisarClientePorTelefone}" reRender="clienteForm" />
                                     </h:inputText>
                                 </a4j:region>
 
                                 <h:outputText value="Celular" />
-                                <h:inputText value="#{pedido2MB.pedido.cliente.celular}" />
+                                <h:inputText value="#{pedido2MB.pedido.cliente.celular}" id="celularInput" size="10" maxlength="10" disabled="#{pedido2MB.pedido.cliente.id != null}" >
+                                        <rich:jQuery selector="#celularInput" query="mask('(99) 9999-9999')" timing="onload"/>
+                                </h:inputText>
 
                                 <h:outputText value="Endereco" />
-                                <h:inputText value="#{pedido2MB.pedido.cliente.endereco}" />
+                                <h:inputText value="#{pedido2MB.pedido.cliente.endereco}" maxlength="255" size="100" disabled="#{pedido2MB.pedido.cliente.id != null}"/>
 
                                 <h:outputText value="UF" />
                                 <a4j:region id="regiaoajx">
-                                    <h:selectOneMenu id="ufInput" value="#{pedido2MB.pedido.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                                    <h:selectOneMenu id="ufInput" value="#{pedido2MB.pedido.cliente.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" disabled="#{pedido2MB.pedido.cliente.id != null}">
                                         <a4j:support event="onchange" action="#{pedido2BB.AtualizarListaDeCidades}" reRender="statusajax" />
                                         <f:selectItems value="#{estadosBB.estados}" />
                                     </h:selectOneMenu>
@@ -64,7 +66,7 @@
                                         <h:outputText value="Carregando as cidades, por favor aguarde..."/>
                                     </f:facet>
                                     <f:facet name="stop">
-                                        <h:selectOneMenu id="cidadeInput" value="#{pedido2MB.pedido.cliente.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
+                                        <h:selectOneMenu id="cidadeInput" value="#{pedido2MB.pedido.cliente.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada" disabled="#{pedido2MB.pedido.cliente.id != null}">
                                             <f:selectItems value="#{cidadeMB.cidades}" />
                                         </h:selectOneMenu>
                                     </f:facet>
@@ -89,15 +91,21 @@
                                     <h:outputText value="Revenda"/>
                                 </f:facet>
 
+                                <h:commandLink  action="#{pedido2BB.NovaRevenda}" rendered="#{pedido2MB.pedido.revenda.id != null}">
+                                    <h:outputText value="Nova revenda" />
+                                </h:commandLink>
+                                <h:panelGrid rendered="#{pedido2MB.pedido.revenda.id != null}" />
+
+
                                 <h:outputText value="CNPJ" />
                                 <a4j:region id="regiaoRevenda">
-                                    <h:inputText value="#{pedido2MB.pedido.revenda.cnpj}" >
+                                    <h:inputText value="#{pedido2MB.pedido.revenda.cnpj}" disabled="#{pedido2MB.pedido.revenda.id != null}">
                                         <a4j:support event="onchange" action="#{pedido2BB.PesquisarRevendaPorCnpj}" reRender="revendaForm" />
                                     </h:inputText>
                                 </a4j:region>
 
                                 <h:outputText value="Razao Social" />
-                                <h:inputText value="#{pedido2MB.pedido.revenda.razaoSocial}" />
+                                <h:inputText value="#{pedido2MB.pedido.revenda.razaoSocial}" disabled="#{pedido2MB.pedido.revenda.id != null}"/>
 
 
                             </h:panelGrid>
