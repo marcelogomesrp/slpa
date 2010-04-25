@@ -44,7 +44,9 @@
                             <h:outputText value="#{pedido.cliente.celular}" />
                         </h:column>
                         <h:column >
-                            <h:outputText value="#{pedido.dataDoPedido}"/>
+                            <h:outputText value="#{pedido.dataDoPedido}">
+                                <f:convertDateTime locale="pt,BR" pattern="dd/MM/yyyy" />
+                            </h:outputText>
                         </h:column>
                         <h:column >
                             <h:outputText value="#{pedido.valorTotal}"/>
