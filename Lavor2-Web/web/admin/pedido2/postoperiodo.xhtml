@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/AdminTemplate.xhtml">
+
+            Listar pedidos do posto de atendimento em aberto.
+            <ui:define name="content">
+                
+                <h:messages id="message" />                
+                <h:form>
+
+                    <h:panelGroup rendered="#{postoDeAtendimentoMB.postoDeAtendimento.id == null}">
+                <h:outputText value="UF*" />
+                    <a4j:region id="regiaoajx">
+                        <h:selectOneMenu id="ufInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.estado}" required="true" requiredMessage="O estado deve ser informado" >
+                            <a4j:support event="onchange" action="#{cidadeMB.AtualizarListaDeCidades}" reRender="statusajax" />
+                            <f:selectItems value="#{estadosBB.estados}" />
+                        </h:selectOneMenu>
+                    </a4j:region>
+
+                    <h:outputText value="Cidade*" />
+                    <a4j:status id="statusajax" for="regiaoajx">
+                        <f:facet name="start">
+                            <h:outputText value="Carregando as cidades, por favor aguarde..."/>
+                        </f:facet>
+                        <f:facet name="stop">
+                            <h:selectOneMenu id="cidadeInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.cidade}" required="true" requiredMessage="A cidade deve ser informada">
+                                <f:selectItems value="#{cidadeMB.cidades}" />
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </a4j:status>
+                    <h:commandButton value="Pesquisar" action="#{pedido2BB.PesquisarPostoPorCidade}" />
+
+
+                    <rich:dataTable value="#{postoDeAtendimentoMB.postosDeAtendimento}" id="lista" var="postoDeAtendimento" width="100%" rendered="#{postoDeAtendimentoBB.postosDeAtendimentoTemItem}">
+                        <f:facet name="header">
+                        <rich:columnGroup styleClass="dataTableHeader">
+                            <h:column><h:outputText value="ID"/></h:column>
+                            <h:column><h:outputText value="Razao social"/></h:column>
+                            <h:column><h:outputText value="Selecionar"/></h:column>
+                        </rich:columnGroup>
+
+                    </f:facet>
+                        <rich:column>
+                            <h:outputText value="#{postoDeAtendimento.id}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{postoDeAtendimento.razaoSocial}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="selecionar" action="#{pedido2BB.SelecionarPosto}"/>
+                        </rich:column>
+                        
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+                </h:panelGroup>
+
+                 <!-- fim selecionar posto -->
+
+                 <h:panelGroup rendered="#{postoDeAtendimentoMB.postoDeAtendimento.id != null}">
+                    <h:outputText value="Inicio" />
+                    <rich:calendar value="#{pedido2BB.inicio}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
+                    <h:outputText value="Fim" />
+                    <rich:calendar value="#{pedido2BB.fim}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
+                    <h:commandButton value="Pesquisar" action="#{pedido2BB.PesquisarAdmPorPeriodo}" />
+
+
+                    <rich:dataTable value="#{pedido2MB.pedidos}" id="listaPedido" var="pedido" width="100%" >
+                            <f:facet name="header">
+                                <rich:columnGroup styleClass="dataTableHeader">
+                                    <h:column><h:outputText value="ID"/></h:column>
+                                    <h:column><h:outputText value="Situacao"/></h:column>
+                                    <h:column><h:outputText value="Cliente"/></h:column>
+                                    <h:column><h:outputText value="Telefone"/></h:column>
+                                    <h:column><h:outputText value="Celular"/></h:column>
+                                    <h:column><h:outputText value="Data do pedido"/></h:column>
+                                    <h:column><h:outputText value="Valor total"/></h:column>                                    
+                                </rich:columnGroup>
+                            </f:facet>
+
+                        <h:column >
+                            <h:outputText value="#{pedido.id}" />
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.situacao}" />
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.cliente.nome}" />
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.cliente.telefone}" />
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.cliente.celular}" />
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.dataDoPedido}">
+                                <f:convertDateTime locale="pt,BR" pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.valorTotal}"/>
+                        </h:column>
+
+                    </rich:dataTable>
+
+                    <rich:jQuery selector="#listaPedido tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#listaPedido tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#listaPedido tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#listaPedido tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+
+                 </h:panelGroup>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
