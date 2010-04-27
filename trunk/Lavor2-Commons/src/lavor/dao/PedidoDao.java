@@ -5,7 +5,9 @@
 
 package lavor.dao;
 
+import java.util.Date;
 import java.util.List;
+import lavor.entidade.Cliente;
 import lavor.entidade.Pedido;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Situacao;
@@ -23,5 +25,11 @@ public interface PedidoDao  extends DaoGenerico<Pedido, Long>{
     public List<Pedido> PesquisarPorSituacao(Situacao situacao);
 
     public List<Pedido> PesquisarPorSituacao(Situacao situacao, Boolean prioridade);
+
+    public List<Pedido> PesquisarPedidoPorPostoEPeriodo(PostoDeAtendimento postoDeAtendimento, Date inicio, Date fim);
+
+    public List<Pedido> PesquisarPedidoPorCliente(Cliente cliente);
+
+    public List<Pedido> PesquisarPedidoPorPeriodo(Date inicio, Date fim);
 
 }

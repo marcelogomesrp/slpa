@@ -14,5 +14,5 @@ public enum Situacao {
     Cancelado,
     Processado,
     Finalizado,
-    Regeitado
+    Rejeitado,
 }
