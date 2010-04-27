@@ -6,29 +6,35 @@
 package lavor.backbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import lavor.entidade.Cidade;
 import lavor.entidade.Cliente;
 import lavor.entidade.Equipamento;
 import lavor.entidade.Estado;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
+import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Revenda;
 import lavor.entidade.Situacao;
 import lavor.managedBean.CidadeMB;
+import lavor.managedBean.ClienteMB;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.Pedido2MB;
 import lavor.managedBean.PostoDeAtendimentoMB;
+import lavor.service.CidadeService;
 import lavor.service.ClienteService;
 import lavor.service.EquipamentoClienteService;
 import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
 import lavor.service.PedidoService;
+import lavor.service.PostoDeAtendimentoService;
 import lavor.service.RevendaService;
 import lavor.service.ServiceException;
 import lavor.utils.FacesUtils;
@@ -75,6 +81,18 @@ public class Pedido2BB {
     @Resource
     private CidadeMB cidadeMB;
 
+    @Resource
+    private ClienteMB clienteMB;
+
+    @Resource
+    private PostoDeAtendimentoService postoDeAtendimentoService;
+
+    @Resource
+    private CidadeService cidadeService;
+
+    private Date inicio;
+    private Date fim;
+
     public Pedido2BB() {
 
     }
@@ -90,15 +108,38 @@ public class Pedido2BB {
         return "sucesso";
     }
 
+    public String DoListarProcessadoPage(){
+        this.pedido2MB.setPedidos(this.ListarPedido(Situacao.Processado));
+        return "sucesso";
+    }
 
-    public String DoListarPagePrioridade(){
-        pedidoService.PesquisarPedidoPorSituacaoEPrioridade(Situacao.Cadastrado, Boolean.TRUE);
+    public String DoListarRejeitadoPage(){
+        this.pedido2MB.setPedidos(this.ListarPedido(Situacao.Rejeitado));
         return "sucesso";
     }
 
 
+
+    public String DoListarPagePrioridade(){
+        pedido2MB.setPedidos(pedidoService.PesquisarPedidoPorSituacaoEPrioridade(Situacao.Cadastrado, Boolean.TRUE));
+        return "sucesso";
+    }
+
+    public String DoListarProcessadoPagePrioridade(){
+        pedido2MB.setPedidos(pedidoService.PesquisarPedidoPorSituacaoEPrioridade(Situacao.Processado, Boolean.TRUE));
+        return "sucesso";
+    }
+
+    public String DoListarRejeitadoPagePrioridade(){
+        pedido2MB.setPedidos(pedidoService.PesquisarPedidoPorSituacaoEPrioridade(Situacao.Rejeitado, Boolean.TRUE));
+        return "sucesso";
+    }
+
+
+
     public String DoDetalhes(){
         this.pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        this.cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
         return "sucesso";
     }
 
@@ -114,26 +155,26 @@ public class Pedido2BB {
         return "sucesso";
     }
 
-    public String Atualizar(){
-        //List<ItemPedido> itens = pedido2MB.getPedido().getItemPedido();
-        List<ItemPedido> itens = new ArrayList<ItemPedido>();
-
-        for(int x = 0; x < pedido2MB.getItensPedido().getRowCount(); x++){
-            pedido2MB.getItensPedido().setRowIndex(x);
-            ItemPedido itemPedido = (ItemPedido) pedido2MB.getItensPedido().getRowData();
-            if(itemPedido.getQuantidade() > 0){
-                itens.add(itemPedido);
-            }
-        }
-        pedido2MB.getPedido().setItemPedido(itens);
-        try{            
-            pedidoService.Atualizar(pedido2MB.getPedido());
-            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
-        }catch(Exception ex){
-            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar.." + ex.getMessage() + "<p /> " + ex.getCause());
-        }
-        return "sucesso";
-    }
+//    public String Atualizar(){
+//        //List<ItemPedido> itens = pedido2MB.getPedido().getItemPedido();
+//        List<ItemPedido> itens = new ArrayList<ItemPedido>();
+//
+//        for(int x = 0; x < pedido2MB.getItensPedido().getRowCount(); x++){
+//            pedido2MB.getItensPedido().setRowIndex(x);
+//            ItemPedido itemPedido = (ItemPedido) pedido2MB.getItensPedido().getRowData();
+//            if(itemPedido.getQuantidade() > 0){
+//                itens.add(itemPedido);
+//            }
+//        }
+//        pedido2MB.getPedido().setItemPedido(itens);
+//        try{
+//            pedidoService.Atualizar(pedido2MB.getPedido());
+//            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
+//        }catch(Exception ex){
+//            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar atualizar.." + ex.getMessage() + "<p /> " + ex.getCause());
+//        }
+//        return "sucesso";
+//    }
 
     public String DoNovoPedidoPage(){
         this.pedido2MB.setPedido(new Pedido());
@@ -142,6 +183,17 @@ public class Pedido2BB {
         linhaBB.TodasAsLinhas();
         return "/pedido/novo";
     }
+
+    public String DoListarPostoEPeridoPage(){
+        this.postoDeAtendimentoMB.setPostoDeAtendimento(new PostoDeAtendimento());
+        this.inicio = new Date();
+        this.fim = new Date();
+        this.postoDeAtendimentoMB.setPostosDeAtendimento(new ListDataModel());
+        this.cidadeMB.setCidades(new ArrayList<SelectItem>());
+        return "/pedido2/postoperiodo";
+    }
+
+
 
     public String SelecionarEquipamento(){
         //this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
@@ -222,7 +274,74 @@ public class Pedido2BB {
         return "/pedido2/listar";
     }
 
+    public String DoListarPedidoRejeitadoPage(){
+        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorPostoESituacao(postoDeAtendimentoMB.getPostoDeAtendimento(), Situacao.Rejeitado);
+        pedido2MB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido2/listar";
+    }
+
+    public String Cancelar(){
+        pedido2MB.getPedido().setSituacao(Situacao.Cancelado);
+            this.Atualizar();            
+            pedido2MB.setPedido(new Pedido());
+            pedido2MB.setItensPedido(new ListDataModel());
+            equipamentoMB.setEquipamentos(new ListDataModel());
+            linhaBB.TodasAsLinhas();
+        return "sucesso";
+    }
+
+    public String CancelarPedido(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        pedido2MB.getPedido().setSituacao(Situacao.Cancelado);
+            this.Atualizar();
+            pedido2MB.setPedido(new Pedido());
+            pedido2MB.setItensPedido(new ListDataModel());
+            equipamentoMB.setEquipamentos(new ListDataModel());
+            linhaBB.TodasAsLinhas();
+        return "sucesso";
+    }
+
+
+    public String RejeitarPedido(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        pedido2MB.getPedido().setSituacao(Situacao.Rejeitado);
+            this.Atualizar();
+            pedido2MB.setPedido(new Pedido());
+            pedido2MB.setItensPedido(new ListDataModel());
+            equipamentoMB.setEquipamentos(new ListDataModel());
+            linhaBB.TodasAsLinhas();
+        return "sucesso";
+    }
+
+    public String ProcessarPedido(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        pedido2MB.getPedido().setSituacao(Situacao.Processado);
+            this.Atualizar();
+            pedido2MB.setPedido(new Pedido());
+            pedido2MB.setItensPedido(new ListDataModel());
+            equipamentoMB.setEquipamentos(new ListDataModel());
+            linhaBB.TodasAsLinhas();
+        return "sucesso";
+    }
+
+    public String FinalizarPedido(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        pedido2MB.getPedido().setSituacao(Situacao.Finalizado);
+            this.Atualizar();
+            pedido2MB.setPedido(new Pedido());
+            pedido2MB.setItensPedido(new ListDataModel());
+            equipamentoMB.setEquipamentos(new ListDataModel());
+            linhaBB.TodasAsLinhas();
+        return "sucesso";
+    }
+
     public String DoEditarPage(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
+        return "/pedido2/editar";
+    }
+
+    public String DoAdminEditarPage(){
         pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
         cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
         return "/pedido2/editar";
@@ -236,6 +355,100 @@ public class Pedido2BB {
 
     public String NovaRevenda(){
         pedido2MB.getPedido().setRevenda(new Revenda());
+        return "sucesso";
+    }
+
+
+    public String Atualizar(){
+        List<ItemPedido> itens = new ArrayList<ItemPedido>();
+        for(int x = 0; x<pedido2MB.getItensPedido().getRowCount();x++){
+            pedido2MB.getItensPedido().setRowIndex(x);
+            ItemPedido item = (ItemPedido) pedido2MB.getItensPedido().getRowData();
+            if(item.getQuantidade() > 0 ){
+                itens.add(item);
+            }
+        }
+        try {
+            pedido2MB.getPedido().setItemPedido(itens);
+            pedidoService.Atualizar(pedido2MB.getPedido());
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido atualizado com sucesso" );
+        } catch (ServiceException ex) {
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar" + ex.getCause() + "<br />" + ex.getMessage());
+            Logger.getLogger(Pedido2BB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "sucesso";
+    }
+
+
+    public String DoPesquisarPorPeriodoPage(){
+        this.inicio = new Date();
+        this.fim    = new Date();
+        return "/pedido2/listarPorPeriodo";
+    }
+
+    public String PesquisarPorPeriodo(){
+        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorPostoEPeriodo(postoDeAtendimentoMB.getPostoDeAtendimento(), inicio, fim);
+        pedido2MB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido2/listarPorPeriodo";
+    }
+
+    public String PesquisarAdmPorPeriodo(){
+        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorPeriodo(inicio, fim);
+        pedido2MB.setPedidos(new ListDataModel(pedidos));
+        return "/pedido2/listarPorPeriodo";
+    }
+
+    public Date getFim() {
+        return fim;
+    }
+
+    public void setFim(Date fim) {
+        this.fim = fim;
+    }
+
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public String DoDetalhesPage(){
+        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+        return "/pedido2/detalhes";
+    }
+
+    public String DoPesquisarPorClientePage(){        
+        clienteMB.setCliente(new Cliente());
+        clienteMB.setClientes(new ListDataModel());
+        return "/pedido2/listarPorCliente";
+    }
+
+    public String SelecionarCliente(){
+        Cliente cliente = (Cliente) clienteMB.getClientes().getRowData();
+        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorCliente(cliente);
+        pedido2MB.setPedidos(new ListDataModel(pedidos));
+        clienteMB.setClientes(new ListDataModel());
+        return "sucesso";
+    }
+
+    public String PesquisarCliente(){
+        List<Cliente> clientes = clienteService.PesquisarPorNome(clienteMB.getCliente().getNome());
+        clienteMB.setClientes(new ListDataModel(clientes));
+        pedido2MB.setPedidos(new ListDataModel());
+        return "sucesso";
+    }
+
+    public String PesquisarPostoPorCidade(){
+        Cidade cidade = cidadeService.PesquisarPorCidadeEstado(postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getCidade(), postoDeAtendimentoMB.getPostoDeAtendimento().getCidade().getEstado());
+        List<PostoDeAtendimento> postos = postoDeAtendimentoService.pesquisarPorCidade(cidade.getId());
+        this.postoDeAtendimentoMB.setPostosDeAtendimento(new ListDataModel(postos));
+        return "sucesso";
+    }
+
+    public String SelecionarPosto(){
+        this.postoDeAtendimentoMB.setPostoDeAtendimento((PostoDeAtendimento) postoDeAtendimentoMB.getPostosDeAtendimento().getRowData());
         return "sucesso";
     }
 

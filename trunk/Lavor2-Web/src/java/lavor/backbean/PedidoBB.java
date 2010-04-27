@@ -337,21 +337,21 @@ faces.responseComplete();
         return "/pedido/modificar";
     }
 
-    public String DoRegeitarPage(){
+    public String DoRegeitarPage() throws ServiceException{
         Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
-        pedido.setSituacao(Situacao.Regeitado);
-        pedidoService.Atualizar(pedido);
+        pedido.setSituacao(Situacao.Rejeitado);
+        Pedido Atualizar = pedidoService.Atualizar(pedido);
         return this.DolistarPedidosCadastradoPage();
     }
 
-    public String DoCancelarPage(){
+    public String DoCancelarPage() throws ServiceException{
         Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
         pedido.setSituacao(Situacao.Cancelado);
-        pedidoService.Atualizar(pedido);
+        Pedido Atualizar = pedidoService.Atualizar(pedido);
         return this.DolistarPedidosCadastradoPage();
     }
 
-    public String DoFinalizarPage(){
+    public String DoFinalizarPage() throws ServiceException{
         Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
         pedido.setSituacao(Situacao.Finalizado);
         pedidoService.Atualizar(pedido);
