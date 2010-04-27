@@ -10,28 +10,35 @@
     <body>
 
         <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
-
-            Listar pedidos do posto de atendimento em aberto.
             <ui:define name="content">
-                
-                <h:messages id="message" />
+                <h:form>                    
+                    <h:messages id="message" />
+                    <h:outputText value="Inicio" />
+                    <rich:calendar value="#{pedido2BB.inicio}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
+                    <h:outputText value="Fim" />
+                    <rich:calendar value="#{pedido2BB.fim}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
+                    <h:commandButton value="Pesquisar" action="#{pedido2BB.PesquisarPorPeriodo}" />
 
-                <h:form>
+
                     <rich:dataTable value="#{pedido2MB.pedidos}" id="lista" var="pedido" width="100%" >
                             <f:facet name="header">
                                 <rich:columnGroup styleClass="dataTableHeader">
                                     <h:column><h:outputText value="ID"/></h:column>
+                                    <h:column><h:outputText value="Situacao"/></h:column>
                                     <h:column><h:outputText value="Cliente"/></h:column>
                                     <h:column><h:outputText value="Telefone"/></h:column>
                                     <h:column><h:outputText value="Celular"/></h:column>
                                     <h:column><h:outputText value="Data do pedido"/></h:column>
                                     <h:column><h:outputText value="Valor total"/></h:column>
-                                    <h:column><h:outputText value="Editar"/></h:column>
+                                    <h:column><h:outputText value="Detalhes"/></h:column>
                                 </rich:columnGroup>
                             </f:facet>
 
                         <h:column >
                             <h:outputText value="#{pedido.id}" />
+                        </h:column>
+                        <h:column >
+                            <h:outputText value="#{pedido.situacao}" />
                         </h:column>
                         <h:column >
                             <h:outputText value="#{pedido.cliente.nome}" />
@@ -51,7 +58,7 @@
                             <h:outputText value="#{pedido.valorTotal}"/>
                         </h:column>
                         <h:column >
-                            <h:commandLink value="editar" action="#{pedido2BB.DoEditarPage}"/>
+                            <h:commandLink value="detalhes" action="#{pedido2BB.DoDetalhesPage}"/>
                         </h:column>
                     </rich:dataTable>
 
@@ -60,8 +67,8 @@
                     <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
                     <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
 
+                    
                 </h:form>
-
 
             </ui:define>
 
