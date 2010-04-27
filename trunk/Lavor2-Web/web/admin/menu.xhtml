@@ -69,22 +69,7 @@
                 </rich:menuItem>
             </rich:dropDownMenu>
 
-            <rich:dropDownMenu>
-                <f:facet name="label">
-                    <h:outputText value="Pedido" />
-                </f:facet>
-                <rich:menuItem action="#{pedidoBB.DoListarResumoPage}" >
-                    <h:outputText value="Exportar" />
-                </rich:menuItem>
-                <rich:menuItem action="#{pedidoBB.DolistarPedidosCadastradoPage}" >
-                    <h:outputText value="Listar Cadastrado" />
-                </rich:menuItem>
-                <rich:menuItem action="#{pedidoBB.DolistarPedidosProcessadoPage}" >
-                    <h:outputText value="Listar Processado" />
-                </rich:menuItem>
-
-
-            </rich:dropDownMenu>
+            
 
 
             <rich:dropDownMenu>
@@ -117,15 +102,41 @@
                     <h:outputText value="Pedido2" />
                 </f:facet>
 
-                <rich:menuGroup value="Listar">
+                <rich:menuGroup value="Listar cadastrado">
                     <rich:menuItem action="#{pedido2BB.DoListarPagePrioridade}" >
-                        <h:outputText value="Cadastrado com prioridade" />
+                        <h:outputText value="Com prioridade" />
                     </rich:menuItem>
                     <rich:menuItem action="#{pedido2BB.DoListarPage}" >
-                        <h:outputText value="Cadastrado" />
+                        <h:outputText value="Todos" />
                     </rich:menuItem>
+                </rich:menuGroup>
 
-                </rich:menuGroup>                
+                <rich:menuGroup value="Listar processados">
+                    <rich:menuItem action="#{pedido2BB.DoListarProcessadoPagePrioridade}" >
+                        <h:outputText value="Com prioridade" />
+                    </rich:menuItem>
+                    <rich:menuItem action="#{pedido2BB.DoListarProcessadoPage}" >
+                        <h:outputText value="Todos" />
+                    </rich:menuItem>
+                </rich:menuGroup>
+
+                <rich:menuGroup value="Listar rejeitados">
+                    <rich:menuItem action="#{pedido2BB.DoListarRejeitadoPagePrioridade}" >
+                        <h:outputText value="Com prioridade" />
+                    </rich:menuItem>
+                    <rich:menuItem action="#{pedido2BB.DoListarRejeitadoPage}" >
+                        <h:outputText value="Todos" />
+                    </rich:menuItem>
+                </rich:menuGroup>
+
+                <rich:menuItem action="#{pedido2BB.DoListarPostoEPeridoPage}" >
+                    <h:outputText value="Listar por posto" />
+                </rich:menuItem>
+
+                <rich:menuItem action="#{pedidoBB.DoListarResumoPage}" >
+                    <h:outputText value="Exportar" />
+                </rich:menuItem>
+
 
             </rich:dropDownMenu>
 
