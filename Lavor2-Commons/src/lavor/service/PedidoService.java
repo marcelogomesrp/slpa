@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import lavor.dao.PedidoDao;
+import lavor.entidade.Cliente;
 import lavor.entidade.Pedido;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Situacao;
@@ -86,8 +87,14 @@ public class PedidoService implements Serializable{
         return pedidoDao.PesquisarPorSituacao(situacao);
     }
 
-    public Pedido Atualizar(Pedido pedido){
-        return pedidoDao.atualizar(pedido);
+    public Pedido Atualizar(Pedido pedido) throws ServiceException{
+        this.serviceException = new ServiceException();
+        try{
+            pedido = pedidoDao.atualizar(pedido);
+        }catch(Exception ex){
+            throw new ServiceException("Ocorreu um erro ao tentar salvar" + ex.getMessage() + ex.getCause(), ex);
+        }
+        return pedido;
     }
 
     public List<Pedido> PesquisarPedidoPorSituacaoEPrioridade(Situacao situacao, Boolean prioridade) {
@@ -116,6 +123,18 @@ public class PedidoService implements Serializable{
 
     public void setRevendaService(RevendaService revendaService) {
         this.revendaService = revendaService;
+    }
+
+    public List<Pedido> PesquisarPedidoPorPostoEPeriodo(PostoDeAtendimento postoDeAtendimento, Date inicio, Date fim) {
+        return pedidoDao.PesquisarPedidoPorPostoEPeriodo(postoDeAtendimento, inicio, fim);
+    }
+
+    public List<Pedido> PesquisarPedidoPorCliente(Cliente cliente) {
+        return pedidoDao.PesquisarPedidoPorCliente(cliente);
+    }
+
+    public List<Pedido> PesquisarPedidoPorPeriodo(Date inicio, Date fim) {
+        return pedidoDao.PesquisarPedidoPorPeriodo(inicio, fim);
     }
 
 
