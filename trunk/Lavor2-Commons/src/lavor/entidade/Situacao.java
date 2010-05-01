@@ -10,9 +10,9 @@ package lavor.entidade;
  * @author marcelo
  */
 public enum Situacao {
-    Cadastrado,
+    Cadastrado, // Aberto
     Cancelado,
     Processado,
     Finalizado,
-    Rejeitado,
+    Rejeitado, //Pedido com erro + recusado. o recusado é finalizador
 }
