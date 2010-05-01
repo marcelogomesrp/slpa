@@ -324,6 +324,66 @@
             <from-outcome>/pedido/novo</from-outcome>
             <to-view-id>/posto/pedido2/novo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarPedidoCadastradoPage}</from-action>
+            <from-outcome>/pedido2/listar</from-outcome>
+            <to-view-id>/posto/pedido2/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoEditarPage}</from-action>
+            <from-outcome>/pedido2/editar</from-outcome>
+            <to-view-id>/posto/pedido2/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarPedidoRejeitadoPage}</from-action>
+            <from-outcome>/pedido2/listar</from-outcome>
+            <to-view-id>/posto/pedido2/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoPesquisarPorPeriodoPage}</from-action>
+            <from-outcome>/pedido2/listarPorPeriodo</from-outcome>
+            <to-view-id>/posto/pedido2/listarPorPeriodo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoDetalhesPage}</from-action>
+            <from-outcome>/pedido2/detalhes</from-outcome>
+            <to-view-id>/posto/pedido2/detalhes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoPesquisarPorClientePage}</from-action>
+            <from-outcome>/pedido2/listarPorCliente</from-outcome>
+            <to-view-id>/posto/pedido2/listarPorCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarProcessadoPagePrioridade}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/listarprocessado.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarProcessadoPage}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/listarprocessado.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoAdminEditarPage}</from-action>
+            <from-outcome>/pedido2/editar</from-outcome>
+            <to-view-id>/admin/pedido2/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarRejeitadoPagePrioridade}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/listarrejeitado.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarRejeitadoPage}</from-action>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/admin/pedido2/listarrejeitado.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoListarPostoEPeridoPage}</from-action>
+            <from-outcome>/pedido2/postoperiodo</from-outcome>
+            <to-view-id>/admin/pedido2/postoperiodo.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -375,6 +435,11 @@
 
     </navigation-rule>
 </faces-config>
+
+
+
+
+
 
 
 
