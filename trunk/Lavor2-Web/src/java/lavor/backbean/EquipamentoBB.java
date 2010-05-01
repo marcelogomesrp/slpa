@@ -9,7 +9,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Equipamento;
-import lavor.entidade.EquipamentoCliente;
 import lavor.entidade.Peca;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.LinhaMB;
@@ -109,7 +108,7 @@ public class EquipamentoBB {
     }
 
     public String SelecionarEquipamento(){
-        this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());        
         return "sucesso";
     }
 
@@ -120,6 +119,7 @@ public class EquipamentoBB {
 
     public String Selecionar(){
         this.equipamentoMB.setEquipamento((Equipamento) equipamentoMB.getEquipamentos().getRowData());
+        this.equipamentoMB.setEquipamentos(new ListDataModel());
         return "sucesso";
     }
 
