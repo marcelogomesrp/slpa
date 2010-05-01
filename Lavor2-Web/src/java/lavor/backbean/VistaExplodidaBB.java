@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.StringTokenizer;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 import javax.servlet.ServletContext;
 import javax.swing.JOptionPane;
 import lavor.entidade.Equipamento;
@@ -34,12 +35,13 @@ public class VistaExplodidaBB implements Serializable {
     private LinhaBB linhaBB;
 
     public VistaExplodidaBB() {
-        this.nome = "original";
+        this.nome = "Selecione o equipamento e informe o local do arquivo";
     }
 
     public String DoNovoPage() {
         this.equipamentoMB.setEquipamento(new Equipamento());
         this.linhaBB.TodasAsLinhas();
+        this.equipamentoMB.setEquipamentos(new ListDataModel());
         return "/vista/novo";
     }
 
@@ -70,7 +72,7 @@ public class VistaExplodidaBB implements Serializable {
 
 
     public String Troca() {
-        this.nome = "trocado";
+        this.nome = "Arquivo enviado com sucesso";
         return "ok";
     }
 
