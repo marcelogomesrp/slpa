@@ -14,17 +14,21 @@
                 <h:form>
 
                     <h:messages id="message" />
-                    <h:outputText value="Vista explodida" />
+                    
+
+                    <h:panelGroup id="info">
+                        <h:outputText value="#{vistaExplodidaBB.nome}" />
+                    </h:panelGroup>
+                    <br />
 
 
                     <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada" >
-                        <f:selectItems value="#{linhaMB.selectLinhas}" />
-                        <a4j:support event="onchange" reRender="lista" action="#{equipamentoBB.PesquisarLinha}"/>
+                        <f:selectItems value="#{linhaMB.selectLinhas}" />                        
                     </h:selectOneMenu>
 
-                    <h:inputText />
-
-                    <h:dataTable value="#{equipamentoMB.equipamentos}" id="lista" var="equipamento">
+                    <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
+                   
+                    <h:dataTable value="#{equipamentoMB.equipamentos}" id="lista" var="equipamento" rendered="#{equipamentoMB.equipamentos.rowCount > 0}">
                         <h:column>
                             <h:outputText value="#{equipamento.id}" />
                         </h:column>
@@ -37,7 +41,10 @@
                     </h:dataTable>
 
 
-
+                    <h:panelGroup rendered="#{equipamentoMB.equipamento.id != null}">
+                        <br />
+                        <h:outputText value="ID #{equipamentoMB.equipamento.id}" />
+                        <h:outputText value=" Modelo #{equipamentoMB.equipamento.modelo}" />
                     <rich:fileUpload
                         autoclear="true"
                         immediateUpload="true"
@@ -46,9 +53,9 @@
                         <a4j:support event="onuploadcomplete" reRender="info" action="#{vistaExplodidaBB.Troca}"/>
                     </rich:fileUpload>
 
-                    <h:panelGroup id="info">
-                        <h:outputText value="#{vistaExplodidaBB.nome}" />
                     </h:panelGroup>
+
+
                 </h:form>
 
             </ui:define>
