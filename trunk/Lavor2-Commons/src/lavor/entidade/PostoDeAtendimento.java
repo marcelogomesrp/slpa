@@ -64,11 +64,13 @@ public class PostoDeAtendimento implements Serializable {
     private Date dataDeCadastro;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeAtualizacao;
+    private Boolean visivel;
 
     public PostoDeAtendimento() {
         this.usuario        = new Usuario();
         this.cidade         = new Cidade();
         this.dataDeCadastro = new Date();
+        this.visivel        = Boolean.TRUE;
     }
 
 
@@ -218,6 +220,14 @@ public class PostoDeAtendimento implements Serializable {
 
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
+    }
+
+    public Boolean getVisivel() {
+        return visivel;
+    }
+
+    public void setVisivel(Boolean visivel) {
+        this.visivel = visivel;
     }
 
     
