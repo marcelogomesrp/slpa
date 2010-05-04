@@ -93,6 +93,11 @@
                                 </h:selectOneMenu>
                             </f:facet>
                         </a4j:status>
+                        <h:outputText value="Visivel" />
+                        <h:selectOneMenu value="#{postoDeAtendimentoMB.postoDeAtendimento.visivel}" >
+                            <f:selectItem itemValue="true"  itemLabel="Sim" />
+                            <f:selectItem itemValue="false" itemLabel="Não" />
+                        </h:selectOneMenu>
 
                         <h:commandButton value="Salvar" action="#{postoDeAtendimentoBB.Salvar}"  />
                     </h:panelGrid>
