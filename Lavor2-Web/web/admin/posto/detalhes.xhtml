@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:rich="http://richfaces.org/rich">
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
     
     <body>
         
@@ -76,6 +77,13 @@
 
                         <h:outputText value="Cidade" />
                         <h:inputText id="cidadeInput" value="#{postoDeAtendimentoMB.postoDeAtendimento.cidade.cidade}" />
+
+                        <h:outputText value="Visivel" />
+                        <h:selectOneMenu value="#{postoDeAtendimentoMB.postoDeAtendimento.visivel}" >
+                            <f:selectItem itemValue="true"  itemLabel="Sim" />
+                            <f:selectItem itemValue="false" itemLabel="Não" />
+                        </h:selectOneMenu>
+
 
                     </h:panelGrid>                    
                     <h:commandButton value="Voltar" action="#{postoDeAtendimentoBB.DoListarPageVoltar}" />
