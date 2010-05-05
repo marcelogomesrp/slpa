@@ -124,8 +124,18 @@
                             <h:outputText value="Equipamento"/>
                         </f:facet>
 
+                        <h:outputText value="Numero da Nota Fiscal" />
+                        <h:inputText value="#{pedido2MB.pedido.numeroDaNotaFiscal}" />
+
+                        <h:outputText value="Numero de serie do equipamento" />
+                        <h:inputText value="#{pedido2MB.pedido.numeroDeSerieDoEquipamento}" />
+
+
                         <h:outputText value="Data da compra" />
                         <rich:calendar value="#{pedido2MB.pedido.equipamentoCliente.dataDaCompra}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
+
+                        <h:outputText value="Data de entrada do equipamento no posto" />
+                        <rich:calendar value="#{pedido2MB.pedido.dataDeEntradaNoPosto}" locale="pt,BR" datePattern="dd/MM/yyyy"/>
 
                         <h:outputText value="Equipamento esta na garantia" />
                         <h:selectBooleanCheckbox value="#{pedido2MB.pedido.garantiaDoEquipamento}" />
@@ -135,8 +145,11 @@
 
 
                         <h:outputText value="Observação" />
-                        <rich:editor id="editor" width="400" height="300" value="#{pedido2MB.pedido.observacao}"/>
+                        <rich:editor id="editor" width="400" height="100" value="#{pedido2MB.pedido.observacao}"/>
 
+                        
+                        <h:outputText value="Problema reportado pelo cliente" />
+                        <rich:editor id="problemaReportado" width="400" height="100" value="#{pedido2MB.pedido.problemaReportado}"/>
 
 
 
