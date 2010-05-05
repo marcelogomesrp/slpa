@@ -9,10 +9,13 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.TipoUsuario;
 import lavor.entidade.Usuario;
+import lavor.managedBean.MensagemMB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.managedBean.UsuarioMB;
+import lavor.service.MensagemService;
 import lavor.service.PostoDeAtendimentoService;
 import lavor.service.UsuarioService;
 import lavor.utils.FacesUtils;
@@ -36,6 +39,10 @@ public class indexBB implements Serializable{
     private UsuarioService usuarioService;
     @Resource
     private PostoDeAtendimentoService postoDeAtendimentoService;
+    @Resource
+    private MensagemMB mensagemMB;
+    @Resource
+    private MensagemService mensagemService;
 
     public indexBB() {        
     }
@@ -48,6 +55,7 @@ public class indexBB implements Serializable{
                 if (usuario.getTipoUsuario().equals(TipoUsuario.postoDeAtendimento)) {
                     usuarioMB.setUsuario(usuario);
                     postoDeAtendimentoMB.setPostoDeAtendimento(postoDeAtendimentoService.PesquisarPorUsuario(usuario));
+                    this.mensagemMB.setMensagens(new ListDataModel(this.mensagemService.Todas()));
                     return "posto/index";
                 } else {
                     if (usuario.getTipoUsuario().equals(TipoUsuario.administrador)) {
