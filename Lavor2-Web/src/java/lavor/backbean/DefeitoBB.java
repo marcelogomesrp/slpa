@@ -7,6 +7,7 @@ package lavor.backbean;
 
 import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
 import lavor.entidade.Defeito;
 import lavor.managedBean.DefeitoMB;
 import lavor.service.DefeitoService;
@@ -52,5 +53,23 @@ public class DefeitoBB {
         return "sucesso";
     }
 
+    public String Atualizar(){
+        try{
+            this.defeitoService.Atualizar(defeitoMB.getDefeito());
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Defeito atualizado com sucesso" );
+        }catch(Exception ex){
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao tentar salvar..");
+        }
+        return "sucesso";
+    }
 
+    public String DoListarDefeitosPage(){
+        this.defeitoMB.setDefeitos(new ListDataModel(defeitoService.Todos()));
+        return "/defeito/listar";
+    }
+
+    public String DoEditarPage(){
+        this.defeitoMB.setDefeito((Defeito) defeitoMB.getDefeitos().getRowData());
+        return "/defeito/editar";
+    }
 }
