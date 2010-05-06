@@ -15,8 +15,8 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import lavor.entidade.Cidade;
 import lavor.entidade.Cliente;
+import lavor.entidade.Defeito;
 import lavor.entidade.Equipamento;
-import lavor.entidade.Estado;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
 import lavor.entidade.Pedido;
@@ -25,11 +25,13 @@ import lavor.entidade.Revenda;
 import lavor.entidade.Situacao;
 import lavor.managedBean.CidadeMB;
 import lavor.managedBean.ClienteMB;
+import lavor.managedBean.DefeitoMB;
 import lavor.managedBean.EquipamentoMB;
 import lavor.managedBean.Pedido2MB;
 import lavor.managedBean.PostoDeAtendimentoMB;
 import lavor.service.CidadeService;
 import lavor.service.ClienteService;
+import lavor.service.DefeitoService;
 import lavor.service.EquipamentoClienteService;
 import lavor.service.ItemPedidoService;
 import lavor.service.PecaService;
@@ -90,8 +92,16 @@ public class Pedido2BB {
     @Resource
     private CidadeService cidadeService;
 
+    @Resource
+    private DefeitoMB defeitoMB;
+
+    @Resource
+    private DefeitoService defeitoService;
+
     private Date inicio;
     private Date fim;
+
+    
 
     public Pedido2BB() {
 
@@ -181,6 +191,7 @@ public class Pedido2BB {
         pedido2MB.setItensPedido(new ListDataModel());
         equipamentoMB.setEquipamentos(new ListDataModel());
         linhaBB.TodasAsLinhas();
+        defeitoMB.AtualizarSelectDefeito();
         return "/pedido/novo";
     }
 
@@ -227,6 +238,13 @@ public class Pedido2BB {
             pedido2MB.getPedido().setSituacao(Situacao.Cadastrado);
             pedido2MB.getPedido().setPrioridade(pedido2MB.getPedido().getEquipamentoCliente().getEquipamento().getPrioridade());
             pedido2MB.getPedido().setItemPedido(itens);
+            for(String id:pedido2MB.getDefeitos()){
+                Defeito defeito = defeitoService.PesquisarPorId(Long.valueOf(id));
+                pedido2MB.getPedido().getDefeitos().add(defeito);
+            }
+            for(Defeito df:pedido2MB.getPedido().getDefeitos()){
+                System.out.println(df.getId() + df.getNome() + df.getDescricao());
+            }
             pedidoService.Salvar(pedido2MB.getPedido());
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
             pedido2MB.setPedido(new Pedido());

@@ -5,10 +5,15 @@
 
 package lavor.managedBean;
 
-import javax.faces.model.DataModel;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import lavor.entidade.Defeito;
+import lavor.service.DefeitoService;
 import org.springframework.context.annotation.Scope;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 
 
@@ -24,10 +29,20 @@ public class DefeitoMB {
 
     private Defeito defeito;
     private ListDataModel defeitos;
+    List<SelectItem> defeitosSelect;
+    @Resource
+    private DefeitoService defeitoService;
 
     public DefeitoMB() {
         this.defeito  = new Defeito();
         this.defeitos = new ListDataModel();
+        this.defeitosSelect = new ArrayList<SelectItem>();        
+    }
+
+    public void AtualizarSelectDefeito(){
+        for(Defeito def:defeitoService.Todos()){
+            defeitosSelect.add(new SelectItem(def.getId(), def.getNome()));
+        }
     }
 
     public Defeito getDefeito() {
@@ -45,6 +60,15 @@ public class DefeitoMB {
     public void setDefeitos(ListDataModel defeitos) {
         this.defeitos = defeitos;
     }
+
+    public List<SelectItem> getDefeitosSelect() {
+        return defeitosSelect;
+    }
+
+    public void setDefeitosSelect(List<SelectItem> defeitosSelect) {
+        this.defeitosSelect = defeitosSelect;
+    }
+
     
 
 }

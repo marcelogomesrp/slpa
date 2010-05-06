@@ -151,9 +151,10 @@
                         <h:outputText value="Problema reportado pelo cliente" />
                         <rich:editor id="problemaReportado" width="400" height="100" value="#{pedido2MB.pedido.problemaReportado}"/>
 
-
-
-
+                        <h:outputText value="Defeitos" />
+                        <h:selectManyCheckbox value="#{pedido2MB.defeitos}" layout="pageDirection"  >
+                                <f:selectItems value="#{defeitoMB.defeitosSelect}" />
+                        </h:selectManyCheckbox>
 
 
                         <h:outputText value="Vista Explodida" rendered="#{pedido2MB.pedido.equipamentoCliente.equipamento.id != null}" />
