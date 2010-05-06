@@ -62,6 +62,15 @@ public class Pedido implements Serializable {
     @Lob
     private String observacao;
     private Boolean prioridade;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataDeEntradaNoPosto;
+    private String numeroDaNotaFiscal;
+    private String numeroDeSerieDoEquipamento;
+    @Lob
+    private String problemaReportado;
+    @OneToMany
+    private List<Defeito> defeitos;
+
     
 
     public Pedido() {
@@ -70,10 +79,12 @@ public class Pedido implements Serializable {
         this.revenda            = new Revenda();
         this.equipamentoCliente = new EquipamentoCliente();
         this.dataDoPedido       = new Date();
+        this.dataDeEntradaNoPosto = new Date();
         this.ItemPedido         = new ArrayList<ItemPedido>();
         this.garantiaDaspecas   = Boolean.FALSE;
         this.garantiaDaspecas   = Boolean.FALSE;
         this.prioridade         = Boolean.FALSE;
+        this.defeitos           = new ArrayList<Defeito>();
     }
 
     public Long getId() {
@@ -131,6 +142,49 @@ public class Pedido implements Serializable {
     public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
     }
+
+    public Date getDataDeEntradaNoPosto() {
+        return dataDeEntradaNoPosto;
+    }
+
+    public void setDataDeEntradaNoPosto(Date dataDeEntradaNoPosto) {
+        this.dataDeEntradaNoPosto = dataDeEntradaNoPosto;
+    }
+
+    public List<Defeito> getDefeitos() {
+        return defeitos;
+    }
+
+    public void setDefeitos(List<Defeito> defeitos) {
+        this.defeitos = defeitos;
+    }
+
+    public String getNumeroDaNotaFiscal() {
+        return numeroDaNotaFiscal;
+    }
+
+    public void setNumeroDaNotaFiscal(String numeroDaNotaFiscal) {
+        this.numeroDaNotaFiscal = numeroDaNotaFiscal;
+    }
+
+    public String getNumeroDeSerieDoEquipamento() {
+        return numeroDeSerieDoEquipamento;
+    }
+
+    public void setNumeroDeSerieDoEquipamento(String numeroDeSerieDoEquipamento) {
+        this.numeroDeSerieDoEquipamento = numeroDeSerieDoEquipamento;
+    }
+
+    public String getProblemaReportado() {
+        return problemaReportado;
+    }
+
+    public void setProblemaReportado(String problemaReportado) {
+        this.problemaReportado = problemaReportado;
+    }
+
+    
+
 
     @Override
     public int hashCode() {

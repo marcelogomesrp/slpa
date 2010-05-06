@@ -33,9 +33,9 @@ public class EquipamentoCliente implements Serializable {
     private Date dataDaCompra;
 
     public EquipamentoCliente() {
-        this.equipamento = new Equipamento();
+        this.equipamento    = new Equipamento();
+        this.dataDaCompra   = new Date();
     }
-
 
 
     public Long getId() {
