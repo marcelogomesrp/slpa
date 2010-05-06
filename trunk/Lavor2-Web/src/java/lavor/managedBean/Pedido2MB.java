@@ -33,6 +33,19 @@ public class Pedido2MB {
     private ItemPedidoService itemPedidoService;
     @Resource
     private PecaService pecaService;
+
+    private List<String> defeitos;
+
+    public List<String> getDefeitos() {
+        return defeitos;
+    }
+
+    public void setDefeitos(List<String> defeitos) {
+        this.defeitos = defeitos;
+    }
+
+
+
     
 
     public Pedido2MB() {
