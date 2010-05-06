@@ -384,6 +384,16 @@
             <from-outcome>/pedido2/postoperiodo</from-outcome>
             <to-view-id>/admin/pedido2/postoperiodo.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{defeitoBB.DoListarDefeitosPage}</from-action>
+            <from-outcome>/defeito/listar</from-outcome>
+            <to-view-id>/admin/defeito/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{defeitoBB.DoEditarPage}</from-action>
+            <from-outcome>/defeito/editar</from-outcome>
+            <to-view-id>/admin/defeito/editar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -435,6 +445,7 @@
 
     </navigation-rule>
 </faces-config>
+
 
 
 
