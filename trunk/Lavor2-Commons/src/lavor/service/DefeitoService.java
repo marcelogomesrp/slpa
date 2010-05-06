@@ -74,6 +74,20 @@ public class DefeitoService implements Serializable{
         return this.defeitoDao.PesquisarPorNome(nome);
     }
 
+    public Defeito Atualizar(Defeito defeito) throws ServiceException {
+        this.serviceException = new ServiceException();
+        try{
+            if(this.PodeSerSalvo(defeito)){
+                defeito = defeitoDao.atualizar(defeito);
+            }
+        }catch(DataAccessException ex){
+            throw new ServiceException("Ocorreu um erro ao tentar salvar", ex);
+        }
+        return defeito;
+    }
 
+    public Defeito PesquisarPorId(Long id){
+        return defeitoDao.pesquisarPorId(id);
+    }
 
 }

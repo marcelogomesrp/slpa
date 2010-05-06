@@ -5,14 +5,18 @@
 
 package lavor.entidade;
 
+import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -28,8 +32,11 @@ public class Defeito implements Serializable {
     private String nome;
     @Lob
     private String descricao;
+    @ManyToMany(mappedBy = "defeitos")
+    private List<Pedido> pedidos;
 
     public Defeito() {
+        this.pedidos = new ArrayList<Pedido>();
     }
 
     public Long getId() {
