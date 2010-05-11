@@ -99,7 +99,8 @@
 
                                 <h:outputText value="CNPJ" />
                                 <a4j:region id="regiaoRevenda">
-                                    <h:inputText value="#{pedido2MB.pedido.revenda.cnpj}" disabled="#{pedido2MB.pedido.revenda.id != null}">
+                                    <h:inputText id="cnpjInput" value="#{pedido2MB.pedido.revenda.cnpj}" disabled="#{pedido2MB.pedido.revenda.id != null}">
+                                        <rich:jQuery selector="#cnpjInput" query="mask('99.999.999/9999-99')" timing="onload"/>
                                         <a4j:support event="onchange" action="#{pedido2BB.PesquisarRevendaPorCnpj}" reRender="revendaForm" />
                                     </h:inputText>
                                 </a4j:region>
