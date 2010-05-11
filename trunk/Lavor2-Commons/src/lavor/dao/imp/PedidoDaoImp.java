@@ -5,6 +5,7 @@
 
 package lavor.dao.imp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,15 +57,23 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
                 float total = 0F;
 
 
+  //              List<ItemPedido> itens = new ArrayList<ItemPedido>();
+    //            List<ItemPedido> remover = new ArrayList<ItemPedido>();
+
                 for(ItemPedido itemPedido:pedido.getItemPedido()){
                     itemPedido.setValor(itemPedido.getPeca().getValor() * itemPedido.getQuantidade());
                     if(itemPedido.getId() == null){
-                        itemPedido.setPedido(pedido);
-                        getEntityManager().persist(itemPedido);
+                        if(itemPedido.getValor() > 0){
+                            itemPedido.setPedido(pedido);
+                            getEntityManager().persist(itemPedido);
+      //                      itens.add(itemPedido);
+                        }
                     }else{
-                        getEntityManager().merge(itemPedido);
+                            getEntityManager().merge(itemPedido);
                     }
                 }
+
+//                pedido.setItemPedido(itens);
 
 
                 for(ItemPedido itemPedido:pedido.getItemPedido()){
@@ -73,6 +82,11 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
                 }
                 pedido.setValorTotal(total);
 		getEntityManager().merge(pedido);
+
+//                for(ItemPedido item:remover){
+//                    getEntityManager().remove(item);
+//                }
+
 
 
 
