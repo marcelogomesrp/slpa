@@ -53,7 +53,8 @@ public class Revenda implements Serializable {
     }
 
     public void setCnpj(String cnpj) {
-        this.cnpj = cnpj.replaceAll("[^\\d{L}]", "");
+        //this.cnpj = cnpj.replaceAll("[^\\d{L}]", "");
+        this.cnpj = cnpj;
     }
 
     public PostoDeAtendimento getPostoDeAtendimento() {
