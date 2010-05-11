@@ -40,6 +40,7 @@ public class DefeitoMB {
     }
 
     public void AtualizarSelectDefeito(){
+        this.defeitosSelect = new ArrayList<SelectItem>();        
         for(Defeito def:defeitoService.Todos()){
             defeitosSelect.add(new SelectItem(def.getId(), def.getNome()));
         }

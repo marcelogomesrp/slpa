@@ -242,9 +242,9 @@ public class Pedido2BB {
                 Defeito defeito = defeitoService.PesquisarPorId(Long.valueOf(id));
                 pedido2MB.getPedido().getDefeitos().add(defeito);
             }
-            for(Defeito df:pedido2MB.getPedido().getDefeitos()){
-                System.out.println(df.getId() + df.getNome() + df.getDescricao());
-            }
+//            for(Defeito df:pedido2MB.getPedido().getDefeitos()){
+//                System.out.println(df.getId() + df.getNome() + df.getDescricao());
+//            }
             pedidoService.Salvar(pedido2MB.getPedido());
             FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Pedido salvo com sucesso" );
             pedido2MB.setPedido(new Pedido());
@@ -276,6 +276,7 @@ public class Pedido2BB {
         if(revendas.size() == 1){
             pedido2MB.getPedido().setRevenda(revendas.get(0));
         }
+       
         return "sucesso";
         //pedido2MB.getItensPedido().getRowCount();
     }
@@ -356,6 +357,12 @@ public class Pedido2BB {
     public String DoEditarPage(){
         pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
         cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
+        defeitoMB.AtualizarSelectDefeito();
+        pedido2MB.setDefeitos(new ArrayList<String>());
+
+        for(Defeito defeito:pedido2MB.getPedido().getDefeitos()){
+            pedido2MB.getDefeitos().add(defeito.getId().toString());
+        }
         return "/pedido2/editar";
     }
 
@@ -378,14 +385,21 @@ public class Pedido2BB {
 
 
     public String Atualizar(){
+        //marcelo
         List<ItemPedido> itens = new ArrayList<ItemPedido>();
         for(int x = 0; x<pedido2MB.getItensPedido().getRowCount();x++){
             pedido2MB.getItensPedido().setRowIndex(x);
             ItemPedido item = (ItemPedido) pedido2MB.getItensPedido().getRowData();
-            if(item.getQuantidade() > 0 ){
+            //if(item.getQuantidade() > 0 ){
                 itens.add(item);
-            }
+            //}
         }
+        pedido2MB.getPedido().setDefeitos(new ArrayList<Defeito>());
+        for(String id:pedido2MB.getDefeitos()){
+            Defeito defeito = defeitoService.PesquisarPorId(Long.valueOf(id));
+            pedido2MB.getPedido().getDefeitos().add(defeito);
+        }
+
         try {
             pedido2MB.getPedido().setItemPedido(itens);
             pedidoService.Atualizar(pedido2MB.getPedido());

@@ -134,6 +134,10 @@
                         <rich:editor id="editor" width="400" height="300" value="#{pedido2MB.pedido.observacao}"/>
 
 
+                        <h:outputText value="Defeitos" />
+                        <h:selectManyCheckbox value="#{pedido2MB.defeitos}" layout="pageDirection"  >
+                                <f:selectItems value="#{defeitoMB.defeitosSelect}" />
+                        </h:selectManyCheckbox>
 
 
 
