@@ -29,6 +29,7 @@ public class Pedido2MB {
     private Pedido pedido;
     private ListDataModel pedidos;
     private ListDataModel itensPedido;
+    private ListDataModel itensPedidoSelecionado;
     @Resource
     private ItemPedidoService itemPedidoService;
     @Resource
@@ -52,6 +53,7 @@ public class Pedido2MB {
         this.pedido         = new Pedido();
         this.pedidos        = new ListDataModel();
         this.itensPedido    = new ListDataModel();
+        this.itensPedidoSelecionado = new ListDataModel();
     }
 
     public Pedido getPedido() {
@@ -109,9 +111,13 @@ public class Pedido2MB {
         this.itensPedido = new ListDataModel(itensPedido);
     }
 
+    public ListDataModel getItensPedidoSelecionado() {
+        return itensPedidoSelecionado;
+    }
 
+    public void setItensPedidoSelecionado(ListDataModel itensPedidoSelecionado) {
+        this.itensPedidoSelecionado = itensPedidoSelecionado;
+    }
 
-
-    
 
 }

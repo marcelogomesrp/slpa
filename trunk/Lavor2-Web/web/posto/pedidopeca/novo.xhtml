@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/PostoTemplate.xhtml">
+            <ui:define name="content">
+
+
+                <h:form>                    
+                    <h:messages id="message" />
+
+                    <h:panelGrid width="100%" rendered="#{pedido2MB.itensPedidoSelecionado.rowCount > 0}" >
+
+                        <f:facet name="header">
+                            <h:outputText value="Item selecionado"/>
+                        </f:facet>
+
+
+                    <rich:dataTable id="lista0" value="#{pedido2MB.itensPedidoSelecionado}" var="item"  width="100%" rendered="#{pedido2MB.itensPedidoSelecionado.rowCount > 0}" >
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">
+                                <h:column><h:outputText value="Codigo importacao"/></h:column>
+                                <h:column><h:outputText value="Situacao"/></h:column>
+                                <h:column><h:outputText value="Descricao"/></h:column>
+                                <h:column><h:outputText value="Qtd"/></h:column>
+                                <h:column><h:outputText value="Valor Unitário"/></h:column>
+                                <h:column><h:outputText value="Valor Total"/></h:column>
+                                <h:column><h:outputText value="Adicionar"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.codigoImportacao}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.situacaoPeca}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.descricao}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.valor}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.quantidade}" />
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{item.quantidade * item.peca.valor}" />
+                        </h:column>
+                        <h:column>
+                            <h:commandLink value="Remover" action="#{pedido2BB.AdiconarItem}" />
+                        </h:column>
+                    </rich:dataTable>
+
+                    <h:commandButton value="Finalizar" action="#{pedido2BB.Finalizar}" />
+                    
+                    </h:panelGrid>
+
+
+                    <rich:jQuery selector="#lista0 tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista0 tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista0 tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista0 tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+
+                    <!-- fim dos pedidos -->
+
+
+                    <h:panelGrid columns="2" >
+
+                        <f:facet name="header">
+                            <h:outputText value="Equipamento"/>
+                        </f:facet>
+
+
+                        <h:outputText value="Linha" />
+                        <h:panelGroup >
+                            <h:selectOneMenu id="inputLinha" value="#{equipamentoMB.equipamento.linha.id}" required="true" requiredMessage="A linha deve ser informada"  >
+                                <f:selectItems value="#{linhaMB.selectLinhas}" />
+                            </h:selectOneMenu>
+                            <h:commandButton value="Pesquisar" action="#{equipamentoBB.PesquisarLinha}" />
+                        </h:panelGroup>
+                    </h:panelGrid>
+
+
+
+                    <!-- fim do equipamento -->
+
+                    <br /><br />
+
+                    <rich:dataTable id="lista" value="#{equipamentoMB.equipamentos}" var="equipamento"  width="100%" rendered="#{equipamentoMB.equipamentos.rowCount > 0}" >
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">                                
+                                <h:column><h:outputText value="Modelo"/></h:column>
+                                <h:column><h:outputText value="Selecionar"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <rich:column>
+                            <h:outputText value="#{equipamento.modelo}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <h:commandLink value="Selecionar" action="#{pedido2BB.SelecionarEquipamento}"/>
+                        </rich:column>
+
+                    </rich:dataTable>
+
+
+                    <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
+                    <rich:jQuery selector="#lista tr:even"  query="addClass('even-row')" />
+                    <rich:jQuery selector="#lista tr"       query="mouseover(function(){jQuery(this).addClass('active-row')})" />
+                    <rich:jQuery selector="#lista tr"       query="mouseout(function(){jQuery(this).removeClass('active-row')})" />
+
+                    <br />
+
+                    <rich:dataTable value="#{pedido2MB.itensPedido}" var="item"  id="lista2" width="100%" rendered="#{pedido2MB.itensPedido.rowCount > 0}" >
+                        <f:facet name="header">
+                            <rich:columnGroup styleClass="dataTableHeader">
+                                <h:column><h:outputText value="Codigo importacao"/></h:column>
+                                <h:column><h:outputText value="Situacao"/></h:column>
+                                <h:column><h:outputText value="Descricao"/></h:column>
+                                <h:column><h:outputText value="Qtd"/></h:column>
+                                <h:column><h:outputText value="Valor Unitário"/></h:column>
+                            </rich:columnGroup>
+                        </f:facet>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.codigoImportacao}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.situacaoPeca}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.descricao}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.peca.valor}" />
+                        </h:column>
+
+                        <h:column>
+                            <rich:inputNumberSpinner value="#{item.quantidade}" minValue="0" maxValue="999999999" />
+                        </h:column>
+                        
+                    </rich:dataTable>
+                    <h:commandButton value="Adcionar" action="#{pedido2BB.AdiconarItem}" rendered="#{pedido2MB.itensPedido.rowCount > 0}" />
+                    
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
