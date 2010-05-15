@@ -186,6 +186,13 @@ public class Pedido2BB {
 //        return "sucesso";
 //    }
 
+    public String DoNovoPedidoPecaPage(){
+        linhaBB.TodasAsLinhas();
+        this.pedido2MB.setPedido(new Pedido());
+        this.pedido2MB.setItensPedidoSelecionado( new ListDataModel());
+        return "/pedidopeca/novo";
+    }
+
     public String DoNovoPedidoPage(){
         this.pedido2MB.setPedido(new Pedido());
         pedido2MB.setItensPedido(new ListDataModel());
@@ -482,6 +489,34 @@ public class Pedido2BB {
     public String SelecionarPosto(){
         this.postoDeAtendimentoMB.setPostoDeAtendimento((PostoDeAtendimento) postoDeAtendimentoMB.getPostosDeAtendimento().getRowData());
         return "sucesso";
+    }
+
+    public String AdiconarItem() {
+        for (int x = 0; x < pedido2MB.getItensPedido().getRowCount(); x++) {
+            pedido2MB.getItensPedido().setRowIndex(x);
+            ItemPedido itemPedido = (ItemPedido) pedido2MB.getItensPedido().getRowData();
+            if (itemPedido.getQuantidade() > 0) {
+                pedido2MB.getPedido().getItemPedido().add(itemPedido);
+            }
+
+        }
+        pedido2MB.setItensPedidoSelecionado(new ListDataModel(pedido2MB.getPedido().getItemPedido()));
+        return "sucesso";
+    }
+
+    public String Finalizar(){
+        try {
+            pedido2MB.getPedido().setDataDoPedido(new Date());
+            pedido2MB.getPedido().setCliente(null);
+            pedido2MB.getPedido().setEquipamentoCliente(null);
+            pedido2MB.getPedido().setRevenda(null);
+            pedido2MB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
+            pedidoService.SalvarPedidoPeca(pedido2MB.getPedido());
+        } catch (ServiceException ex) {
+            FacesUtils.adicionarMensagem("base_message", ex, "Ocorreu uma falha ao gerar o pedido" + ex.getMessage() + "<p /> " + ex.getCause());
+            Logger.getLogger(Pedido2BB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/pedidopeca/finalizar";
     }
 
 }
