@@ -5,7 +5,6 @@
 
 package lavor.dao.imp;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +23,27 @@ import org.springframework.transaction.annotation.Transactional;
  * @author marcelo
  */
 public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements PedidoDao {
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public Pedido salvarPedidoPeca(Pedido pedido) {
+        getEntityManager().clear();
+        float total = 0F;
+        for (ItemPedido itemPedido : pedido.getItemPedido()) {
+            itemPedido.setValor(itemPedido.getPeca().getValor());
+            total += itemPedido.getValor() * itemPedido.getQuantidade();
+        }
+        pedido.setValorTotal(total);
+        getEntityManager().persist(pedido);
+
+        for (ItemPedido itemPedido : pedido.getItemPedido()) {
+            itemPedido.setValor(itemPedido.getPeca().getValor() * itemPedido.getQuantidade());
+            itemPedido.setPedido(pedido);
+            getEntityManager().persist(itemPedido);
+        }
+
+        return pedido;
+    }
 
     	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
@@ -182,4 +202,6 @@ public class PedidoDaoImp extends DaoGenericoImp<Pedido, Long> implements Pedido
         List<Pedido> pedidos = listPesqParam(SQL, params);
         return pedidos;
     }
+
+
 }

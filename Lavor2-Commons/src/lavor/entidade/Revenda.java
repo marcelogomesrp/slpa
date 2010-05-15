@@ -28,7 +28,7 @@ public class Revenda implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    @Column(name="cnpj", length=14, nullable=false)
+    @Column(name="cnpj", length=20, nullable=false)
     private String cnpj;
     @Column(name="razao_social", length=60, nullable=false)
     private String razaoSocial;
