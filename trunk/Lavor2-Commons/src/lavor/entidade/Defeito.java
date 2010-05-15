@@ -17,12 +17,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author marcelo
  */
 @Entity
+@Table(name="defeito")
 public class Defeito implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

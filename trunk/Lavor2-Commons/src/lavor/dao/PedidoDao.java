@@ -32,4 +32,6 @@ public interface PedidoDao  extends DaoGenerico<Pedido, Long>{
 
     public List<Pedido> PesquisarPedidoPorPeriodo(Date inicio, Date fim);
 
+    public Pedido salvarPedidoPeca(Pedido pedido);
+
 }

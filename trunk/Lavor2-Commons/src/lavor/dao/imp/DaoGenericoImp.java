@@ -87,8 +87,6 @@ public class DaoGenericoImp<T, ID extends Serializable> implements DaoGenerico<T
 	public T salvar(T object) {
 		getEntityManager().clear();
 		getEntityManager().persist(object);
-
-
 		return object;
 	}
 

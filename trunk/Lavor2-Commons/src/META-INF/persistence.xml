@@ -26,17 +26,15 @@
       <property name="hibernate.connection.url" value="jdbc:mysql://guaraba.com.br/lavor2"/>
       <property name="hibernate.connection.username" value="lavor2"/>
       <property name="hibernate.connection.password" value="admin..."/>
-
-
+        -->
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost/lavor2"/>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.password" value="admin..."/>
-
-      -->
+      <!--
       <property name="hibernate.connection.url" value="jdbc:mysql://189.112.34.198/lavor2"/>
       <property name="hibernate.connection.username" value="lavor2"/>
       <property name="hibernate.connection.password" value="admin..."/>
-      
+      -->
       <!--Configuracoes de Debug-->
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import lavor.dao.PedidoDao;
 import lavor.entidade.Cliente;
+import lavor.entidade.EquipamentoCliente;
 import lavor.entidade.Pedido;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Situacao;
@@ -38,6 +39,20 @@ public class PedidoService implements Serializable{
         this.pedidoDao = pedidoDao;
     }
 
+    public Pedido SalvarPedidoPeca(Pedido pedido) throws ServiceException{
+        this.serviceException = new ServiceException();
+        try{
+            //pedido.setEquipamentoCliente(new EquipamentoCliente());
+            pedido.setEquipamentoCliente(null);
+            pedido.setCliente(null);
+            pedido = pedidoDao.salvarPedidoPeca(pedido);
+            //pedido = pedidoDao.salvar(pedido);
+        }catch(Exception ex){
+            throw new ServiceException("Ocorreu um erro ao tentar salvar" + ex.getMessage() + ex.getCause(), ex);
+        }
+
+        return pedido;
+    }
     public Pedido Salvar(Pedido pedido) throws ServiceException{
         this.serviceException = new ServiceException();
         try{
