@@ -361,16 +361,26 @@ public class Pedido2BB {
         return "sucesso";
     }
 
-    public String DoEditarPage(){
-        pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
-        cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
-        defeitoMB.AtualizarSelectDefeito();
-        pedido2MB.setDefeitos(new ArrayList<String>());
-
-        for(Defeito defeito:pedido2MB.getPedido().getDefeitos()){
-            pedido2MB.getDefeitos().add(defeito.getId().toString());
+    public String DoEditarPage() {
+        Pedido pedi = (Pedido) pedido2MB.getPedidos().getRowData();
+        if (pedi.getCliente() != null) {
+            pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
+            cidadeMB.AtualizarListaDeCidades(pedido2MB.getPedido().getCliente().getCidade().getEstado());
+            defeitoMB.AtualizarSelectDefeito();
+            pedido2MB.setDefeitos(new ArrayList<String>());
+            for (Defeito defeito : pedido2MB.getPedido().getDefeitos()) {
+                pedido2MB.getDefeitos().add(defeito.getId().toString());
+            }
+            return "/pedido2/editar";
+        } else {
+            pedido2MB.setPedidoPeca(pedi);
+            //pedido2MB.itensPedido
+            pedido2MB.setItensPedido(itemPedidoService.PesquisarPorPedido(pedi));
+            //ItemPedido);
+            //pedido2MB.setPedido(pedi);
+            //pedido2MB.setPedido(pedi);
+            return "/pedidopeca/editar";
         }
-        return "/pedido2/editar";
     }
 
     public String DoAdminEditarPage(){
@@ -510,6 +520,7 @@ public class Pedido2BB {
             pedido2MB.getPedido().setCliente(null);
             pedido2MB.getPedido().setEquipamentoCliente(null);
             pedido2MB.getPedido().setRevenda(null);
+            pedido2MB.getPedido().setSituacao(Situacao.Cadastrado);
             pedido2MB.getPedido().setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
             pedidoService.SalvarPedidoPeca(pedido2MB.getPedido());
         } catch (ServiceException ex) {
