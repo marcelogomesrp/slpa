@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
+import lavor.entidade.Cliente;
 import lavor.entidade.Equipamento;
 import lavor.entidade.ItemPedido;
 import lavor.entidade.Peca;
@@ -60,8 +61,13 @@ public class Pedido2MB {
         return pedido;
     }
 
+    public void setPedidoPeca(Pedido pedido){
+        this.pedido = pedido;
+    }
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+
+        if(this.pedido.getCliente().getId() != null){
 
         if(pedido.getId() != null){
         HashMap<Long, ItemPedido> item = new HashMap<Long, ItemPedido>();
@@ -85,6 +91,9 @@ public class Pedido2MB {
         }else{
                 this.setItensPedido(new ArrayList<ItemPedido>());
         }
+        }
+
+
     }
 
     public ListDataModel getPedidos() {

@@ -19,7 +19,7 @@
                         <h:outputText value="Pedido ID" />
                         <h:outputText value="#{pedido2MB.pedido.id}" />
 
-                        <h:outputText value="Valor total" />
+                        <h:outputText value="Valor total do pedido" />
                         <h:outputText value="#{pedido2MB.pedido.valorTotal}" >
                             <f:convertNumber locale="pt,BR" pattern="#,##0.00" />
                         </h:outputText>
@@ -28,17 +28,21 @@
                         <h:outputText value="#{pedido2MB.pedido.dataDoPedido}" >
                             <f:convertDateTime locale="pt,BR" pattern="dd/MM/yyyy" />
                         </h:outputText>
+
                     </h:panelGrid>
+
+
                         <rich:dataTable value="#{pedido2MB.itensPedido}" var="item"  id="lista2" width="100%" rendered="#{pedido2MB.itensPedido.rowCount > 0}" >
                             <f:facet name="header">
                                 <rich:columnGroup styleClass="dataTableHeader">
                                     <h:column><h:outputText value="Codigo importacao"/></h:column>
                                     <h:column><h:outputText value="Descricao"/></h:column>
-                                    <h:column><h:outputText value="Valor"/></h:column>
+                                    <h:column><h:outputText value="Valor Unitário"/></h:column>
                                     <h:column><h:outputText value="Qtd"/></h:column>
+                                    <h:column><h:outputText value="Valor Total do Item"/></h:column>
                                 </rich:columnGroup>
                             </f:facet>
-                            
+
                             <h:column>
                             <h:outputText value="#{item.peca.codigoImportacao}" />
                         </h:column>
@@ -56,6 +60,10 @@
 
                         <h:column>
                             <h:outputText value="#{item.quantidade}" />
+                        </h:column>
+
+                        <h:column>
+                            <h:outputText value="#{item.quantidade * item.peca.valor}" />
                         </h:column>
 
                         </rich:dataTable>
