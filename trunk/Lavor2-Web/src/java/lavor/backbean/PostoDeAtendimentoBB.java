@@ -100,6 +100,11 @@ public class PostoDeAtendimentoBB {
         return "posto/editar";
     }
 
+
+    public String DoTrocarSenhaPage(){
+        this.postoDeAtendimentoMB.setPostoDeAtendimento((PostoDeAtendimento) this.postoDeAtendimentoMB.getPostosDeAtendimento().getRowData());
+        return "/posto/trocarsenha";
+    }
     public String DoLogout(){
 
 //        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

@@ -52,6 +52,8 @@
             <from-outcome>posto/editar</from-outcome>
             <to-view-id>/admin/posto/editar.xhtml</to-view-id>
         </navigation-case>
+
+
         <navigation-case>
             <from-action>#{postoDeAtendimentoBB.DoListarPage}</from-action>
             <from-outcome>/admin/posto/listar</from-outcome>
@@ -334,6 +336,9 @@
             <from-outcome>/pedido2/editar</from-outcome>
             <to-view-id>/posto/pedido2/editar.xhtml</to-view-id>
         </navigation-case>
+
+
+
         <navigation-case>
             <from-action>#{pedido2BB.DoListarPedidoRejeitadoPage}</from-action>
             <from-outcome>/pedido2/listar</from-outcome>
@@ -394,6 +399,31 @@
             <from-outcome>/defeito/editar</from-outcome>
             <to-view-id>/admin/defeito/editar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoNovoPedidoPecaPage}</from-action>
+            <from-outcome>/pedidopeca/novo</from-outcome>
+            <to-view-id>/posto/pedidopeca/novo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.Finalizar}</from-action>
+            <from-outcome>/pedidopeca/finalizar</from-outcome>
+            <to-view-id>/posto/pedidopeca/finalizar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{pedido2BB.DoEditarPage}</from-action>
+            <from-outcome>/pedidopeca/editar</from-outcome>
+            <to-view-id>/posto/pedidopeca/editar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{postoDeAtendimentoBB.DoTrocarSenhaPage}</from-action>
+            <from-outcome>/posto/trocarsenha</from-outcome>
+            <to-view-id>/admin/posto/trocarsenha.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{clienteBB.DoEditarPage}</from-action>
+            <from-outcome>/cliente/editar</from-outcome>
+            <to-view-id>/posto/cliente/editar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -445,6 +475,10 @@
 
     </navigation-rule>
 </faces-config>
+
+
+
+
 
 
 

@@ -40,6 +40,24 @@
 
                         <h:outputText value="Descricao" />
                         <h:inputText id="descricaoInput" value="#{pecaMB.peca.descricao}" size="60" maxlength="255"/>
+
+                        <h:outputText value="Valor" />
+                        <h:inputText id="valorInput" value="#{pecaMB.peca.valor}" size="60" maxlength="255">
+                            <f:convertNumber locale="pt,BR" pattern="#,##0.00" />
+                        </h:inputText>
+
+                        <h:outputText value="Unidade" />
+                        <h:inputText id="unidadeInput" value="#{pecaMB.peca.unidade}" size="60" maxlength="255"/>
+
+                        <h:outputText value="IPI" />
+                        <h:inputText id="ipiInput" value="#{pecaMB.peca.ipi}" size="60" maxlength="255">
+                            <f:convertNumber locale="pt,BR" pattern="#,##0.00" />
+                        </h:inputText>
+
+                        <h:outputText value="Situacao" />
+                            <h:selectOneMenu id="situacaoInput" value="#{pecaMB.peca.situacaoPeca}"  >
+                                <f:selectItems value="#{situacaoPecaBB.situacoesPeca}" />
+                            </h:selectOneMenu>
                      </h:panelGrid>
 
                     <h:commandButton value="Salvar" action="#{pecaBB.Salvar}" />
