@@ -7,10 +7,13 @@ package lavor.backbean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.faces.model.ListDataModel;
 import lavor.entidade.Cliente;
 import lavor.entidade.EquipamentoCliente;
+import lavor.entidade.Estado;
 import lavor.managedBean.CidadeMB;
 import lavor.managedBean.ClienteMB;
 import lavor.managedBean.EquipamentoClienteMB;
@@ -160,6 +163,26 @@ public class ClienteBB {
 
     public String AtualizarListaDeCidades(){
         cidadeMB.AtualizarListaDeCidades(clienteMB.getCliente().getCidade().getEstado());
+        return "sucesso";
+    }
+
+
+    public String DoEditarPage(){
+        clienteMB.setCliente((Cliente) clienteMB.getClientes().getRowData());
+        this.AtualizarListaDeCidades();
+        return "/cliente/editar";
+    }
+
+    public String Atualizar(){
+        try {
+            //cliente.setCidade(cidadeService.PesquisarPorCidadeEstado(cliente.getCidade().getCidade(), cliente.getCidade().getEstado()));
+            clienteMB.getCliente().setCidade(cidadeService.PesquisarPorCidadeEstado(clienteMB.getCliente().getCidade().getCidade(), clienteMB.getCliente().getCidade().getEstado()));
+            this.clienteService.Atualizar(clienteMB.getCliente());
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Cliente atualizado com sucesso" );
+        } catch (ServiceException ex) {
+            FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.ERROR, "Ocorreu um erro ao tentar atualizar");
+            Logger.getLogger(ClienteBB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return "sucesso";
     }
 

@@ -41,6 +41,7 @@
                             <h:column><h:outputText value="Razao social"/></h:column>
                             <h:column><h:outputText value="Detalhes"/></h:column>
                             <h:column><h:outputText value="Editar"/></h:column>
+                            <h:column><h:outputText value="Trocar senha"/></h:column>
                         </rich:columnGroup>
 
                     </f:facet>
@@ -55,6 +56,9 @@
                         </rich:column>
                         <rich:column>
                             <h:commandLink value="editar" action="#{postoDeAtendimentoBB.DoEditarPage}"/>
+                        </rich:column>
+                        <rich:column>
+                            <h:commandLink value="trocar senha" action="#{postoDeAtendimentoBB.DoTrocarSenhaPage}"/>
                         </rich:column>
                     </rich:dataTable>
 

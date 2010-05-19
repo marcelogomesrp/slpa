@@ -29,6 +29,7 @@
                                     <h:column><h:outputText value="nome"/></h:column>
                                     <h:column><h:outputText value="telefone"/></h:column>
                                     <h:column><h:outputText value="celular"/></h:column>
+                                    <h:column><h:outputText value="editar"/></h:column>
                                 </rich:columnGroup>
                             </f:facet>
 
@@ -43,9 +44,15 @@
                             <h:column>
                                 <h:outputText value="#{cliente.telefone}" />
                             </h:column>
+
                             <h:column>
                                 <h:outputText value="#{cliente.celular}" />
                             </h:column>
+
+                            <h:column>
+                                <h:commandLink action="#{clienteBB.DoEditarPage}" value="editar" />
+                            </h:column>
+
                     </rich:dataTable>
 
                     <rich:jQuery selector="#lista tr:odd"   query="addClass('odd-row')" />
