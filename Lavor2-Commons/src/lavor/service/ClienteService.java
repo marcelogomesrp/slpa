@@ -11,7 +11,6 @@ import java.util.List;
 import lavor.dao.ClienteDao;
 import lavor.entidade.Cidade;
 import lavor.entidade.Cliente;
-import lavor.entidade.Estado;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.utils.GenericExceptionMessageType;
 
@@ -97,6 +96,19 @@ public class ClienteService implements Serializable{
 
     public void setCidadeService(CidadeService cidadeService) {
         this.cidadeService = cidadeService;
+    }
+
+    public void Atualizar(Cliente cliente) throws ServiceException {
+        this.serviceException = new ServiceException();
+        this.cliente = cliente;
+        try{
+            if(this.PodeSerSalvo(cliente)){
+                //this.cliente = this.clienteDao.salvar(this.cliente);
+                cliente = this.clienteDao.atualizar(cliente);
+            }
+        }catch(Exception ex){
+            throw new ServiceException("Ocorreu um erro ao tentar atualizar", ex);
+        }
     }
 
 
