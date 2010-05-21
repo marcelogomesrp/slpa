@@ -14,5 +14,7 @@ public enum Situacao {
     Cancelado,
     Processado,
     Finalizado,
-    Rejeitado, //Pedido com erro + recusado. o recusado é finalizador
+    Recusado,
+    Erro,
+    //Rejeitado, //Pedido com erro + recusado. o recusado é finalizador
 }
