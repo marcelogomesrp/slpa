@@ -6,7 +6,6 @@
 package lavor.entidade;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +37,7 @@ public class Equipamento implements Serializable {
     @Column(name="serie")
     private int serie;
     private Boolean prioridade;
+    private String familia;
 
     public Equipamento() {
         this.linha = new Linha();
@@ -93,6 +93,16 @@ public class Equipamento implements Serializable {
     public void setPrioridade(Boolean prioridade) {
         this.prioridade = prioridade;
     }
+
+    public String getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(String familia) {
+        this.familia = familia;
+    }
+
+    
 
     
 
