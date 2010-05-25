@@ -339,7 +339,7 @@ faces.responseComplete();
 
     public String DoRegeitarPage() throws ServiceException{
         Pedido pedido = (Pedido) pedidoMB.getPedidos().getRowData();
-        pedido.setSituacao(Situacao.Rejeitado);
+        pedido.setSituacao(Situacao.Recusado);
         Pedido Atualizar = pedidoService.Atualizar(pedido);
         return this.DolistarPedidosCadastradoPage();
     }
