@@ -424,6 +424,16 @@
             <from-outcome>/cliente/editar</from-outcome>
             <to-view-id>/posto/cliente/editar.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{tabelaDePrecoBB.DoNovoPage}</from-action>
+            <from-outcome>/tabela/novo</from-outcome>
+            <to-view-id>/admin/tabela/novo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{tabelaDePrecoBB.DoDownloaPage}</from-action>
+            <from-outcome>/tabela/donwload</from-outcome>
+            <to-view-id>/posto/tabela/download.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -475,6 +485,8 @@
 
     </navigation-rule>
 </faces-config>
+
+
 
 
 
