@@ -31,6 +31,7 @@
                                 <h:column><h:outputText value="ID"/></h:column>
                                 <h:column><h:outputText value="Modelo"/></h:column>
                                 <h:column><h:outputText value="Codigo Importacao"/></h:column>
+                                <h:column><h:outputText value="Familia"/></h:column>
                                 <h:column><h:outputText value="Serie"/></h:column>
                                 <h:column><h:outputText value="Editar"/></h:column>
                                 <h:column><h:outputText value="Adicionar Peca"/></h:column>
@@ -45,6 +46,9 @@
                         </rich:column>
                         <rich:column>
                             <h:outputText value="#{equipamento.codigoImportacao}" />
+                        </rich:column>
+                        <rich:column>
+                            <h:outputText value="#{equipamento.familia}" />
                         </rich:column>
                         <rich:column>
                             <h:outputText value="#{equipamento.serie}" />

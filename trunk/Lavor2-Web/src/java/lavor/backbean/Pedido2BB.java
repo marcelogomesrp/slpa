@@ -124,7 +124,7 @@ public class Pedido2BB {
     }
 
     public String DoListarRejeitadoPage(){
-        this.pedido2MB.setPedidos(this.ListarPedido(Situacao.Rejeitado));
+        this.pedido2MB.setPedidos(this.ListarPedido(Situacao.Recusado));
         return "sucesso";
     }
 
@@ -141,7 +141,7 @@ public class Pedido2BB {
     }
 
     public String DoListarRejeitadoPagePrioridade(){
-        pedido2MB.setPedidos(pedidoService.PesquisarPedidoPorSituacaoEPrioridade(Situacao.Rejeitado, Boolean.TRUE));
+        pedido2MB.setPedidos(pedidoService.PesquisarPedidoPorSituacaoEPrioridade(Situacao.Recusado, Boolean.TRUE));
         return "sucesso";
     }
 
@@ -301,7 +301,7 @@ public class Pedido2BB {
     }
 
     public String DoListarPedidoRejeitadoPage(){
-        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorPostoESituacao(postoDeAtendimentoMB.getPostoDeAtendimento(), Situacao.Rejeitado);
+        List<Pedido> pedidos = pedidoService.PesquisarPedidoPorPostoESituacao(postoDeAtendimentoMB.getPostoDeAtendimento(), Situacao.Recusado);
         pedido2MB.setPedidos(new ListDataModel(pedidos));
         return "/pedido2/listar";
     }
@@ -330,7 +330,7 @@ public class Pedido2BB {
 
     public String RejeitarPedido(){
         pedido2MB.setPedido((Pedido) pedido2MB.getPedidos().getRowData());
-        pedido2MB.getPedido().setSituacao(Situacao.Rejeitado);
+        pedido2MB.getPedido().setSituacao(Situacao.Recusado);
             this.Atualizar();
             pedido2MB.setPedido(new Pedido());
             pedido2MB.setItensPedido(new ListDataModel());

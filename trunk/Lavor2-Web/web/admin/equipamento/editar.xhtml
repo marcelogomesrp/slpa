@@ -31,6 +31,9 @@
                             <f:convertNumber />
                         </h:inputText>
 
+                        <h:outputText value="Familia" />
+                        <h:inputText value="#{equipamentoMB.equipamento.familia}" id="inputFamilia" maxlength="200" size="100" required="true" requiredMessage="A familia deve ser informado"/>
+
                         <h:outputText value="Prioridade" />
                         <h:selectBooleanCheckbox value="#{equipamentoMB.equipamento.prioridade}" />
 
