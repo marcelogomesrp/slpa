@@ -68,6 +68,8 @@ public class RevendaService {
         return this.revendaDao.PesquisarPorCnpjEPosto(cnpj, id);
     }
 
-    
+    public Revenda Atualizar(Revenda revenda){
+        return revendaDao.atualizar(revenda);
+    }
 
 }
