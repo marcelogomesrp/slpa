@@ -8,6 +8,7 @@ package lavor.backbean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import lavor.entidade.PostoDeAtendimento;
 import lavor.entidade.Revenda;
@@ -52,6 +53,12 @@ public class RevendaBB {
         return "sucesso";
     }
 
+    public String Atualizar(){
+        this.revendaService.Atualizar(revendaMB.getRevenda());
+        FacesUtils.adicionarMensagem("base_message", GenericExceptionMessageType.INFO, "Revenda atualizada com sucesso" );
+        return "sucesso";
+    }
+
     public String DoNovaRevendaPage(){
         Revenda revenda = new Revenda();
         revenda.setPostoDeAtendimento(postoDeAtendimentoMB.getPostoDeAtendimento());
@@ -71,6 +78,17 @@ public class RevendaBB {
         for(Revenda revenda:revendas){
             revendaMB.getRevendas().add(new SelectItem(revenda.getId(), revenda.getRazaoSocial()));
         }
+    }
+
+    public String DoListarPage(){
+        List<Revenda> revendas = revendaService.PesquisarPorPosto(postoDeAtendimentoMB.getPostoDeAtendimento());
+        revendaMB.setListRevendas(new ListDataModel(revendas));
+        return "/revenda/listar";
+    }
+
+    public String DoEditarPage(){
+        revendaMB.setRevenda((Revenda) revendaMB.getListRevendas().getRowData());
+        return "/revenda/editar";
     }
 
 

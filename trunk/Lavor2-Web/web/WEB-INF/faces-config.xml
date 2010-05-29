@@ -434,6 +434,16 @@
             <from-outcome>/tabela/donwload</from-outcome>
             <to-view-id>/posto/tabela/download.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{revendaBB.DoListarPage}</from-action>
+            <from-outcome>/revenda/listar</from-outcome>
+            <to-view-id>/posto/revenda/listar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{revendaBB.DoEditarPage}</from-action>
+            <from-outcome>/revenda/editar</from-outcome>
+            <to-view-id>/posto/revenda/editar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/posto/pedido/clientelistar.xhtml</from-view-id>
@@ -485,6 +495,8 @@
 
     </navigation-rule>
 </faces-config>
+
+
 
 
 
