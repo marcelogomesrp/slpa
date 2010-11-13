@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/adm/newTemplate.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="left">
+    <h:form>
+        <h:panelGrid columns="1" >
+        <h:commandLink action="/adm/Index" value="inicio"/>
+        <h:commandLink action="/Index" value="Sair"/>
+        <h:commandLink action="/Index" value="Sair"/>
+        <h:commandLink action="/adm/pedido/Teste.xhtml" value="/adm/pedido/Teste.xhtml"/>
+        </h:panelGrid>
+    </h:form>
+    </ui:define>
+
+
+    <ui:define name="content">
+        <h:form id="opa">
+            <p:panel header="teste...">
+            <h:outputText value="ok" />
+        </p:panel>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

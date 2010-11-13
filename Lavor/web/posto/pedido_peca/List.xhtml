@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../Template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        </h:form>
+
+
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <p:panel header="Nenhum pedido encontrado" rendered="#{pedidoPecaController.listPedido.rowCount == 0}" >
+                <h:outputText escape="false" value="Nenhum pedido encontrado" rendered="#{pedidoPecaController.listPedido.rowCount == 0}"/>
+            </p:panel>
+
+            <p:panel header="Pedidos" rendered="#{pedidoPecaController.listPedido.rowCount > 0}">
+                <h:outputText value="Total de pedidos   " />
+                <h:outputText value="#{pedidoPecaController.totalRegistro}" />
+                <h:commandLink value="Anterior" rendered="#{pedidoPecaController.temAnterior}" action="#{pedidoPecaController.Anterior}" />
+                <h:commandLink value="Proximo" rendered="#{pedidoPecaController.temProximo}" action="#{pedidoPecaController.Proximo}"/>
+                <h:dataTable value="#{pedidoPecaController.listPedido}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" width="100%" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data do pedido"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dataPedido}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Valor"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valor}">
+                            <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Situacao"/>
+                        </f:facet>
+                        <h:outputText value="#{item.situacao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Detalhe"/>
+                        </f:facet>
+                        <h:commandLink value="detalhe" action="#{pedidoPecaController.Detalhe}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Editar"/>
+                        </f:facet>
+                        <h:commandLink value="editar" action="#{pedidoPecaController.Editar}" rendered="#{item.situacao == 'Aberto'}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Cancelar"/>
+                        </f:facet>
+                        <h:commandLink value="cancelar" action="#{pedidoPecaController.CancelarPedido}" rendered="#{item.situacao == 'Aberto'}"/>
+                    </h:column>
+                </h:dataTable>
+            </p:panel>
+
+
+        </h:form>
+
+
+    </ui:define>
+
+
+</ui:composition>
