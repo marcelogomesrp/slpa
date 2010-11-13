@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../Template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <ui:define name="content">
+        <h:form>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        </h:form>
+        <h:form>
+            <p:panel header="Pedido" >
+                <h:panelGrid columns="2" >
+                    <h:outputText value="Número" />
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.id}" />
+                    <h:outputText value="Situacao" />
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.situacao}" />
+                    <h:outputText value="Data"/>
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.dataPedido}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Valor"/>
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.valor}" >
+                        <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
+                    </h:outputText>
+                </h:panelGrid>
+
+
+                    <p:dataTable var="item" value="#{pedidoPecaController.listaItemPedido.modelo}">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Código" />
+                        </f:facet>
+                        <h:outputText value="#{item.peca.codigoProduto}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descrição" />
+                        </f:facet>
+                        <h:outputText value="#{item.peca.descricao}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantidade" />
+                        </f:facet>
+                        <h:outputText value="#{item.quantidade}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="valor Unitário" />
+                        </f:facet>
+                        <h:outputText value="#{item.valorUnitario}">
+                            <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="valor Total" />
+                        </f:facet>
+                        <h:outputText value="#{item.valorTotal}">
+                            <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+
+                </p:dataTable>
+
+                
+            </p:panel>
+        </h:form>
+    </ui:define>
+    
+
+</ui:composition>

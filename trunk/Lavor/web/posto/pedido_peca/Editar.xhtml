@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../Template.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">        
+        <h:form>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        </h:form>
+        
+        <p:panel header="Pedido de Peca" >
+            <h:form>
+                <h:panelGrid columns="2" >
+                    <h:panelGrid columns="2" >
+                        <h:outputText value="Codigo" />
+                        <h:inputText value="#{pedidoPecaController.codigo}"/>
+                        <h:outputText value="Quantidade" />
+                        <h:inputText value="#{pedidoPecaController.quantidade}" >
+                            <f:convertNumber />
+                        </h:inputText>
+                    </h:panelGrid>
+                    <h:commandButton value="Adicionar" action="#{pedidoPecaController.AdicionarPecaEditar}" />
+                </h:panelGrid>
+
+                <p:dataTable var="item" value="#{pedidoPecaController.listaItemPedido.modelo}">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Código" />
+                        </f:facet>
+                        <h:outputText value="#{item.peca.codigoProduto}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descrição" />
+                        </f:facet>
+                        <h:outputText value="#{item.peca.descricao}" />
+                    </p:column>                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantidade" />
+                        </f:facet>
+                        <h:outputText value="#{item.quantidade}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="valor Unitário" />
+                        </f:facet>
+                        <h:outputText value="#{item.valorUnitario}">
+                            <f:convertNumber pattern="###.##"/>  
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="valor Total" />
+                        </f:facet>
+                        <h:outputText value="#{item.valorTotal}">
+                            <f:convertNumber pattern="###.##"/>  
+                        </h:outputText>
+                    </p:column>
+                
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Remover" />
+                        </f:facet>
+                        <h:commandLink value="X" action="#{pedidoPecaController.RemoverPeca}"/>
+                    </p:column>
+                </p:dataTable>
+                <h:outputText value="Valor Total" />
+                <h:outputText value="#{pedidoPecaController.pedidoPeca.valor}" >
+                    <f:convertNumber pattern="###.##"/>  
+                </h:outputText>
+                </h:form>
+            <h:form>
+                <h:commandButton value="Finalizar modificacoes" action="#{pedidoPecaController.finalizarModificacao}"/>
+            </h:form>
+        </p:panel>
+
+    </ui:define>
+
+</ui:composition>

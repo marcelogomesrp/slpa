@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../Template.xhtml"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <ui:define name="content">
+        Export
+        <h:form>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        </h:form>
+
+        <h:form>
+            <p:panel header="Export" >
+                <h:panelGrid columns="2" >
+                    <h:outputText value="Total de pedidos cadastrado" />
+                    <h:outputText value="#{pedidoPecaController.totalPedidoCadastrado}" />
+                </h:panelGrid>
+                <h:commandButton value="Exportar" action="#{pedidoPecaController.Exportar}" rendered="#{pedidoPecaController.totalPedidoCadastrado > 0}"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
