@@ -10,11 +10,13 @@ import br.com.guaraba.modelo.PedidoPeca;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,8 +43,8 @@ public class ItemPedidoPeca implements Serializable {
     private BigDecimal valorUnitario;
     @Column(name = "quantidade", precision = 12)
     private Long quantidade;
-    
-    @ManyToOne
+    //@JoinColumn(name="listaItemPedidoPeca")
+    @ManyToOne(cascade=CascadeType.ALL)
     private PedidoPeca pedidoPeca;
     @OneToOne
     private Peca peca;

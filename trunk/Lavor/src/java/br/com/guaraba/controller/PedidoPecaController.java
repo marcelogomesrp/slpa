@@ -6,6 +6,7 @@ package br.com.guaraba.controller;
 
 import br.com.guaraba.controller.util.JsfUtil;
 import br.com.guaraba.controller.util.Tabela;
+import br.com.guaraba.facade.ItemPedidoPecaFacade;
 import br.com.guaraba.facade.PecaFacade;
 import br.com.guaraba.modelo.ItemPedidoPeca;
 import br.com.guaraba.facade.PedidoPecaFacade;
@@ -48,6 +49,8 @@ public class PedidoPecaController implements Serializable{
     @EJB
     PedidoPecaFacade pedidoPecaFacade;
     @EJB
+    ItemPedidoPecaFacade ItemPedidoPecaFacade;
+    @EJB
     PecaFacade pecaFacade;
     @ManagedProperty(value = "#{postoAtendimentoController}")
     PostoAtendimentoController postoAtendimentoController;
@@ -62,17 +65,21 @@ public class PedidoPecaController implements Serializable{
     private Boolean proximo;
     private int totalPedidoCadastrado;
 
-    public String RemoverPeca() {
+    public void RemoverPeca() {
         ItemPedidoPeca itemPedidoPeca = listaItemPedido.getModelo().getRowData();
+        //pedidoPecaFacade.removerItem(itemPedidoPeca);
+        ItemPedidoPecaFacade.remove(itemPedidoPeca);
         listaItemPedido.Remove(itemPedidoPeca);
         BigDecimal valor = pedidoPeca.getValor();
         //valor = itemPedidoPeca.getValorTotal().subtract(valor);
         valor = valor.subtract(itemPedidoPeca.getValorTotal());
         pedidoPeca.setValor(valor);
-        return "/posto/pedido_peca/New";
+        pedidoPeca.setListaItemPedidoPeca(listaItemPedido.getLista());
+
+        //return "/posto/pedido_peca/New";
     }
 
-    public String AdicionarPeca() {
+    public void AdicionarPeca() {
         //Peca peca = pecaFacade.findByCodigo(codigo);
         Peca peca = pecaFacade.findByCodigoLimpo(codigo);
         if (peca.getId() != null) {
@@ -112,7 +119,7 @@ public class PedidoPecaController implements Serializable{
         } else {
             JsfUtil.addErrorMessage("Peca não econtrada");
         }
-        return "/posto/pedido_peca/New";
+        //return "/posto/pedido_peca/New";
     }
 
     public String AdicionarPecaEditar(){
@@ -436,4 +443,43 @@ private static byte[] getBytesFromFile(File file) throws IOException {
     }
 
 
+    public void AtualizarListPedidoAdm() {
+        listPedido = new ListDataModel(pedidoPecaFacade.findRange(getPaginacaoRange()));
+    }
+
+
+    public void ProximoAdm() {
+        if (this.getTemProximo()) {
+            paginacaoRange[0] = paginacaoRange[1];
+            paginacaoRange[1] = paginacaoRange[0] + paginacao;
+            this.AtualizarListPedidoAdm();
+        }
+        //return "List";
+    }
+
+    public void AnteriorAdm() {
+        if (this.getTemAnterior()) {
+            paginacaoRange[1] = paginacaoRange[0];
+            paginacaoRange[0] = paginacaoRange[1] - paginacao;
+            this.AtualizarListPedidoAdm();
+        }
+        //return "List";
+    }
+
+
+    public void finalizarModificacaoAdm() {
+        pedidoPeca.setListaItemPedidoPeca(listaItemPedido.getLista());
+        pedidoPeca.setModificado(Boolean.TRUE);
+        pedidoPecaFacade.edit(pedidoPeca);
+        JsfUtil.addSuccessMessage("Pedido modificado com sucesso");
+        //return "Pedido_peca_demonstrativo";
+    }
+
+
 }
+
+
+
+
+
+        

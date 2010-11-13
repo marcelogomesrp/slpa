@@ -2,32 +2,37 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./../Template.xhtml"
-                xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:f="http://java.sun.com/jsf/core">
-
-    <ui:define name="content">        
+    
+    
+    <ui:define name="content">
         <h:form>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
         </h:form>
-        <h:outputText value="Atenção: Pedido modificado na Lavor " rendered="#{pedidoPecaController.pedidoPeca.modificado}" />
-        <p:panel header="Pedido de Peca" >
-            <h:form>
+        <h:form>
+            <h:outputText value="Atenção: Pedido modificado na Lavor " rendered="#{pedidoPecaController.pedidoPeca.modificado}" />
+            <h:outputText value="Pedido" />
                 <h:panelGrid columns="2" >
-                    <h:panelGrid columns="2" >
-                        <h:outputText value="Codigo" />
-                        <h:inputText value="#{pedidoPecaController.codigo}"/>
-                        <h:outputText value="Quantidade" />
-                        <h:inputText value="#{pedidoPecaController.quantidade}" >
-                            <f:convertNumber />
-                        </h:inputText>
-                    </h:panelGrid>
-                    <h:commandButton value="Adicionar" action="#{pedidoPecaController.AdicionarPecaEditar}" />
+                    <h:outputText value="Número" />
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.id}" />
+                    <h:outputText value="Situacao" />
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.situacao}" />
+                    <h:outputText value="Data"/>
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.dataPedido}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Valor"/>
+                    <h:outputText value="#{pedidoPecaController.pedidoPeca.valor}" >
+                        <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
+                    </h:outputText>
                 </h:panelGrid>
 
-                <p:dataTable var="item" value="#{pedidoPecaController.listaItemPedido.modelo}">
+
+                    <p:dataTable var="item" value="#{pedidoPecaController.listaItemPedido.modelo}">
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Código" />
@@ -39,7 +44,7 @@
                             <h:outputText value="Descrição" />
                         </f:facet>
                         <h:outputText value="#{item.peca.descricao}" />
-                    </p:column>                    
+                    </p:column>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Quantidade" />
@@ -62,24 +67,12 @@
                             <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
                         </h:outputText>
                     </p:column>
-                
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Remover" />
-                        </f:facet>
-                        <h:commandLink value="X" action="#{pedidoPecaController.RemoverPeca}"/>
-                    </p:column>
-                </p:dataTable>
-                <h:outputText value="Valor Total" />
-                <h:outputText value="#{pedidoPecaController.pedidoPeca.valor}" >
-                    <f:convertNumber pattern="R$ #,##0.00" locale="pt_BR"/>
-                </h:outputText>
-                </h:form>
-            <h:form>
-                <h:commandButton value="Finalizar modificacoes" action="#{pedidoPecaController.finalizarModificacao}"/>
-            </h:form>
-        </p:panel>
 
+                </p:dataTable>
+
+                
+        </h:form>
     </ui:define>
+    
 
 </ui:composition>

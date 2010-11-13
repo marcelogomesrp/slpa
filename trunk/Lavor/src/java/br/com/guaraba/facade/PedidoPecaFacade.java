@@ -5,10 +5,12 @@
 
 package br.com.guaraba.facade;
 
+import br.com.guaraba.modelo.ItemPedidoPeca;
 import br.com.guaraba.modelo.PedidoPeca;
 import br.com.guaraba.modelo.PostoAtendimento;
 import br.com.guaraba.modelo.Situacao;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +80,17 @@ public class PedidoPecaFacade extends AbstractFacade<PedidoPeca>{
         }
 
     }
+
+    @Override
+    public void create(PedidoPeca pedidoPeca) {
+        pedidoPeca.setDataPedido(new Date());
+        pedidoPeca.setModificado(Boolean.FALSE);
+        super.create(pedidoPeca);
+    }
+
+
+
+    
 
 
 }
