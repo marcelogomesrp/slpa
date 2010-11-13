@@ -45,10 +45,11 @@ public class PedidoPeca implements Serializable {
     private BigDecimal valor;
     @OneToOne
     private PostoAtendimento postoAtendimento;
-    @OneToMany(mappedBy = "pedidoPeca", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "pedidoPeca", cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private List<ItemPedidoPeca> listaItemPedidoPeca;
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
+    private Boolean modificado;
 
     public PedidoPeca() {
     }
@@ -105,6 +106,14 @@ public class PedidoPeca implements Serializable {
 
     public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
+    }
+
+    public Boolean getModificado() {
+        return modificado;
+    }
+
+    public void setModificado(Boolean modificado) {
+        this.modificado = modificado;
     }
 
     

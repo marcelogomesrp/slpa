@@ -23,8 +23,8 @@
 
                 <h:outputText value="Total de pedidos   " />
                 <h:outputText value="#{pedidoPecaController.totalRegistro}" />
-                <h:commandLink value="Anterior" rendered="#{pedidoPecaController.temAnterior}" action="#{pedidoPecaController.Anterior}" />
-                <h:commandLink value="Proximo" rendered="#{pedidoPecaController.temProximo}" action="#{pedidoPecaController.Proximo}"/>
+                <h:commandLink value="Anterior" rendered="#{pedidoPecaController.temAnterior}" action="#{pedidoPecaController.AnteriorAdm}" />
+                <h:commandLink value="Proximo" rendered="#{pedidoPecaController.temProximo}" action="#{pedidoPecaController.ProximoAdm}"/>
                 <h:dataTable value="#{pedidoPecaController.listPedido}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" width="100%" >
                     <h:column>
                         <f:facet name="header">
@@ -71,12 +71,6 @@
                             <h:outputText value="Editar"/>
                         </f:facet>
                         <h:commandLink value="editar" action="#{pedidoPecaController.Editar}" rendered="#{item.situacao == 'Aberto'}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Cancelar"/>
-                        </f:facet>
-                        <h:commandLink value="cancelar" action="#{pedidoPecaController.CancelarPedido}" rendered="#{item.situacao == 'Aberto'}"/>
                     </h:column>
                 </h:dataTable>
             </h:panelGroup>
