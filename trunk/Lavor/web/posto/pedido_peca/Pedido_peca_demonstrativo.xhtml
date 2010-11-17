@@ -7,15 +7,25 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     
     
-    <ui:define name="content">
+    <ui:define name="content" >
         <h:form>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
         </h:form>
         <h:form>
+
+
+<h:outputLink id="lnk" value="#">
+	<p:printer target="image" />
+	<p:graphicImage value="/img/print.png" />
+</h:outputLink>
+
+<!-- p:graphicImage id="image" value="/img/print.png" / -->
+
+
             <h:outputText value="Atenção: Pedido modificado na Lavor " rendered="#{pedidoPecaController.pedidoPeca.modificado}" />
-            <p:panel header="Pedido" >
+            <p:panel header="Pedido"  id="image">
                 <h:panelGrid columns="2" >
                     <h:outputText value="Número" />
                     <h:outputText value="#{pedidoPecaController.pedidoPeca.id}" />
